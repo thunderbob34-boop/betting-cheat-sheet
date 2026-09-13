@@ -4,9 +4,27 @@ This file governs how Claude Code works in this repo. The full master plan lives
 `../docs/betting-cheat-sheet-plan.md` (outside this repo, in the job folder). Read it
 before doing any work beyond Phase 0.
 
-**Current status: Phase 0 (scaffold) only.** Do not build `odds.py`, `build.py`,
-`grade.py`, `templates/page.html`, week JSON files, or slash commands until Gus
-explicitly moves the project to Phase 1+.
+**Current status: Phase 1 (math + page) complete.** `odds.py`, `build.py`,
+`templates/page.html`, and a hand-written sample week JSON
+(`data/weeks/sample-phase1.json`, `is_sample: true`) exist and are tested.
+`docs/index.html` currently renders that SAMPLE data (fictional team names, a
+loud "do not place these bets" banner) — it is not a real card yet. Do not
+build `grade.py` or the `/cheatsheet` slash command until Gus explicitly moves
+the project to Phase 2+.
+
+Scoreboard math is verified against the real `data/bet_log.csv`: 1 W / 1 CO /
+18 L / 2 Open, cash P/L ≈ –$55.93, bankroll remaining ≈ –$5.93 (not floored at
+zero — the tool is honest about being underwater), current streak L13.
+
+`src/build.py` hard-fails (raises `RuleViolation`, non-zero exit, page not
+written) on any week JSON that would violate Rule 1 (>$5 card), Rule 2 (a live
+or non-pre-kickoff bet), or Rule 6 (more than 1 straight + 1 parlay). Rule 4
+(coin-flip legs cap a parlay at 3) is enforced for parlays with >3 legs. Rules
+3 and 5 are structural (boosts rendered in a separate section, never driving
+`card`; every odds number always rendered next to its implied probability).
+Rule 7 holds trivially — grep confirms no network/HTTP code exists anywhere in
+`src/`. Run `python3 -m unittest discover -s src -p "test_*.py" -v` before
+touching any of these files again.
 
 ## Ground rules (plan §3 — non-negotiable, the page enforces them)
 

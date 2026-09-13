@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#111418">
+<title>Weekly Betting Cheat Sheet</title>
+<style>
+  /*
+    Phase 1 template — function first, no design system yet (Phase 4 restyles this).
+    This file is a STRING-REPLACE template: build.py does str.replace() on the
+    {{TOKEN}} placeholders below. No Jinja/Mustache, no JS required to render.
+
+    Contract for build.py (each token is replaced with a raw HTML fragment):
+      {{SAMPLE_BANNER}}      -> "" (real week) OR one <div class="sample-banner">...</div>
+      {{SCOREBOARD}}         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
+      {{CARD}}               -> one or more <div class="bet">...</div> (see structure below)
+      {{LEG_BANK}}           -> one or more <div class="leg">...</div>
+      {{BOOST_CHECK}}        -> one or more <div class="boost-item fits|no-fit">...</div>
+      {{AVOID_LIST}}         -> one or more <div class="avoid-item">...</div>
+      {{LAST_WEEK_GRADED}}   -> one or more <div class="graded-item result-won|result-lost|result-cashed-out|result-open">...</div>
+      {{BUILT_AT}}           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
+
+    None of the above classes are required — plain semantic HTML (p, ul/li, table)
+    renders fine on the base element styles too. The classes just get nicer,
+    on-brand-enough treatment (color-coded results, mono odds, etc). If a table
+    is used anywhere, wrap it in <div class="scroll-x">...</div> so it scrolls
+    horizontally instead of blowing out the 390px layout.
+  */
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    padding: 16px 16px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    background: #111418;
+    color: #e8e8e8;
+    line-height: 1.5;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 0 0 12px;
+  }
+
+  h2 {
+    font-size: 1.02rem;
+    margin: 0 0 10px;
+    color: #cfd6de;
+    letter-spacing: 0.01em;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    margin: 0 0 4px;
+    color: #f2f4f6;
+  }
+
+  p { margin: 0 0 8px; }
+
+  a { color: #6db4ff; }
+
+  ul, ol { padding-left: 1.2em; margin: 0 0 8px; }
+  li { margin-bottom: 6px; }
+
+  section {
+    margin-bottom: 26px;
+  }
+
+  .section-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* mono figures — odds, dollar amounts, percentages */
+  .mono, .odds, .prob, .stake {
+    font-variant-numeric: tabular-nums;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  .muted { color: #8a929b; }
+  .small { font-size: 0.82rem; }
+
+  /* generic pill/badge */
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid #333a42;
+    background: #1c2127;
+    color: #cfd6de;
+  }
+
+  /* wrap any wide table so the page itself never scrolls sideways */
+  .scroll-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+  th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid #262b31; white-space: nowrap; }
+
+  /* ---------- sample-data banner (Section 1) ---------- */
+  .sample-banner {
+    background: #3a0f0f;
+    border: 3px solid #ff4d4d;
+    color: #ffb3b3;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .advice-only {
+    background: #16281c;
+    border: 1px solid #2e7d46;
+    color: #8fe0a8;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 22px;
+    font-weight: bold;
+    font-size: 0.88rem;
+  }
+
+  /* ---------- scoreboard (Section 2) ---------- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .stat {
+    background: #171b20;
+    border: 1px solid #262b31;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .stat .label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #8a929b;
+    margin-bottom: 4px;
+  }
+  .stat .value {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .stat .value.positive { color: #6bd68a; }
+  .stat .value.negative { color: #ff8585; }
+
+  /* ---------- this week's card (Section 3) ---------- */
+  .bet {
+    background: #171b20;
+    border: 1px solid #2a3038;
+    border-left: 4px solid #4da3ff;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .bet-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 10px;
+    margin-bottom: 6px;
+  }
+  .bet-header .odds {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .prob-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 0.85rem;
+    color: #cfd6de;
+    margin-bottom: 6px;
+  }
+  .prob-row .k { color: #8a929b; margin-right: 4px; }
+  .reason { margin-bottom: 8px; }
+  .leg-list { margin: 6px 0 10px; padding-left: 1.1em; }
+  .verify {
+    font-size: 0.78rem;
+    color: #8a929b;
+    border-top: 1px dashed #2a3038;
+    padding-top: 6px;
+    margin-top: 4px;
+  }
+  .stake-line {
+    font-size: 0.8rem;
+    color: #cfd6de;
+    margin-bottom: 6px;
+  }
+
+  /* ---------- leg bank (Section 4) ---------- */
+  .leg {
+    background: #14171b;
+    border: 1px solid #262b31;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .leg-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 10px;
+    margin-bottom: 4px;
+  }
+  .leg-header .selection { font-weight: 600; }
+  .leg .meta {
+    font-size: 0.8rem;
+    color: #8a929b;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .edge-positive { color: #6bd68a; }
+  .edge-negative { color: #ff8585; }
+
+  /* ---------- boost check (Section 5) ---------- */
+  .boost-item {
+    background: #14171b;
+    border: 1px solid #262b31;
+    border-left: 4px solid #555d66;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .boost-item.fits { border-left-color: #4da3ff; }
+  .boost-item.no-fit { border-left-color: #555d66; }
+  .boost-item .verdict {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+  .boost-item.fits .verdict { color: #6db4ff; }
+  .boost-item.no-fit .verdict { color: #8a929b; }
+
+  /* ---------- avoid list (Section 6) ---------- */
+  .avoid-item {
+    background: #1f1210;
+    border: 1px solid #3a2620;
+    border-left: 4px solid #d9743f;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .avoid-item .why-tempting, .avoid-item .why-avoid {
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+  }
+  .avoid-item .why-tempting .k, .avoid-item .why-avoid .k {
+    color: #8a929b;
+    margin-right: 4px;
+  }
+
+  /* ---------- last week, graded (Section 7) ---------- */
+  .graded-item {
+    background: #14171b;
+    border: 1px solid #262b31;
+    border-left: 4px solid #555d66;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .graded-item .result {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .graded-item.result-won { border-left-color: #2e7d46; }
+  .graded-item.result-won .result { color: #6bd68a; }
+  .graded-item.result-lost { border-left-color: #a33; }
+  .graded-item.result-lost .result { color: #ff8585; }
+  .graded-item.result-cashed-out { border-left-color: #b98900; }
+  .graded-item.result-cashed-out .result { color: #ffd34d; }
+  .graded-item.result-open { border-left-color: #4da3ff; }
+  .graded-item.result-open .result { color: #6db4ff; }
+  .graded-item .lesson { font-size: 0.85rem; margin-top: 4px; }
+
+  footer {
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #333;
+    font-size: 0.8rem;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+  <h1>Weekly Betting Cheat Sheet</h1>
+
+  {{SAMPLE_BANNER}}
+
+  <div class="advice-only">Advice only &mdash; Gus places every bet himself in the DK app.</div>
+
+  <section class="scoreboard" id="scoreboard">
+    <h2>Scoreboard</h2>
+    <div class="section-body">{{SCOREBOARD}}</div>
+  </section>
+
+  <section class="card-section" id="card">
+    <h2>This Week&rsquo;s Card</h2>
+    <div class="section-body">{{CARD}}</div>
+  </section>
+
+  <section class="leg-bank" id="leg-bank">
+    <h2>Leg Bank</h2>
+    <div class="section-body">{{LEG_BANK}}</div>
+  </section>
+
+  <section class="boost-check" id="boost-check">
+    <h2>Boost Check</h2>
+    <div class="section-body">{{BOOST_CHECK}}</div>
+  </section>
+
+  <section class="avoid-list" id="avoid-list">
+    <h2>Avoid List</h2>
+    <div class="section-body">{{AVOID_LIST}}</div>
+  </section>
+
+  <section class="last-week" id="last-week-graded">
+    <h2>Last Week, Graded</h2>
+    <div class="section-body">{{LAST_WEEK_GRADED}}</div>
+  </section>
+
+  <footer>Built {{BUILT_AT}}</footer>
+</body>
+</html>
