@@ -364,8 +364,7 @@ def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label):
 
     heading = f'<h3>This Season (since {escape(_format_human_date(season_start))})</h3>'
 
-    parts = [
-        heading,
+    tiles = [
         stat(
             "Record",
             f'{season_sb["wins"]}W-{season_sb["losses"]}L-{season_sb["cashouts"]}CO-{season_sb["open"]}Open',
@@ -375,7 +374,11 @@ def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label):
         stat("Bankroll Remaining", format_money(season_sb["bankroll_remaining"]), bankroll_cls),
     ]
     if season_sb.get("no_data_rows"):
-        parts.append(stat("Unparseable Log Rows", season_sb["no_data_rows"]))
+        tiles.append(stat("Bets Missing Details", season_sb["no_data_rows"]))
+
+    # .stat-grid is a 2-column CSS grid (already defined in templates/page.html)
+    # so the tiles fit on one phone screen instead of stacking full-width.
+    grid = f'<div class="stat-grid">{"".join(tiles)}</div>'
 
     alltime_label = alltime_since_label or "—"
     alltime_line = (
@@ -385,9 +388,8 @@ def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label):
         f'cash P/L {escape(format_money(alltime_sb["cash_pl"]))}'
         '</div>'
     )
-    parts.append(alltime_line)
 
-    return "".join(parts)
+    return heading + grid + alltime_line
 
 
 def render_bet_card(bet):
@@ -455,6 +457,11 @@ def render_bet_card(bet):
   {source_bit}
   <div class="verify">{verify_line}</div>
 </div>'''
+
+
+def sort_leg_bank(leg_bank):
+    """Leg Bank entries ranked by estimated probability, highest first."""
+    return sorted(leg_bank, key=lambda leg: leg.get("estimated_prob", 0.0), reverse=True)
 
 
 def render_leg_bank_entry(leg):
@@ -531,7 +538,7 @@ def render_page(week, season_sb, alltime_sb, season_start, alltime_since_label, 
         "{{SAMPLE_BANNER}}": sample_banner,
         "{{SCOREBOARD}}": render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label),
         "{{CARD}}": "".join(render_bet_card(b) for b in week.get("card", {}).get("bets", [])),
-        "{{LEG_BANK}}": "".join(render_leg_bank_entry(l) for l in week.get("leg_bank", [])),
+        "{{LEG_BANK}}": "".join(render_leg_bank_entry(l) for l in sort_leg_bank(week.get("leg_bank", []))),
         "{{BOOST_CHECK}}": "".join(render_boost(b) for b in week.get("boost_check", [])),
         "{{AVOID_LIST}}": "".join(render_avoid(a) for a in week.get("avoid_list", [])),
         "{{LAST_WEEK_GRADED}}": "".join(render_graded(g) for g in week.get("last_week_graded", [])),

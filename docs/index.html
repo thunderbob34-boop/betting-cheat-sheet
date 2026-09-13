@@ -14,7 +14,7 @@
 
     Contract for build.py (each token is replaced with a raw HTML fragment):
       <div class="sample-banner">SAMPLE DATA &mdash; schema test only, not a real week. Do not place any bets from this page.</div>      -> "" (real week) OR one <div class="sample-banner">...</div>
-      <h3>This Season (since Sep 1, 2026)</h3><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Unparseable Log Rows</span><span class="value">1</span></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div>         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
+      <h3>This Season (since Sep 1, 2026)</h3><div class="stat-grid"><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Bets Missing Details</span><span class="value">1</span></div></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div>         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
       <div class="bet">
   <div class="bet-header">
     <h3>Sample Team A moneyline (sample data — not researched)</h3>
@@ -48,112 +48,16 @@
 </div>               -> one or more <div class="bet">...</div> (see structure below)
       <div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team C -3.5 (sample)</span>
-    <span class="odds mono">-110</span>
-  </div>
-  <div class="meta">
-    <span>spread</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.6%</span></span>
-  </div>
-  <p class="small">Sample spread leg — sample data for Phase 1 testing, not researched.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team D moneyline (sample)</span>
-    <span class="odds mono">-200</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">66.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">68.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.3%</span></span>
-  </div>
-  <p class="small">Sample favorite pick, Phase 1 placeholder only.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team E vs Sample Team F Over 44.5 (sample)</span>
-    <span class="odds mono">-115</span>
-  </div>
-  <div class="meta">
-    <span>total</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">53.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">53.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.5%</span></span>
-  </div>
-  <p class="small">Sample total, not a real projection.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player Y 250+ pass yds (sample)</span>
-    <span class="odds mono">-130</span>
+    <span class="selection">Fictional Player W 4+ receptions (sample)</span>
+    <span class="odds mono">-170</span>
   </div>
   <div class="meta">
     <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">56.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">60.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.5%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">63.0%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">72.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.0%</span></span>
   </div>
-  <p class="small">Sample passing-yards prop for Phase 1 schema testing.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team G moneyline, underdog (sample)</span>
-    <span class="odds mono">+165</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">37.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">40.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.3%</span></span>
-  </div>
-  <p class="small">Sample underdog leg, illustrative only — not researched.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player Z 1+ rushing TD (sample)</span>
-    <span class="odds mono">+120</span>
-  </div>
-  <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">45.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">46.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.5%</span></span>
-  </div>
-  <p class="small">Sample touchdown prop, sample data for Phase 1 testing.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team H +6.5 (sample)</span>
-    <span class="odds mono">-108</span>
-  </div>
-  <div class="meta">
-    <span>spread</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">51.9%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">58.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">6.1%</span></span>
-  </div>
-  <p class="small">Sample spread leg for schema testing only.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team A/Sample Team B Under 51.5 (sample)</span>
-    <span class="odds mono">-105</span>
-  </div>
-  <div class="meta">
-    <span>total</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">51.2%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">52.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.8%</span></span>
-  </div>
-  <p class="small">Sample total leg, placeholder data — not researched.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player X 60+ rec yds (sample)</span>
-    <span class="odds mono">-125</span>
-  </div>
-  <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">55.6%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">65.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.4%</span></span>
-  </div>
-  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+  <p class="small">Sample high-floor prop, Phase 1 placeholder — not researched.</p>
 </div><div class="leg">
   <div class="leg-header">
     <span class="selection">Sample Team B moneyline (sample)</span>
@@ -168,6 +72,90 @@
   <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
 </div><div class="leg">
   <div class="leg-header">
+    <span class="selection">Sample Team D moneyline (sample)</span>
+    <span class="odds mono">-200</span>
+  </div>
+  <div class="meta">
+    <span>ML</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">66.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">68.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.3%</span></span>
+  </div>
+  <p class="small">Sample favorite pick, Phase 1 placeholder only.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Fictional Player X 60+ rec yds (sample)</span>
+    <span class="odds mono">-125</span>
+  </div>
+  <div class="meta">
+    <span>prop</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">55.6%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">65.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.4%</span></span>
+  </div>
+  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Fictional Player Y 250+ pass yds (sample)</span>
+    <span class="odds mono">-130</span>
+  </div>
+  <div class="meta">
+    <span>prop</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">56.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">60.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.5%</span></span>
+  </div>
+  <p class="small">Sample passing-yards prop for Phase 1 schema testing.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team H +6.5 (sample)</span>
+    <span class="odds mono">-108</span>
+  </div>
+  <div class="meta">
+    <span>spread</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">51.9%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">58.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">6.1%</span></span>
+  </div>
+  <p class="small">Sample spread leg for schema testing only.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team C -3.5 (sample)</span>
+    <span class="odds mono">-110</span>
+  </div>
+  <div class="meta">
+    <span>spread</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.6%</span></span>
+  </div>
+  <p class="small">Sample spread leg — sample data for Phase 1 testing, not researched.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team E vs Sample Team F Over 44.5 (sample)</span>
+    <span class="odds mono">-115</span>
+  </div>
+  <div class="meta">
+    <span>total</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">53.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">53.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.5%</span></span>
+  </div>
+  <p class="small">Sample total, not a real projection.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team A/Sample Team B Under 51.5 (sample)</span>
+    <span class="odds mono">-105</span>
+  </div>
+  <div class="meta">
+    <span>total</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">51.2%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">52.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.8%</span></span>
+  </div>
+  <p class="small">Sample total leg, placeholder data — not researched.</p>
+</div><div class="leg">
+  <div class="leg-header">
     <span class="selection">Sample Team I moneyline, coin flip (sample)</span>
     <span class="odds mono">+105</span>
   </div>
@@ -180,16 +168,28 @@
   <p class="small">Sample coin-flip leg — illustrates why a leg like this stays out of any parlay.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player W 4+ receptions (sample)</span>
-    <span class="odds mono">-170</span>
+    <span class="selection">Fictional Player Z 1+ rushing TD (sample)</span>
+    <span class="odds mono">+120</span>
   </div>
   <div class="meta">
     <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">63.0%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">72.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.0%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">45.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">46.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.5%</span></span>
   </div>
-  <p class="small">Sample high-floor prop, Phase 1 placeholder — not researched.</p>
+  <p class="small">Sample touchdown prop, sample data for Phase 1 testing.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team G moneyline, underdog (sample)</span>
+    <span class="odds mono">+165</span>
+  </div>
+  <div class="meta">
+    <span>ML</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">37.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">40.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.3%</span></span>
+  </div>
+  <p class="small">Sample underdog leg, illustrative only — not researched.</p>
 </div>           -> one or more <div class="leg">...</div>
       <div class="boost-item no-fit">
   <div class="verdict">No fit</div>
@@ -242,7 +242,7 @@
   <div class="result">Lost</div>
   <p class="lesson">Lost by half a point on a live total — a reminder that in-game numbers are close calls by design, which is why the card stays pre-kickoff only.</p>
 </div>   -> one or more <div class="graded-item result-won|result-lost|result-cashed-out|result-open">...</div>
-      2026-09-13 23:30 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
+      2026-09-13 23:35 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
 
     None of the above classes are required — plain semantic HTML (p, ul/li, table)
     renders fine on the base element styles too. The classes just get nicer,
@@ -534,7 +534,7 @@
 
   <section class="scoreboard" id="scoreboard">
     <h2>Scoreboard</h2>
-    <div class="section-body"><h3>This Season (since Sep 1, 2026)</h3><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Unparseable Log Rows</span><span class="value">1</span></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div></div>
+    <div class="section-body"><h3>This Season (since Sep 1, 2026)</h3><div class="stat-grid"><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Bets Missing Details</span><span class="value">1</span></div></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div></div>
   </section>
 
   <section class="card-section" id="card">
@@ -576,112 +576,16 @@
     <h2>Leg Bank</h2>
     <div class="section-body"><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team C -3.5 (sample)</span>
-    <span class="odds mono">-110</span>
-  </div>
-  <div class="meta">
-    <span>spread</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.6%</span></span>
-  </div>
-  <p class="small">Sample spread leg — sample data for Phase 1 testing, not researched.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team D moneyline (sample)</span>
-    <span class="odds mono">-200</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">66.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">68.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.3%</span></span>
-  </div>
-  <p class="small">Sample favorite pick, Phase 1 placeholder only.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team E vs Sample Team F Over 44.5 (sample)</span>
-    <span class="odds mono">-115</span>
-  </div>
-  <div class="meta">
-    <span>total</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">53.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">53.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.5%</span></span>
-  </div>
-  <p class="small">Sample total, not a real projection.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player Y 250+ pass yds (sample)</span>
-    <span class="odds mono">-130</span>
+    <span class="selection">Fictional Player W 4+ receptions (sample)</span>
+    <span class="odds mono">-170</span>
   </div>
   <div class="meta">
     <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">56.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">60.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.5%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">63.0%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">72.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.0%</span></span>
   </div>
-  <p class="small">Sample passing-yards prop for Phase 1 schema testing.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team G moneyline, underdog (sample)</span>
-    <span class="odds mono">+165</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">37.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">40.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.3%</span></span>
-  </div>
-  <p class="small">Sample underdog leg, illustrative only — not researched.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player Z 1+ rushing TD (sample)</span>
-    <span class="odds mono">+120</span>
-  </div>
-  <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">45.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">46.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.5%</span></span>
-  </div>
-  <p class="small">Sample touchdown prop, sample data for Phase 1 testing.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team H +6.5 (sample)</span>
-    <span class="odds mono">-108</span>
-  </div>
-  <div class="meta">
-    <span>spread</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">51.9%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">58.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">6.1%</span></span>
-  </div>
-  <p class="small">Sample spread leg for schema testing only.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team A/Sample Team B Under 51.5 (sample)</span>
-    <span class="odds mono">-105</span>
-  </div>
-  <div class="meta">
-    <span>total</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">51.2%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">52.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.8%</span></span>
-  </div>
-  <p class="small">Sample total leg, placeholder data — not researched.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player X 60+ rec yds (sample)</span>
-    <span class="odds mono">-125</span>
-  </div>
-  <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">55.6%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">65.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.4%</span></span>
-  </div>
-  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+  <p class="small">Sample high-floor prop, Phase 1 placeholder — not researched.</p>
 </div><div class="leg">
   <div class="leg-header">
     <span class="selection">Sample Team B moneyline (sample)</span>
@@ -696,6 +600,90 @@
   <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
 </div><div class="leg">
   <div class="leg-header">
+    <span class="selection">Sample Team D moneyline (sample)</span>
+    <span class="odds mono">-200</span>
+  </div>
+  <div class="meta">
+    <span>ML</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">66.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">68.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.3%</span></span>
+  </div>
+  <p class="small">Sample favorite pick, Phase 1 placeholder only.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Fictional Player X 60+ rec yds (sample)</span>
+    <span class="odds mono">-125</span>
+  </div>
+  <div class="meta">
+    <span>prop</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">55.6%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">65.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.4%</span></span>
+  </div>
+  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Fictional Player Y 250+ pass yds (sample)</span>
+    <span class="odds mono">-130</span>
+  </div>
+  <div class="meta">
+    <span>prop</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">56.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">60.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.5%</span></span>
+  </div>
+  <p class="small">Sample passing-yards prop for Phase 1 schema testing.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team H +6.5 (sample)</span>
+    <span class="odds mono">-108</span>
+  </div>
+  <div class="meta">
+    <span>spread</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">51.9%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">58.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">6.1%</span></span>
+  </div>
+  <p class="small">Sample spread leg for schema testing only.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team C -3.5 (sample)</span>
+    <span class="odds mono">-110</span>
+  </div>
+  <div class="meta">
+    <span>spread</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.6%</span></span>
+  </div>
+  <p class="small">Sample spread leg — sample data for Phase 1 testing, not researched.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team E vs Sample Team F Over 44.5 (sample)</span>
+    <span class="odds mono">-115</span>
+  </div>
+  <div class="meta">
+    <span>total</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">53.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">53.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.5%</span></span>
+  </div>
+  <p class="small">Sample total, not a real projection.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team A/Sample Team B Under 51.5 (sample)</span>
+    <span class="odds mono">-105</span>
+  </div>
+  <div class="meta">
+    <span>total</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">51.2%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">52.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.8%</span></span>
+  </div>
+  <p class="small">Sample total leg, placeholder data — not researched.</p>
+</div><div class="leg">
+  <div class="leg-header">
     <span class="selection">Sample Team I moneyline, coin flip (sample)</span>
     <span class="odds mono">+105</span>
   </div>
@@ -708,16 +696,28 @@
   <p class="small">Sample coin-flip leg — illustrates why a leg like this stays out of any parlay.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player W 4+ receptions (sample)</span>
-    <span class="odds mono">-170</span>
+    <span class="selection">Fictional Player Z 1+ rushing TD (sample)</span>
+    <span class="odds mono">+120</span>
   </div>
   <div class="meta">
     <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">63.0%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">72.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.0%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">45.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">46.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.5%</span></span>
   </div>
-  <p class="small">Sample high-floor prop, Phase 1 placeholder — not researched.</p>
+  <p class="small">Sample touchdown prop, sample data for Phase 1 testing.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Sample Team G moneyline, underdog (sample)</span>
+    <span class="odds mono">+165</span>
+  </div>
+  <div class="meta">
+    <span>ML</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">37.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">40.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.3%</span></span>
+  </div>
+  <p class="small">Sample underdog leg, illustrative only — not researched.</p>
 </div></div>
   </section>
 
@@ -784,6 +784,6 @@
 </div></div>
   </section>
 
-  <footer>Built 2026-09-13 23:30 UTC</footer>
+  <footer>Built 2026-09-13 23:35 UTC</footer>
 </body>
 </html>

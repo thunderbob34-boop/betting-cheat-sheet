@@ -6,6 +6,7 @@ from build import (
     compute_scoreboard,
     find_earliest_date_label,
     load_config,
+    sort_leg_bank,
     validate_rules,
 )
 
@@ -175,6 +176,41 @@ class TestLoadConfig(unittest.TestCase):
         config = load_config(REPO_ROOT / "data" / "does_not_exist.json")
         self.assertEqual(config["season_start"], "2026-09-01")
         self.assertAlmostEqual(config["starting_bankroll"], 50.00, delta=1e-9)
+
+
+class TestSortLegBank(unittest.TestCase):
+    def test_sorts_descending_by_estimated_prob(self):
+        legs = [
+            {"selection": "A", "estimated_prob": 0.55},
+            {"selection": "B", "estimated_prob": 0.72},
+            {"selection": "C", "estimated_prob": 0.61},
+        ]
+        ranked = sort_leg_bank(legs)
+        self.assertEqual([l["selection"] for l in ranked], ["B", "C", "A"])
+        self.assertEqual(
+            [l["estimated_prob"] for l in ranked],
+            sorted((l["estimated_prob"] for l in legs), reverse=True),
+        )
+
+    def test_does_not_mutate_input_list(self):
+        legs = [
+            {"selection": "A", "estimated_prob": 0.4},
+            {"selection": "B", "estimated_prob": 0.9},
+        ]
+        original_order = [l["selection"] for l in legs]
+        sort_leg_bank(legs)
+        self.assertEqual([l["selection"] for l in legs], original_order)
+
+    def test_missing_estimated_prob_sorts_last(self):
+        legs = [
+            {"selection": "no-prob"},
+            {"selection": "has-prob", "estimated_prob": 0.5},
+        ]
+        ranked = sort_leg_bank(legs)
+        self.assertEqual([l["selection"] for l in ranked], ["has-prob", "no-prob"])
+
+    def test_empty_list(self):
+        self.assertEqual(sort_leg_bank([]), [])
 
 
 if __name__ == "__main__":
