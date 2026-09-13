@@ -1,0 +1,24 @@
+date_placed,sport,bet_type,legs,selections,odds_listed,odds_boosted,wager,wager_type,result,payout,net_cash,event_result,notes
+2026-03-21 18:40,NCAAB,Live boost straight,1,TCU to win (live halftime boost),+800,,5.00,cash,Lost,0.00,-5.00,TCU 58 - Duke 81,
+2026-03-21 18:42,NCAAB,Live moneyline,1,Texas A&M ML,+500,,5.00,cash,Lost,0.00,-5.00,Texas A&M 57 - Houston 88,
+2026-05-03 08:28,NBA,SGP parlay,9,"Bane 12+ pts; Banchero 5+ reb; Cunningham 5+ ast; Carter 4+ reb; Duren 6+ reb; Banchero 12+ pts; Suggs 6+ pts; Harris 10+ pts; Cunningham 18+ pts",-180,,10.00,bonus bet,Won,5.55,5.55,Magic vs Pistons,All 9 legs hit; bonus bet so stake not returned
+2026-05-29 20:07,NHL,SGP parlay,8,"CAR Hurricanes ML; 1+; 1+; 2+; 2+; 2+; 3+; 3+",+500,,7.63,cash,Lost,0.00,-7.63,MTL 1 - CAR 6,Canes won but prop legs missed
+2026-06-17 15:53,MLB,SGP parlay,4,"Over 2.5; 4+; Over 9.5; BOS Red Sox ML",+1000,,20.00,cash,Lost,0.00,-20.00,TOR 3 - BOS 0,Largest single wager in history
+2026-07-03 18:31,Soccer (World Cup),Live to qualify,1,Cape Verde to qualify,+6500,,2.00,cash,Lost,0.00,-2.00,Argentina 3 - Cape Verde 2 (AET),
+2026-07-03 18:38,Soccer (World Cup),SGP parlay,3,"Argentina; Under 5.5; Yes",+280,+364,8.00,cash,Cashed Out,14.11,6.11,Argentina 3 - Cape Verde 2 (AET),+30% boost forfeited by cashing out
+2026-07-04 07:15,Soccer (World Cup),SGP parlay,3,"Morocco; Over 1.5; Ismael Saibari",+294,,2.11,cash,Lost,0.00,-2.11,Canada 0 - Morocco 3,Early exit eligible
+2026-07-04 13:59,Soccer (World Cup),Live moneyline,1,Canada ML,+320,,2.00,cash,Lost,0.00,-2.00,Canada 0 - Morocco 3,
+2026-07-04 16:27,Soccer (World Cup),SGP parlay,3,"France; Over 1.5; Kylian Mbappe",-110,+137,5.00,cash,Lost,0.00,-5.00,Paraguay 0 - France 1,+50% parlay boost
+2026-07-04 18:11,Soccer (World Cup),Live moneyline,1,Paraguay ML,+1400,+2100,1.00,cash,Lost,0.00,-1.00,Paraguay 0 - France 1,+50% boost
+2026-07-19 13:09,Soccer (World Cup),Player prop,1,Lionel Messi 2+ goals (incl ET),+900,,3.85,cash,Lost,0.00,-3.85,Spain 1 - Argentina 0 (AET),
+2026-07-19 13:13,Soccer (World Cup),SGP parlay,3,"Messi ATGS; Yamal ATGS; Oyarzabal ATGS",+2100,+2730,5.00,cash,Lost,0.00,-5.00,Spain 1 - Argentina 0 (AET),+30% parlay boost; 0 of 3 legs hit
+2026-09-04 18:58,NCAAF,Live total,1,Under 47.5,-120,,5.00,cash,Lost,0.00,-5.00,San Jose State 27 - Eastern Michigan 21 (48),Lost by half a point
+2026-09-09 20:28,NFL,SGP parlay (live),6,"Stevenson ATD; Darnold 1+ pass TD; Price 40+ rush+rec; Darnold 175+ pass yds; Smith-Njigba ATD; Maye 200+ pass yds",+575,+1050,1.00,cash,Lost,0.00,-1.00,NE 10 - SEA 13,2 won / 2 early-exit protected / 2 lost
+2026-09-10 (approx),NFL,SGP parlay,8,"McCaffrey ATD; LA Rams ML; Nacua 60+ rec; Kittle 15+ rec; Evans 15+ rec; Adams 40+ rec; Stafford 200+ pass; K. Williams 50+ rush+rec",+650,+975,1.00,cash,Lost,0.00,-1.00,SF 27 - LA Rams 7 (Melbourne),3 of 8 legs hit; placed date not visible in screenshot
+2026-09-12 12:10,NCAAF,Parlay (moneylines),8,"Oklahoma; Texas A&M; Ball State; Alabama; Central Michigan; Oregon; East Carolina; South Florida",+541,+813,0.50,cash,Lost,0.00,-0.50,,+50% parlay boost
+2026-09-13 12:59,NFL,SGPx parlay,10,"PIT ML; CIN ML; BAL ML; CHI ML; BUF ML; TEN ML; 2-pick SGP; 2-pick SGP",+9164,+13748,1.00,cash,Lost,0.00,-1.00,,+50% parlay boost
+2026-09-13 13:05,NFL,SGP parlay (live),6,"Mayfield 275+ pass; Over 50.5; Chase Brown 90+ rush+rec; Egbuka 80+ rec; Chase 100+ rec; Burrow 275+ pass",+3300,+4290,0.50,cash,Lost,0.00,-0.50,TB 27 - CIN 33,1 of 6 legs hit (the total)
+2026-09-13 13:28,,,,,,,,,,,,,Bet ID DK639249173278030481 - details not visible in screenshots
+2026-09-13 13:36,NFL,Parlay (live moneylines),2,"BUF Bills live ML (+109); TEN Titans live ML (+121)",+361,,0.50,crowns/bonus,Lost,0.00,0.00,BUF 36 - HOU 31; NYJ 23 - TEN 10,Bills leg won; Titans leg lost
+2026-09-13 16:24,NFL,Parlay (moneylines),3,"LV Raiders ML (-170); LA Chargers ML (-455); DAL Cowboys ML (-166)",+210,,0.12,crowns/bonus,Open,,,,To pay $0.37
+2026-09-13 (time not visible),NFL,SGPx parlay,17,"6-pick SGP; 4-pick SGP; 2-pick SGP; 3-pick SGP; 2-pick SGP (legs not visible)",+7953132,+10339073,,,Open,,,,Wager not visible in screenshots
