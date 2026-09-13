@@ -14,7 +14,7 @@
 
     Contract for build.py (each token is replaced with a raw HTML fragment):
       <div class="sample-banner">SAMPLE DATA &mdash; schema test only, not a real week. Do not place any bets from this page.</div>      -> "" (real week) OR one <div class="sample-banner">...</div>
-      <div class="stat"><span class="label">Record</span><span class="value">1W-18L-1CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L13</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$55.93</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value negative">-$5.93</span></div><div class="stat"><span class="label">Unparseable Log Rows</span><span class="value">1</span></div>         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
+      <h3>This Season (since Sep 1, 2026)</h3><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Unparseable Log Rows</span><span class="value">1</span></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div>         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
       <div class="bet">
   <div class="bet-header">
     <h3>Sample Team A moneyline (sample data — not researched)</h3>
@@ -242,7 +242,7 @@
   <div class="result">Lost</div>
   <p class="lesson">Lost by half a point on a live total — a reminder that in-game numbers are close calls by design, which is why the card stays pre-kickoff only.</p>
 </div>   -> one or more <div class="graded-item result-won|result-lost|result-cashed-out|result-open">...</div>
-      2026-09-13 23:03 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
+      2026-09-13 23:30 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
 
     None of the above classes are required — plain semantic HTML (p, ul/li, table)
     renders fine on the base element styles too. The classes just get nicer,
@@ -534,7 +534,7 @@
 
   <section class="scoreboard" id="scoreboard">
     <h2>Scoreboard</h2>
-    <div class="section-body"><div class="stat"><span class="label">Record</span><span class="value">1W-18L-1CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L13</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$55.93</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value negative">-$5.93</span></div><div class="stat"><span class="label">Unparseable Log Rows</span><span class="value">1</span></div></div>
+    <div class="section-body"><h3>This Season (since Sep 1, 2026)</h3><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Unparseable Log Rows</span><span class="value">1</span></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div></div>
   </section>
 
   <section class="card-section" id="card">
@@ -784,6 +784,6 @@
 </div></div>
   </section>
 
-  <footer>Built 2026-09-13 23:03 UTC</footer>
+  <footer>Built 2026-09-13 23:30 UTC</footer>
 </body>
 </html>

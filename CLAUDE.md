@@ -12,9 +12,21 @@ loud "do not place these bets" banner) — it is not a real card yet. Do not
 build `grade.py` or the `/cheatsheet` slash command until Gus explicitly moves
 the project to Phase 2+.
 
-Scoreboard math is verified against the real `data/bet_log.csv`: 1 W / 1 CO /
-18 L / 2 Open, cash P/L ≈ –$55.93, bankroll remaining ≈ –$5.93 (not floored at
-zero — the tool is honest about being underwater), current streak L13.
+The scoreboard is split into two scopes, both computed fresh from
+`data/bet_log.csv` on every run (`data/config.json` holds `season_start` and
+`starting_bankroll`):
+
+- **This Season** (bets on/after `season_start`, currently 2026-09-01) is the
+  primary set of stat tiles — this is what "Bankroll Remaining" now means.
+  Verified: 0 W / 0 CO / 7 L / 2 Open, cash P/L –$9.00, bankroll remaining
+  $41.00, current streak L7.
+- **All-time** (unchanged, includes the March–August NCAAB/MLB/World Cup
+  history) renders as one muted footnote line below the tiles, labeled
+  dynamically from the earliest row's date (currently "since Mar 2026"), not
+  hardcoded. Verified: 1 W / 1 CO / 18 L / 2 Open, cash P/L ≈ –$55.93.
+
+Neither number is ever floored at zero — the tool is honest about being
+underwater if a scope's bankroll goes negative.
 
 `src/build.py` hard-fails (raises `RuleViolation`, non-zero exit, page not
 written) on any week JSON that would violate Rule 1 (>$5 card), Rule 2 (a live
@@ -68,6 +80,9 @@ betting-cheat-sheet/
   CLAUDE.md                  # rules from §3, workflow from §8, house style
   data/
     bet_log.csv              # every bet Gus places (seed from dk_bet_history.csv)
+    config.json              # season_start + starting_bankroll — scopes the
+                              # scoreboard to the current season; missing file
+                              # falls back to in-code defaults, never crashes
     weeks/
       2026-nfl-wk02.json     # researched lines, legs, card, boosts for one edition
       2026-cfb-wk03.json

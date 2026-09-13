@@ -39,6 +39,31 @@ class RuleViolation(Exception):
 
 EPSILON = 1e-6  # float-rounding slack for the $5 budget check, nothing more
 
+# In-code fallback if data/config.json is ever missing/unreadable/malformed —
+# the build must never crash for lack of a config file.
+_CONFIG_DEFAULTS = {"season_start": "2026-09-01", "starting_bankroll": 50.00}
+
+
+# ---------------------------------------------------------------------------
+# Config (data/config.json — optional; falls back to _CONFIG_DEFAULTS)
+# ---------------------------------------------------------------------------
+
+def load_config(path):
+    """Load data/config.json and return a dict with at least season_start
+    and starting_bankroll. Never raises: a missing file, unreadable file,
+    bad JSON, or a JSON value that isn't an object all fall back to
+    _CONFIG_DEFAULTS (merged under/overridden by whatever valid data IS
+    present, if any)."""
+    config = dict(_CONFIG_DEFAULTS)
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return config
+    if isinstance(data, dict):
+        config.update(data)
+    return config
+
 
 # ---------------------------------------------------------------------------
 # Ground-rule validation (plan Section 3 — non-negotiable)
@@ -166,13 +191,22 @@ def _parse_date_placed(raw):
     return m.group(1), m.group(2)
 
 
-def compute_scoreboard(csv_path):
+def compute_scoreboard(csv_path, since=None, starting_bankroll=50.00):
     """Parse data/bet_log.csv and return the scoreboard dict.
 
     Handles real messiness without crashing: a row with no
     bet_type/legs/odds/result at all is counted as a no_data_rows and
     skipped from every other count; a net_cash value that doesn't parse as
     a float is simply not added to cash_pl rather than raising.
+
+    since: an inclusive "YYYY-MM-DD" lower bound on a row's parsed leading
+    date_placed. None (the default) means no filter — every row is
+    considered, exactly as before this parameter existed. When since is
+    given, a row is only counted (in wins/cashouts/losses/open/
+    no_data_rows/cash_pl/streak) if its parsed date is >= since; a row
+    whose date_placed doesn't parse at all is EXCLUDED under a since filter
+    (we can't confirm it falls in-season) but is still counted normally
+    when since is None.
     """
     with open(csv_path, "r", encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
@@ -182,6 +216,13 @@ def compute_scoreboard(csv_path):
     settled = []  # list of (sort_key, category) for the streak calculation
 
     for idx, row in enumerate(rows):
+        date_str, time_str = _parse_date_placed(row.get("date_placed"))
+
+        if since is not None and (date_str is None or date_str < since):
+            # Out of scope for a season-scoped call (or unconfirmable) —
+            # excluded from every count, including no_data_rows.
+            continue
+
         bet_type = (row.get("bet_type") or "").strip()
         legs_field = (row.get("legs") or "").strip()
         odds_listed = (row.get("odds_listed") or "").strip()
@@ -194,7 +235,6 @@ def compute_scoreboard(csv_path):
             no_data_rows += 1
             continue
 
-        date_str, time_str = _parse_date_placed(row.get("date_placed"))
         # Rows with a known date/time sort by that. Rows on the same date
         # with no reliable time fall back to original file order via idx,
         # and sort after same-date rows whose time IS known.
@@ -236,7 +276,7 @@ def compute_scoreboard(csv_path):
             streak_len += 1
         current_streak = f"{last_category}{streak_len}"
 
-    bankroll_remaining = 50.00 + cash_pl  # never floored at zero, on purpose
+    bankroll_remaining = starting_bankroll + cash_pl  # never floored at zero, on purpose
 
     return {
         "wins": wins,
@@ -250,9 +290,43 @@ def compute_scoreboard(csv_path):
     }
 
 
+def find_earliest_date_label(csv_path):
+    """Scan every row of bet_log.csv (regardless of any season scoping) for
+    the earliest parseable date_placed, and return it formatted as
+    abbreviated-month + 4-digit-year (e.g. 'Mar 2026'). Returns None if no
+    row has a parseable date. Used for the all-time scoreboard line's label
+    so it never goes stale if older history is appended later — it's
+    derived from the data, not a hardcoded string."""
+    with open(csv_path, "r", encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+
+    earliest = None
+    for row in rows:
+        date_str, _ = _parse_date_placed(row.get("date_placed"))
+        if date_str is not None and (earliest is None or date_str < earliest):
+            earliest = date_str
+
+    if earliest is None:
+        return None
+    return _format_month_year(earliest)
+
+
 # ---------------------------------------------------------------------------
 # Small formatting helpers
 # ---------------------------------------------------------------------------
+
+def _format_month_year(date_str):
+    """'2026-03-21' -> 'Mar 2026'."""
+    dt = datetime.strptime(date_str, "%Y-%m-%d")
+    return f"{dt.strftime('%b')} {dt.year}"
+
+
+def _format_human_date(date_str):
+    """'2026-09-01' -> 'Sep 1, 2026'. Avoids the non-portable %-d/%#d strftime
+    directives by building the string manually."""
+    dt = datetime.strptime(date_str, "%Y-%m-%d")
+    return f"{dt.strftime('%b')} {dt.day}, {dt.year}"
+
 
 def format_odds(o):
     """American odds with an explicit sign, e.g. -150 -> '-150', 150 -> '+150'."""
@@ -271,7 +345,13 @@ def format_money(v):
 # templates/page.html.
 # ---------------------------------------------------------------------------
 
-def render_scoreboard(sb):
+def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label):
+    """Render the {{SCOREBOARD}} fragment: primary tiles scoped to the
+    current season (season_sb), preceded by a heading naming the season
+    start, followed by one compact supplementary all-time line (alltime_sb)
+    labeled with alltime_since_label — a single secondary line, not a
+    second tile grid."""
+
     def stat(label, value, cls=""):
         cls_attr = f" {cls}" if cls else ""
         return (
@@ -279,20 +359,34 @@ def render_scoreboard(sb):
             f'<span class="value{cls_attr}">{escape(str(value))}</span></div>'
         )
 
-    pl_cls = "positive" if sb["cash_pl"] >= 0 else "negative"
-    bankroll_cls = "positive" if sb["bankroll_remaining"] >= 0 else "negative"
+    pl_cls = "positive" if season_sb["cash_pl"] >= 0 else "negative"
+    bankroll_cls = "positive" if season_sb["bankroll_remaining"] >= 0 else "negative"
+
+    heading = f'<h3>This Season (since {escape(_format_human_date(season_start))})</h3>'
 
     parts = [
+        heading,
         stat(
             "Record",
-            f'{sb["wins"]}W-{sb["losses"]}L-{sb["cashouts"]}CO-{sb["open"]}Open',
+            f'{season_sb["wins"]}W-{season_sb["losses"]}L-{season_sb["cashouts"]}CO-{season_sb["open"]}Open',
         ),
-        stat("Current Streak", sb["current_streak"]),
-        stat("Cash P/L", format_money(sb["cash_pl"]), pl_cls),
-        stat("Bankroll Remaining", format_money(sb["bankroll_remaining"]), bankroll_cls),
+        stat("Current Streak", season_sb["current_streak"]),
+        stat("Cash P/L", format_money(season_sb["cash_pl"]), pl_cls),
+        stat("Bankroll Remaining", format_money(season_sb["bankroll_remaining"]), bankroll_cls),
     ]
-    if sb.get("no_data_rows"):
-        parts.append(stat("Unparseable Log Rows", sb["no_data_rows"]))
+    if season_sb.get("no_data_rows"):
+        parts.append(stat("Unparseable Log Rows", season_sb["no_data_rows"]))
+
+    alltime_label = alltime_since_label or "—"
+    alltime_line = (
+        '<div class="small muted">'
+        f'All-time since {escape(alltime_label)}: '
+        f'{alltime_sb["wins"]}W-{alltime_sb["losses"]}L-{alltime_sb["cashouts"]}CO-{alltime_sb["open"]}Open, '
+        f'cash P/L {escape(format_money(alltime_sb["cash_pl"]))}'
+        '</div>'
+    )
+    parts.append(alltime_line)
+
     return "".join(parts)
 
 
@@ -422,7 +516,7 @@ def render_graded(item):
 </div>'''
 
 
-def render_page(week, scoreboard, template_path):
+def render_page(week, season_sb, alltime_sb, season_start, alltime_since_label, template_path):
     with open(template_path, "r", encoding="utf-8") as f:
         template = f.read()
 
@@ -435,7 +529,7 @@ def render_page(week, scoreboard, template_path):
 
     replacements = {
         "{{SAMPLE_BANNER}}": sample_banner,
-        "{{SCOREBOARD}}": render_scoreboard(scoreboard),
+        "{{SCOREBOARD}}": render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label),
         "{{CARD}}": "".join(render_bet_card(b) for b in week.get("card", {}).get("bets", [])),
         "{{LEG_BANK}}": "".join(render_leg_bank_entry(l) for l in week.get("leg_bank", [])),
         "{{BOOST_CHECK}}": "".join(render_boost(b) for b in week.get("boost_check", [])),
@@ -464,6 +558,7 @@ def main(argv):
     repo_root = Path(__file__).resolve().parent.parent
     csv_path = repo_root / "data" / "bet_log.csv"
     weeks_dir = repo_root / "data" / "weeks"
+    config_path = repo_root / "data" / "config.json"
     template_path = repo_root / "templates" / "page.html"
     output_path = repo_root / "docs" / "index.html"
 
@@ -478,21 +573,37 @@ def main(argv):
     with open(week_path, "r", encoding="utf-8") as f:
         week = json.load(f)
 
-    scoreboard = compute_scoreboard(csv_path)
+    config = load_config(config_path)
+
+    # Scoreboard is computed twice: season_sb (the number Gus actually acts
+    # on — "bankroll remaining" scoped to the current football season) and
+    # alltime_sb (full history back to March 2026, kept as context, not
+    # discarded — see CLAUDE.md / plan). Both use the same starting_bankroll
+    # so "bankroll remaining" means the same $ baseline in either view.
+    season_sb = compute_scoreboard(
+        csv_path, since=config["season_start"], starting_bankroll=config["starting_bankroll"]
+    )
+    alltime_sb = compute_scoreboard(
+        csv_path, since=None, starting_bankroll=config["starting_bankroll"]
+    )
+    alltime_since_label = find_earliest_date_label(csv_path)
 
     # If this raises RuleViolation, it must propagate uncaught: that's the
     # actual safety mechanism for a page giving real-money advice. Do not
     # wrap this in a try/except that renders a degraded page anyway.
     validate_rules(week)
 
-    html = render_page(week, scoreboard, template_path)
+    html = render_page(
+        week, season_sb, alltime_sb, config["season_start"], alltime_since_label, template_path
+    )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
     print(f"Week file: {week_path}")
-    print(f"Scoreboard: {scoreboard}")
+    print(f"Season scoreboard (since {config['season_start']}): {season_sb}")
+    print(f"All-time scoreboard (since {alltime_since_label}): {alltime_sb}")
     print(f"Wrote {output_path}")
 
 

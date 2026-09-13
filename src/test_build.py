@@ -1,10 +1,17 @@
 import unittest
 from pathlib import Path
 
-from build import RuleViolation, compute_scoreboard, validate_rules
+from build import (
+    RuleViolation,
+    compute_scoreboard,
+    find_earliest_date_label,
+    load_config,
+    validate_rules,
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CSV_PATH = REPO_ROOT / "data" / "bet_log.csv"
+CONFIG_PATH = REPO_ROOT / "data" / "config.json"
 
 
 def _valid_week():
@@ -72,6 +79,13 @@ class TestRule6StraightIsDefault(unittest.TestCase):
         with self.assertRaises(RuleViolation):
             validate_rules(week)
 
+    def test_one_straight_zero_parlay_is_valid(self):
+        # "One straight bet plus AT MOST ONE small parlay" — a card with
+        # exactly 1 straight and 0 parlays must be VALID, not rejected.
+        week = _valid_week()
+        week["card"]["bets"] = [week["card"]["bets"][0]]  # drop the parlay
+        validate_rules(week)  # should not raise
+
 
 class TestRule4LegCountFollowsProbability(unittest.TestCase):
     def test_four_leg_parlay_with_coin_flip_leg_raises(self):
@@ -112,6 +126,55 @@ class TestScoreboardRealData(unittest.TestCase):
         streak_len = int(sb["current_streak"][1:])
         self.assertGreaterEqual(streak_len, 10)
         self.assertLessEqual(streak_len, 16)
+
+
+class TestScoreboardSeasonScoping(unittest.TestCase):
+    def test_season_since_sep_1_2026(self):
+        sb = compute_scoreboard(CSV_PATH, since="2026-09-01", starting_bankroll=50.00)
+        self.assertEqual(sb["wins"], 0)
+        self.assertEqual(sb["losses"], 7)
+        self.assertEqual(sb["cashouts"], 0)
+        self.assertEqual(sb["open"], 2)
+        self.assertEqual(sb["no_data_rows"], 1)
+        self.assertAlmostEqual(sb["cash_pl"], -9.00, delta=0.01)
+        self.assertAlmostEqual(sb["bankroll_remaining"], 41.00, delta=0.01)
+        self.assertEqual(sb["current_streak"], "L7")
+
+    def test_alltime_unchanged_by_default_starting_bankroll(self):
+        # since=None must reproduce the exact pre-patch all-time numbers —
+        # this scoreboard must NOT change just because season scoping exists.
+        sb = compute_scoreboard(CSV_PATH, since=None, starting_bankroll=50.00)
+        self.assertEqual(sb["wins"], 1)
+        self.assertEqual(sb["losses"], 18)
+        self.assertEqual(sb["cashouts"], 1)
+        self.assertEqual(sb["open"], 2)
+        self.assertAlmostEqual(sb["cash_pl"], -55.93, delta=0.02)
+
+    def test_since_none_ignores_starting_bankroll_change_correctly(self):
+        # starting_bankroll only shifts bankroll_remaining, never cash_pl.
+        sb1 = compute_scoreboard(CSV_PATH, since=None, starting_bankroll=50.00)
+        sb2 = compute_scoreboard(CSV_PATH, since=None, starting_bankroll=100.00)
+        self.assertAlmostEqual(sb1["cash_pl"], sb2["cash_pl"], delta=1e-9)
+        self.assertAlmostEqual(sb2["bankroll_remaining"] - sb1["bankroll_remaining"], 50.00, delta=1e-9)
+
+
+class TestFindEarliestDateLabel(unittest.TestCase):
+    def test_matches_march_2026(self):
+        # The real log's earliest row is 2026-03-21 (NCAAB) — this must read
+        # as "Mar 2026" today, but is derived from the data, not hardcoded.
+        self.assertEqual(find_earliest_date_label(CSV_PATH), "Mar 2026")
+
+
+class TestLoadConfig(unittest.TestCase):
+    def test_real_config_file(self):
+        config = load_config(CONFIG_PATH)
+        self.assertEqual(config["season_start"], "2026-09-01")
+        self.assertAlmostEqual(config["starting_bankroll"], 50.00, delta=1e-9)
+
+    def test_missing_file_falls_back_to_defaults(self):
+        config = load_config(REPO_ROOT / "data" / "does_not_exist.json")
+        self.assertEqual(config["season_start"], "2026-09-01")
+        self.assertAlmostEqual(config["starting_bankroll"], 50.00, delta=1e-9)
 
 
 if __name__ == "__main__":
