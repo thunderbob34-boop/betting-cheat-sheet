@@ -13,236 +13,252 @@
     {{TOKEN}} placeholders below. No Jinja/Mustache, no JS required to render.
 
     Contract for build.py (each token is replaced with a raw HTML fragment):
-      <div class="sample-banner">SAMPLE DATA &mdash; schema test only, not a real week. Do not place any bets from this page.</div>      -> "" (real week) OR one <div class="sample-banner">...</div>
+            -> "" (real week) OR one <div class="sample-banner">...</div>
       <h3>This Season (since Sep 1, 2026)</h3><div class="stat-grid"><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Bets Missing Details</span><span class="value">1</span></div></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div>         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
       <div class="bet">
   <div class="bet-header">
-    <h3>Sample Team A moneyline (sample data — not researched)</h3>
-    <span class="odds mono">-150</span>
+    <h3>Philadelphia Eagles moneyline (at Tennessee Titans)</h3>
+    <span class="odds mono">-242</span>
   </div>
   <div class="stake-line">Stake: <span class="stake mono">$3.00</span> &middot; moneyline</div>
   <div class="prob-row">
-    <span><span class="k">Implied:</span> <span class="prob mono">60.0%</span></span>
-    <span><span class="k">Estimated:</span> <span class="prob mono">62.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.0%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">70.8%</span></span>
+    <span><span class="k">Estimated:</span> <span class="prob mono">75.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">4.2%</span></span>
   </div>
   
-  <p class="reason">Sample straight bet for Phase 1 testing only.</p>
-  <div class="small muted">Prob. source: SAMPLE — no real source, Phase 1 test data</div>
-  <div class="verify">Verify: SAMPLE &middot; 2026-01-01T00:00:00Z &middot; Sample data — verify nothing, this is not a real pick.</div>
+  <p class="reason">Picked on merit: the Eagles -5.5 spread and 42.5 total are each confirmed exactly by two independent sources (Covers.com and a direct ESPN-odds-citing search), no negative injury news turned up for Philadelphia, and Tennessee is a big underdog with no positive news either. estimated_prob is now the average of two independent, real win-probability models (Kalshi 76% via defirate.com and Stats Insider&#x27;s simulation model 74%) rather than a single source, landing at 75% -- a modest few points above the -242 market-implied price (70.8%), not the larger single-source edge claimed before this was cross-checked. A clean, well-reasoned favorite on the fundamentals; no outsized edge is claimed.</p>
+  <div class="small muted">Prob. source: Averaged: Kalshi prediction-market-implied win probability 76% (via defirate.com &quot;NFL Week 2 odds &amp; predictions&quot;, https://defirate.com/news/nfl-week-2-odds-predictions-2026/) and Stats Insider&#x27;s 10,000-simulation predictive analytics model 74% (via &quot;Titans vs Eagles Prediction and Preview - NFL Week 2, 2026&quot;, https://www.statsinsider.com.au/news/titans-vs-eagles-prediction-and-preview-nfl-week-2-2026, published Sept 13 2026) = (76% + 74%) / 2 = 75% average.</div>
+  <div class="verify">Verify: Covers.com &quot;NFL Week 2 Odds and Opening Betting Lines&quot; (https://www.covers.com/nfl/week-2-odds-opening-lines-2026) and defirate.com &quot;NFL Week 2 odds &amp; predictions&quot; (https://defirate.com/news/nfl-week-2-odds-predictions-2026/) &middot; 2026-09-13 (session research; no exact server timestamp available -- treat as &quot;current as of a Sept 13 2026 search,&quot; not necessarily today&#x27;s closing line) &middot; Line may have moved -- verify the Eagles ML price in the DK app before betting.</div>
 </div><div class="bet">
   <div class="bet-header">
     <h3>Parlay &mdash; 2 legs</h3>
-    <span class="odds mono">+150</span>
+    <span class="odds mono">-175</span>
   </div>
   <div class="stake-line">Stake: <span class="stake mono">$2.00</span></div>
   <div class="prob-row">
-    <span><span class="k">Implied:</span> <span class="prob mono">40.0%</span></span>
-    <span><span class="k">Estimated:</span> <span class="prob mono">45.5%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">5.5%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">63.6%</span></span>
+    <span><span class="k">Estimated:</span> <span class="prob mono">60.8%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-2.9%</span></span>
   </div>
-  <ul class="leg-list"><li>Fictional Player X 60+ rec yds (sample) <span class="prob small muted">(est. 65.0%)</span></li><li>Sample Team B moneyline (sample) <span class="prob small muted">(est. 70.0%)</span></li></ul>
-  <p class="reason">Sample 2-leg parlay, both legs &gt;=60%, for Phase 1 testing.</p>
-  <div class="small muted">Prob. source: SAMPLE — Phase 1 test data</div>
-  <div class="verify">Verify: SAMPLE &middot; 2026-01-01T00:00:00Z &middot; Sample data — not a real pick.</div>
+  <ul class="leg-list"><li>Baltimore Ravens moneyline (vs New Orleans Saints) <span class="prob small muted">(est. 81.0%)</span></li><li>Tampa Bay Buccaneers moneyline (vs Cleveland Browns) <span class="prob small muted">(est. 75.0%)</span></li></ul>
+  <p class="reason">A small, 2-leg &#x27;chalk&#x27; parlay of two real DraftKings-priced favorites (both -395, cited by SportsBettingDime as DraftKings pricing) with independently corroborated spreads and real 75-81% win-probability backing on each leg -- the opposite of the double-digit-leg mega-parlays that have lost every time in the bet log so far.</p>
+  <div class="small muted">Prob. source: Both legs: Kalshi prediction-market-implied win probabilities via defirate.com &quot;NFL Week 2 odds &amp; predictions&quot; (https://defirate.com/news/nfl-week-2-odds-predictions-2026/).</div>
+  <div class="verify">Verify: SportsBettingDime &quot;NFL Week 2 Odds -- Opening Spread, Total, ML&quot; (DraftKings-sourced pricing), https://www.sportsbettingdime.com/news/nfl/week-2-odds-opening-spread-total-ml-all-games-2026/ ; defirate.com &quot;NFL Week 2 odds &amp; predictions&quot;, https://defirate.com/news/nfl-week-2-odds-predictions-2026/ &middot; 2026-09-13 (session research; no exact server timestamp available) &middot; The -175 combined price shown here is computed from the two real -395/-395 leg moneylines via standard decimal-odds multiplication -- it is NOT a live DK parlay-slip quote. Confirm the actual parlay payout and re-check both moneylines haven&#x27;t moved in the DK app before betting.</div>
 </div>               -> one or more <div class="bet">...</div> (see structure below)
       <div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player W 4+ receptions (sample)</span>
-    <span class="odds mono">-170</span>
+    <span class="selection">San Francisco 49ers moneyline (vs Miami Dolphins)</span>
+    <span class="odds mono">-690</span>
   </div>
   <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">63.0%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">72.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.0%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">87.3%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">86.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-1.3%</span></span>
   </div>
-  <p class="small">Sample high-floor prop, Phase 1 placeholder — not researched.</p>
+  <p class="small">49ers -10.5 is confirmed by two independent sources and Kalshi&#x27;s 86% win probability is nearly identical to the -690 market-implied price (87.3%) -- essentially no edge either way, an honest match rather than a manufactured one.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team B moneyline (sample)</span>
-    <span class="odds mono">-145</span>
+    <span class="selection">Seattle Seahawks moneyline (at Arizona Cardinals)</span>
+    <span class="odds mono">-370</span>
   </div>
   <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">59.2%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">78.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">84.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">5.3%</span></span>
+  </div>
+  <p class="small">The single largest true favorite on this week&#x27;s board -- two independent sources (Covers.com, a direct search) agree Seattle is roughly a 9.5-10 point favorite, and Kalshi&#x27;s 84% win probability corroborates it. No positive Arizona news found.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Baltimore Ravens moneyline (vs New Orleans Saints)</span>
+    <span class="odds mono">-395</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">79.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">81.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.2%</span></span>
+  </div>
+  <p class="small">Same selection used in this week&#x27;s parlay leg 1; listed here for leg-bank ranking context. Saints&#x27; Kamara/Jordan situations add real risk on New Orleans&#x27; side.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Los Angeles Chargers moneyline (vs Las Vegas Raiders)</span>
+    <span class="odds mono">-425</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">81.0%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">81.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
+  </div>
+  <p class="small">No independently-sourced win-probability model was found for this specific game beyond the spread itself, so estimated_prob is set equal to the -425 market-implied probability (80.95%) -- no edge claimed, stated honestly rather than guessed.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Philadelphia Eagles moneyline (at Tennessee Titans)</span>
+    <span class="odds mono">-242</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">70.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">75.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">4.2%</span></span>
+  </div>
+  <p class="small">Same selection used in this week&#x27;s straight bet; listed here for leg-bank ranking context. Kalshi 76% vs. -242 market-implied 70.8%.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Tampa Bay Buccaneers moneyline (vs Cleveland Browns)</span>
+    <span class="odds mono">-395</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">79.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">75.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-4.8%</span></span>
+  </div>
+  <p class="small">Same selection used in this week&#x27;s parlay leg 2; listed here for leg-bank ranking context. Browns RB Dylan Sampson&#x27;s Week 1 knee injury adds real risk to Cleveland&#x27;s backfield.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Dallas Cowboys moneyline (vs Washington Commanders)</span>
+    <span class="odds mono">-198</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">66.4%</span></span>
     <span><span class="k">Est.:</span> <span class="prob mono">70.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">10.8%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.6%</span></span>
   </div>
-  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+  <p class="small">Cowboys -4.5 confirmed by two sources exactly; Kalshi&#x27;s 70% sits a bit above the -198 market-implied price (66.4%), a modest sourced edge.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team D moneyline (sample)</span>
-    <span class="odds mono">-200</span>
+    <span class="selection">Green Bay Packers moneyline (at New York Jets)</span>
+    <span class="odds mono">-245</span>
   </div>
   <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">66.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">68.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.3%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">71.0%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">69.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-2.0%</span></span>
   </div>
-  <p class="small">Sample favorite pick, Phase 1 placeholder only.</p>
+  <p class="small">Packers -5.5 on the road is confirmed by three independent sources, an unusually strong agreement for a road favorite this size; Kalshi&#x27;s 69% is close to but slightly above the -245 implied price (71.0%) -- essentially flat, no inflated edge claimed.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player X 60+ rec yds (sample)</span>
-    <span class="odds mono">-125</span>
+    <span class="selection">Denver Broncos moneyline (vs Jacksonville Jaguars)</span>
+    <span class="odds mono">-142</span>
   </div>
   <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">55.6%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">65.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.4%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">58.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-3.7%</span></span>
   </div>
-  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+  <p class="small">Honesty check: Kalshi&#x27;s own 55% win probability is actually BELOW the -142 market-implied price (58.7%) -- the model does not support a Broncos edge here despite being the favorite, so this leg is ranked low and is not part of the card.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player Y 250+ pass yds (sample)</span>
-    <span class="odds mono">-130</span>
+    <span class="selection">Indianapolis Colts/Kansas City Chiefs Over 47.5 (SNF total)</span>
+    <span class="odds mono">-110</span>
   </div>
   <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">56.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">60.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.5%</span></span>
+    <span>total</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
   </div>
-  <p class="small">Sample passing-yards prop for Phase 1 schema testing.</p>
+  <p class="small">Total confirmed exactly by two independent sources at 47.5, -110/-110, but no total-specific probability model was found -- estimated_prob is set equal to the -110 market-implied price (52.4%), no edge claimed.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team H +6.5 (sample)</span>
-    <span class="odds mono">-108</span>
-  </div>
-  <div class="meta">
-    <span>spread</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">51.9%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">58.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">6.1%</span></span>
-  </div>
-  <p class="small">Sample spread leg for schema testing only.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team C -3.5 (sample)</span>
+    <span class="selection">Kansas City Chiefs -6.5 (vs Indianapolis Colts, SNF)</span>
     <span class="odds mono">-110</span>
   </div>
   <div class="meta">
     <span>spread</span>
     <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.6%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
   </div>
-  <p class="small">Sample spread leg — sample data for Phase 1 testing, not researched.</p>
+  <p class="small">Spread confirmed by four independent sources (very high confidence on the number itself), but no against-the-spread probability model was found -- estimated_prob is set equal to the -110 market-implied price (52.4%), no edge claimed. A search result labeled &quot;ESPN FPI&quot; claiming Chiefs 71% could not be verified as genuine FPI data and was deliberately not used here.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team E vs Sample Team F Over 44.5 (sample)</span>
-    <span class="odds mono">-115</span>
-  </div>
-  <div class="meta">
-    <span>total</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">53.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">53.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.5%</span></span>
-  </div>
-  <p class="small">Sample total, not a real projection.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team A/Sample Team B Under 51.5 (sample)</span>
+    <span class="selection">Cincinnati Bengals +2.5 (at Houston Texans)</span>
     <span class="odds mono">-105</span>
   </div>
   <div class="meta">
-    <span>total</span>
+    <span>spread</span>
     <span><span class="k">Implied:</span> <span class="prob mono">51.2%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">52.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">51.2%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
   </div>
-  <p class="small">Sample total leg, placeholder data — not researched.</p>
+  <p class="small">No independent against-the-spread model was found -- estimated_prob is set equal to the -105 market-implied price (51.2%), no edge claimed. Worth noting Houston&#x27;s starting LB Henry To&#x27;oTo&#x27;o left the Week 1 Bills loss with a shoulder injury and his Week 2 availability was unresolved as of this research, adding real uncertainty to Houston&#x27;s defense covering, but that is a qualitative flag, not a quantified edge.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team I moneyline, coin flip (sample)</span>
-    <span class="odds mono">+105</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">48.8%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">50.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.2%</span></span>
-  </div>
-  <p class="small">Sample coin-flip leg — illustrates why a leg like this stays out of any parlay.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player Z 1+ rushing TD (sample)</span>
+    <span class="selection">Cincinnati Bengals moneyline (at Houston Texans)</span>
     <span class="odds mono">+120</span>
   </div>
   <div class="meta">
-    <span>prop</span>
+    <span>moneyline</span>
     <span><span class="k">Implied:</span> <span class="prob mono">45.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">46.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">47.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.5%</span></span>
   </div>
-  <p class="small">Sample touchdown prop, sample data for Phase 1 testing.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team G moneyline, underdog (sample)</span>
-    <span class="odds mono">+165</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">37.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">40.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.3%</span></span>
-  </div>
-  <p class="small">Sample underdog leg, illustrative only — not researched.</p>
+  <p class="small">A genuine near coin-flip: Kalshi has this 47% Bengals / 55% Texans (rounds over 100%, standard vig-style spread). Houston&#x27;s defense also took a real Week 1 hit -- starting LB Henry To&#x27;oTo&#x27;o left the Bills loss in the 4th quarter with a shoulder injury (seen in a sling afterward, HC DeMeco Ryans said he was still being evaluated), and his Week 2 availability vs Cincinnati was unresolved as of this research. Below the 60% parlay-safety floor -- listed for context only, not parlay material.</p>
 </div>           -> one or more <div class="leg">...</div>
       <div class="boost-item no-fit">
   <div class="verdict">No fit</div>
-  <p>Sample: 50% profit boost on any NFL parlay (SAMPLE — not a real DK boost)</p>
-  <p class="small muted">No fit — skip the boost. The card was built on merit before checking boosts.</p>
+  <p>DraftKings standing &quot;$200 in bonus bets + 50% profit boost every game day&quot; -- a 50% profit-boost token, one per customer per game day, usable on any single bet or SGP with total odds of +100 or longer; expires at end of game. (CBS Sports, published Sept 11 2026, https://www.cbssports.com/betting/news/draftkings-promo-code-claim-200-in-bonus-bets-and-get-a-50-profit-boost-every-game-day/)</p>
+  <p class="small muted">The card was picked on merit before this boost was even checked, and it happens not to fit: the boost requires combined odds of +100 or longer, but both this week&#x27;s picks are favorites shorter than that -- the Eagles ML straight bet is -242 and the Ravens/Bucs parlay computes to roughly -175. Neither qualifies. No fit -- skip it.</p>
 </div><div class="boost-item no-fit">
   <div class="verdict">No fit</div>
-  <p>Sample: odds boost token, Sample Team A ML to +200 (SAMPLE — not a real DK boost)</p>
-  <p class="small muted">Sample data only, no real boost to apply — this row exists to show the schema handling a second boost. No fit — skip the boost.</p>
+  <p>DraftKings new-customer welcome offer: bet $5+, get $200 in bonus bets paid out over 21 days, no promo code, offer window through Sept 20 2026 11:59pm ET. (Covers.com, https://www.covers.com/betting/bonuses/draftkings-promo-codes)</p>
+  <p class="small muted">This is a new-customer sign-up incentive, not a boost applied to a specific bet or game -- it doesn&#x27;t attach to this week&#x27;s card at all, and Gus already has an active DK account with months of bet history. No fit -- skip it.</p>
 </div><div class="boost-item no-fit">
   <div class="verdict">No fit</div>
-  <p>Sample: 3-leg SGP boost, +25% profit (SAMPLE — not a real DK boost)</p>
-  <p class="small muted">Card-2 is a 2-leg parlay, not a 3-leg SGP, so the shapes don&#x27;t match. No fit — skip the boost.</p>
+  <p>DraftKings NFL Slatebreaker ($2,000,000 prize pool): opt in, place a qualifying First Touchdown Scorer bet ($10 min) on any Week 1 Sunday 1pm ET game (Sept 13 2026); share the pool if your player scores the fastest TD across all eight games. (Oddschecker + DraftKings Network, Sept 12-13 2026)</p>
+  <p class="small muted">Explicitly tied to the Week 1 Sept 13 1pm slate and First Touchdown Scorer bets only -- it has nothing to do with the Week 2 Sept 20 games on this card. No fit -- skip it.</p>
 </div>        -> one or more <div class="boost-item fits|no-fit">...</div>
       <div class="avoid-item">
-  <h3>Sample: 10-leg mega-parlay across Sample Teams A through J moneylines (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — the huge payout number looks exciting on paper.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — ten legs at moderate probability multiply down to a near-zero combined chance; this is exactly what rule 4 (leg count follows probability) exists to prevent.</p>
+  <h3>A double-digit-leg NFL moneyline mega-parlay stacking this week&#x27;s favorites (e.g. Ravens/Bucs/49ers/Seahawks/Eagles/Packers/Cowboys/Broncos MLs all on one ticket)</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> Stacking 8-10 real favorites together produces a huge payout number, and each individual leg looks &#x27;safe&#x27; on its own -- it&#x27;s exactly the shape of Gus&#x27;s real Sept 13 10-leg SGPx parlay (PIT/CIN/BAL/CHI/BUF/TEN MLs + two 2-pick SGPs, +9164 boosted to +13748).</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> That real Sept 13 ticket lost, and the math explains why: even at 70-85% per leg, 8-10 legs multiplied together lands the combined probability in single-digit territory. This is Rule 4&#x27;s whole point -- leg count has to follow probability, and double-digit legs never clear that bar no matter how good each individual pick is.</p>
 </div><div class="avoid-item">
-  <h3>Sample: live in-game moneyline flip after a rough first quarter (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — inflated live odds feel like free value after a bad start.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — this sheet is pre-kickoff only (rule 2); live bets are never part of the card.</p>
+  <h3>Atlanta Falcons -1.5 or moneyline (vs Carolina Panthers) as the &#x27;safe favorite&#x27; pick of the closest game on the board</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> Falcons are the designated spread favorite at -1.5/-110, which reads as the lower-variance side of a close game.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Two things undercut that read: Atlanta&#x27;s own Kalshi win probability (50%) is actually a hair BELOW Carolina&#x27;s (52%), despite Atlanta being the spread favorite -- a genuine model/market disagreement, not noise. And starting QB Tua Tagovailoa&#x27;s oblique injury status is explicitly unresolved (Cooper Rush started Week 1, no confirmed Week 2 timetable), which is a real, unresolved risk sitting on top of an already-coinflip game.</p>
 </div><div class="avoid-item">
-  <h3>Sample: parlay built around this week&#x27;s headline DK boost (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — the boosted payout is the biggest number on the promo page.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — bet first, boost second (rule 3); a ticket built to fit a boost isn&#x27;t built on merit.</p>
+  <h3>Any Week 2 line pulled straight from SportsBettingDime&#x27;s full-page automated fetch without cross-checking (Vikings -6.5, Steelers -5.5, Seahawks -5.5, Chargers -7.0, 49ers -12.5)</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> It&#x27;s one convenient page listing all 14 games&#x27; spreads, totals, and moneylines in one place -- looks authoritative and saves time.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Each of those five specific numbers was directly contradicted by two or more independent sources this week (real lines: Bears -2.5, Patriots -4.5, Seahawks -9.5/-10, Chargers -8.5, 49ers -10.5) -- that page&#x27;s automated fetch looks stale or broken for at least five games. Always cross-check any single-source number in the live DK app before betting it.</p>
 </div><div class="avoid-item">
-  <h3>Sample: 3-leg parlay with one 50% coin-flip leg (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — two of the three legs look like heavy favorites.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — a single coin-flip leg drags the whole parlay&#x27;s real combined probability back down near 50%, even with two safe legs attached.</p>
+  <h3>Building a parlay specifically to clear DraftKings&#x27; &#x27;+100 or longer&#x27; threshold for the standing 50% profit-boost token (e.g. stacking Titans/Cardinals/Colts/Jets/Browns underdogs)</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> The boost token is real and currently active, and it feels like leaving free value on the table if this week&#x27;s card doesn&#x27;t use it.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Rule 3 is bet first, boost second. Every underdog that would be needed to reach +100 graded poorly in the real research this week (Titans 25% Kalshi win prob, Cardinals 17%, etc.) -- building a parlay around bad picks just to hit a boost&#x27;s odds floor is boost-first construction, exactly the trap Rule 3 exists to prevent.</p>
+</div><div class="avoid-item">
+  <h3>Minnesota Vikings +2.5 or moneyline (at Chicago Bears) before Wednesday&#x27;s practice report</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> Bears -2.5 is a modest, seemingly bettable number for a division road dog.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Vikings starting QB Kyler Murray is in the NFL&#x27;s concussion protocol with no fixed timeline as of this research (backup Carson Wentz took over mid-Week-1); Minnesota&#x27;s actual Week 2 starting QB isn&#x27;t resolved, and that materially changes what a &#x27;fair&#x27; number looks like. Wait for the real Week 2 injury report (Sept 16-18) before touching this line.</p>
 </div>         -> one or more <div class="avoid-item">...</div>
-      <div class="graded-item result-won">
-  <h3>Real: 9-leg NBA prop parlay (Bane/Banchero/etc, -180, bonus bet)</h3>
-  <div class="result">Won</div>
-  <p class="lesson">High-probability floor props, built to hit, is the one thing that&#x27;s worked.</p>
-</div><div class="graded-item result-cashed-out">
-  <h3>Real: Argentina/Under 5.5/Yes SGP vs Cape Verde</h3>
-  <div class="result">Cashed Out</div>
-  <p class="lesson">Cashing out forfeited the +30% boost and still barely broke even; better to have picked a ticket that didn&#x27;t need saving.</p>
-</div><div class="graded-item result-lost">
-  <h3>Real: 10-leg NFL SGPx parlay (PIT/CIN/BAL/CHI/BUF/TEN MLs + two 2-pick SGPs, +9164)</h3>
+      <div class="graded-item result-lost">
+  <h3>10-leg NFL SGPx parlay (PIT ML; CIN ML; BAL ML; CHI ML; BUF ML; TEN ML; two 2-pick SGPs), +9164 boosted to +13748, $1.00</h3>
   <div class="result">Lost</div>
-  <p class="lesson">Double-digit-leg parlays are lottery tickets, not a cheat-sheet card — the odds number is the tell.</p>
+  <p class="lesson">Double-digit-leg parlays are lottery tickets, not a cheat-sheet card -- stacking 10 legs (even mostly favorites) multiplies the real combined probability down to almost nothing, no matter how good the boosted payout number looks.</p>
 </div><div class="graded-item result-lost">
-  <h3>Real: 8-leg NCAAF moneyline parlay (Oklahoma/Texas A&amp;M/Ball State/etc, +541)</h3>
+  <h3>6-leg NFL same-game player-prop parlay, in-game (Mayfield 275+ pass; Over 50.5; Chase Brown 90+ rush+rec; Egbuka 80+ rec; Chase 100+ rec; Burrow 275+ pass), +3300 boosted to +4290, $0.50</h3>
   <div class="result">Lost</div>
-  <p class="lesson">Stacking eight favorites together still multiplies down to a low combined probability; a straight bet on the best one would have been the better trade.</p>
+  <p class="lesson">This was placed live, during the TB-CIN game -- exactly what pre-kickoff-only rule exists to prevent. Only 1 of 6 legs hit (the total); six aggressive player-yardage props stacked together is a low-probability combination even with two productive passing offenses on the field.</p>
 </div><div class="graded-item result-lost">
-  <h3>Real: NCAAF Under 47.5 (live, San Jose State vs Eastern Michigan)</h3>
+  <h3>2-leg live moneyline parlay (BUF Bills live ML +109; TEN Titans live ML +121), +361, $0.50 (crowns/bonus)</h3>
   <div class="result">Lost</div>
-  <p class="lesson">Lost by half a point on a live total — a reminder that in-game numbers are close calls by design, which is why the card stays pre-kickoff only.</p>
+  <p class="lesson">One leg actually hit (Bills beat Houston 36-31) but the Titans leg didn&#x27;t (lost 10-23 to the Jets), and a parlay needs every leg to hit -- a reminder that a single-leg miss sinks the whole ticket even when the rest of the card looks right, on top of this being a live in-game bet in the first place.</p>
+</div><div class="graded-item result-open">
+  <h3>3-leg NFL moneyline parlay (LV Raiders ML -170; LA Chargers ML -455; DAL Cowboys ML -166), +210, $0.12 (crowns/bonus), to pay $0.37</h3>
+  <div class="result">Open, not yet graded</div>
+  <p class="lesson">Still open -- not yet graded, no result invented.</p>
+</div><div class="graded-item result-open">
+  <h3>17-leg NFL SGPx parlay (6-pick SGP; 4-pick SGP; 2-pick SGP; 3-pick SGP; 2-pick SGP -- individual legs not visible in screenshot), +7953132 boosted to +10339073, wager not visible</h3>
+  <div class="result">Open, not yet graded</div>
+  <p class="lesson">Still open -- not yet graded, no result invented.</p>
 </div>   -> one or more <div class="graded-item result-won|result-lost|result-cashed-out|result-open">...</div>
-      2026-09-13 23:35 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
+      2026-09-14 00:19 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
 
     None of the above classes are required — plain semantic HTML (p, ul/li, table)
     renders fine on the base element styles too. The classes just get nicer,
@@ -264,6 +280,13 @@
     line-height: 1.5;
     max-width: 100%;
     overflow-x: hidden;
+    /* Real week content cites source URLs inline in reason/verify/avoid
+       text (e.g. long sportsbettingdime.com/defirate.com links), long
+       enough to force horizontal scroll on a 390px screen unless every
+       text container can break mid-word. Set on body so it applies to
+       every section, not just the ones with long text today. */
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   h1 {
@@ -528,7 +551,7 @@
 <body>
   <h1>Weekly Betting Cheat Sheet</h1>
 
-  <div class="sample-banner">SAMPLE DATA &mdash; schema test only, not a real week. Do not place any bets from this page.</div>
+  
 
   <div class="advice-only">Advice only &mdash; Gus places every bet himself in the DK app.</div>
 
@@ -541,34 +564,34 @@
     <h2>This Week&rsquo;s Card</h2>
     <div class="section-body"><div class="bet">
   <div class="bet-header">
-    <h3>Sample Team A moneyline (sample data — not researched)</h3>
-    <span class="odds mono">-150</span>
+    <h3>Philadelphia Eagles moneyline (at Tennessee Titans)</h3>
+    <span class="odds mono">-242</span>
   </div>
   <div class="stake-line">Stake: <span class="stake mono">$3.00</span> &middot; moneyline</div>
   <div class="prob-row">
-    <span><span class="k">Implied:</span> <span class="prob mono">60.0%</span></span>
-    <span><span class="k">Estimated:</span> <span class="prob mono">62.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.0%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">70.8%</span></span>
+    <span><span class="k">Estimated:</span> <span class="prob mono">75.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">4.2%</span></span>
   </div>
   
-  <p class="reason">Sample straight bet for Phase 1 testing only.</p>
-  <div class="small muted">Prob. source: SAMPLE — no real source, Phase 1 test data</div>
-  <div class="verify">Verify: SAMPLE &middot; 2026-01-01T00:00:00Z &middot; Sample data — verify nothing, this is not a real pick.</div>
+  <p class="reason">Picked on merit: the Eagles -5.5 spread and 42.5 total are each confirmed exactly by two independent sources (Covers.com and a direct ESPN-odds-citing search), no negative injury news turned up for Philadelphia, and Tennessee is a big underdog with no positive news either. estimated_prob is now the average of two independent, real win-probability models (Kalshi 76% via defirate.com and Stats Insider&#x27;s simulation model 74%) rather than a single source, landing at 75% -- a modest few points above the -242 market-implied price (70.8%), not the larger single-source edge claimed before this was cross-checked. A clean, well-reasoned favorite on the fundamentals; no outsized edge is claimed.</p>
+  <div class="small muted">Prob. source: Averaged: Kalshi prediction-market-implied win probability 76% (via defirate.com &quot;NFL Week 2 odds &amp; predictions&quot;, https://defirate.com/news/nfl-week-2-odds-predictions-2026/) and Stats Insider&#x27;s 10,000-simulation predictive analytics model 74% (via &quot;Titans vs Eagles Prediction and Preview - NFL Week 2, 2026&quot;, https://www.statsinsider.com.au/news/titans-vs-eagles-prediction-and-preview-nfl-week-2-2026, published Sept 13 2026) = (76% + 74%) / 2 = 75% average.</div>
+  <div class="verify">Verify: Covers.com &quot;NFL Week 2 Odds and Opening Betting Lines&quot; (https://www.covers.com/nfl/week-2-odds-opening-lines-2026) and defirate.com &quot;NFL Week 2 odds &amp; predictions&quot; (https://defirate.com/news/nfl-week-2-odds-predictions-2026/) &middot; 2026-09-13 (session research; no exact server timestamp available -- treat as &quot;current as of a Sept 13 2026 search,&quot; not necessarily today&#x27;s closing line) &middot; Line may have moved -- verify the Eagles ML price in the DK app before betting.</div>
 </div><div class="bet">
   <div class="bet-header">
     <h3>Parlay &mdash; 2 legs</h3>
-    <span class="odds mono">+150</span>
+    <span class="odds mono">-175</span>
   </div>
   <div class="stake-line">Stake: <span class="stake mono">$2.00</span></div>
   <div class="prob-row">
-    <span><span class="k">Implied:</span> <span class="prob mono">40.0%</span></span>
-    <span><span class="k">Estimated:</span> <span class="prob mono">45.5%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">5.5%</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">63.6%</span></span>
+    <span><span class="k">Estimated:</span> <span class="prob mono">60.8%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-2.9%</span></span>
   </div>
-  <ul class="leg-list"><li>Fictional Player X 60+ rec yds (sample) <span class="prob small muted">(est. 65.0%)</span></li><li>Sample Team B moneyline (sample) <span class="prob small muted">(est. 70.0%)</span></li></ul>
-  <p class="reason">Sample 2-leg parlay, both legs &gt;=60%, for Phase 1 testing.</p>
-  <div class="small muted">Prob. source: SAMPLE — Phase 1 test data</div>
-  <div class="verify">Verify: SAMPLE &middot; 2026-01-01T00:00:00Z &middot; Sample data — not a real pick.</div>
+  <ul class="leg-list"><li>Baltimore Ravens moneyline (vs New Orleans Saints) <span class="prob small muted">(est. 81.0%)</span></li><li>Tampa Bay Buccaneers moneyline (vs Cleveland Browns) <span class="prob small muted">(est. 75.0%)</span></li></ul>
+  <p class="reason">A small, 2-leg &#x27;chalk&#x27; parlay of two real DraftKings-priced favorites (both -395, cited by SportsBettingDime as DraftKings pricing) with independently corroborated spreads and real 75-81% win-probability backing on each leg -- the opposite of the double-digit-leg mega-parlays that have lost every time in the bet log so far.</p>
+  <div class="small muted">Prob. source: Both legs: Kalshi prediction-market-implied win probabilities via defirate.com &quot;NFL Week 2 odds &amp; predictions&quot; (https://defirate.com/news/nfl-week-2-odds-predictions-2026/).</div>
+  <div class="verify">Verify: SportsBettingDime &quot;NFL Week 2 Odds -- Opening Spread, Total, ML&quot; (DraftKings-sourced pricing), https://www.sportsbettingdime.com/news/nfl/week-2-odds-opening-spread-total-ml-all-games-2026/ ; defirate.com &quot;NFL Week 2 odds &amp; predictions&quot;, https://defirate.com/news/nfl-week-2-odds-predictions-2026/ &middot; 2026-09-13 (session research; no exact server timestamp available) &middot; The -175 combined price shown here is computed from the two real -395/-395 leg moneylines via standard decimal-odds multiplication -- it is NOT a live DK parlay-slip quote. Confirm the actual parlay payout and re-check both moneylines haven&#x27;t moved in the DK app before betting.</div>
 </div></div>
   </section>
 
@@ -576,148 +599,160 @@
     <h2>Leg Bank</h2>
     <div class="section-body"><div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player W 4+ receptions (sample)</span>
-    <span class="odds mono">-170</span>
+    <span class="selection">San Francisco 49ers moneyline (vs Miami Dolphins)</span>
+    <span class="odds mono">-690</span>
   </div>
   <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">63.0%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">72.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.0%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">87.3%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">86.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-1.3%</span></span>
   </div>
-  <p class="small">Sample high-floor prop, Phase 1 placeholder — not researched.</p>
+  <p class="small">49ers -10.5 is confirmed by two independent sources and Kalshi&#x27;s 86% win probability is nearly identical to the -690 market-implied price (87.3%) -- essentially no edge either way, an honest match rather than a manufactured one.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team B moneyline (sample)</span>
-    <span class="odds mono">-145</span>
+    <span class="selection">Seattle Seahawks moneyline (at Arizona Cardinals)</span>
+    <span class="odds mono">-370</span>
   </div>
   <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">59.2%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">78.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">84.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">5.3%</span></span>
+  </div>
+  <p class="small">The single largest true favorite on this week&#x27;s board -- two independent sources (Covers.com, a direct search) agree Seattle is roughly a 9.5-10 point favorite, and Kalshi&#x27;s 84% win probability corroborates it. No positive Arizona news found.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Baltimore Ravens moneyline (vs New Orleans Saints)</span>
+    <span class="odds mono">-395</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">79.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">81.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.2%</span></span>
+  </div>
+  <p class="small">Same selection used in this week&#x27;s parlay leg 1; listed here for leg-bank ranking context. Saints&#x27; Kamara/Jordan situations add real risk on New Orleans&#x27; side.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Los Angeles Chargers moneyline (vs Las Vegas Raiders)</span>
+    <span class="odds mono">-425</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">81.0%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">81.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
+  </div>
+  <p class="small">No independently-sourced win-probability model was found for this specific game beyond the spread itself, so estimated_prob is set equal to the -425 market-implied probability (80.95%) -- no edge claimed, stated honestly rather than guessed.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Philadelphia Eagles moneyline (at Tennessee Titans)</span>
+    <span class="odds mono">-242</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">70.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">75.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">4.2%</span></span>
+  </div>
+  <p class="small">Same selection used in this week&#x27;s straight bet; listed here for leg-bank ranking context. Kalshi 76% vs. -242 market-implied 70.8%.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Tampa Bay Buccaneers moneyline (vs Cleveland Browns)</span>
+    <span class="odds mono">-395</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">79.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">75.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-4.8%</span></span>
+  </div>
+  <p class="small">Same selection used in this week&#x27;s parlay leg 2; listed here for leg-bank ranking context. Browns RB Dylan Sampson&#x27;s Week 1 knee injury adds real risk to Cleveland&#x27;s backfield.</p>
+</div><div class="leg">
+  <div class="leg-header">
+    <span class="selection">Dallas Cowboys moneyline (vs Washington Commanders)</span>
+    <span class="odds mono">-198</span>
+  </div>
+  <div class="meta">
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">66.4%</span></span>
     <span><span class="k">Est.:</span> <span class="prob mono">70.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">10.8%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.6%</span></span>
   </div>
-  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+  <p class="small">Cowboys -4.5 confirmed by two sources exactly; Kalshi&#x27;s 70% sits a bit above the -198 market-implied price (66.4%), a modest sourced edge.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team D moneyline (sample)</span>
-    <span class="odds mono">-200</span>
+    <span class="selection">Green Bay Packers moneyline (at New York Jets)</span>
+    <span class="odds mono">-245</span>
   </div>
   <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">66.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">68.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.3%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">71.0%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">69.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-2.0%</span></span>
   </div>
-  <p class="small">Sample favorite pick, Phase 1 placeholder only.</p>
+  <p class="small">Packers -5.5 on the road is confirmed by three independent sources, an unusually strong agreement for a road favorite this size; Kalshi&#x27;s 69% is close to but slightly above the -245 implied price (71.0%) -- essentially flat, no inflated edge claimed.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player X 60+ rec yds (sample)</span>
-    <span class="odds mono">-125</span>
+    <span class="selection">Denver Broncos moneyline (vs Jacksonville Jaguars)</span>
+    <span class="odds mono">-142</span>
   </div>
   <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">55.6%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">65.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">9.4%</span></span>
+    <span>moneyline</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">58.7%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-3.7%</span></span>
   </div>
-  <p class="small">Same leg used in this week&#x27;s sample parlay; listed here for leg-bank ranking context.</p>
+  <p class="small">Honesty check: Kalshi&#x27;s own 55% win probability is actually BELOW the -142 market-implied price (58.7%) -- the model does not support a Broncos edge here despite being the favorite, so this leg is ranked low and is not part of the card.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Fictional Player Y 250+ pass yds (sample)</span>
-    <span class="odds mono">-130</span>
+    <span class="selection">Indianapolis Colts/Kansas City Chiefs Over 47.5 (SNF total)</span>
+    <span class="odds mono">-110</span>
   </div>
   <div class="meta">
-    <span>prop</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">56.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">60.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">3.5%</span></span>
+    <span>total</span>
+    <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
   </div>
-  <p class="small">Sample passing-yards prop for Phase 1 schema testing.</p>
+  <p class="small">Total confirmed exactly by two independent sources at 47.5, -110/-110, but no total-specific probability model was found -- estimated_prob is set equal to the -110 market-implied price (52.4%), no edge claimed.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team H +6.5 (sample)</span>
-    <span class="odds mono">-108</span>
-  </div>
-  <div class="meta">
-    <span>spread</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">51.9%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">58.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">6.1%</span></span>
-  </div>
-  <p class="small">Sample spread leg for schema testing only.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team C -3.5 (sample)</span>
+    <span class="selection">Kansas City Chiefs -6.5 (vs Indianapolis Colts, SNF)</span>
     <span class="odds mono">-110</span>
   </div>
   <div class="meta">
     <span>spread</span>
     <span><span class="k">Implied:</span> <span class="prob mono">52.4%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">55.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.6%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">52.4%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
   </div>
-  <p class="small">Sample spread leg — sample data for Phase 1 testing, not researched.</p>
+  <p class="small">Spread confirmed by four independent sources (very high confidence on the number itself), but no against-the-spread probability model was found -- estimated_prob is set equal to the -110 market-implied price (52.4%), no edge claimed. A search result labeled &quot;ESPN FPI&quot; claiming Chiefs 71% could not be verified as genuine FPI data and was deliberately not used here.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team E vs Sample Team F Over 44.5 (sample)</span>
-    <span class="odds mono">-115</span>
-  </div>
-  <div class="meta">
-    <span>total</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">53.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">53.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.5%</span></span>
-  </div>
-  <p class="small">Sample total, not a real projection.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team A/Sample Team B Under 51.5 (sample)</span>
+    <span class="selection">Cincinnati Bengals +2.5 (at Houston Texans)</span>
     <span class="odds mono">-105</span>
   </div>
   <div class="meta">
-    <span>total</span>
+    <span>spread</span>
     <span><span class="k">Implied:</span> <span class="prob mono">51.2%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">52.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.8%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">51.2%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-negative">-0.0%</span></span>
   </div>
-  <p class="small">Sample total leg, placeholder data — not researched.</p>
+  <p class="small">No independent against-the-spread model was found -- estimated_prob is set equal to the -105 market-implied price (51.2%), no edge claimed. Worth noting Houston&#x27;s starting LB Henry To&#x27;oTo&#x27;o left the Week 1 Bills loss with a shoulder injury and his Week 2 availability was unresolved as of this research, adding real uncertainty to Houston&#x27;s defense covering, but that is a qualitative flag, not a quantified edge.</p>
 </div><div class="leg">
   <div class="leg-header">
-    <span class="selection">Sample Team I moneyline, coin flip (sample)</span>
-    <span class="odds mono">+105</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">48.8%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">50.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.2%</span></span>
-  </div>
-  <p class="small">Sample coin-flip leg — illustrates why a leg like this stays out of any parlay.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Fictional Player Z 1+ rushing TD (sample)</span>
+    <span class="selection">Cincinnati Bengals moneyline (at Houston Texans)</span>
     <span class="odds mono">+120</span>
   </div>
   <div class="meta">
-    <span>prop</span>
+    <span>moneyline</span>
     <span><span class="k">Implied:</span> <span class="prob mono">45.5%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">46.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">0.5%</span></span>
+    <span><span class="k">Est.:</span> <span class="prob mono">47.0%</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">1.5%</span></span>
   </div>
-  <p class="small">Sample touchdown prop, sample data for Phase 1 testing.</p>
-</div><div class="leg">
-  <div class="leg-header">
-    <span class="selection">Sample Team G moneyline, underdog (sample)</span>
-    <span class="odds mono">+165</span>
-  </div>
-  <div class="meta">
-    <span>ML</span>
-    <span><span class="k">Implied:</span> <span class="prob mono">37.7%</span></span>
-    <span><span class="k">Est.:</span> <span class="prob mono">40.0%</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono edge-positive">2.3%</span></span>
-  </div>
-  <p class="small">Sample underdog leg, illustrative only — not researched.</p>
+  <p class="small">A genuine near coin-flip: Kalshi has this 47% Bengals / 55% Texans (rounds over 100%, standard vig-style spread). Houston&#x27;s defense also took a real Week 1 hit -- starting LB Henry To&#x27;oTo&#x27;o left the Bills loss in the 4th quarter with a shoulder injury (seen in a sling afterward, HC DeMeco Ryans said he was still being evaluated), and his Week 2 availability vs Cincinnati was unresolved as of this research. Below the 60% parlay-safety floor -- listed for context only, not parlay material.</p>
 </div></div>
   </section>
 
@@ -725,65 +760,69 @@
     <h2>Boost Check</h2>
     <div class="section-body"><div class="boost-item no-fit">
   <div class="verdict">No fit</div>
-  <p>Sample: 50% profit boost on any NFL parlay (SAMPLE — not a real DK boost)</p>
-  <p class="small muted">No fit — skip the boost. The card was built on merit before checking boosts.</p>
+  <p>DraftKings standing &quot;$200 in bonus bets + 50% profit boost every game day&quot; -- a 50% profit-boost token, one per customer per game day, usable on any single bet or SGP with total odds of +100 or longer; expires at end of game. (CBS Sports, published Sept 11 2026, https://www.cbssports.com/betting/news/draftkings-promo-code-claim-200-in-bonus-bets-and-get-a-50-profit-boost-every-game-day/)</p>
+  <p class="small muted">The card was picked on merit before this boost was even checked, and it happens not to fit: the boost requires combined odds of +100 or longer, but both this week&#x27;s picks are favorites shorter than that -- the Eagles ML straight bet is -242 and the Ravens/Bucs parlay computes to roughly -175. Neither qualifies. No fit -- skip it.</p>
 </div><div class="boost-item no-fit">
   <div class="verdict">No fit</div>
-  <p>Sample: odds boost token, Sample Team A ML to +200 (SAMPLE — not a real DK boost)</p>
-  <p class="small muted">Sample data only, no real boost to apply — this row exists to show the schema handling a second boost. No fit — skip the boost.</p>
+  <p>DraftKings new-customer welcome offer: bet $5+, get $200 in bonus bets paid out over 21 days, no promo code, offer window through Sept 20 2026 11:59pm ET. (Covers.com, https://www.covers.com/betting/bonuses/draftkings-promo-codes)</p>
+  <p class="small muted">This is a new-customer sign-up incentive, not a boost applied to a specific bet or game -- it doesn&#x27;t attach to this week&#x27;s card at all, and Gus already has an active DK account with months of bet history. No fit -- skip it.</p>
 </div><div class="boost-item no-fit">
   <div class="verdict">No fit</div>
-  <p>Sample: 3-leg SGP boost, +25% profit (SAMPLE — not a real DK boost)</p>
-  <p class="small muted">Card-2 is a 2-leg parlay, not a 3-leg SGP, so the shapes don&#x27;t match. No fit — skip the boost.</p>
+  <p>DraftKings NFL Slatebreaker ($2,000,000 prize pool): opt in, place a qualifying First Touchdown Scorer bet ($10 min) on any Week 1 Sunday 1pm ET game (Sept 13 2026); share the pool if your player scores the fastest TD across all eight games. (Oddschecker + DraftKings Network, Sept 12-13 2026)</p>
+  <p class="small muted">Explicitly tied to the Week 1 Sept 13 1pm slate and First Touchdown Scorer bets only -- it has nothing to do with the Week 2 Sept 20 games on this card. No fit -- skip it.</p>
 </div></div>
   </section>
 
   <section class="avoid-list" id="avoid-list">
     <h2>Avoid List</h2>
     <div class="section-body"><div class="avoid-item">
-  <h3>Sample: 10-leg mega-parlay across Sample Teams A through J moneylines (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — the huge payout number looks exciting on paper.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — ten legs at moderate probability multiply down to a near-zero combined chance; this is exactly what rule 4 (leg count follows probability) exists to prevent.</p>
+  <h3>A double-digit-leg NFL moneyline mega-parlay stacking this week&#x27;s favorites (e.g. Ravens/Bucs/49ers/Seahawks/Eagles/Packers/Cowboys/Broncos MLs all on one ticket)</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> Stacking 8-10 real favorites together produces a huge payout number, and each individual leg looks &#x27;safe&#x27; on its own -- it&#x27;s exactly the shape of Gus&#x27;s real Sept 13 10-leg SGPx parlay (PIT/CIN/BAL/CHI/BUF/TEN MLs + two 2-pick SGPs, +9164 boosted to +13748).</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> That real Sept 13 ticket lost, and the math explains why: even at 70-85% per leg, 8-10 legs multiplied together lands the combined probability in single-digit territory. This is Rule 4&#x27;s whole point -- leg count has to follow probability, and double-digit legs never clear that bar no matter how good each individual pick is.</p>
 </div><div class="avoid-item">
-  <h3>Sample: live in-game moneyline flip after a rough first quarter (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — inflated live odds feel like free value after a bad start.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — this sheet is pre-kickoff only (rule 2); live bets are never part of the card.</p>
+  <h3>Atlanta Falcons -1.5 or moneyline (vs Carolina Panthers) as the &#x27;safe favorite&#x27; pick of the closest game on the board</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> Falcons are the designated spread favorite at -1.5/-110, which reads as the lower-variance side of a close game.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Two things undercut that read: Atlanta&#x27;s own Kalshi win probability (50%) is actually a hair BELOW Carolina&#x27;s (52%), despite Atlanta being the spread favorite -- a genuine model/market disagreement, not noise. And starting QB Tua Tagovailoa&#x27;s oblique injury status is explicitly unresolved (Cooper Rush started Week 1, no confirmed Week 2 timetable), which is a real, unresolved risk sitting on top of an already-coinflip game.</p>
 </div><div class="avoid-item">
-  <h3>Sample: parlay built around this week&#x27;s headline DK boost (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — the boosted payout is the biggest number on the promo page.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — bet first, boost second (rule 3); a ticket built to fit a boost isn&#x27;t built on merit.</p>
+  <h3>Any Week 2 line pulled straight from SportsBettingDime&#x27;s full-page automated fetch without cross-checking (Vikings -6.5, Steelers -5.5, Seahawks -5.5, Chargers -7.0, 49ers -12.5)</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> It&#x27;s one convenient page listing all 14 games&#x27; spreads, totals, and moneylines in one place -- looks authoritative and saves time.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Each of those five specific numbers was directly contradicted by two or more independent sources this week (real lines: Bears -2.5, Patriots -4.5, Seahawks -9.5/-10, Chargers -8.5, 49ers -10.5) -- that page&#x27;s automated fetch looks stale or broken for at least five games. Always cross-check any single-source number in the live DK app before betting it.</p>
 </div><div class="avoid-item">
-  <h3>Sample: 3-leg parlay with one 50% coin-flip leg (sample)</h3>
-  <p class="why-tempting"><span class="k">Tempting:</span> Sample copy — two of the three legs look like heavy favorites.</p>
-  <p class="why-avoid"><span class="k">Avoid:</span> Sample copy — a single coin-flip leg drags the whole parlay&#x27;s real combined probability back down near 50%, even with two safe legs attached.</p>
+  <h3>Building a parlay specifically to clear DraftKings&#x27; &#x27;+100 or longer&#x27; threshold for the standing 50% profit-boost token (e.g. stacking Titans/Cardinals/Colts/Jets/Browns underdogs)</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> The boost token is real and currently active, and it feels like leaving free value on the table if this week&#x27;s card doesn&#x27;t use it.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Rule 3 is bet first, boost second. Every underdog that would be needed to reach +100 graded poorly in the real research this week (Titans 25% Kalshi win prob, Cardinals 17%, etc.) -- building a parlay around bad picks just to hit a boost&#x27;s odds floor is boost-first construction, exactly the trap Rule 3 exists to prevent.</p>
+</div><div class="avoid-item">
+  <h3>Minnesota Vikings +2.5 or moneyline (at Chicago Bears) before Wednesday&#x27;s practice report</h3>
+  <p class="why-tempting"><span class="k">Tempting:</span> Bears -2.5 is a modest, seemingly bettable number for a division road dog.</p>
+  <p class="why-avoid"><span class="k">Avoid:</span> Vikings starting QB Kyler Murray is in the NFL&#x27;s concussion protocol with no fixed timeline as of this research (backup Carson Wentz took over mid-Week-1); Minnesota&#x27;s actual Week 2 starting QB isn&#x27;t resolved, and that materially changes what a &#x27;fair&#x27; number looks like. Wait for the real Week 2 injury report (Sept 16-18) before touching this line.</p>
 </div></div>
   </section>
 
   <section class="last-week" id="last-week-graded">
     <h2>Last Week, Graded</h2>
-    <div class="section-body"><div class="graded-item result-won">
-  <h3>Real: 9-leg NBA prop parlay (Bane/Banchero/etc, -180, bonus bet)</h3>
-  <div class="result">Won</div>
-  <p class="lesson">High-probability floor props, built to hit, is the one thing that&#x27;s worked.</p>
-</div><div class="graded-item result-cashed-out">
-  <h3>Real: Argentina/Under 5.5/Yes SGP vs Cape Verde</h3>
-  <div class="result">Cashed Out</div>
-  <p class="lesson">Cashing out forfeited the +30% boost and still barely broke even; better to have picked a ticket that didn&#x27;t need saving.</p>
-</div><div class="graded-item result-lost">
-  <h3>Real: 10-leg NFL SGPx parlay (PIT/CIN/BAL/CHI/BUF/TEN MLs + two 2-pick SGPs, +9164)</h3>
+    <div class="section-body"><div class="graded-item result-lost">
+  <h3>10-leg NFL SGPx parlay (PIT ML; CIN ML; BAL ML; CHI ML; BUF ML; TEN ML; two 2-pick SGPs), +9164 boosted to +13748, $1.00</h3>
   <div class="result">Lost</div>
-  <p class="lesson">Double-digit-leg parlays are lottery tickets, not a cheat-sheet card — the odds number is the tell.</p>
+  <p class="lesson">Double-digit-leg parlays are lottery tickets, not a cheat-sheet card -- stacking 10 legs (even mostly favorites) multiplies the real combined probability down to almost nothing, no matter how good the boosted payout number looks.</p>
 </div><div class="graded-item result-lost">
-  <h3>Real: 8-leg NCAAF moneyline parlay (Oklahoma/Texas A&amp;M/Ball State/etc, +541)</h3>
+  <h3>6-leg NFL same-game player-prop parlay, in-game (Mayfield 275+ pass; Over 50.5; Chase Brown 90+ rush+rec; Egbuka 80+ rec; Chase 100+ rec; Burrow 275+ pass), +3300 boosted to +4290, $0.50</h3>
   <div class="result">Lost</div>
-  <p class="lesson">Stacking eight favorites together still multiplies down to a low combined probability; a straight bet on the best one would have been the better trade.</p>
+  <p class="lesson">This was placed live, during the TB-CIN game -- exactly what pre-kickoff-only rule exists to prevent. Only 1 of 6 legs hit (the total); six aggressive player-yardage props stacked together is a low-probability combination even with two productive passing offenses on the field.</p>
 </div><div class="graded-item result-lost">
-  <h3>Real: NCAAF Under 47.5 (live, San Jose State vs Eastern Michigan)</h3>
+  <h3>2-leg live moneyline parlay (BUF Bills live ML +109; TEN Titans live ML +121), +361, $0.50 (crowns/bonus)</h3>
   <div class="result">Lost</div>
-  <p class="lesson">Lost by half a point on a live total — a reminder that in-game numbers are close calls by design, which is why the card stays pre-kickoff only.</p>
+  <p class="lesson">One leg actually hit (Bills beat Houston 36-31) but the Titans leg didn&#x27;t (lost 10-23 to the Jets), and a parlay needs every leg to hit -- a reminder that a single-leg miss sinks the whole ticket even when the rest of the card looks right, on top of this being a live in-game bet in the first place.</p>
+</div><div class="graded-item result-open">
+  <h3>3-leg NFL moneyline parlay (LV Raiders ML -170; LA Chargers ML -455; DAL Cowboys ML -166), +210, $0.12 (crowns/bonus), to pay $0.37</h3>
+  <div class="result">Open, not yet graded</div>
+  <p class="lesson">Still open -- not yet graded, no result invented.</p>
+</div><div class="graded-item result-open">
+  <h3>17-leg NFL SGPx parlay (6-pick SGP; 4-pick SGP; 2-pick SGP; 3-pick SGP; 2-pick SGP -- individual legs not visible in screenshot), +7953132 boosted to +10339073, wager not visible</h3>
+  <div class="result">Open, not yet graded</div>
+  <p class="lesson">Still open -- not yet graded, no result invented.</p>
 </div></div>
   </section>
 
-  <footer>Built 2026-09-13 23:35 UTC</footer>
+  <footer>Built 2026-09-14 00:19 UTC</footer>
 </body>
 </html>

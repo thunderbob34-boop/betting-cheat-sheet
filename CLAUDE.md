@@ -4,13 +4,27 @@ This file governs how Claude Code works in this repo. The full master plan lives
 `../docs/betting-cheat-sheet-plan.md` (outside this repo, in the job folder). Read it
 before doing any work beyond Phase 0.
 
-**Current status: Phase 1 (math + page) complete.** `odds.py`, `build.py`,
-`templates/page.html`, and a hand-written sample week JSON
-(`data/weeks/sample-phase1.json`, `is_sample: true`) exist and are tested.
-`docs/index.html` currently renders that SAMPLE data (fictional team names, a
-loud "do not place these bets" banner) — it is not a real card yet. Do not
-build `grade.py` or the `/cheatsheet` slash command until Gus explicitly moves
-the project to Phase 2+.
+**Current status: Phase 2 (real weekly research) live.** `docs/index.html`
+renders the first real edition, `data/weeks/2026-nfl-wk02.json` (NFL Week 2,
+Sunday Sept 20 2026) — a real $3 straight + $2 parlay, real leg bank, real
+boost check, real avoid list, real last-week-graded pulled from
+`data/bet_log.csv`. `is_sample: false`. `.claude/commands/cheatsheet.md` is the
+real `/cheatsheet nfl|cfb` command — read it before running or scheduling a
+new edition. `grade.py` (Phase 3) is still not built.
+
+**Honesty rule learned the hard way on 2026-nfl-wk02:** never estimate a card
+bet's probability from a single source — average at least two independent
+real win-probability models and cite both. A single-sourced Kalshi-only
+estimate overstated the edge (+5.2%) until Gus caught it; averaging a second
+real source (Stats Insider) brought it to a more honest +4.2%. Also: prefer
+fetching a page directly over trusting a search engine's auto-summary of it —
+a summary once reported 71% for a page whose actual text said 74%.
+
+**Rendering rule learned the same day:** real source citations include long
+URLs inline in reason/verify text. `templates/page.html`'s `body` CSS has
+`overflow-wrap: anywhere` for exactly this reason — don't remove it, and don't
+assume "no fixed-width CSS" is enough evidence a page won't scroll sideways;
+actually render it and measure `scrollWidth` vs `clientWidth` at 390px.
 
 The scoreboard is split into two scopes, both computed fresh from
 `data/bet_log.csv` on every run (`data/config.json` holds `season_start` and
@@ -78,6 +92,9 @@ Bet logging stays manual (screenshots) in v1.
 ```
 betting-cheat-sheet/
   CLAUDE.md                  # rules from §3, workflow from §8, house style
+  .claude/
+    commands/
+      cheatsheet.md           # the real /cheatsheet nfl|cfb command (Phase 2)
   data/
     bet_log.csv              # every bet Gus places (seed from dk_bet_history.csv)
     config.json              # season_start + starting_bankroll — scopes the

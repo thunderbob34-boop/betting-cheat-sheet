@@ -1,0 +1,230 @@
+{
+  "week_id": "2026-nfl-wk02",
+  "is_sample": false,
+  "sport": "NFL",
+  "generated_at": "2026-09-13T23:53:42Z",
+  "card": {
+    "bets": [
+      {
+        "id": "card-1",
+        "kind": "straight",
+        "selection": "Philadelphia Eagles moneyline (at Tennessee Titans)",
+        "market": "moneyline",
+        "dk_odds": -242,
+        "estimated_prob": 0.75,
+        "estimated_prob_source": "Averaged: Kalshi prediction-market-implied win probability 76% (via defirate.com \"NFL Week 2 odds & predictions\", https://defirate.com/news/nfl-week-2-odds-predictions-2026/) and Stats Insider's 10,000-simulation predictive analytics model 74% (via \"Titans vs Eagles Prediction and Preview - NFL Week 2, 2026\", https://www.statsinsider.com.au/news/titans-vs-eagles-prediction-and-preview-nfl-week-2-2026, published Sept 13 2026) = (76% + 74%) / 2 = 75% average.",
+        "is_pre_kickoff": true,
+        "stake": 3.0,
+        "reason": "Picked on merit: the Eagles -5.5 spread and 42.5 total are each confirmed exactly by two independent sources (Covers.com and a direct ESPN-odds-citing search), no negative injury news turned up for Philadelphia, and Tennessee is a big underdog with no positive news either. estimated_prob is now the average of two independent, real win-probability models (Kalshi 76% via defirate.com and Stats Insider's simulation model 74%) rather than a single source, landing at 75% -- a modest few points above the -242 market-implied price (70.8%), not the larger single-source edge claimed before this was cross-checked. A clean, well-reasoned favorite on the fundamentals; no outsized edge is claimed.",
+        "verify": {
+          "source": "Covers.com \"NFL Week 2 Odds and Opening Betting Lines\" (https://www.covers.com/nfl/week-2-odds-opening-lines-2026) and defirate.com \"NFL Week 2 odds & predictions\" (https://defirate.com/news/nfl-week-2-odds-predictions-2026/)",
+          "fetched_at": "2026-09-13 (session research; no exact server timestamp available -- treat as \"current as of a Sept 13 2026 search,\" not necessarily today's closing line)",
+          "note": "Line may have moved -- verify the Eagles ML price in the DK app before betting."
+        }
+      },
+      {
+        "id": "card-2",
+        "kind": "parlay",
+        "legs": [
+          {
+            "selection": "Baltimore Ravens moneyline (vs New Orleans Saints)",
+            "estimated_prob": 0.81,
+            "reason": "Kalshi model gives Baltimore 81% at home; New Orleans is already thin (Alvin Kamara's exact Week 2 status is unresolved, Cameron Jordan sat out Week 1 with a hamstring injury) and needed overtime just to lose to Detroit in Week 1."
+          },
+          {
+            "selection": "Tampa Bay Buccaneers moneyline (vs Cleveland Browns)",
+            "estimated_prob": 0.75,
+            "reason": "Kalshi model gives Tampa Bay 75%; Cleveland's Week 1 game added a fresh problem on top of that -- rookie RB Dylan Sampson left on crutches in a knee brace after a kickoff-return injury, thinning an already-shaky Browns backfield."
+          }
+        ],
+        "dk_odds": -175,
+        "estimated_prob_source": "Both legs: Kalshi prediction-market-implied win probabilities via defirate.com \"NFL Week 2 odds & predictions\" (https://defirate.com/news/nfl-week-2-odds-predictions-2026/).",
+        "is_pre_kickoff": true,
+        "stake": 2.0,
+        "reason": "A small, 2-leg 'chalk' parlay of two real DraftKings-priced favorites (both -395, cited by SportsBettingDime as DraftKings pricing) with independently corroborated spreads and real 75-81% win-probability backing on each leg -- the opposite of the double-digit-leg mega-parlays that have lost every time in the bet log so far.",
+        "verify": {
+          "source": "SportsBettingDime \"NFL Week 2 Odds -- Opening Spread, Total, ML\" (DraftKings-sourced pricing), https://www.sportsbettingdime.com/news/nfl/week-2-odds-opening-spread-total-ml-all-games-2026/ ; defirate.com \"NFL Week 2 odds & predictions\", https://defirate.com/news/nfl-week-2-odds-predictions-2026/",
+          "fetched_at": "2026-09-13 (session research; no exact server timestamp available)",
+          "note": "The -175 combined price shown here is computed from the two real -395/-395 leg moneylines via standard decimal-odds multiplication -- it is NOT a live DK parlay-slip quote. Confirm the actual parlay payout and re-check both moneylines haven't moved in the DK app before betting."
+        }
+      }
+    ]
+  },
+  "leg_bank": [
+    {
+      "selection": "Philadelphia Eagles moneyline (at Tennessee Titans)",
+      "market": "moneyline",
+      "dk_odds": -242,
+      "estimated_prob": 0.75,
+      "reason": "Same selection used in this week's straight bet; listed here for leg-bank ranking context. Kalshi 76% vs. -242 market-implied 70.8%.",
+      "source": "Averaged: Kalshi via defirate.com (76%) + Stats Insider 10k-simulation model (74%) = 75%; same figure used for card-1"
+    },
+    {
+      "selection": "Baltimore Ravens moneyline (vs New Orleans Saints)",
+      "market": "moneyline",
+      "dk_odds": -395,
+      "estimated_prob": 0.81,
+      "reason": "Same selection used in this week's parlay leg 1; listed here for leg-bank ranking context. Saints' Kamara/Jordan situations add real risk on New Orleans' side.",
+      "source": "SportsBettingDime (DK-sourced) + defirate.com NFL Week 2 predictions"
+    },
+    {
+      "selection": "Tampa Bay Buccaneers moneyline (vs Cleveland Browns)",
+      "market": "moneyline",
+      "dk_odds": -395,
+      "estimated_prob": 0.75,
+      "reason": "Same selection used in this week's parlay leg 2; listed here for leg-bank ranking context. Browns RB Dylan Sampson's Week 1 knee injury adds real risk to Cleveland's backfield.",
+      "source": "SportsBettingDime (DK-sourced) + defirate.com NFL Week 2 predictions + News 5 Cleveland (Sampson injury)"
+    },
+    {
+      "selection": "Seattle Seahawks moneyline (at Arizona Cardinals)",
+      "market": "moneyline",
+      "dk_odds": -370,
+      "estimated_prob": 0.84,
+      "reason": "The single largest true favorite on this week's board -- two independent sources (Covers.com, a direct search) agree Seattle is roughly a 9.5-10 point favorite, and Kalshi's 84% win probability corroborates it. No positive Arizona news found.",
+      "source": "Covers.com NFL Week 2 odds + defirate.com NFL Week 2 predictions"
+    },
+    {
+      "selection": "San Francisco 49ers moneyline (vs Miami Dolphins)",
+      "market": "moneyline",
+      "dk_odds": -690,
+      "estimated_prob": 0.86,
+      "reason": "49ers -10.5 is confirmed by two independent sources and Kalshi's 86% win probability is nearly identical to the -690 market-implied price (87.3%) -- essentially no edge either way, an honest match rather than a manufactured one.",
+      "source": "Covers.com NFL Week 2 odds + defirate.com NFL Week 2 predictions"
+    },
+    {
+      "selection": "Green Bay Packers moneyline (at New York Jets)",
+      "market": "moneyline",
+      "dk_odds": -245,
+      "estimated_prob": 0.69,
+      "reason": "Packers -5.5 on the road is confirmed by three independent sources, an unusually strong agreement for a road favorite this size; Kalshi's 69% is close to but slightly above the -245 implied price (71.0%) -- essentially flat, no inflated edge claimed.",
+      "source": "SportsBettingDime + Covers.com + defirate.com NFL Week 2 predictions"
+    },
+    {
+      "selection": "Dallas Cowboys moneyline (vs Washington Commanders)",
+      "market": "moneyline",
+      "dk_odds": -198,
+      "estimated_prob": 0.7,
+      "reason": "Cowboys -4.5 confirmed by two sources exactly; Kalshi's 70% sits a bit above the -198 market-implied price (66.4%), a modest sourced edge.",
+      "source": "Covers.com NFL Week 2 odds + defirate.com NFL Week 2 predictions"
+    },
+    {
+      "selection": "Denver Broncos moneyline (vs Jacksonville Jaguars)",
+      "market": "moneyline",
+      "dk_odds": -142,
+      "estimated_prob": 0.55,
+      "reason": "Honesty check: Kalshi's own 55% win probability is actually BELOW the -142 market-implied price (58.7%) -- the model does not support a Broncos edge here despite being the favorite, so this leg is ranked low and is not part of the card.",
+      "source": "SportsBettingDime + Covers.com + defirate.com NFL Week 2 predictions"
+    },
+    {
+      "selection": "Cincinnati Bengals moneyline (at Houston Texans)",
+      "market": "moneyline",
+      "dk_odds": 120,
+      "estimated_prob": 0.47,
+      "reason": "A genuine near coin-flip: Kalshi has this 47% Bengals / 55% Texans (rounds over 100%, standard vig-style spread). Houston's defense also took a real Week 1 hit -- starting LB Henry To'oTo'o left the Bills loss in the 4th quarter with a shoulder injury (seen in a sling afterward, HC DeMeco Ryans said he was still being evaluated), and his Week 2 availability vs Cincinnati was unresolved as of this research. Below the 60% parlay-safety floor -- listed for context only, not parlay material.",
+      "source": "SportsBettingDime (DK-sourced) + defirate.com NFL Week 2 predictions + Yardbarker \"Houston Texans Reveal Concerning Injury News After Bills Loss\" (https://www.yardbarker.com/nfl/articles/houston_texans_reveal_concerning_injury_news_after_bills_loss/s1_17355_44299898), found in session research Sept 13 2026"
+    },
+    {
+      "selection": "Los Angeles Chargers moneyline (vs Las Vegas Raiders)",
+      "market": "moneyline",
+      "dk_odds": -425,
+      "estimated_prob": 0.8095,
+      "reason": "No independently-sourced win-probability model was found for this specific game beyond the spread itself, so estimated_prob is set equal to the -425 market-implied probability (80.95%) -- no edge claimed, stated honestly rather than guessed.",
+      "source": "Covers.com NFL Week 2 odds (Chargers -8.5)"
+    },
+    {
+      "selection": "Indianapolis Colts/Kansas City Chiefs Over 47.5 (SNF total)",
+      "market": "total",
+      "dk_odds": -110,
+      "estimated_prob": 0.5238,
+      "reason": "Total confirmed exactly by two independent sources at 47.5, -110/-110, but no total-specific probability model was found -- estimated_prob is set equal to the -110 market-implied price (52.4%), no edge claimed.",
+      "source": "Covers.com NFL Week 2 odds + VegasInsider.com Chiefs vs Colts matchup page"
+    },
+    {
+      "selection": "Cincinnati Bengals +2.5 (at Houston Texans)",
+      "market": "spread",
+      "dk_odds": -105,
+      "estimated_prob": 0.5121,
+      "reason": "No independent against-the-spread model was found -- estimated_prob is set equal to the -105 market-implied price (51.2%), no edge claimed. Worth noting Houston's starting LB Henry To'oTo'o left the Week 1 Bills loss with a shoulder injury and his Week 2 availability was unresolved as of this research, adding real uncertainty to Houston's defense covering, but that is a qualitative flag, not a quantified edge.",
+      "source": "SportsBettingDime (DK-sourced) + Covers.com NFL Week 2 odds + Yardbarker \"Houston Texans Reveal Concerning Injury News After Bills Loss\" (https://www.yardbarker.com/nfl/articles/houston_texans_reveal_concerning_injury_news_after_bills_loss/s1_17355_44299898), found in session research Sept 13 2026"
+    },
+    {
+      "selection": "Kansas City Chiefs -6.5 (vs Indianapolis Colts, SNF)",
+      "market": "spread",
+      "dk_odds": -110,
+      "estimated_prob": 0.5238,
+      "reason": "Spread confirmed by four independent sources (very high confidence on the number itself), but no against-the-spread probability model was found -- estimated_prob is set equal to the -110 market-implied price (52.4%), no edge claimed. A search result labeled \"ESPN FPI\" claiming Chiefs 71% could not be verified as genuine FPI data and was deliberately not used here.",
+      "source": "SportsBettingDime + Covers.com + VegasInsider.com Chiefs vs Colts matchup page"
+    }
+  ],
+  "boost_check": [
+    {
+      "boost_description": "DraftKings standing \"$200 in bonus bets + 50% profit boost every game day\" -- a 50% profit-boost token, one per customer per game day, usable on any single bet or SGP with total odds of +100 or longer; expires at end of game. (CBS Sports, published Sept 11 2026, https://www.cbssports.com/betting/news/draftkings-promo-code-claim-200-in-bonus-bets-and-get-a-50-profit-boost-every-game-day/)",
+      "fits_card": false,
+      "explanation": "The card was picked on merit before this boost was even checked, and it happens not to fit: the boost requires combined odds of +100 or longer, but both this week's picks are favorites shorter than that -- the Eagles ML straight bet is -242 and the Ravens/Bucs parlay computes to roughly -175. Neither qualifies. No fit -- skip it."
+    },
+    {
+      "boost_description": "DraftKings new-customer welcome offer: bet $5+, get $200 in bonus bets paid out over 21 days, no promo code, offer window through Sept 20 2026 11:59pm ET. (Covers.com, https://www.covers.com/betting/bonuses/draftkings-promo-codes)",
+      "fits_card": false,
+      "explanation": "This is a new-customer sign-up incentive, not a boost applied to a specific bet or game -- it doesn't attach to this week's card at all, and Gus already has an active DK account with months of bet history. No fit -- skip it."
+    },
+    {
+      "boost_description": "DraftKings NFL Slatebreaker ($2,000,000 prize pool): opt in, place a qualifying First Touchdown Scorer bet ($10 min) on any Week 1 Sunday 1pm ET game (Sept 13 2026); share the pool if your player scores the fastest TD across all eight games. (Oddschecker + DraftKings Network, Sept 12-13 2026)",
+      "fits_card": false,
+      "explanation": "Explicitly tied to the Week 1 Sept 13 1pm slate and First Touchdown Scorer bets only -- it has nothing to do with the Week 2 Sept 20 games on this card. No fit -- skip it."
+    }
+  ],
+  "avoid_list": [
+    {
+      "selection": "A double-digit-leg NFL moneyline mega-parlay stacking this week's favorites (e.g. Ravens/Bucs/49ers/Seahawks/Eagles/Packers/Cowboys/Broncos MLs all on one ticket)",
+      "why_tempting": "Stacking 8-10 real favorites together produces a huge payout number, and each individual leg looks 'safe' on its own -- it's exactly the shape of Gus's real Sept 13 10-leg SGPx parlay (PIT/CIN/BAL/CHI/BUF/TEN MLs + two 2-pick SGPs, +9164 boosted to +13748).",
+      "why_avoid": "That real Sept 13 ticket lost, and the math explains why: even at 70-85% per leg, 8-10 legs multiplied together lands the combined probability in single-digit territory. This is Rule 4's whole point -- leg count has to follow probability, and double-digit legs never clear that bar no matter how good each individual pick is."
+    },
+    {
+      "selection": "Atlanta Falcons -1.5 or moneyline (vs Carolina Panthers) as the 'safe favorite' pick of the closest game on the board",
+      "why_tempting": "Falcons are the designated spread favorite at -1.5/-110, which reads as the lower-variance side of a close game.",
+      "why_avoid": "Two things undercut that read: Atlanta's own Kalshi win probability (50%) is actually a hair BELOW Carolina's (52%), despite Atlanta being the spread favorite -- a genuine model/market disagreement, not noise. And starting QB Tua Tagovailoa's oblique injury status is explicitly unresolved (Cooper Rush started Week 1, no confirmed Week 2 timetable), which is a real, unresolved risk sitting on top of an already-coinflip game."
+    },
+    {
+      "selection": "Any Week 2 line pulled straight from SportsBettingDime's full-page automated fetch without cross-checking (Vikings -6.5, Steelers -5.5, Seahawks -5.5, Chargers -7.0, 49ers -12.5)",
+      "why_tempting": "It's one convenient page listing all 14 games' spreads, totals, and moneylines in one place -- looks authoritative and saves time.",
+      "why_avoid": "Each of those five specific numbers was directly contradicted by two or more independent sources this week (real lines: Bears -2.5, Patriots -4.5, Seahawks -9.5/-10, Chargers -8.5, 49ers -10.5) -- that page's automated fetch looks stale or broken for at least five games. Always cross-check any single-source number in the live DK app before betting it."
+    },
+    {
+      "selection": "Building a parlay specifically to clear DraftKings' '+100 or longer' threshold for the standing 50% profit-boost token (e.g. stacking Titans/Cardinals/Colts/Jets/Browns underdogs)",
+      "why_tempting": "The boost token is real and currently active, and it feels like leaving free value on the table if this week's card doesn't use it.",
+      "why_avoid": "Rule 3 is bet first, boost second. Every underdog that would be needed to reach +100 graded poorly in the real research this week (Titans 25% Kalshi win prob, Cardinals 17%, etc.) -- building a parlay around bad picks just to hit a boost's odds floor is boost-first construction, exactly the trap Rule 3 exists to prevent."
+    },
+    {
+      "selection": "Minnesota Vikings +2.5 or moneyline (at Chicago Bears) before Wednesday's practice report",
+      "why_tempting": "Bears -2.5 is a modest, seemingly bettable number for a division road dog.",
+      "why_avoid": "Vikings starting QB Kyler Murray is in the NFL's concussion protocol with no fixed timeline as of this research (backup Carson Wentz took over mid-Week-1); Minnesota's actual Week 2 starting QB isn't resolved, and that materially changes what a 'fair' number looks like. Wait for the real Week 2 injury report (Sept 16-18) before touching this line."
+    }
+  ],
+  "last_week_graded": [
+    {
+      "selection": "10-leg NFL SGPx parlay (PIT ML; CIN ML; BAL ML; CHI ML; BUF ML; TEN ML; two 2-pick SGPs), +9164 boosted to +13748, $1.00",
+      "result": "Lost",
+      "lesson": "Double-digit-leg parlays are lottery tickets, not a cheat-sheet card -- stacking 10 legs (even mostly favorites) multiplies the real combined probability down to almost nothing, no matter how good the boosted payout number looks."
+    },
+    {
+      "selection": "6-leg NFL same-game player-prop parlay, in-game (Mayfield 275+ pass; Over 50.5; Chase Brown 90+ rush+rec; Egbuka 80+ rec; Chase 100+ rec; Burrow 275+ pass), +3300 boosted to +4290, $0.50",
+      "result": "Lost",
+      "lesson": "This was placed live, during the TB-CIN game -- exactly what pre-kickoff-only rule exists to prevent. Only 1 of 6 legs hit (the total); six aggressive player-yardage props stacked together is a low-probability combination even with two productive passing offenses on the field."
+    },
+    {
+      "selection": "2-leg live moneyline parlay (BUF Bills live ML +109; TEN Titans live ML +121), +361, $0.50 (crowns/bonus)",
+      "result": "Lost",
+      "lesson": "One leg actually hit (Bills beat Houston 36-31) but the Titans leg didn't (lost 10-23 to the Jets), and a parlay needs every leg to hit -- a reminder that a single-leg miss sinks the whole ticket even when the rest of the card looks right, on top of this being a live in-game bet in the first place."
+    },
+    {
+      "selection": "3-leg NFL moneyline parlay (LV Raiders ML -170; LA Chargers ML -455; DAL Cowboys ML -166), +210, $0.12 (crowns/bonus), to pay $0.37",
+      "result": "Open, not yet graded",
+      "lesson": "Still open -- not yet graded, no result invented."
+    },
+    {
+      "selection": "17-leg NFL SGPx parlay (6-pick SGP; 4-pick SGP; 2-pick SGP; 3-pick SGP; 2-pick SGP -- individual legs not visible in screenshot), +7953132 boosted to +10339073, wager not visible",
+      "result": "Open, not yet graded",
+      "lesson": "Still open -- not yet graded, no result invented."
+    }
+  ]
+}

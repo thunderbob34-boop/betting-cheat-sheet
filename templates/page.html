@@ -42,6 +42,13 @@
     line-height: 1.5;
     max-width: 100%;
     overflow-x: hidden;
+    /* Real week content cites source URLs inline in reason/verify/avoid
+       text (e.g. long sportsbettingdime.com/defirate.com links), long
+       enough to force horizontal scroll on a 390px screen unless every
+       text container can break mid-word. Set on body so it applies to
+       every section, not just the ones with long text today. */
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   h1 {
