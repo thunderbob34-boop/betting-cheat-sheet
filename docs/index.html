@@ -15,7 +15,8 @@
     Contract for build.py (each token is replaced with a raw HTML fragment):
             -> "" (real week) OR one <div class="sample-banner">...</div>
       <h3>This Season (since Sep 1, 2026)</h3><div class="stat-grid"><div class="stat"><span class="label">Record</span><span class="value">0W-7L-0CO-2Open</span></div><div class="stat"><span class="label">Current Streak</span><span class="value">L7</span></div><div class="stat"><span class="label">Cash P/L</span><span class="value negative">-$9.00</span></div><div class="stat"><span class="label">Bankroll Remaining</span><span class="value positive">$41.00</span></div><div class="stat"><span class="label">Weekly Budget Used</span><span class="value">$2.00 of $5.00 ($3.00 left)</span></div><div class="stat"><span class="label">Bets Missing Details</span><span class="value">1</span></div></div><div class="small muted">All-time since Mar 2026: 1W-18L-1CO-2Open, cash P/L -$55.93</div>         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
-      <div class="bet">
+      <div class="bet tier-easy">
+  <div class="tier-badge">1. Easy Bet</div>
   <div class="bet-header">
     <h3>Under 43.5 (Broncos @ Chiefs, MNF)</h3>
     <span class="odds mono">-110</span>
@@ -26,10 +27,13 @@
     <span><span class="k">Estimated:</span> <span class="prob mono">57.5%</span></span>
     <span><span class="k">Edge:</span> <span class="prob mono edge-positive">5.1%</span></span>
   </div>
-  
-  <p class="reason">The only real edge found tonight: two independent real models both lean Under 43.5, averaging to 57.5% vs the -110 market-implied 52.4% -- a genuine +5.1% edge, not a manufactured one. Real injury notes (KC: DE R. Mason Thomas hamstring, OT Josh Simmons back-questionable; DEN: CB Riley Moss ribs-questionable, WR Marvin Mims foot-questionable) support a lower-scoring script rather than change it. No side taken on the moneyline: real market pricing (Chiefs -132/-134, Broncos +112/+113 across two sources) is close to a real model&#x27;s own estimate (numberFire: Chiefs 52.3%, Broncos 47.7%) -- efficiently priced, no edge to size a pick around.</p>
-  <div class="small muted">Prob. source: Averaged: CBS Sports/SportsLine 10,000-simulation model (Under hits 63% of simulations, via https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/) and Covers.com&#x27;s early total pick (Under 43.5 at a Kalshi-sourced 52%, via https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026) = 57.5% average.</div>
-  <div class="verify">Verify: Total + price confirmed by 3 independent sources: FanDuel Research (43.5, Under -110, https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026), CBS Sports/SportsLine (43.5, https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/), and Covers.com (43.5, https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026). One outlier: NBC Sports showed a different total (42.5) and wider moneyline (-148/+124, https://www.nbcsports.com/betting/nfl/news/broncos-vs-chiefs-prediction-odds-expert-picks-qb-matchups-injury-update-betting-trends-and-stats) -- likely a stale snapshot, not used as the primary number. &middot; 2026-09-14 08:30-08:40 AM ET &middot; Kickoff is 8:15 PM ET tonight (Sept 14) -- line may move during the day. Verify Under 43.5 is still priced near -110 in the DK app before betting; if the total has moved meaningfully, the edge math above no longer applies as-is.</div>
+  <p class="reason-summary">Two real models both lean Under 43.5 (57.5% avg vs -110&#x27;s 52.4% implied) = honest +5.1% edge; no side taken on the ML, priced efficiently.</p>
+  <details class="reason-detail">
+    <summary>Why &amp; sources</summary>
+    <p class="reason">The only real edge found tonight: two independent real models both lean Under 43.5, averaging to 57.5% vs the -110 market-implied 52.4% -- a genuine +5.1% edge, not a manufactured one. Real injury notes (KC: DE R. Mason Thomas hamstring, OT Josh Simmons back-questionable; DEN: CB Riley Moss ribs-questionable, WR Marvin Mims foot-questionable) support a lower-scoring script rather than change it. No side taken on the moneyline: real market pricing (Chiefs -132/-134, Broncos +112/+113 across two sources) is close to a real model&#x27;s own estimate (numberFire: Chiefs 52.3%, Broncos 47.7%) -- efficiently priced, no edge to size a pick around.</p>
+    <div class="small muted">Prob. source: Averaged: CBS Sports/SportsLine 10,000-simulation model (Under hits 63% of simulations, via https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/) and Covers.com&#x27;s early total pick (Under 43.5 at a Kalshi-sourced 52%, via https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026) = 57.5% average.</div>
+    <div class="verify">Verify: Total + price confirmed by 3 independent sources: FanDuel Research (43.5, Under -110, https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026), CBS Sports/SportsLine (43.5, https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/), and Covers.com (43.5, https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026). One outlier: NBC Sports showed a different total (42.5) and wider moneyline (-148/+124, https://www.nbcsports.com/betting/nfl/news/broncos-vs-chiefs-prediction-odds-expert-picks-qb-matchups-injury-update-betting-trends-and-stats) -- likely a stale snapshot, not used as the primary number. &middot; 2026-09-14 08:30-08:40 AM ET &middot; Kickoff is 8:15 PM ET tonight (Sept 14) -- line may move during the day. Verify Under 43.5 is still priced near -110 in the DK app before betting; if the total has moved meaningfully, the edge math above no longer applies as-is.</div>
+  </details>
 </div>               -> one or more <div class="bet">...</div> (see structure below)
       <div class="leg">
   <div class="leg-header">
@@ -111,7 +115,7 @@
   <div class="result">Open, not yet graded</div>
   <p class="lesson">Still open -- not yet graded, no result invented.</p>
 </div>   -> one or more <div class="graded-item result-won|result-lost|result-cashed-out|result-open">...</div>
-      2026-09-14 12:42 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
+      2026-09-14 13:10 UTC           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
 
     None of the above classes are required — plain semantic HTML (p, ul/li, table)
     renders fine on the base element styles too. The classes just get nicer,
@@ -303,6 +307,51 @@
     margin-bottom: 6px;
   }
 
+  /* Three card tiers — Easy Bet (blue, the default .bet accent already
+     above), Fun Parlay (violet), Lottery Ticket (amber, explicitly outside
+     the $5/week line). */
+  .tier-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #8a929b;
+    margin-bottom: 6px;
+  }
+  .tier-fun { border-left-color: #b98bff; }
+  .tier-fun .tier-badge { color: #c9a6ff; }
+  .tier-lottery { border-left-color: #e0b34d; }
+  .tier-lottery .tier-badge { color: #e0b34d; }
+
+  /* One-line summary always visible ("scan it, not read it"); the rest of
+     the reasoning + sources sits behind a native <details> so it costs no
+     JS and defaults closed. */
+  .reason-summary {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reason-detail summary {
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: #6bb6ff;
+    list-style: none;
+    margin-top: 2px;
+  }
+  .reason-detail summary::-webkit-details-marker { display: none; }
+  .reason-detail summary::before {
+    content: "▸ ";
+  }
+  .reason-detail[open] summary::before {
+    content: "▾ ";
+  }
+  .reason-detail[open] summary {
+    margin-bottom: 6px;
+  }
+  .reason-detail .reason {
+    margin-bottom: 8px;
+  }
+
   /* ---------- leg bank (Section 4) ---------- */
   .leg {
     background: #14171b;
@@ -415,7 +464,8 @@
 
   <section class="card-section" id="card">
     <h2>This Week&rsquo;s Card</h2>
-    <div class="section-body"><div class="bet">
+    <div class="section-body"><div class="bet tier-easy">
+  <div class="tier-badge">1. Easy Bet</div>
   <div class="bet-header">
     <h3>Under 43.5 (Broncos @ Chiefs, MNF)</h3>
     <span class="odds mono">-110</span>
@@ -426,10 +476,13 @@
     <span><span class="k">Estimated:</span> <span class="prob mono">57.5%</span></span>
     <span><span class="k">Edge:</span> <span class="prob mono edge-positive">5.1%</span></span>
   </div>
-  
-  <p class="reason">The only real edge found tonight: two independent real models both lean Under 43.5, averaging to 57.5% vs the -110 market-implied 52.4% -- a genuine +5.1% edge, not a manufactured one. Real injury notes (KC: DE R. Mason Thomas hamstring, OT Josh Simmons back-questionable; DEN: CB Riley Moss ribs-questionable, WR Marvin Mims foot-questionable) support a lower-scoring script rather than change it. No side taken on the moneyline: real market pricing (Chiefs -132/-134, Broncos +112/+113 across two sources) is close to a real model&#x27;s own estimate (numberFire: Chiefs 52.3%, Broncos 47.7%) -- efficiently priced, no edge to size a pick around.</p>
-  <div class="small muted">Prob. source: Averaged: CBS Sports/SportsLine 10,000-simulation model (Under hits 63% of simulations, via https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/) and Covers.com&#x27;s early total pick (Under 43.5 at a Kalshi-sourced 52%, via https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026) = 57.5% average.</div>
-  <div class="verify">Verify: Total + price confirmed by 3 independent sources: FanDuel Research (43.5, Under -110, https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026), CBS Sports/SportsLine (43.5, https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/), and Covers.com (43.5, https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026). One outlier: NBC Sports showed a different total (42.5) and wider moneyline (-148/+124, https://www.nbcsports.com/betting/nfl/news/broncos-vs-chiefs-prediction-odds-expert-picks-qb-matchups-injury-update-betting-trends-and-stats) -- likely a stale snapshot, not used as the primary number. &middot; 2026-09-14 08:30-08:40 AM ET &middot; Kickoff is 8:15 PM ET tonight (Sept 14) -- line may move during the day. Verify Under 43.5 is still priced near -110 in the DK app before betting; if the total has moved meaningfully, the edge math above no longer applies as-is.</div>
+  <p class="reason-summary">Two real models both lean Under 43.5 (57.5% avg vs -110&#x27;s 52.4% implied) = honest +5.1% edge; no side taken on the ML, priced efficiently.</p>
+  <details class="reason-detail">
+    <summary>Why &amp; sources</summary>
+    <p class="reason">The only real edge found tonight: two independent real models both lean Under 43.5, averaging to 57.5% vs the -110 market-implied 52.4% -- a genuine +5.1% edge, not a manufactured one. Real injury notes (KC: DE R. Mason Thomas hamstring, OT Josh Simmons back-questionable; DEN: CB Riley Moss ribs-questionable, WR Marvin Mims foot-questionable) support a lower-scoring script rather than change it. No side taken on the moneyline: real market pricing (Chiefs -132/-134, Broncos +112/+113 across two sources) is close to a real model&#x27;s own estimate (numberFire: Chiefs 52.3%, Broncos 47.7%) -- efficiently priced, no edge to size a pick around.</p>
+    <div class="small muted">Prob. source: Averaged: CBS Sports/SportsLine 10,000-simulation model (Under hits 63% of simulations, via https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/) and Covers.com&#x27;s early total pick (Under 43.5 at a Kalshi-sourced 52%, via https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026) = 57.5% average.</div>
+    <div class="verify">Verify: Total + price confirmed by 3 independent sources: FanDuel Research (43.5, Under -110, https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026), CBS Sports/SportsLine (43.5, https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/), and Covers.com (43.5, https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026). One outlier: NBC Sports showed a different total (42.5) and wider moneyline (-148/+124, https://www.nbcsports.com/betting/nfl/news/broncos-vs-chiefs-prediction-odds-expert-picks-qb-matchups-injury-update-betting-trends-and-stats) -- likely a stale snapshot, not used as the primary number. &middot; 2026-09-14 08:30-08:40 AM ET &middot; Kickoff is 8:15 PM ET tonight (Sept 14) -- line may move during the day. Verify Under 43.5 is still priced near -110 in the DK app before betting; if the total has moved meaningfully, the edge math above no longer applies as-is.</div>
+  </details>
 </div></div>
   </section>
 
@@ -529,6 +582,6 @@
 </div></div>
   </section>
 
-  <footer>Built 2026-09-14 12:42 UTC</footer>
+  <footer>Built 2026-09-14 13:10 UTC</footer>
 </body>
 </html>

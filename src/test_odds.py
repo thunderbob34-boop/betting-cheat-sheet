@@ -5,6 +5,7 @@ from odds import (
     parlay_implied_prob,
     edge,
     format_prob,
+    format_one_in_x,
 )
 
 
@@ -56,6 +57,27 @@ class TestFormatProb(unittest.TestCase):
 
     def test_format_exact(self):
         self.assertEqual(format_prob(0.42), "42.0%")
+
+
+class TestFormatOneInX(unittest.TestCase):
+    def test_rounds_to_nearest(self):
+        # 1/0.0021 = 476.19... -> rounds to 476
+        self.assertEqual(format_one_in_x(0.0021), "~1 in 476")
+
+    def test_simple_half(self):
+        self.assertEqual(format_one_in_x(0.5), "~1 in 2")
+
+    def test_thousands_get_comma_separated(self):
+        self.assertEqual(format_one_in_x(0.0001), "~1 in 10,000")
+
+    def test_zero_is_not_a_number(self):
+        self.assertEqual(format_one_in_x(0.0), "n/a")
+
+    def test_negative_is_not_a_number(self):
+        self.assertEqual(format_one_in_x(-0.1), "n/a")
+
+    def test_certainty_is_one_in_one(self):
+        self.assertEqual(format_one_in_x(1.0), "1 in 1")
 
 
 if __name__ == "__main__":

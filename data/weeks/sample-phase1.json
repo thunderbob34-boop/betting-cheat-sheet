@@ -4,66 +4,276 @@
   "sport": "NFL",
   "generated_at": "2026-01-01T00:00:00Z",
   "card": {
-    "bets": [
-      {
-        "id": "card-1",
-        "kind": "straight",
-        "selection": "Sample Team A moneyline (sample data — not researched)",
-        "market": "moneyline",
-        "dk_odds": -150,
-        "estimated_prob": 0.62,
-        "estimated_prob_source": "SAMPLE — no real source, Phase 1 test data",
-        "is_pre_kickoff": true,
-        "stake": 3.00,
-        "reason": "Sample straight bet for Phase 1 testing only.",
-        "verify": {"source": "SAMPLE", "fetched_at": "2026-01-01T00:00:00Z", "note": "Sample data — verify nothing, this is not a real pick."}
+    "easy_bet": {
+      "id": "card-1",
+      "selection": "Sample Team A moneyline (sample data \u2014 not researched)",
+      "market": "moneyline",
+      "dk_odds": -150,
+      "estimated_prob": 0.62,
+      "estimated_prob_source": "SAMPLE \u2014 no real source, Phase 1 test data",
+      "is_pre_kickoff": true,
+      "stake": 3.0,
+      "reason": "Sample straight bet for Phase 1 testing only.",
+      "verify": {
+        "source": "SAMPLE",
+        "fetched_at": "2026-01-01T00:00:00Z",
+        "note": "Sample data \u2014 verify nothing, this is not a real pick."
       },
-      {
-        "id": "card-2",
-        "kind": "parlay",
-        "legs": [
-          {"selection": "Fictional Player X 60+ rec yds (sample)", "estimated_prob": 0.65, "reason": "Sample leg."},
-          {"selection": "Sample Team B moneyline (sample)", "estimated_prob": 0.70, "reason": "Sample leg."}
-        ],
-        "dk_odds": 150,
-        "estimated_prob_source": "SAMPLE — Phase 1 test data",
-        "is_pre_kickoff": true,
-        "stake": 2.00,
-        "reason": "Sample 2-leg parlay, both legs >=60%, for Phase 1 testing.",
-        "verify": {"source": "SAMPLE", "fetched_at": "2026-01-01T00:00:00Z", "note": "Sample data — not a real pick."}
+      "reason_summary": "Sample easy bet for schema testing only."
+    },
+    "fun_parlay": {
+      "id": "card-2",
+      "legs": [
+        {
+          "selection": "Fictional Player X 60+ rec yds (sample)",
+          "estimated_prob": 0.65,
+          "reason": "Sample leg."
+        },
+        {
+          "selection": "Sample Team B moneyline (sample)",
+          "estimated_prob": 0.7,
+          "reason": "Sample leg."
+        }
+      ],
+      "dk_odds": 150,
+      "estimated_prob_source": "SAMPLE \u2014 Phase 1 test data",
+      "is_pre_kickoff": true,
+      "stake": 2.0,
+      "reason": "Sample 2-leg parlay, both legs >=60%, for Phase 1 testing.",
+      "verify": {
+        "source": "SAMPLE",
+        "fetched_at": "2026-01-01T00:00:00Z",
+        "note": "Sample data \u2014 not a real pick."
+      },
+      "reason_summary": "Sample fun parlay for schema testing only."
+    },
+    "lottery_ticket": {
+      "id": "card-3",
+      "legs": [
+        {
+          "selection": "Sample Team A moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team B moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team C moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team D moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team E moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team F moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team G moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team H moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team I moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team J moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team K moneyline (sample)",
+          "estimated_prob": 0.5
+        },
+        {
+          "selection": "Sample Team L moneyline (sample)",
+          "estimated_prob": 0.5
+        }
+      ],
+      "dk_odds": 50000,
+      "estimated_prob_source": "SAMPLE -- Phase 1 test data",
+      "is_pre_kickoff": true,
+      "stake": 0.5,
+      "reason_summary": "Sample lottery ticket for schema testing only.",
+      "reason": "Sample 12-leg lottery ticket for Phase 1 testing -- demonstrates the schema's third tier (exempt from the leg-probability floor, exempt from the $5/week line, stake fixed at $0.50).",
+      "verify": {
+        "source": "SAMPLE",
+        "fetched_at": "2026-01-01T00:00:00Z",
+        "note": "Sample data -- not a real pick."
       }
-    ]
+    }
   },
   "leg_bank": [
-    { "selection": "Sample Team C -3.5 (sample)", "market": "spread", "dk_odds": -110, "estimated_prob": 0.55, "reason": "Sample spread leg — sample data for Phase 1 testing, not researched.", "source": "SAMPLE" },
-    { "selection": "Sample Team D moneyline (sample)", "market": "ML", "dk_odds": -200, "estimated_prob": 0.68, "reason": "Sample favorite pick, Phase 1 placeholder only.", "source": "SAMPLE" },
-    { "selection": "Sample Team E vs Sample Team F Over 44.5 (sample)", "market": "total", "dk_odds": -115, "estimated_prob": 0.53, "reason": "Sample total, not a real projection.", "source": "SAMPLE" },
-    { "selection": "Fictional Player Y 250+ pass yds (sample)", "market": "prop", "dk_odds": -130, "estimated_prob": 0.60, "reason": "Sample passing-yards prop for Phase 1 schema testing.", "source": "SAMPLE" },
-    { "selection": "Sample Team G moneyline, underdog (sample)", "market": "ML", "dk_odds": 165, "estimated_prob": 0.40, "reason": "Sample underdog leg, illustrative only — not researched.", "source": "SAMPLE" },
-    { "selection": "Fictional Player Z 1+ rushing TD (sample)", "market": "prop", "dk_odds": 120, "estimated_prob": 0.46, "reason": "Sample touchdown prop, sample data for Phase 1 testing.", "source": "SAMPLE" },
-    { "selection": "Sample Team H +6.5 (sample)", "market": "spread", "dk_odds": -108, "estimated_prob": 0.58, "reason": "Sample spread leg for schema testing only.", "source": "SAMPLE" },
-    { "selection": "Sample Team A/Sample Team B Under 51.5 (sample)", "market": "total", "dk_odds": -105, "estimated_prob": 0.52, "reason": "Sample total leg, placeholder data — not researched.", "source": "SAMPLE" },
-    { "selection": "Fictional Player X 60+ rec yds (sample)", "market": "prop", "dk_odds": -125, "estimated_prob": 0.65, "reason": "Same leg used in this week's sample parlay; listed here for leg-bank ranking context.", "source": "SAMPLE" },
-    { "selection": "Sample Team B moneyline (sample)", "market": "ML", "dk_odds": -145, "estimated_prob": 0.70, "reason": "Same leg used in this week's sample parlay; listed here for leg-bank ranking context.", "source": "SAMPLE" },
-    { "selection": "Sample Team I moneyline, coin flip (sample)", "market": "ML", "dk_odds": 105, "estimated_prob": 0.50, "reason": "Sample coin-flip leg — illustrates why a leg like this stays out of any parlay.", "source": "SAMPLE" },
-    { "selection": "Fictional Player W 4+ receptions (sample)", "market": "prop", "dk_odds": -170, "estimated_prob": 0.72, "reason": "Sample high-floor prop, Phase 1 placeholder — not researched.", "source": "SAMPLE" }
+    {
+      "selection": "Sample Team C -3.5 (sample)",
+      "market": "spread",
+      "dk_odds": -110,
+      "estimated_prob": 0.55,
+      "reason": "Sample spread leg \u2014 sample data for Phase 1 testing, not researched.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Sample Team D moneyline (sample)",
+      "market": "ML",
+      "dk_odds": -200,
+      "estimated_prob": 0.68,
+      "reason": "Sample favorite pick, Phase 1 placeholder only.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Sample Team E vs Sample Team F Over 44.5 (sample)",
+      "market": "total",
+      "dk_odds": -115,
+      "estimated_prob": 0.53,
+      "reason": "Sample total, not a real projection.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Fictional Player Y 250+ pass yds (sample)",
+      "market": "prop",
+      "dk_odds": -130,
+      "estimated_prob": 0.6,
+      "reason": "Sample passing-yards prop for Phase 1 schema testing.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Sample Team G moneyline, underdog (sample)",
+      "market": "ML",
+      "dk_odds": 165,
+      "estimated_prob": 0.4,
+      "reason": "Sample underdog leg, illustrative only \u2014 not researched.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Fictional Player Z 1+ rushing TD (sample)",
+      "market": "prop",
+      "dk_odds": 120,
+      "estimated_prob": 0.46,
+      "reason": "Sample touchdown prop, sample data for Phase 1 testing.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Sample Team H +6.5 (sample)",
+      "market": "spread",
+      "dk_odds": -108,
+      "estimated_prob": 0.58,
+      "reason": "Sample spread leg for schema testing only.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Sample Team A/Sample Team B Under 51.5 (sample)",
+      "market": "total",
+      "dk_odds": -105,
+      "estimated_prob": 0.52,
+      "reason": "Sample total leg, placeholder data \u2014 not researched.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Fictional Player X 60+ rec yds (sample)",
+      "market": "prop",
+      "dk_odds": -125,
+      "estimated_prob": 0.65,
+      "reason": "Same leg used in this week's sample parlay; listed here for leg-bank ranking context.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Sample Team B moneyline (sample)",
+      "market": "ML",
+      "dk_odds": -145,
+      "estimated_prob": 0.7,
+      "reason": "Same leg used in this week's sample parlay; listed here for leg-bank ranking context.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Sample Team I moneyline, coin flip (sample)",
+      "market": "ML",
+      "dk_odds": 105,
+      "estimated_prob": 0.5,
+      "reason": "Sample coin-flip leg \u2014 illustrates why a leg like this stays out of any parlay.",
+      "source": "SAMPLE"
+    },
+    {
+      "selection": "Fictional Player W 4+ receptions (sample)",
+      "market": "prop",
+      "dk_odds": -170,
+      "estimated_prob": 0.72,
+      "reason": "Sample high-floor prop, Phase 1 placeholder \u2014 not researched.",
+      "source": "SAMPLE"
+    }
   ],
   "boost_check": [
-    { "boost_description": "Sample: 50% profit boost on any NFL parlay (SAMPLE — not a real DK boost)", "fits_card": false, "explanation": "No fit — skip the boost. The card was built on merit before checking boosts." },
-    { "boost_description": "Sample: odds boost token, Sample Team A ML to +200 (SAMPLE — not a real DK boost)", "fits_card": false, "explanation": "Sample data only, no real boost to apply — this row exists to show the schema handling a second boost. No fit — skip the boost." },
-    { "boost_description": "Sample: 3-leg SGP boost, +25% profit (SAMPLE — not a real DK boost)", "fits_card": false, "explanation": "Card-2 is a 2-leg parlay, not a 3-leg SGP, so the shapes don't match. No fit — skip the boost." }
+    {
+      "boost_description": "Sample: 50% profit boost on any NFL parlay (SAMPLE \u2014 not a real DK boost)",
+      "fits_card": false,
+      "explanation": "No fit \u2014 skip the boost. The card was built on merit before checking boosts."
+    },
+    {
+      "boost_description": "Sample: odds boost token, Sample Team A ML to +200 (SAMPLE \u2014 not a real DK boost)",
+      "fits_card": false,
+      "explanation": "Sample data only, no real boost to apply \u2014 this row exists to show the schema handling a second boost. No fit \u2014 skip the boost."
+    },
+    {
+      "boost_description": "Sample: 3-leg SGP boost, +25% profit (SAMPLE \u2014 not a real DK boost)",
+      "fits_card": false,
+      "explanation": "Card-2 is a 2-leg parlay, not a 3-leg SGP, so the shapes don't match. No fit \u2014 skip the boost."
+    }
   ],
   "avoid_list": [
-    { "selection": "Sample: 10-leg mega-parlay across Sample Teams A through J moneylines (sample)", "why_tempting": "Sample copy — the huge payout number looks exciting on paper.", "why_avoid": "Sample copy — ten legs at moderate probability multiply down to a near-zero combined chance; this is exactly what rule 4 (leg count follows probability) exists to prevent." },
-    { "selection": "Sample: live in-game moneyline flip after a rough first quarter (sample)", "why_tempting": "Sample copy — inflated live odds feel like free value after a bad start.", "why_avoid": "Sample copy — this sheet is pre-kickoff only (rule 2); live bets are never part of the card." },
-    { "selection": "Sample: parlay built around this week's headline DK boost (sample)", "why_tempting": "Sample copy — the boosted payout is the biggest number on the promo page.", "why_avoid": "Sample copy — bet first, boost second (rule 3); a ticket built to fit a boost isn't built on merit." },
-    { "selection": "Sample: 3-leg parlay with one 50% coin-flip leg (sample)", "why_tempting": "Sample copy — two of the three legs look like heavy favorites.", "why_avoid": "Sample copy — a single coin-flip leg drags the whole parlay's real combined probability back down near 50%, even with two safe legs attached." }
+    {
+      "selection": "Sample: 10-leg mega-parlay across Sample Teams A through J moneylines (sample)",
+      "why_tempting": "Sample copy \u2014 the huge payout number looks exciting on paper.",
+      "why_avoid": "Sample copy \u2014 ten legs at moderate probability multiply down to a near-zero combined chance; this is exactly what rule 4 (leg count follows probability) exists to prevent."
+    },
+    {
+      "selection": "Sample: live in-game moneyline flip after a rough first quarter (sample)",
+      "why_tempting": "Sample copy \u2014 inflated live odds feel like free value after a bad start.",
+      "why_avoid": "Sample copy \u2014 this sheet is pre-kickoff only (rule 2); live bets are never part of the card."
+    },
+    {
+      "selection": "Sample: parlay built around this week's headline DK boost (sample)",
+      "why_tempting": "Sample copy \u2014 the boosted payout is the biggest number on the promo page.",
+      "why_avoid": "Sample copy \u2014 bet first, boost second (rule 3); a ticket built to fit a boost isn't built on merit."
+    },
+    {
+      "selection": "Sample: 3-leg parlay with one 50% coin-flip leg (sample)",
+      "why_tempting": "Sample copy \u2014 two of the three legs look like heavy favorites.",
+      "why_avoid": "Sample copy \u2014 a single coin-flip leg drags the whole parlay's real combined probability back down near 50%, even with two safe legs attached."
+    }
   ],
   "last_week_graded": [
-    { "selection": "Real: 9-leg NBA prop parlay (Bane/Banchero/etc, -180, bonus bet)", "result": "Won", "lesson": "High-probability floor props, built to hit, is the one thing that's worked." },
-    { "selection": "Real: Argentina/Under 5.5/Yes SGP vs Cape Verde", "result": "Cashed Out", "lesson": "Cashing out forfeited the +30% boost and still barely broke even; better to have picked a ticket that didn't need saving." },
-    { "selection": "Real: 10-leg NFL SGPx parlay (PIT/CIN/BAL/CHI/BUF/TEN MLs + two 2-pick SGPs, +9164)", "result": "Lost", "lesson": "Double-digit-leg parlays are lottery tickets, not a cheat-sheet card — the odds number is the tell." },
-    { "selection": "Real: 8-leg NCAAF moneyline parlay (Oklahoma/Texas A&M/Ball State/etc, +541)", "result": "Lost", "lesson": "Stacking eight favorites together still multiplies down to a low combined probability; a straight bet on the best one would have been the better trade." },
-    { "selection": "Real: NCAAF Under 47.5 (live, San Jose State vs Eastern Michigan)", "result": "Lost", "lesson": "Lost by half a point on a live total — a reminder that in-game numbers are close calls by design, which is why the card stays pre-kickoff only." }
+    {
+      "selection": "Real: 9-leg NBA prop parlay (Bane/Banchero/etc, -180, bonus bet)",
+      "result": "Won",
+      "lesson": "High-probability floor props, built to hit, is the one thing that's worked."
+    },
+    {
+      "selection": "Real: Argentina/Under 5.5/Yes SGP vs Cape Verde",
+      "result": "Cashed Out",
+      "lesson": "Cashing out forfeited the +30% boost and still barely broke even; better to have picked a ticket that didn't need saving."
+    },
+    {
+      "selection": "Real: 10-leg NFL SGPx parlay (PIT/CIN/BAL/CHI/BUF/TEN MLs + two 2-pick SGPs, +9164)",
+      "result": "Lost",
+      "lesson": "Double-digit-leg parlays are lottery tickets, not a cheat-sheet card \u2014 the odds number is the tell."
+    },
+    {
+      "selection": "Real: 8-leg NCAAF moneyline parlay (Oklahoma/Texas A&M/Ball State/etc, +541)",
+      "result": "Lost",
+      "lesson": "Stacking eight favorites together still multiplies down to a low combined probability; a straight bet on the best one would have been the better trade."
+    },
+    {
+      "selection": "Real: NCAAF Under 47.5 (live, San Jose State vs Eastern Michigan)",
+      "result": "Lost",
+      "lesson": "Lost by half a point on a live total \u2014 a reminder that in-game numbers are close calls by design, which is why the card stays pre-kickoff only."
+    }
   ]
 }

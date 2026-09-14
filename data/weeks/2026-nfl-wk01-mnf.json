@@ -3,27 +3,24 @@
   "is_sample": false,
   "sport": "NFL",
   "generated_at": "2026-09-14T12:41:25Z",
-  "show_weekly_budget_tile": true,
   "card": {
-    "bets": [
-      {
-        "id": "card-1",
-        "kind": "straight",
-        "selection": "Under 43.5 (Broncos @ Chiefs, MNF)",
-        "market": "total",
-        "dk_odds": -110,
-        "estimated_prob": 0.575,
-        "estimated_prob_source": "Averaged: CBS Sports/SportsLine 10,000-simulation model (Under hits 63% of simulations, via https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/) and Covers.com's early total pick (Under 43.5 at a Kalshi-sourced 52%, via https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026) = 57.5% average.",
-        "is_pre_kickoff": true,
-        "stake": 2.00,
-        "reason": "The only real edge found tonight: two independent real models both lean Under 43.5, averaging to 57.5% vs the -110 market-implied 52.4% -- a genuine +5.1% edge, not a manufactured one. Real injury notes (KC: DE R. Mason Thomas hamstring, OT Josh Simmons back-questionable; DEN: CB Riley Moss ribs-questionable, WR Marvin Mims foot-questionable) support a lower-scoring script rather than change it. No side taken on the moneyline: real market pricing (Chiefs -132/-134, Broncos +112/+113 across two sources) is close to a real model's own estimate (numberFire: Chiefs 52.3%, Broncos 47.7%) -- efficiently priced, no edge to size a pick around.",
-        "verify": {
-          "source": "Total + price confirmed by 3 independent sources: FanDuel Research (43.5, Under -110, https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026), CBS Sports/SportsLine (43.5, https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/), and Covers.com (43.5, https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026). One outlier: NBC Sports showed a different total (42.5) and wider moneyline (-148/+124, https://www.nbcsports.com/betting/nfl/news/broncos-vs-chiefs-prediction-odds-expert-picks-qb-matchups-injury-update-betting-trends-and-stats) -- likely a stale snapshot, not used as the primary number.",
-          "fetched_at": "2026-09-14 08:30-08:40 AM ET",
-          "note": "Kickoff is 8:15 PM ET tonight (Sept 14) -- line may move during the day. Verify Under 43.5 is still priced near -110 in the DK app before betting; if the total has moved meaningfully, the edge math above no longer applies as-is."
-        }
-      }
-    ]
+    "easy_bet": {
+      "id": "card-1",
+      "selection": "Under 43.5 (Broncos @ Chiefs, MNF)",
+      "market": "total",
+      "dk_odds": -110,
+      "estimated_prob": 0.575,
+      "estimated_prob_source": "Averaged: CBS Sports/SportsLine 10,000-simulation model (Under hits 63% of simulations, via https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/) and Covers.com's early total pick (Under 43.5 at a Kalshi-sourced 52%, via https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026) = 57.5% average.",
+      "is_pre_kickoff": true,
+      "stake": 2.0,
+      "reason": "The only real edge found tonight: two independent real models both lean Under 43.5, averaging to 57.5% vs the -110 market-implied 52.4% -- a genuine +5.1% edge, not a manufactured one. Real injury notes (KC: DE R. Mason Thomas hamstring, OT Josh Simmons back-questionable; DEN: CB Riley Moss ribs-questionable, WR Marvin Mims foot-questionable) support a lower-scoring script rather than change it. No side taken on the moneyline: real market pricing (Chiefs -132/-134, Broncos +112/+113 across two sources) is close to a real model's own estimate (numberFire: Chiefs 52.3%, Broncos 47.7%) -- efficiently priced, no edge to size a pick around.",
+      "verify": {
+        "source": "Total + price confirmed by 3 independent sources: FanDuel Research (43.5, Under -110, https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026), CBS Sports/SportsLine (43.5, https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/), and Covers.com (43.5, https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026). One outlier: NBC Sports showed a different total (42.5) and wider moneyline (-148/+124, https://www.nbcsports.com/betting/nfl/news/broncos-vs-chiefs-prediction-odds-expert-picks-qb-matchups-injury-update-betting-trends-and-stats) -- likely a stale snapshot, not used as the primary number.",
+        "fetched_at": "2026-09-14 08:30-08:40 AM ET",
+        "note": "Kickoff is 8:15 PM ET tonight (Sept 14) -- line may move during the day. Verify Under 43.5 is still priced near -110 in the DK app before betting; if the total has moved meaningfully, the edge math above no longer applies as-is."
+      },
+      "reason_summary": "Two real models both lean Under 43.5 (57.5% avg vs -110's 52.4% implied) = honest +5.1% edge; no side taken on the ML, priced efficiently."
+    }
   },
   "leg_bank": [
     {

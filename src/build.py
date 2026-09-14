@@ -70,87 +70,132 @@ def load_config(path):
 # Ground-rule validation (plan Section 3 — non-negotiable)
 # ---------------------------------------------------------------------------
 
+LOTTERY_TICKET_STAKE = 0.50  # exact, per Gus — "flat", not a range like tiers 1-2
+LOTTERY_TICKET_MIN_LEGS = 10
+LOTTERY_TICKET_MAX_LEGS = 20
+FUN_PARLAY_MIN_LEGS = 2
+FUN_PARLAY_MAX_LEGS = 3
+FUN_PARLAY_LEG_FLOOR = 0.55
+
+
+def _check_pre_kickoff(bet, bet_label):
+    """RULE 2 (pre-kickoff only) — applies to every tier, no exceptions,
+    including the Lottery Ticket. Gus relaxed the leg-count rule and the
+    $5-cap membership for the Lottery Ticket, not this one."""
+    if not bet.get("is_pre_kickoff", False):
+        raise RuleViolation(
+            f"RULE 2 VIOLATION: bet '{bet_label}' is not marked "
+            "is_pre_kickoff: true"
+        )
+    for field in ("market", "selection"):
+        val = bet.get(field)
+        if isinstance(val, str) and "live" in val.lower():
+            raise RuleViolation(
+                f"RULE 2 VIOLATION: bet '{bet_label}' has {field}="
+                f"{val!r}, which contains 'live'"
+            )
+    for leg in bet.get("legs", []) or []:
+        leg_label = leg.get("selection", "<unnamed leg>")
+        for field in ("market", "selection"):
+            val = leg.get(field)
+            if isinstance(val, str) and "live" in val.lower():
+                raise RuleViolation(
+                    f"RULE 2 VIOLATION: bet '{bet_label}' leg "
+                    f"'{leg_label}' has {field}={val!r}, which "
+                    "contains 'live'"
+                )
+
+
 def validate_rules(week):
-    """Validate week['card']['bets'] against the house's hard guardrails.
+    """Validate week['card'] (the three named tiers — easy_bet, fun_parlay,
+    lottery_ticket) against the house's hard guardrails.
 
     Raises RuleViolation (which must be allowed to propagate) on any failure.
     Rules 3 and 7 are handled by comment below, not by a check here, because
     they are not properties a static JSON file can violate.
     """
-    bets = week.get("card", {}).get("bets", [])
+    card = week.get("card", {})
+    easy_bet = card.get("easy_bet")
+    fun_parlay = card.get("fun_parlay")
+    lottery_ticket = card.get("lottery_ticket")
 
-    # --- RULE 1: budget. Sum of every bet's stake in card.bets <= $5.00. ---
-    total_stake = sum(float(b.get("stake", 0.0)) for b in bets)
-    if total_stake > WEEKLY_BUDGET_CAP + EPSILON:
+    # --- RULE 6: tier structure. Easy Bet is required; Fun Parlay and
+    # Lottery Ticket are each optional (0 or 1). ---
+    if not easy_bet:
         raise RuleViolation(
-            f"RULE 1 VIOLATION: card totals ${total_stake:.2f}, "
-            f"exceeds the ${WEEKLY_BUDGET_CAP:.0f}/week budget"
+            "RULE 6 VIOLATION: card.easy_bet is required (the weekly card "
+            "always starts with one straight bet)"
+        )
+    if easy_bet.get("legs"):
+        raise RuleViolation(
+            "RULE 6 VIOLATION: card.easy_bet must be a single straight "
+            "selection, not a multi-leg bet"
         )
 
-    # --- RULE 2: pre-kickoff only. ---
-    for b in bets:
-        bet_label = b.get("id") or b.get("selection") or "<unnamed bet>"
-
-        if not b.get("is_pre_kickoff", False):
+    if fun_parlay is not None:
+        legs = fun_parlay.get("legs", []) or []
+        if not (FUN_PARLAY_MIN_LEGS <= len(legs) <= FUN_PARLAY_MAX_LEGS):
             raise RuleViolation(
-                f"RULE 2 VIOLATION: bet '{bet_label}' is not marked "
-                "is_pre_kickoff: true"
+                f"RULE 6 VIOLATION: card.fun_parlay must have "
+                f"{FUN_PARLAY_MIN_LEGS}-{FUN_PARLAY_MAX_LEGS} legs, got "
+                f"{len(legs)}"
             )
-
-        # Defensive substring check on the bet's own fields.
-        for field in ("kind", "market", "selection"):
-            val = b.get(field)
-            if isinstance(val, str) and "live" in val.lower():
+        for leg in legs:
+            p = leg.get("estimated_prob", 0.0)
+            if p < FUN_PARLAY_LEG_FLOOR:
+                leg_label = leg.get("selection", "<unnamed leg>")
                 raise RuleViolation(
-                    f"RULE 2 VIOLATION: bet '{bet_label}' has {field}="
-                    f"{val!r}, which contains 'live'"
+                    f"RULE 6 VIOLATION: card.fun_parlay leg '{leg_label}' "
+                    f"has estimated_prob {p}, below the "
+                    f"{FUN_PARLAY_LEG_FLOOR:.0%} floor every Fun Parlay leg "
+                    "must clear"
                 )
 
-        # Defensive: also check parlay legs, since a live leg smuggled into
-        # a parlay would be just as much a live-bet recommendation as a
-        # top-level one. Not explicitly called out in the spec, but strictly
-        # tightens the check — it can only catch more bad data, never less.
-        for leg in b.get("legs", []) or []:
-            leg_label = leg.get("selection", "<unnamed leg>")
-            for field in ("market", "selection"):
-                val = leg.get(field)
-                if isinstance(val, str) and "live" in val.lower():
-                    raise RuleViolation(
-                        f"RULE 2 VIOLATION: bet '{bet_label}' leg "
-                        f"'{leg_label}' has {field}={val!r}, which "
-                        "contains 'live'"
-                    )
+    if lottery_ticket is not None:
+        legs = lottery_ticket.get("legs", []) or []
+        if not (LOTTERY_TICKET_MIN_LEGS <= len(legs) <= LOTTERY_TICKET_MAX_LEGS):
+            raise RuleViolation(
+                f"RULE 6 VIOLATION: card.lottery_ticket must have "
+                f"{LOTTERY_TICKET_MIN_LEGS}-{LOTTERY_TICKET_MAX_LEGS} legs, "
+                f"got {len(legs)}"
+            )
+        stake = float(lottery_ticket.get("stake", 0.0))
+        if abs(stake - LOTTERY_TICKET_STAKE) > EPSILON:
+            raise RuleViolation(
+                f"RULE 6 VIOLATION: card.lottery_ticket stake must be "
+                f"exactly ${LOTTERY_TICKET_STAKE:.2f} (flat, per rule), got "
+                f"${stake:.2f}"
+            )
+        # No per-leg probability floor here on purpose — a Lottery Ticket is
+        # explicitly exempt from Fun Parlay's 55% floor and the old >3-leg
+        # 60% floor. The whole point is real long-shot legs; the honesty
+        # requirement is that the combined probability is SHOWN (see
+        # render_lottery_ticket's "1 in X"), not that it's high.
 
-    # --- RULE 4: leg count follows probability. ---
-    for b in bets:
-        if b.get("kind") != "parlay":
-            continue
-        legs = b.get("legs", []) or []
-        if len(legs) > 3:
-            for leg in legs:
-                p = leg.get("estimated_prob", 0.0)
-                if p < 0.60:
-                    bet_label = b.get("id") or "<unnamed parlay>"
-                    leg_label = leg.get("selection", "<unnamed leg>")
-                    raise RuleViolation(
-                        f"RULE 4 VIOLATION: bet '{bet_label}' is a "
-                        f"{len(legs)}-leg parlay (>3 legs) but leg "
-                        f"'{leg_label}' has estimated_prob {p}, below the "
-                        "0.60 floor required once a parlay exceeds 3 legs"
-                    )
-
-    # --- RULE 6: straight bets are the default. ---
-    straight_count = sum(1 for b in bets if b.get("kind") == "straight")
-    parlay_count = sum(1 for b in bets if b.get("kind") == "parlay")
-    other_count = len(bets) - straight_count - parlay_count
-    if straight_count != 1 or parlay_count > 1 or other_count > 0:
-        kinds = [b.get("kind") for b in bets]
+    # --- RULE 1: budget. Easy Bet + Fun Parlay stakes <= $5.00. The
+    # Lottery Ticket is explicitly OUTSIDE this line per Gus — its flat
+    # $0.50 never counts against the cap and never crowds out tiers 1-2. ---
+    total_stake = float(easy_bet.get("stake", 0.0))
+    if fun_parlay is not None:
+        total_stake += float(fun_parlay.get("stake", 0.0))
+    if total_stake > WEEKLY_BUDGET_CAP + EPSILON:
         raise RuleViolation(
-            "RULE 6 VIOLATION: card.bets must contain exactly one "
-            "kind=='straight' bet and at most one kind=='parlay' bet; got "
-            f"{straight_count} straight, {parlay_count} parlay, "
-            f"{other_count} other (kinds seen: {kinds})"
+            f"RULE 1 VIOLATION: Easy Bet + Fun Parlay total ${total_stake:.2f}, "
+            f"exceeds the ${WEEKLY_BUDGET_CAP:.0f}/week budget (the Lottery "
+            "Ticket's stake is outside this line by design and is not "
+            "included in this total)"
         )
+
+    # --- RULE 2: pre-kickoff only, every tier, no exceptions. ---
+    for label, bet in (
+        ("easy_bet", easy_bet),
+        ("fun_parlay", fun_parlay),
+        ("lottery_ticket", lottery_ticket),
+    ):
+        if bet is None:
+            continue
+        bet_label = bet.get("id") or label
+        _check_pre_kickoff(bet, bet_label)
 
     # --- RULE 3: "bet first, boost second". ---
     # This is a research-process rule (pick the ticket on merit, THEN check
@@ -160,7 +205,10 @@ def validate_rules(week):
     # script can and does do mechanically is keep boost_check structurally
     # separate from card: nothing below ever derives card contents from
     # boost_check, and boosts are rendered as their own clearly-labeled
-    # {{BOOST_CHECK}} section, never merged into the card itself.
+    # {{BOOST_CHECK}} section, never merged into the card itself. The same
+    # applies to tier order: "Lottery Ticket only after tiers 1 and 2 are
+    # set" is a build-order discipline (see .claude/commands/cheatsheet.md),
+    # not something a finished JSON file can prove either way.
 
     # --- RULE 7: "Claude never places a bet." ---
     # Holds trivially: this module makes no network calls and touches no
@@ -408,46 +456,29 @@ def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label, 
     return heading + grid + alltime_line
 
 
-def render_bet_card(bet):
-    kind = bet.get("kind", "")
-    stake = float(bet.get("stake", 0.0))
+def _leg_list_html(legs):
+    items = "".join(
+        f'<li>{escape(leg.get("selection", ""))} '
+        f'<span class="prob small muted">(est. '
+        f'{odds.format_prob(leg.get("estimated_prob", 0.0))})</span></li>'
+        for leg in legs
+    )
+    return f'<ul class="leg-list">{items}</ul>'
+
+
+def _reason_detail_html(bet):
+    """The collapsible tail every tier shares: full reasoning + prob source
+    + verify line, behind a native <details> so it's zero-JS and defaults
+    to closed — "scan it, not read it" is the always-visible summary line;
+    this is for whoever wants to check the work."""
     reason = bet.get("reason", "")
-    verify = bet.get("verify") or {}
-    dk_odds = bet.get("dk_odds")
-    market = bet.get("market", "")
     source = bet.get("estimated_prob_source", "")
+    verify = bet.get("verify") or {}
 
-    implied = odds.american_to_implied_prob(dk_odds)
-    implied_str = odds.format_prob(implied)
-    odds_str = format_odds(dk_odds)
-
-    if kind == "parlay":
-        legs = bet.get("legs", []) or []
-        est_prob = odds.parlay_implied_prob([leg.get("estimated_prob", 0.0) for leg in legs])
-        title = f"Parlay &mdash; {len(legs)} legs"
-        leg_items = "".join(
-            f'<li>{escape(leg.get("selection", ""))} '
-            f'<span class="prob small muted">(est. '
-            f'{odds.format_prob(leg.get("estimated_prob", 0.0))})</span></li>'
-            for leg in legs
-        )
-        legs_block = f'<ul class="leg-list">{leg_items}</ul>'
-    else:
-        est_prob = bet.get("estimated_prob", 0.0)
-        title = escape(bet.get("selection", ""))
-        legs_block = ""
-
-    est_prob_str = odds.format_prob(est_prob)
-    edge_val = odds.edge(est_prob, implied)
-    edge_str = odds.format_prob(edge_val)
-    edge_class = "edge-positive" if edge_val >= 0 else "edge-negative"
-
-    market_bit = f" &middot; {escape(market)}" if market else ""
     source_bit = (
         f'<div class="small muted">Prob. source: {escape(source)}</div>'
         if source else ""
     )
-
     verify_bits = []
     if verify.get("source"):
         verify_bits.append(f"Verify: {escape(verify['source'])}")
@@ -457,21 +488,97 @@ def render_bet_card(bet):
         verify_bits.append(escape(verify["note"]))
     verify_line = " &middot; ".join(verify_bits)
 
-    return f'''<div class="bet">
+    return f'''<details class="reason-detail">
+    <summary>Why &amp; sources</summary>
+    <p class="reason">{escape(reason)}</p>
+    {source_bit}
+    <div class="verify">{verify_line}</div>
+  </details>'''
+
+
+def render_easy_bet(bet):
+    stake = float(bet.get("stake", 0.0))
+    dk_odds = bet.get("dk_odds")
+    market = bet.get("market", "")
+    title = escape(bet.get("selection", ""))
+    est_prob = bet.get("estimated_prob", 0.0)
+
+    implied = odds.american_to_implied_prob(dk_odds)
+    edge_val = odds.edge(est_prob, implied)
+    edge_class = "edge-positive" if edge_val >= 0 else "edge-negative"
+    market_bit = f" &middot; {escape(market)}" if market else ""
+
+    return f'''<div class="bet tier-easy">
+  <div class="tier-badge">1. Easy Bet</div>
   <div class="bet-header">
     <h3>{title}</h3>
-    <span class="odds mono">{odds_str}</span>
+    <span class="odds mono">{format_odds(dk_odds)}</span>
   </div>
   <div class="stake-line">Stake: <span class="stake mono">${stake:.2f}</span>{market_bit}</div>
   <div class="prob-row">
-    <span><span class="k">Implied:</span> <span class="prob mono">{implied_str}</span></span>
-    <span><span class="k">Estimated:</span> <span class="prob mono">{est_prob_str}</span></span>
-    <span><span class="k">Edge:</span> <span class="prob mono {edge_class}">{edge_str}</span></span>
+    <span><span class="k">Implied:</span> <span class="prob mono">{odds.format_prob(implied)}</span></span>
+    <span><span class="k">Estimated:</span> <span class="prob mono">{odds.format_prob(est_prob)}</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono {edge_class}">{odds.format_prob(edge_val)}</span></span>
   </div>
-  {legs_block}
-  <p class="reason">{escape(reason)}</p>
-  {source_bit}
-  <div class="verify">{verify_line}</div>
+  <p class="reason-summary">{escape(bet.get("reason_summary", ""))}</p>
+  {_reason_detail_html(bet)}
+</div>'''
+
+
+def render_fun_parlay(bet):
+    stake = float(bet.get("stake", 0.0))
+    dk_odds = bet.get("dk_odds")
+    legs = bet.get("legs", []) or []
+    est_prob = odds.parlay_implied_prob([leg.get("estimated_prob", 0.0) for leg in legs])
+    implied = odds.american_to_implied_prob(dk_odds)
+    edge_val = odds.edge(est_prob, implied)
+    edge_class = "edge-positive" if edge_val >= 0 else "edge-negative"
+
+    return f'''<div class="bet tier-fun">
+  <div class="tier-badge">2. Fun Parlay</div>
+  <div class="bet-header">
+    <h3>Parlay &mdash; {len(legs)} legs</h3>
+    <span class="odds mono">{format_odds(dk_odds)}</span>
+  </div>
+  <div class="stake-line">Stake: <span class="stake mono">${stake:.2f}</span></div>
+  <div class="prob-row">
+    <span><span class="k">Implied:</span> <span class="prob mono">{odds.format_prob(implied)}</span></span>
+    <span><span class="k">Estimated:</span> <span class="prob mono">{odds.format_prob(est_prob)}</span></span>
+    <span><span class="k">Edge:</span> <span class="prob mono {edge_class}">{odds.format_prob(edge_val)}</span></span>
+  </div>
+  {_leg_list_html(legs)}
+  <p class="reason-summary">{escape(bet.get("reason_summary", ""))}</p>
+  {_reason_detail_html(bet)}
+</div>'''
+
+
+def render_lottery_ticket(bet):
+    """Every leg's real probability is shown honestly (via the shared
+    combined-probability + "1 in X" pair) rather than an Implied/Estimated/
+    Edge framing, which doesn't mean much for a for-fun long shot. Stake is
+    always exactly LOTTERY_TICKET_STAKE and is called out as outside the
+    $5/week line, per Gus."""
+    stake = float(bet.get("stake", 0.0))
+    dk_odds = bet.get("dk_odds")
+    legs = bet.get("legs", []) or []
+    combined_prob = odds.parlay_implied_prob([leg.get("estimated_prob", 0.0) for leg in legs])
+    payout_implied = odds.american_to_implied_prob(dk_odds)
+
+    return f'''<div class="bet tier-lottery">
+  <div class="tier-badge">3. Lottery Ticket</div>
+  <div class="bet-header">
+    <h3>Parlay &mdash; {len(legs)} legs</h3>
+    <span class="odds mono">{format_odds(dk_odds)}</span>
+  </div>
+  <div class="stake-line">Stake: <span class="stake mono">${stake:.2f}</span> <span class="small muted">(outside the $5/week line)</span></div>
+  <div class="prob-row">
+    <span><span class="k">Payout-implied:</span> <span class="prob mono">{odds.format_prob(payout_implied)}</span></span>
+    <span><span class="k">Real combined prob.:</span> <span class="prob mono">{odds.format_prob(combined_prob)}</span></span>
+    <span><span class="k">Honest odds:</span> <span class="prob mono">{odds.format_one_in_x(combined_prob)}</span></span>
+  </div>
+  {_leg_list_html(legs)}
+  <p class="reason-summary">{escape(bet.get("reason_summary", ""))}</p>
+  {_reason_detail_html(bet)}
 </div>'''
 
 
@@ -539,6 +646,19 @@ def render_graded(item):
 </div>'''
 
 
+def render_card_section(card):
+    """Render the {{CARD}} fragment: the three tiers, in order, skipping any
+    that are absent (only Easy Bet is required)."""
+    parts = []
+    if card.get("easy_bet"):
+        parts.append(render_easy_bet(card["easy_bet"]))
+    if card.get("fun_parlay"):
+        parts.append(render_fun_parlay(card["fun_parlay"]))
+    if card.get("lottery_ticket"):
+        parts.append(render_lottery_ticket(card["lottery_ticket"]))
+    return "".join(parts)
+
+
 def render_page(week, season_sb, alltime_sb, season_start, alltime_since_label, template_path):
     with open(template_path, "r", encoding="utf-8") as f:
         template = f.read()
@@ -550,23 +670,24 @@ def render_page(week, season_sb, alltime_sb, season_start, alltime_since_label, 
             "not a real week. Do not place any bets from this page.</div>"
         )
 
-    # A week file can opt in to showing "Weekly Budget Used" on the
-    # scoreboard via "show_weekly_budget_tile": true — meant for a one-off
-    # edition built mid-week (e.g. a single MNF card) alongside another
-    # edition for the same $5/week cap, where it matters to see how much
-    # of the cap this particular card accounts for.
+    # "Weekly Budget Used" always reflects Easy Bet + Fun Parlay only — the
+    # Lottery Ticket's flat $0.50 is deliberately outside the $5/week line
+    # (it's shown, separately labeled as such, on its own tier card instead)
+    # so it never crowds out tiers 1-2, per Gus. None if there's no card at
+    # all (defensive — every real/sample week file has one).
+    card = week.get("card") or {}
     card_stake_total = None
-    if week.get("show_weekly_budget_tile"):
-        card_stake_total = sum(
-            float(b.get("stake", 0.0)) for b in week.get("card", {}).get("bets", [])
-        )
+    if card.get("easy_bet"):
+        card_stake_total = float(card["easy_bet"].get("stake", 0.0))
+        if card.get("fun_parlay"):
+            card_stake_total += float(card["fun_parlay"].get("stake", 0.0))
 
     replacements = {
         "{{SAMPLE_BANNER}}": sample_banner,
         "{{SCOREBOARD}}": render_scoreboard(
             season_sb, alltime_sb, season_start, alltime_since_label, card_stake_total
         ),
-        "{{CARD}}": "".join(render_bet_card(b) for b in week.get("card", {}).get("bets", [])),
+        "{{CARD}}": render_card_section(card),
         "{{LEG_BANK}}": "".join(render_leg_bank_entry(l) for l in sort_leg_bank(week.get("leg_bank", []))),
         "{{BOOST_CHECK}}": "".join(render_boost(b) for b in week.get("boost_check", [])),
         "{{AVOID_LIST}}": "".join(render_avoid(a) for a in week.get("avoid_list", [])),

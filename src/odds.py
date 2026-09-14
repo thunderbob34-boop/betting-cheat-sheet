@@ -41,3 +41,18 @@ def edge(estimated_prob: float, implied_prob: float) -> float:
 def format_prob(p: float) -> str:
     """Format a probability fraction (e.g. 0.524) as a percentage string (e.g. "52.4%")."""
     return f"{p * 100:.1f}%"
+
+
+def format_one_in_x(p: float) -> str:
+    """Format a probability fraction as a "1 in X" string, e.g. 0.0021 -> "~1 in 476".
+
+    Meant for a long-shot parlay (a "Lottery Ticket" tier) where a percentage
+    like "0.2%" is hard to feel in the gut — "1 in 476" is the same number,
+    stated so it's easy to picture. Returns "1 in 1" for p >= 1 (not a real
+    case here, just avoids a division blow-up) and "n/a" for p <= 0.
+    """
+    if p <= 0:
+        return "n/a"
+    if p >= 1:
+        return "1 in 1"
+    return f"~1 in {round(1 / p):,}"

@@ -6,6 +6,10 @@ from build import (
     compute_scoreboard,
     find_earliest_date_label,
     load_config,
+    render_card_section,
+    render_easy_bet,
+    render_fun_parlay,
+    render_lottery_ticket,
     render_scoreboard,
     sort_leg_bank,
     validate_rules,
@@ -16,99 +20,163 @@ CSV_PATH = REPO_ROOT / "data" / "bet_log.csv"
 CONFIG_PATH = REPO_ROOT / "data" / "config.json"
 
 
-def _valid_week():
-    """A minimal week dict that passes every rule, for tests to mutate."""
+def _valid_easy_bet():
     return {
-        "card": {
-            "bets": [
-                {
-                    "id": "s1",
-                    "kind": "straight",
-                    "selection": "Team A ML",
-                    "market": "moneyline",
-                    "dk_odds": -150,
-                    "estimated_prob": 0.62,
-                    "is_pre_kickoff": True,
-                    "stake": 3.00,
-                    "reason": "test straight bet",
-                },
-                {
-                    "id": "p1",
-                    "kind": "parlay",
-                    "legs": [
-                        {"selection": "Leg 1", "estimated_prob": 0.65},
-                        {"selection": "Leg 2", "estimated_prob": 0.70},
-                    ],
-                    "dk_odds": 150,
-                    "is_pre_kickoff": True,
-                    "stake": 2.00,
-                    "reason": "test parlay",
-                },
-            ]
-        }
+        "id": "easy-bet",
+        "selection": "Team A ML",
+        "market": "moneyline",
+        "dk_odds": -150,
+        "estimated_prob": 0.62,
+        "is_pre_kickoff": True,
+        "stake": 3.00,
+        "reason_summary": "test easy bet",
+        "reason": "test easy bet, full reasoning",
     }
+
+
+def _valid_fun_parlay():
+    return {
+        "id": "fun-parlay",
+        "legs": [
+            {"selection": "Leg 1", "estimated_prob": 0.65},
+            {"selection": "Leg 2", "estimated_prob": 0.70},
+        ],
+        "dk_odds": 150,
+        "is_pre_kickoff": True,
+        "stake": 2.00,
+        "reason_summary": "test fun parlay",
+        "reason": "test fun parlay, full reasoning",
+    }
+
+
+def _valid_lottery_ticket(n_legs=12):
+    return {
+        "id": "lottery-ticket",
+        "legs": [
+            {"selection": f"Leg {i}", "estimated_prob": 0.5} for i in range(n_legs)
+        ],
+        "dk_odds": 50000,
+        "is_pre_kickoff": True,
+        "stake": 0.50,
+        "reason_summary": "test lottery ticket",
+        "reason": "test lottery ticket, full reasoning",
+    }
+
+
+def _valid_week(include_fun_parlay=True, include_lottery_ticket=False):
+    """A minimal week dict that passes every rule, for tests to mutate."""
+    card = {"easy_bet": _valid_easy_bet()}
+    if include_fun_parlay:
+        card["fun_parlay"] = _valid_fun_parlay()
+    if include_lottery_ticket:
+        card["lottery_ticket"] = _valid_lottery_ticket()
+    return {"card": card}
 
 
 class TestRule1Budget(unittest.TestCase):
     def test_over_budget_card_raises(self):
         week = _valid_week()
         # 4.00 + 2.00 = 6.00, over the $5 weekly budget
-        week["card"]["bets"][0]["stake"] = 4.00
+        week["card"]["easy_bet"]["stake"] = 4.00
         with self.assertRaises(RuleViolation):
             validate_rules(week)
 
+    def test_lottery_ticket_stake_excluded_from_5_dollar_line(self):
+        # Easy Bet $3 + Fun Parlay $2 = exactly $5; the Lottery Ticket's own
+        # $0.50 must NOT push this over the cap — it's outside the line.
+        week = _valid_week(include_lottery_ticket=True)
+        validate_rules(week)  # should not raise
+
 
 class TestRule2PreKickoff(unittest.TestCase):
-    def test_non_pre_kickoff_bet_raises(self):
+    def test_non_pre_kickoff_easy_bet_raises(self):
         week = _valid_week()
-        week["card"]["bets"][0]["is_pre_kickoff"] = False
+        week["card"]["easy_bet"]["is_pre_kickoff"] = False
         with self.assertRaises(RuleViolation):
             validate_rules(week)
 
     def test_live_substring_in_market_raises(self):
         week = _valid_week()
-        week["card"]["bets"][0]["market"] = "live moneyline"
+        week["card"]["easy_bet"]["market"] = "live moneyline"
+        with self.assertRaises(RuleViolation):
+            validate_rules(week)
+
+    def test_non_pre_kickoff_lottery_ticket_raises(self):
+        # The Lottery Ticket is exempt from the leg-count rule and the $5
+        # line, but NOT from pre-kickoff-only — that rule has no exceptions.
+        week = _valid_week(include_lottery_ticket=True)
+        week["card"]["lottery_ticket"]["is_pre_kickoff"] = False
         with self.assertRaises(RuleViolation):
             validate_rules(week)
 
 
-class TestRule6StraightIsDefault(unittest.TestCase):
-    def test_two_straights_one_parlay_raises(self):
-        week = _valid_week()
-        extra_straight = dict(week["card"]["bets"][0])
-        extra_straight["id"] = "s2"
-        week["card"]["bets"].append(extra_straight)
+class TestRule6TierStructure(unittest.TestCase):
+    def test_missing_easy_bet_raises(self):
+        week = {"card": {}}
         with self.assertRaises(RuleViolation):
             validate_rules(week)
 
-    def test_one_straight_zero_parlay_is_valid(self):
-        # "One straight bet plus AT MOST ONE small parlay" — a card with
-        # exactly 1 straight and 0 parlays must be VALID, not rejected.
-        week = _valid_week()
-        week["card"]["bets"] = [week["card"]["bets"][0]]  # drop the parlay
+    def test_easy_bet_with_legs_raises(self):
+        # Easy Bet must be a single straight selection, not multi-leg.
+        week = _valid_week(include_fun_parlay=False)
+        week["card"]["easy_bet"]["legs"] = [{"selection": "x", "estimated_prob": 0.6}]
+        with self.assertRaises(RuleViolation):
+            validate_rules(week)
+
+    def test_easy_bet_alone_is_valid(self):
+        # Fun Parlay and Lottery Ticket are each optional.
+        week = _valid_week(include_fun_parlay=False)
         validate_rules(week)  # should not raise
 
-
-class TestRule4LegCountFollowsProbability(unittest.TestCase):
-    def test_four_leg_parlay_with_coin_flip_leg_raises(self):
+    def test_fun_parlay_with_one_leg_raises(self):
         week = _valid_week()
-        week["card"]["bets"][1]["legs"] = [
-            {"selection": "Leg 1", "estimated_prob": 0.65},
-            {"selection": "Leg 2", "estimated_prob": 0.70},
-            {"selection": "Leg 3", "estimated_prob": 0.61},
-            {"selection": "Leg 4", "estimated_prob": 0.50},
+        week["card"]["fun_parlay"]["legs"] = [{"selection": "x", "estimated_prob": 0.6}]
+        with self.assertRaises(RuleViolation):
+            validate_rules(week)
+
+    def test_fun_parlay_with_four_legs_raises(self):
+        week = _valid_week()
+        week["card"]["fun_parlay"]["legs"] = [
+            {"selection": f"Leg {i}", "estimated_prob": 0.6} for i in range(4)
         ]
         with self.assertRaises(RuleViolation):
             validate_rules(week)
 
-    def test_three_leg_parlay_with_coin_flip_leg_is_fine(self):
-        # Rule 4 only kicks in above 3 legs — a 3-leg parlay with a 0.50
-        # leg is exactly what the "cap at 3" language in the plan allows.
+    def test_fun_parlay_leg_below_55_percent_raises(self):
         week = _valid_week()
-        week["card"]["bets"][1]["legs"] = [
-            {"selection": "Leg 1", "estimated_prob": 0.65},
-            {"selection": "Leg 2", "estimated_prob": 0.70},
-            {"selection": "Leg 3", "estimated_prob": 0.50},
+        week["card"]["fun_parlay"]["legs"][0]["estimated_prob"] = 0.54
+        with self.assertRaises(RuleViolation):
+            validate_rules(week)
+
+    def test_fun_parlay_leg_at_exactly_55_percent_is_fine(self):
+        week = _valid_week()
+        week["card"]["fun_parlay"]["legs"][0]["estimated_prob"] = 0.55
+        validate_rules(week)  # should not raise
+
+    def test_lottery_ticket_below_10_legs_raises(self):
+        week = _valid_week(include_lottery_ticket=True)
+        week["card"]["lottery_ticket"] = _valid_lottery_ticket(n_legs=9)
+        with self.assertRaises(RuleViolation):
+            validate_rules(week)
+
+    def test_lottery_ticket_above_20_legs_raises(self):
+        week = _valid_week(include_lottery_ticket=True)
+        week["card"]["lottery_ticket"] = _valid_lottery_ticket(n_legs=21)
+        with self.assertRaises(RuleViolation):
+            validate_rules(week)
+
+    def test_lottery_ticket_wrong_stake_raises(self):
+        week = _valid_week(include_lottery_ticket=True)
+        week["card"]["lottery_ticket"]["stake"] = 1.00
+        with self.assertRaises(RuleViolation):
+            validate_rules(week)
+
+    def test_lottery_ticket_is_exempt_from_any_leg_probability_floor(self):
+        # This is the whole point of the tier — real long-shot legs, no
+        # 55%/60% floor like Fun Parlay or the old Rule 4 would require.
+        week = _valid_week(include_lottery_ticket=True)
+        week["card"]["lottery_ticket"]["legs"] = [
+            {"selection": f"Leg {i}", "estimated_prob": 0.10} for i in range(14)
         ]
         validate_rules(week)  # should not raise
 
@@ -235,6 +303,48 @@ class TestRenderScoreboardBudgetTile(unittest.TestCase):
         self.assertIn("$2.00", html)
         self.assertIn("$5.00", html)
         self.assertIn("$3.00", html)  # remaining
+
+
+class TestRenderTiers(unittest.TestCase):
+    def test_easy_bet_shows_summary_not_full_reason_by_default(self):
+        html = render_easy_bet(_valid_easy_bet())
+        self.assertIn("1. Easy Bet", html)
+        self.assertIn("test easy bet</p>", html)  # reason_summary, visible
+        self.assertIn("<details", html)
+        self.assertIn("test easy bet, full reasoning", html)  # still present, just collapsed
+        self.assertIn("<summary>", html)
+
+    def test_fun_parlay_tier_badge_and_legs(self):
+        html = render_fun_parlay(_valid_fun_parlay())
+        self.assertIn("2. Fun Parlay", html)
+        self.assertIn("Leg 1", html)
+        self.assertIn("Leg 2", html)
+
+    def test_lottery_ticket_shows_combined_probability_and_one_in_x(self):
+        # 12 legs at 0.5 each -> combined = 0.5**12 ≈ 0.000244 -> ~1 in 4096
+        ticket = _valid_lottery_ticket(n_legs=12)
+        html = render_lottery_ticket(ticket)
+        self.assertIn("3. Lottery Ticket", html)
+        self.assertIn("outside the $5/week line", html)
+        self.assertIn("Real combined prob.", html)
+        self.assertIn("Honest odds", html)
+        self.assertIn("~1 in 4,096", html)
+
+    def test_card_section_orders_tiers_and_skips_absent_ones(self):
+        card = {"easy_bet": _valid_easy_bet()}
+        html = render_card_section(card)
+        self.assertIn("1. Easy Bet", html)
+        self.assertNotIn("2. Fun Parlay", html)
+        self.assertNotIn("3. Lottery Ticket", html)
+
+        card["fun_parlay"] = _valid_fun_parlay()
+        card["lottery_ticket"] = _valid_lottery_ticket()
+        html = render_card_section(card)
+        easy_pos = html.index("1. Easy Bet")
+        fun_pos = html.index("2. Fun Parlay")
+        lottery_pos = html.index("3. Lottery Ticket")
+        self.assertLess(easy_pos, fun_pos)
+        self.assertLess(fun_pos, lottery_pos)
 
 
 if __name__ == "__main__":

@@ -212,6 +212,51 @@
     margin-bottom: 6px;
   }
 
+  /* Three card tiers — Easy Bet (blue, the default .bet accent already
+     above), Fun Parlay (violet), Lottery Ticket (amber, explicitly outside
+     the $5/week line). */
+  .tier-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #8a929b;
+    margin-bottom: 6px;
+  }
+  .tier-fun { border-left-color: #b98bff; }
+  .tier-fun .tier-badge { color: #c9a6ff; }
+  .tier-lottery { border-left-color: #e0b34d; }
+  .tier-lottery .tier-badge { color: #e0b34d; }
+
+  /* One-line summary always visible ("scan it, not read it"); the rest of
+     the reasoning + sources sits behind a native <details> so it costs no
+     JS and defaults closed. */
+  .reason-summary {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reason-detail summary {
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: #6bb6ff;
+    list-style: none;
+    margin-top: 2px;
+  }
+  .reason-detail summary::-webkit-details-marker { display: none; }
+  .reason-detail summary::before {
+    content: "▸ ";
+  }
+  .reason-detail[open] summary::before {
+    content: "▾ ";
+  }
+  .reason-detail[open] summary {
+    margin-bottom: 6px;
+  }
+  .reason-detail .reason {
+    margin-bottom: 8px;
+  }
+
   /* ---------- leg bank (Section 4) ---------- */
   .leg {
     background: #14171b;

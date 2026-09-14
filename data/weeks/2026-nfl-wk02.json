@@ -4,51 +4,49 @@
   "sport": "NFL",
   "generated_at": "2026-09-13T23:53:42Z",
   "card": {
-    "bets": [
-      {
-        "id": "card-1",
-        "kind": "straight",
-        "selection": "Philadelphia Eagles moneyline (at Tennessee Titans)",
-        "market": "moneyline",
-        "dk_odds": -242,
-        "estimated_prob": 0.75,
-        "estimated_prob_source": "Averaged: Kalshi prediction-market-implied win probability 76% (via defirate.com \"NFL Week 2 odds & predictions\", https://defirate.com/news/nfl-week-2-odds-predictions-2026/) and Stats Insider's 10,000-simulation predictive analytics model 74% (via \"Titans vs Eagles Prediction and Preview - NFL Week 2, 2026\", https://www.statsinsider.com.au/news/titans-vs-eagles-prediction-and-preview-nfl-week-2-2026, published Sept 13 2026) = (76% + 74%) / 2 = 75% average.",
-        "is_pre_kickoff": true,
-        "stake": 3.0,
-        "reason": "Picked on merit: the Eagles -5.5 spread and 42.5 total are each confirmed exactly by two independent sources (Covers.com and a direct ESPN-odds-citing search), no negative injury news turned up for Philadelphia, and Tennessee is a big underdog with no positive news either. estimated_prob is now the average of two independent, real win-probability models (Kalshi 76% via defirate.com and Stats Insider's simulation model 74%) rather than a single source, landing at 75% -- a modest few points above the -242 market-implied price (70.8%), not the larger single-source edge claimed before this was cross-checked. A clean, well-reasoned favorite on the fundamentals; no outsized edge is claimed.",
-        "verify": {
-          "source": "Covers.com \"NFL Week 2 Odds and Opening Betting Lines\" (https://www.covers.com/nfl/week-2-odds-opening-lines-2026) and defirate.com \"NFL Week 2 odds & predictions\" (https://defirate.com/news/nfl-week-2-odds-predictions-2026/)",
-          "fetched_at": "2026-09-13 (session research; no exact server timestamp available -- treat as \"current as of a Sept 13 2026 search,\" not necessarily today's closing line)",
-          "note": "Line may have moved -- verify the Eagles ML price in the DK app before betting."
-        }
+    "easy_bet": {
+      "id": "card-1",
+      "selection": "Philadelphia Eagles moneyline (at Tennessee Titans)",
+      "market": "moneyline",
+      "dk_odds": -242,
+      "estimated_prob": 0.75,
+      "estimated_prob_source": "Averaged: Kalshi prediction-market-implied win probability 76% (via defirate.com \"NFL Week 2 odds & predictions\", https://defirate.com/news/nfl-week-2-odds-predictions-2026/) and Stats Insider's 10,000-simulation predictive analytics model 74% (via \"Titans vs Eagles Prediction and Preview - NFL Week 2, 2026\", https://www.statsinsider.com.au/news/titans-vs-eagles-prediction-and-preview-nfl-week-2-2026, published Sept 13 2026) = (76% + 74%) / 2 = 75% average.",
+      "is_pre_kickoff": true,
+      "stake": 3.0,
+      "reason": "Picked on merit: the Eagles -5.5 spread and 42.5 total are each confirmed exactly by two independent sources (Covers.com and a direct ESPN-odds-citing search), no negative injury news turned up for Philadelphia, and Tennessee is a big underdog with no positive news either. estimated_prob is now the average of two independent, real win-probability models (Kalshi 76% via defirate.com and Stats Insider's simulation model 74%) rather than a single source, landing at 75% -- a modest few points above the -242 market-implied price (70.8%), not the larger single-source edge claimed before this was cross-checked. A clean, well-reasoned favorite on the fundamentals; no outsized edge is claimed.",
+      "verify": {
+        "source": "Covers.com \"NFL Week 2 Odds and Opening Betting Lines\" (https://www.covers.com/nfl/week-2-odds-opening-lines-2026) and defirate.com \"NFL Week 2 odds & predictions\" (https://defirate.com/news/nfl-week-2-odds-predictions-2026/)",
+        "fetched_at": "2026-09-13 (session research; no exact server timestamp available -- treat as \"current as of a Sept 13 2026 search,\" not necessarily today's closing line)",
+        "note": "Line may have moved -- verify the Eagles ML price in the DK app before betting."
       },
-      {
-        "id": "card-2",
-        "kind": "parlay",
-        "legs": [
-          {
-            "selection": "Baltimore Ravens moneyline (vs New Orleans Saints)",
-            "estimated_prob": 0.81,
-            "reason": "Kalshi model gives Baltimore 81% at home; New Orleans is already thin (Alvin Kamara's exact Week 2 status is unresolved, Cameron Jordan sat out Week 1 with a hamstring injury) and needed overtime just to lose to Detroit in Week 1."
-          },
-          {
-            "selection": "Tampa Bay Buccaneers moneyline (vs Cleveland Browns)",
-            "estimated_prob": 0.75,
-            "reason": "Kalshi model gives Tampa Bay 75%; Cleveland's Week 1 game added a fresh problem on top of that -- rookie RB Dylan Sampson left on crutches in a knee brace after a kickoff-return injury, thinning an already-shaky Browns backfield."
-          }
-        ],
-        "dk_odds": -175,
-        "estimated_prob_source": "Both legs: Kalshi prediction-market-implied win probabilities via defirate.com \"NFL Week 2 odds & predictions\" (https://defirate.com/news/nfl-week-2-odds-predictions-2026/).",
-        "is_pre_kickoff": true,
-        "stake": 2.0,
-        "reason": "A small, 2-leg 'chalk' parlay of two real DraftKings-priced favorites (both -395, cited by SportsBettingDime as DraftKings pricing) with independently corroborated spreads and real 75-81% win-probability backing on each leg -- the opposite of the double-digit-leg mega-parlays that have lost every time in the bet log so far.",
-        "verify": {
-          "source": "SportsBettingDime \"NFL Week 2 Odds -- Opening Spread, Total, ML\" (DraftKings-sourced pricing), https://www.sportsbettingdime.com/news/nfl/week-2-odds-opening-spread-total-ml-all-games-2026/ ; defirate.com \"NFL Week 2 odds & predictions\", https://defirate.com/news/nfl-week-2-odds-predictions-2026/",
-          "fetched_at": "2026-09-13 (session research; no exact server timestamp available)",
-          "note": "The -175 combined price shown here is computed from the two real -395/-395 leg moneylines via standard decimal-odds multiplication -- it is NOT a live DK parlay-slip quote. Confirm the actual parlay payout and re-check both moneylines haven't moved in the DK app before betting."
+      "reason_summary": "Eagles ML averaged across 2 real models (75%) vs -242's 70.8% implied = honest +4.2% edge; clean favorite, no negative injury news."
+    },
+    "fun_parlay": {
+      "id": "card-2",
+      "legs": [
+        {
+          "selection": "Baltimore Ravens moneyline (vs New Orleans Saints)",
+          "estimated_prob": 0.81,
+          "reason": "Kalshi model gives Baltimore 81% at home; New Orleans is already thin (Alvin Kamara's exact Week 2 status is unresolved, Cameron Jordan sat out Week 1 with a hamstring injury) and needed overtime just to lose to Detroit in Week 1."
+        },
+        {
+          "selection": "Tampa Bay Buccaneers moneyline (vs Cleveland Browns)",
+          "estimated_prob": 0.75,
+          "reason": "Kalshi model gives Tampa Bay 75%; Cleveland's Week 1 game added a fresh problem on top of that -- rookie RB Dylan Sampson left on crutches in a knee brace after a kickoff-return injury, thinning an already-shaky Browns backfield."
         }
-      }
-    ]
+      ],
+      "dk_odds": -175,
+      "estimated_prob_source": "Both legs: Kalshi prediction-market-implied win probabilities via defirate.com \"NFL Week 2 odds & predictions\" (https://defirate.com/news/nfl-week-2-odds-predictions-2026/).",
+      "is_pre_kickoff": true,
+      "stake": 2.0,
+      "reason": "A small, 2-leg 'chalk' parlay of two real DraftKings-priced favorites (both -395, cited by SportsBettingDime as DraftKings pricing) with independently corroborated spreads and real 75-81% win-probability backing on each leg -- the opposite of the double-digit-leg mega-parlays that have lost every time in the bet log so far.",
+      "verify": {
+        "source": "SportsBettingDime \"NFL Week 2 Odds -- Opening Spread, Total, ML\" (DraftKings-sourced pricing), https://www.sportsbettingdime.com/news/nfl/week-2-odds-opening-spread-total-ml-all-games-2026/ ; defirate.com \"NFL Week 2 odds & predictions\", https://defirate.com/news/nfl-week-2-odds-predictions-2026/",
+        "fetched_at": "2026-09-13 (session research; no exact server timestamp available)",
+        "note": "The -175 combined price shown here is computed from the two real -395/-395 leg moneylines via standard decimal-odds multiplication -- it is NOT a live DK parlay-slip quote. Confirm the actual parlay payout and re-check both moneylines haven't moved in the DK app before betting."
+      },
+      "reason_summary": "2-leg chalk parlay, both real favorites 75-81% -- opposite of the mega-parlays that have lost every time in the log so far."
+    }
   },
   "leg_bank": [
     {

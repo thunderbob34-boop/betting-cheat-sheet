@@ -55,13 +55,43 @@ findable.
 ## 3. Build the week JSON
 
 Follow the exact schema in the most recent existing week file (card, leg_bank,
-boost_check, avoid_list, last_week_graded, verify blocks). `is_sample: false`.
-Every guardrail in `src/build.py` (Section 3, Rules 1/2/4/6) must pass —
-if it doesn't, fix the data, never the rule.
+boost_check, avoid_list, last_week_graded, verify blocks) — `data/weeks/sample-phase1.json`
+demonstrates all three card tiers if you want a clean reference. `is_sample: false`.
+Every guardrail in `src/build.py` (Section 3, all rules) must pass — if it
+doesn't, fix the data, never the rule.
 
-- `card.bets`: exactly one `straight` + at most one `parlay`, total stake ≤
-  $5.00. Pick on merit; check boosts after, never before (Rule 3).
-- `leg_bank`: real entries across multiple games/markets — build.py sorts by
+`week["card"]` is three named tiers, **built in this order** (a build-order
+discipline like Rule 3 — nothing checks this mechanically, so actually do it
+in order):
+
+1. **`easy_bet`** (required) — a single straight bet, highest probability with
+   real edge, ~$2-3. Fields: `id`, `selection`, `market`, `dk_odds`,
+   `estimated_prob`, `estimated_prob_source`, `is_pre_kickoff: true`, `stake`,
+   `reason_summary` (one line, always visible on the page), `reason` (the full
+   reasoning — rendered behind a tap-to-expand, so it's fine for this to be as
+   long as the research actually supports), `verify`.
+2. **`fun_parlay`** (optional — at most one) — 2-3 legs, `legs: [{selection,
+   estimated_prob, reason}]`, **every leg's `estimated_prob` >= 0.55** or
+   `build.py` rejects it. Same top-level fields as `easy_bet` (`dk_odds` is the
+   overall parlay price, `reason_summary`/`reason`/`verify` at the parlay
+   level), ~$1-2.
+3. **`lottery_ticket`** (optional — at most one, **only decide this after 1
+   and 2 are set**) — one 10-20 leg parlay (`legs`, same leg shape as
+   `fun_parlay`). `stake` must be **exactly 0.50** — not a range, not
+   approximate. No leg-probability floor (that's the point — pick something
+   genuinely long-shot if you're including this tier at all, don't water it
+   down to look safer). Its stake is outside the $5/week line by design; don't
+   let it influence tiers 1-2's sizing. `dk_odds` is the actual DK-listed/
+   boosted payout odds for the ticket (used to show a "payout-implied"
+   probability on the page, honestly contrasted against the real combined
+   probability computed from the legs).
+
+Only build a Lottery Ticket when you actually have 10-20 real, researched legs
+to put in it — an empty/thin one is worse than skipping the tier entirely for
+that edition.
+
+Other sections, unchanged:
+- `leg_bank`: real entries across multiple games/markets — `build.py` sorts by
   estimated_prob automatically, don't worry about order.
 - `boost_check`: real current promos if found, honest "nothing found" if not.
 - `avoid_list`: 3-5 real traps from the actual slate.
