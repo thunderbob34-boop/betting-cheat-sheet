@@ -5,12 +5,29 @@ This file governs how Claude Code works in this repo. The full master plan lives
 before doing any work beyond Phase 0.
 
 **Current status: Phase 2 (real weekly research) live.** `docs/index.html`
-renders the first real edition, `data/weeks/2026-nfl-wk02.json` (NFL Week 2,
-Sunday Sept 20 2026) — a real $3 straight + $2 parlay, real leg bank, real
-boost check, real avoid list, real last-week-graded pulled from
-`data/bet_log.csv`. `is_sample: false`. `.claude/commands/cheatsheet.md` is the
-real `/cheatsheet nfl|cfb` command — read it before running or scheduling a
-new edition. `grade.py` (Phase 3) is still not built.
+currently renders `data/weeks/2026-nfl-wk01-mnf.json` (a one-off single-game
+edition, Under 43.5 on Broncos @ Chiefs MNF, Sept 14 2026) — built same-day,
+same evening as kickoff, and pushed same-day. `data/weeks/2026-nfl-wk02.json`
+(NFL Week 2, Sunday Sept 20 2026 — a real $3 straight + $2 parlay) is the
+prior edition and is **not currently the one rendering** — `build.py` only
+ever renders whichever week file it's pointed at; both files still exist and
+either can be rebuilt any time. `is_sample: false` on both.
+`.claude/commands/cheatsheet.md` is the real `/cheatsheet nfl|cfb` command —
+read it before running or scheduling a new edition. `grade.py` (Phase 3) is
+still not built.
+
+**Open cross-edition budget question, unresolved as of 2026-09-14:** the MNF
+edition spends $2.00 of the $5/week cap (shown via the new "Weekly Budget
+Used" scoreboard tile — see `show_weekly_budget_tile` in a week file and
+`render_scoreboard`'s `card_stake_total` param). The already-built
+`2026-nfl-wk02.json` separately totals a full $5.00 on its own. If both are
+meant to share one $5/week pool (Gus's own framing when he approved the MNF
+card was "this week's $5"), `2026-nfl-wk02.json` needs to be trimmed to fit
+within the remaining ~$3 before it's next approved/pushed — it has NOT been
+trimmed yet. The scheduled Sat 9/19 8pm ET refresh routine (trig_01LMYBqnhdXhcZxogaZFP9jN)
+was created before this MNF edition existed and does not know about this
+constraint — check with Gus on this before pushing whatever that routine
+produces.
 
 **Honesty rule learned the hard way on 2026-nfl-wk02:** never estimate a card
 bet's probability from a single source — average at least two independent

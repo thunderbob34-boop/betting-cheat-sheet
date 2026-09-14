@@ -1,0 +1,110 @@
+{
+  "week_id": "2026-nfl-wk01-mnf",
+  "is_sample": false,
+  "sport": "NFL",
+  "generated_at": "2026-09-14T12:41:25Z",
+  "show_weekly_budget_tile": true,
+  "card": {
+    "bets": [
+      {
+        "id": "card-1",
+        "kind": "straight",
+        "selection": "Under 43.5 (Broncos @ Chiefs, MNF)",
+        "market": "total",
+        "dk_odds": -110,
+        "estimated_prob": 0.575,
+        "estimated_prob_source": "Averaged: CBS Sports/SportsLine 10,000-simulation model (Under hits 63% of simulations, via https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/) and Covers.com's early total pick (Under 43.5 at a Kalshi-sourced 52%, via https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026) = 57.5% average.",
+        "is_pre_kickoff": true,
+        "stake": 2.00,
+        "reason": "The only real edge found tonight: two independent real models both lean Under 43.5, averaging to 57.5% vs the -110 market-implied 52.4% -- a genuine +5.1% edge, not a manufactured one. Real injury notes (KC: DE R. Mason Thomas hamstring, OT Josh Simmons back-questionable; DEN: CB Riley Moss ribs-questionable, WR Marvin Mims foot-questionable) support a lower-scoring script rather than change it. No side taken on the moneyline: real market pricing (Chiefs -132/-134, Broncos +112/+113 across two sources) is close to a real model's own estimate (numberFire: Chiefs 52.3%, Broncos 47.7%) -- efficiently priced, no edge to size a pick around.",
+        "verify": {
+          "source": "Total + price confirmed by 3 independent sources: FanDuel Research (43.5, Under -110, https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026), CBS Sports/SportsLine (43.5, https://www.cbssports.com/betting/news/chiefs-broncos-prediction-odds-time-nfl-week-1-picks-best-bets-monday-night-football/), and Covers.com (43.5, https://www.covers.com/nfl/broncos-vs-chiefs-predictions-odds-early-leans-week-1-2026). One outlier: NBC Sports showed a different total (42.5) and wider moneyline (-148/+124, https://www.nbcsports.com/betting/nfl/news/broncos-vs-chiefs-prediction-odds-expert-picks-qb-matchups-injury-update-betting-trends-and-stats) -- likely a stale snapshot, not used as the primary number.",
+          "fetched_at": "2026-09-14 08:30-08:40 AM ET",
+          "note": "Kickoff is 8:15 PM ET tonight (Sept 14) -- line may move during the day. Verify Under 43.5 is still priced near -110 in the DK app before betting; if the total has moved meaningfully, the edge math above no longer applies as-is."
+        }
+      }
+    ]
+  },
+  "leg_bank": [
+    {
+      "selection": "Kansas City Chiefs moneyline (vs Denver Broncos)",
+      "market": "ML",
+      "dk_odds": -132,
+      "estimated_prob": 0.523,
+      "reason": "Real numberFire model (52.3%) is actually a touch below the de-vigged market price -- efficiently priced, no real edge. Not on the card by design.",
+      "source": "FanDuel Research (numberFire), https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026"
+    },
+    {
+      "selection": "Denver Broncos moneyline (at Kansas City Chiefs)",
+      "market": "ML",
+      "dk_odds": 112,
+      "estimated_prob": 0.477,
+      "reason": "Same real model, other side -- 47.7%, close to the market-implied price. No edge either direction on the moneyline tonight.",
+      "source": "FanDuel Research (numberFire), https://www.fanduel.com/research/chiefs-vs-broncos-predictions-odds-picks-best-bets-for-nfl-week-1-monday-night-football-2026"
+    },
+    {
+      "selection": "Over 43.5 (Broncos @ Chiefs, MNF)",
+      "market": "total",
+      "dk_odds": -110,
+      "estimated_prob": 0.425,
+      "reason": "The opposite side of tonight's card pick -- both real models found (SportsLine 63% simulation, Covers.com 52% Kalshi) lean Under, so Over is left at the residual probability rather than any independent support. Listed for context, not recommended.",
+      "source": "Same two sources as card-1, inverse of the averaged Under probability"
+    }
+  ],
+  "boost_check": [
+    {
+      "boost_description": "DraftKings September Gameday Boost: opt-in 50% profit boost token, one per gameday, valid on NFL/CFB singles/parlays/SGPs (standing promo, same as last week's edition).",
+      "fits_card": false,
+      "explanation": "No fit -- skip it. Card was picked on merit first; tonight's pick is Under 43.5 at -110, nowhere near the token's typical +100-or-longer usefulness threshold."
+    },
+    {
+      "boost_description": "DraftKings new-customer welcome offer: spend $5+, get $200 in bonus bets, applicable to Week 1 NFL games including tonight's Broncos-Chiefs matchup.",
+      "fits_card": false,
+      "explanation": "New-customer only -- not applicable to Gus's account."
+    }
+  ],
+  "avoid_list": [
+    {
+      "selection": "Chiefs or Broncos moneyline as a 'safe' pick tonight",
+      "why_tempting": "Chiefs are the well-known home favorite on a nationally televised MNF game -- feels like an easy, obvious pick.",
+      "why_avoid": "Real market pricing (-132/-134) and a real model (numberFire, 52.3%) agree closely -- there's no mispricing to exploit here, just the market's own honest number. Betting it isn't wrong, exactly, it's just not an edge."
+    },
+    {
+      "selection": "Over 43.5",
+      "why_tempting": "Mahomes/Chiefs offense at home, primetime national game -- easy to assume a shootout.",
+      "why_avoid": "Both real models found (SportsLine simulation, Covers.com/Kalshi) independently lean Under, and real injury notes (Denver's pass rush, questionable KC O-line piece) support a lower-scoring script, not a higher one."
+    },
+    {
+      "selection": "Any live/in-game adjustment to tonight's total once kickoff happens",
+      "why_tempting": "If the total starts moving live during the game, it can look like a chance to catch a better number.",
+      "why_avoid": "Pre-kickoff only is a non-negotiable house rule (Rule 2) -- exactly the discipline that's been the actual problem in the real bet history, not the picks themselves."
+    }
+  ],
+  "last_week_graded": [
+    {
+      "selection": "10-leg NFL SGPx parlay (PIT ML; CIN ML; BAL ML; CHI ML; BUF ML; TEN ML; two 2-pick SGPs), +9164 boosted to +13748, $1.00",
+      "result": "Lost",
+      "lesson": "Double-digit-leg parlays are lottery tickets, not a cheat-sheet card -- stacking 10 legs (even mostly favorites) multiplies the real combined probability down to almost nothing, no matter how good the boosted payout number looks."
+    },
+    {
+      "selection": "6-leg NFL same-game player-prop parlay, in-game (Mayfield 275+ pass; Over 50.5; Chase Brown 90+ rush+rec; Egbuka 80+ rec; Chase 100+ rec; Burrow 275+ pass), +3300 boosted to +4290, $0.50",
+      "result": "Lost",
+      "lesson": "This was placed live, during the TB-CIN game -- exactly what pre-kickoff-only rule exists to prevent. Only 1 of 6 legs hit (the total); six aggressive player-yardage props stacked together is a low-probability combination even with two productive passing offenses on the field."
+    },
+    {
+      "selection": "2-leg live moneyline parlay (BUF Bills live ML +109; TEN Titans live ML +121), +361, $0.50 (crowns/bonus)",
+      "result": "Lost",
+      "lesson": "One leg actually hit (Bills beat Houston 36-31) but the Titans leg didn't (lost 10-23 to the Jets), and a parlay needs every leg to hit -- a reminder that a single-leg miss sinks the whole ticket even when the rest of the card looks right, on top of this being a live in-game bet in the first place."
+    },
+    {
+      "selection": "3-leg NFL moneyline parlay (LV Raiders ML -170; LA Chargers ML -455; DAL Cowboys ML -166), +210, $0.12 (crowns/bonus), to pay $0.37",
+      "result": "Open, not yet graded",
+      "lesson": "Still open -- not yet graded, no result invented."
+    },
+    {
+      "selection": "17-leg NFL SGPx parlay (6-pick SGP; 4-pick SGP; 2-pick SGP; 3-pick SGP; 2-pick SGP -- individual legs not visible in screenshot), +7953132 boosted to +10339073, wager not visible",
+      "result": "Open, not yet graded",
+      "lesson": "Still open -- not yet graded, no result invented."
+    }
+  ]
+}

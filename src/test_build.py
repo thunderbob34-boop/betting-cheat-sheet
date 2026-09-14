@@ -6,6 +6,7 @@ from build import (
     compute_scoreboard,
     find_earliest_date_label,
     load_config,
+    render_scoreboard,
     sort_leg_bank,
     validate_rules,
 )
@@ -211,6 +212,29 @@ class TestSortLegBank(unittest.TestCase):
 
     def test_empty_list(self):
         self.assertEqual(sort_leg_bank([]), [])
+
+
+_MINIMAL_SEASON_SB = {
+    "wins": 0, "losses": 0, "cashouts": 0, "open": 0, "no_data_rows": 0,
+    "cash_pl": 0.0, "bankroll_remaining": 50.0, "current_streak": "—",
+}
+_MINIMAL_ALLTIME_SB = dict(_MINIMAL_SEASON_SB)
+
+
+class TestRenderScoreboardBudgetTile(unittest.TestCase):
+    def test_omitted_by_default(self):
+        html = render_scoreboard(_MINIMAL_SEASON_SB, _MINIMAL_ALLTIME_SB, "2026-09-01", "Mar 2026")
+        self.assertNotIn("Weekly Budget Used", html)
+
+    def test_shown_when_card_stake_total_given(self):
+        html = render_scoreboard(
+            _MINIMAL_SEASON_SB, _MINIMAL_ALLTIME_SB, "2026-09-01", "Mar 2026",
+            card_stake_total=2.00,
+        )
+        self.assertIn("Weekly Budget Used", html)
+        self.assertIn("$2.00", html)
+        self.assertIn("$5.00", html)
+        self.assertIn("$3.00", html)  # remaining
 
 
 if __name__ == "__main__":

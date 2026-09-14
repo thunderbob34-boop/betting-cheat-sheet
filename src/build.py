@@ -38,6 +38,7 @@ class RuleViolation(Exception):
 
 
 EPSILON = 1e-6  # float-rounding slack for the $5 budget check, nothing more
+WEEKLY_BUDGET_CAP = 5.00  # Rule 1 — the whole week's cap across NFL + CFB combined
 
 # In-code fallback if data/config.json is ever missing/unreadable/malformed —
 # the build must never crash for lack of a config file.
@@ -80,10 +81,10 @@ def validate_rules(week):
 
     # --- RULE 1: budget. Sum of every bet's stake in card.bets <= $5.00. ---
     total_stake = sum(float(b.get("stake", 0.0)) for b in bets)
-    if total_stake > 5.00 + EPSILON:
+    if total_stake > WEEKLY_BUDGET_CAP + EPSILON:
         raise RuleViolation(
             f"RULE 1 VIOLATION: card totals ${total_stake:.2f}, "
-            "exceeds the $5/week budget"
+            f"exceeds the ${WEEKLY_BUDGET_CAP:.0f}/week budget"
         )
 
     # --- RULE 2: pre-kickoff only. ---
@@ -345,12 +346,20 @@ def format_money(v):
 # templates/page.html.
 # ---------------------------------------------------------------------------
 
-def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label):
+def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label, card_stake_total=None):
     """Render the {{SCOREBOARD}} fragment: primary tiles scoped to the
     current season (season_sb), preceded by a heading naming the season
     start, followed by one compact supplementary all-time line (alltime_sb)
     labeled with alltime_since_label — a single secondary line, not a
-    second tile grid."""
+    second tile grid.
+
+    card_stake_total, when given, is the stake total of the card currently
+    being rendered (not a bet_log.csv figure) — it renders a "Weekly Budget
+    Used" tile so a one-off edition built mid-week (e.g. a single Monday
+    Night Football card) can show how much of the $5/week cap it accounts
+    for, distinct from any other edition already built/approved this same
+    week. Omit or pass None to skip the tile (e.g. a full weekly edition
+    where the card total is obviously the whole week's spend already)."""
 
     def stat(label, value, cls=""):
         cls_attr = f" {cls}" if cls else ""
@@ -373,6 +382,13 @@ def render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label):
         stat("Cash P/L", format_money(season_sb["cash_pl"]), pl_cls),
         stat("Bankroll Remaining", format_money(season_sb["bankroll_remaining"]), bankroll_cls),
     ]
+    if card_stake_total is not None:
+        remaining = WEEKLY_BUDGET_CAP - card_stake_total
+        tiles.append(stat(
+            "Weekly Budget Used",
+            f'{format_money(card_stake_total)} of {format_money(WEEKLY_BUDGET_CAP)} '
+            f'({format_money(remaining)} left)',
+        ))
     if season_sb.get("no_data_rows"):
         tiles.append(stat("Bets Missing Details", season_sb["no_data_rows"]))
 
@@ -534,9 +550,22 @@ def render_page(week, season_sb, alltime_sb, season_start, alltime_since_label, 
             "not a real week. Do not place any bets from this page.</div>"
         )
 
+    # A week file can opt in to showing "Weekly Budget Used" on the
+    # scoreboard via "show_weekly_budget_tile": true — meant for a one-off
+    # edition built mid-week (e.g. a single MNF card) alongside another
+    # edition for the same $5/week cap, where it matters to see how much
+    # of the cap this particular card accounts for.
+    card_stake_total = None
+    if week.get("show_weekly_budget_tile"):
+        card_stake_total = sum(
+            float(b.get("stake", 0.0)) for b in week.get("card", {}).get("bets", [])
+        )
+
     replacements = {
         "{{SAMPLE_BANNER}}": sample_banner,
-        "{{SCOREBOARD}}": render_scoreboard(season_sb, alltime_sb, season_start, alltime_since_label),
+        "{{SCOREBOARD}}": render_scoreboard(
+            season_sb, alltime_sb, season_start, alltime_since_label, card_stake_total
+        ),
         "{{CARD}}": "".join(render_bet_card(b) for b in week.get("card", {}).get("bets", [])),
         "{{LEG_BANK}}": "".join(render_leg_bank_entry(l) for l in sort_leg_bank(week.get("leg_bank", []))),
         "{{BOOST_CHECK}}": "".join(render_boost(b) for b in week.get("boost_check", [])),
