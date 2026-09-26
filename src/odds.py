@@ -23,6 +23,24 @@ def american_to_implied_prob(odds: int) -> float:
     return 100 / (odds + 100)
 
 
+def american_to_decimal(odds: int) -> float:
+    """Convert American odds to decimal odds (the multiplier applied to stake
+    to get total payout, i.e. decimal - 1 is the net profit per $1 staked).
+
+    Negative odds (favorites): 1 + 100 / abs(odds)
+    Positive odds (underdogs): 1 + odds / 100
+
+    Raises ValueError if odds == 0, which is not a valid American odds value.
+    """
+    if odds == 0:
+        raise ValueError("0 is not a valid American odds value")
+
+    if odds < 0:
+        return 1 + 100 / abs(odds)
+
+    return 1 + odds / 100
+
+
 def parlay_implied_prob(leg_probs: list[float]) -> float:
     """Combine independent leg implied probabilities into a parlay probability.
 
@@ -41,6 +59,16 @@ def edge(estimated_prob: float, implied_prob: float) -> float:
 def format_prob(p: float) -> str:
     """Format a probability fraction (e.g. 0.524) as a percentage string (e.g. "52.4%")."""
     return f"{p * 100:.1f}%"
+
+
+def format_prob_signed(p: float) -> str:
+    """Format a probability fraction as a signed percentage string, e.g.
+    0.035 -> "+3.5%", -0.107 -> "-10.7%". format_prob already emits the
+    '-' for a negative value via Python's default float formatting; this
+    only adds the '+' for zero/positive, matching the signed money/edge
+    convention in templates/CONTRACT.md (e.g. its "+3.5%" edge examples)."""
+    sign = "+" if p >= 0 else ""
+    return f"{sign}{format_prob(p)}"
 
 
 def format_one_in_x(p: float) -> str:

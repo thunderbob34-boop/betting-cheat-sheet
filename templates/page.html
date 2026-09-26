@@ -2,396 +2,709 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#111418">
-<title>Weekly Betting Cheat Sheet</title>
+<script>document.documentElement.classList.add('js');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cheat Sheet</title>
+<meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f5f0" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cheat Sheet">
 <style>
-  /*
-    Phase 1 template — function first, no design system yet (Phase 4 restyles this).
-    This file is a STRING-REPLACE template: build.py does str.replace() on the
-    {{TOKEN}} placeholders below. No Jinja/Mustache, no JS required to render.
+/*
+  Page contract: see templates/CONTRACT.md. This file owns ALL styling, layout,
+  the tab bar, the app-install tags, and the tab-switching script. src/build.py
+  only ever emits the plain fragment HTML documented there and string-replaces
+  it into the seven placeholder tokens below — it never emits style= (except
+  the stop-loss fill width) or <script>.
+*/
 
-    Contract for build.py (each token is replaced with a raw HTML fragment):
-      {{SAMPLE_BANNER}}      -> "" (real week) OR one <div class="sample-banner">...</div>
-      {{SCOREBOARD}}         -> stat tiles, e.g. <div class="stat-grid"><div class="stat">...</div>...</div>
-      {{CARD}}               -> one or more <div class="bet">...</div> (see structure below)
-      {{LEG_BANK}}           -> one or more <div class="leg">...</div>
-      {{BOOST_CHECK}}        -> one or more <div class="boost-item fits|no-fit">...</div>
-      {{AVOID_LIST}}         -> one or more <div class="avoid-item">...</div>
-      {{LAST_WEEK_GRADED}}   -> one or more <div class="graded-item result-won|result-lost|result-cashed-out|result-open">...</div>
-      {{BUILT_AT}}           -> plain text timestamp, e.g. "2026-09-13 22:32 UTC"
+/* ---------- design tokens ---------- */
+:root {
+  color-scheme: dark;
+  --bg: #0b0f14;
+  --bg-translucent: rgba(11, 15, 20, 0.86);
+  --bg-elevated: #131922;
+  --bg-elevated-2: #1a212c;
+  --border: #262f3b;
+  --border-soft: #1c232d;
+  --text: #eef1f5;
+  --text-dim: #a7b0bc;
+  --text-faint: #7c8794;
 
-    None of the above classes are required — plain semantic HTML (p, ul/li, table)
-    renders fine on the base element styles too. The classes just get nicer,
-    on-brand-enough treatment (color-coded results, mono odds, etc). If a table
-    is used anywhere, wrap it in <div class="scroll-x">...</div> so it scrolls
-    horizontally instead of blowing out the 390px layout.
-  */
-  * { box-sizing: border-box; }
+  --accent: #4da3ff;
+  --accent-soft: #14304d;
 
-  html { -webkit-text-size-adjust: 100%; }
+  --positive: #3ddc84;
+  --positive-bg: #0f2a1c;
+  --negative: #ff6b6b;
+  --negative-bg: #331414;
+  --slate: #97a3b0;
+  --slate-bg: #1c222b;
 
-  body {
-    margin: 0;
-    padding: 16px 16px 40px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    background: #111418;
-    color: #e8e8e8;
-    line-height: 1.5;
-    max-width: 100%;
-    overflow-x: hidden;
-    /* Real week content cites source URLs inline in reason/verify/avoid
-       text (e.g. long sportsbettingdime.com/defirate.com links), long
-       enough to force horizontal scroll on a 390px screen unless every
-       text container can break mid-word. Set on body so it applies to
-       every section, not just the ones with long text today. */
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
+  --tier-easy: #3ddc84;
+  --tier-easy-bg: #10281c;
+  --tier-easy-border: #1c4530;
+  --tier-fun: #b399fa;
+  --tier-fun-bg: #221a38;
+  --tier-fun-border: #392a5c;
+  --tier-lottery: #f0bf5d;
+  --tier-lottery-bg: #241c0f;
+  --tier-lottery-border: #3d3018;
 
-  h1 {
-    font-size: 1.4rem;
-    margin: 0 0 12px;
-  }
+  --won: #3ddc84;
+  --won-bg: #0f2a1c;
+  --lost: #ff6b6b;
+  --lost-bg: #331414;
+  --open: #4da3ff;
+  --open-bg: #12253a;
+  --pushvoid: #97a3b0;
+  --pushvoid-bg: #1c222b;
 
-  h2 {
-    font-size: 1.02rem;
-    margin: 0 0 10px;
-    color: #cfd6de;
-    letter-spacing: 0.01em;
-  }
+  --tabbar-h: 60px;
+}
 
-  h3 {
-    font-size: 0.95rem;
-    margin: 0 0 4px;
-    color: #f2f4f6;
-  }
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f6f5f0;
+    --bg-translucent: rgba(246, 245, 240, 0.86);
+    --bg-elevated: #ffffff;
+    --bg-elevated-2: #eeece3;
+    --border: #e1ddd1;
+    --border-soft: #eae7dc;
+    --text: #1b1f24;
+    --text-dim: #4b5563;
+    --text-faint: #6b7280;
 
-  p { margin: 0 0 8px; }
+    --accent: #2f6fe0;
+    --accent-soft: #e4edfd;
 
-  a { color: #6db4ff; }
+    --positive: #1f9d63;
+    --positive-bg: #e4f6ec;
+    --negative: #d6483f;
+    --negative-bg: #fbe9e7;
+    --slate: #5b6472;
+    --slate-bg: #eceef1;
 
-  ul, ol { padding-left: 1.2em; margin: 0 0 8px; }
-  li { margin-bottom: 6px; }
+    --tier-easy: #178a56;
+    --tier-easy-bg: #e2f5ea;
+    --tier-easy-border: #bfe6d0;
+    --tier-fun: #6f4fd1;
+    --tier-fun-bg: #efe9fc;
+    --tier-fun-border: #d8cbf4;
+    --tier-lottery: #a2740f;
+    --tier-lottery-bg: #faf0d8;
+    --tier-lottery-border: #efdba8;
 
-  section {
-    margin-bottom: 26px;
+    --won: #1f9d63;
+    --won-bg: #e4f6ec;
+    --lost: #d6483f;
+    --lost-bg: #fbe9e7;
+    --open: #2f6fe0;
+    --open-bg: #e4edfd;
+    --pushvoid: #5b6472;
+    --pushvoid-bg: #eceef1;
   }
+}
 
-  .section-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+/* ---------- reset + base ---------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+h1, h2, h3 { font-weight: 800; color: var(--text); margin: 0; }
+h2 { font-size: 1.02rem; }
+h3 { font-size: 0.92rem; }
+p { margin: 0; }
+a { color: var(--accent); }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button { font: inherit; }
 
-  /* mono figures — odds, dollar amounts, percentages */
-  .mono, .odds, .prob, .stake {
-    font-variant-numeric: tabular-nums;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
-  .muted { color: #8a929b; }
-  .small { font-size: 0.82rem; }
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg-translucent);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border-soft);
+  padding: calc(10px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) 10px calc(16px + env(safe-area-inset-left));
+}
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.brand {
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
+}
+.refresh-btn {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-dim);
+  -webkit-tap-highlight-color: transparent;
+}
+.refresh-btn:active { background: var(--bg-elevated-2); color: var(--accent); }
+.topbar-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+.topbar-meta .next::before { content: "\00b7"; margin: 0 6px; color: var(--border); }
 
-  /* generic pill/badge */
-  .pill {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    border: 1px solid #333a42;
-    background: #1c2127;
-    color: #cfd6de;
-  }
+/* ---------- sample banner ---------- */
+.sample-banner {
+  margin: 10px calc(16px + env(safe-area-inset-right)) 0 calc(16px + env(safe-area-inset-left));
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--tier-lottery-bg);
+  border: 1px solid var(--tier-lottery-border);
+  color: var(--tier-lottery);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+}
 
-  /* wrap any wide table so the page itself never scrolls sideways */
-  .scroll-x {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
-  th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid #262b31; white-space: nowrap; }
+/* ---------- panels + tab switching ---------- */
+main.panels {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 14px calc(16px + env(safe-area-inset-right)) calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 24px) calc(16px + env(safe-area-inset-left));
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+/* Progressive enhancement: with no JS, html never gets the "js" class below,
+   so every panel stays in normal flow — all four stacked, no jank. */
+html.js .panel { display: none; }
+html.js .panel.is-active { display: flex; flex: 1 1 auto; }
 
-  /* ---------- sample-data banner (Section 1) ---------- */
-  .sample-banner {
-    background: #3a0f0f;
-    border: 3px solid #ff4d4d;
-    color: #ffb3b3;
-    padding: 14px;
-    border-radius: 8px;
-    font-weight: 800;
-    font-size: 1rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    margin-bottom: 16px;
-  }
+/* ---------- tab bar ---------- */
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  padding: 0 max(4px, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(4px, env(safe-area-inset-left));
+  background: var(--bg-translucent);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid var(--border-soft);
+}
+.tab-link {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 44px;
+  padding: 8px 2px 6px;
+  color: var(--text-faint);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab-icon { display: block; }
+.tab-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.01em; }
+.tab-link[aria-current="page"] { color: var(--accent); }
 
-  .advice-only {
-    background: #16281c;
-    border: 1px solid #2e7d46;
-    color: #8fe0a8;
-    padding: 10px 12px;
-    border-radius: 8px;
-    margin-bottom: 22px;
-    font-weight: bold;
-    font-size: 0.88rem;
-  }
+/* ---------- shared: slot header ---------- */
+.slot-title { font-size: 1.15rem; margin: 0 0 2px; }
+.slot-sub { font-size: 0.85rem; color: var(--text-faint); }
 
-  /* ---------- scoreboard (Section 2) ---------- */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .stat {
-    background: #171b20;
-    border: 1px solid #262b31;
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-  .stat .label {
-    display: block;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #8a929b;
-    margin-bottom: 4px;
-  }
-  .stat .value {
-    font-size: 1.15rem;
-    font-weight: 700;
-  }
-  .stat .value.positive { color: #6bd68a; }
-  .stat .value.negative { color: #ff8585; }
+/* ---------- shared: budget ---------- */
+.budget {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.budget-amount { font-size: 1.3rem; font-weight: 800; font-variant-numeric: tabular-nums; margin-right: 6px; }
+.budget-label { font-size: 0.82rem; color: var(--text-dim); }
+.budget-why { font-size: 0.8rem; color: var(--text-faint); margin: 6px 0 0; }
 
-  /* ---------- this week's card (Section 3) ---------- */
-  .bet {
-    background: #171b20;
-    border: 1px solid #2a3038;
-    border-left: 4px solid #4da3ff;
-    border-radius: 8px;
-    padding: 12px 14px;
-  }
-  .bet-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 6px 10px;
-    margin-bottom: 6px;
-  }
-  .bet-header .odds {
-    font-weight: 700;
-    font-size: 1rem;
-  }
-  .prob-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    font-size: 0.85rem;
-    color: #cfd6de;
-    margin-bottom: 6px;
-  }
-  .prob-row .k { color: #8a929b; margin-right: 4px; }
-  .reason { margin-bottom: 8px; }
-  .leg-list { margin: 6px 0 10px; padding-left: 1.1em; }
-  .verify {
-    font-size: 0.78rem;
-    color: #8a929b;
-    border-top: 1px dashed #2a3038;
-    padding-top: 6px;
-    margin-top: 4px;
-  }
-  .stake-line {
-    font-size: 0.8rem;
-    color: #cfd6de;
-    margin-bottom: 6px;
-  }
+/* ---------- shared: result badge ---------- */
+.result-badge {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.result-badge.won { color: var(--won); background: var(--won-bg); }
+.result-badge.lost { color: var(--lost); background: var(--lost-bg); }
+.result-badge.push, .result-badge.void { color: var(--pushvoid); background: var(--pushvoid-bg); }
+.result-badge.open { color: var(--open); background: var(--open-bg); }
 
-  /* Three card tiers — Easy Bet (blue, the default .bet accent already
-     above), Fun Parlay (violet), Lottery Ticket (amber, explicitly outside
-     the $5/week line). */
-  .tier-badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #8a929b;
-    margin-bottom: 6px;
-  }
-  .tier-fun { border-left-color: #b98bff; }
-  .tier-fun .tier-badge { color: #c9a6ff; }
-  .tier-lottery { border-left-color: #e0b34d; }
-  .tier-lottery .tier-badge { color: #e0b34d; }
+/* ---------- shared: money / edge ---------- */
+.money, .edge { font-variant-numeric: tabular-nums; font-weight: 700; }
+.money.positive, .edge.positive { color: var(--positive); }
+.money.negative, .edge.negative { color: var(--negative); }
 
-  /* One-line summary always visible ("scan it, not read it"); the rest of
-     the reasoning + sources sits behind a native <details> so it costs no
-     JS and defaults closed. */
-  .reason-summary {
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-  .reason-detail summary {
-    cursor: pointer;
-    font-size: 0.78rem;
-    color: #6bb6ff;
-    list-style: none;
-    margin-top: 2px;
-  }
-  .reason-detail summary::-webkit-details-marker { display: none; }
-  .reason-detail summary::before {
-    content: "▸ ";
-  }
-  .reason-detail[open] summary::before {
-    content: "▾ ";
-  }
-  .reason-detail[open] summary {
-    margin-bottom: 6px;
-  }
-  .reason-detail .reason {
-    margin-bottom: 8px;
-  }
+/* ---------- shared: empty state ---------- */
+/* Top-aligned card, not vertically centered: on off-days Today shows this
+   followed by the latest results, and centering left a big dead gap between
+   the header and the message with the results pinned to the bottom. */
+.empty-state {
+  text-align: center;
+  padding: 26px 16px;
+  margin: 4px 0 2px;
+  background: var(--bg-elevated);
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+}
+.empty-title { font-size: 1.05rem; font-weight: 800; margin: 0 0 6px; }
+.empty-sub { font-size: 0.88rem; color: var(--text-faint); }
 
-  /* ---------- leg bank (Section 4) ---------- */
-  .leg {
-    background: #14171b;
-    border: 1px solid #262b31;
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-  .leg-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 4px 10px;
-    margin-bottom: 4px;
-  }
-  .leg-header .selection { font-weight: 600; }
-  .leg .meta {
-    font-size: 0.8rem;
-    color: #8a929b;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 4px;
-  }
-  .edge-positive { color: #6bd68a; }
-  .edge-negative { color: #ff8585; }
+/* ---------- bet card ---------- */
+.bet {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.bet.tier-easy { border-left-color: var(--tier-easy); }
+.bet.tier-fun { border-left-color: var(--tier-fun); }
+.bet.tier-lottery {
+  border-style: dashed;
+  border-left-width: 3px;
+  border-color: var(--tier-lottery-border);
+  border-left-color: var(--tier-lottery);
+}
 
-  /* ---------- boost check (Section 5) ---------- */
-  .boost-item {
-    background: #14171b;
-    border: 1px solid #262b31;
-    border-left: 4px solid #555d66;
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-  .boost-item.fits { border-left-color: #4da3ff; }
-  .boost-item.no-fit { border-left-color: #555d66; }
-  .boost-item .verdict {
-    display: inline-block;
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    margin-bottom: 4px;
-  }
-  .boost-item.fits .verdict { color: #6db4ff; }
-  .boost-item.no-fit .verdict { color: #8a929b; }
+.bet-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg-elevated-2);
+  color: var(--text-dim);
+  border: 1px solid var(--border-soft);
+}
+.tier-easy .tier-badge { color: var(--tier-easy); background: var(--tier-easy-bg); border-color: var(--tier-easy-border); }
+.tier-fun .tier-badge { color: var(--tier-fun); background: var(--tier-fun-bg); border-color: var(--tier-fun-border); }
+.tier-lottery .tier-badge { color: var(--tier-lottery); background: transparent; border: 1px dashed var(--tier-lottery-border); }
 
-  /* ---------- avoid list (Section 6) ---------- */
-  .avoid-item {
-    background: #1f1210;
-    border: 1px solid #3a2620;
-    border-left: 4px solid #d9743f;
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-  .avoid-item .why-tempting, .avoid-item .why-avoid {
-    font-size: 0.85rem;
-    margin-bottom: 2px;
-  }
-  .avoid-item .why-tempting .k, .avoid-item .why-avoid .k {
-    color: #8a929b;
-    margin-right: 4px;
-  }
+.bet-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 10px;
+  margin-bottom: 6px;
+}
+.bet-title { font-size: 1rem; font-weight: 700; flex: 1 1 auto; min-width: 0; }
+.bet-head .odds { font-size: 1.08rem; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-  /* ---------- last week, graded (Section 7) ---------- */
-  .graded-item {
-    background: #14171b;
-    border: 1px solid #262b31;
-    border-left: 4px solid #555d66;
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-  .graded-item .result {
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-  .graded-item.result-won { border-left-color: #2e7d46; }
-  .graded-item.result-won .result { color: #6bd68a; }
-  .graded-item.result-lost { border-left-color: #a33; }
-  .graded-item.result-lost .result { color: #ff8585; }
-  .graded-item.result-cashed-out { border-left-color: #b98900; }
-  .graded-item.result-cashed-out .result { color: #ffd34d; }
-  .graded-item.result-open { border-left-color: #4da3ff; }
-  .graded-item.result-open .result { color: #6db4ff; }
-  .graded-item .lesson { font-size: 0.85rem; margin-top: 4px; }
+.bet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 0 0 10px;
+}
+.bet-meta > span { display: inline-flex; align-items: baseline; }
+.bet-meta > span:not(:first-child)::before { content: "\00b7"; margin: 0 7px; color: var(--text-faint); }
+.bet-meta .stake { font-weight: 800; color: var(--text); font-size: 1rem; font-variant-numeric: tabular-nums; }
 
-  footer {
-    margin-top: 24px;
-    padding-top: 12px;
-    border-top: 1px solid #333;
-    font-size: 0.8rem;
-    color: #888;
-  }
+.prob-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+.prob {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 0.82rem;
+}
+.prob .k { color: var(--text-faint); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.prob b { font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
+.prob-row.lottery-odds .prob { background: var(--tier-lottery-bg); border-color: var(--tier-lottery-border); }
+.prob-row.lottery-odds .one-in-x { background: transparent; border-style: dashed; }
+.prob-row.lottery-odds .one-in-x b { color: var(--tier-lottery); font-size: 0.98rem; }
+
+.leg-list { display: flex; flex-direction: column; gap: 4px; margin: 0 0 10px; }
+.leg-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--bg-elevated-2);
+  border-radius: 7px;
+  padding: 6px 9px;
+  font-size: 0.85rem;
+}
+.leg-list .leg-sel { font-weight: 600; min-width: 0; }
+.leg-list .leg-prob { flex: 0 0 auto; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+
+/* historical_import cards: numbers were reconstructed after the fact, not
+   researched before the bet — say so where the numbers are shown. */
+.reconstructed-tag {
+  align-self: center;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+.leg-list .leg-prob.reconstructed { font-style: italic; }
+.leg-list .leg-prob.reconstructed::after { content: " est."; font-size: 0.72em; }
+
+.reason-summary { font-weight: 600; font-size: 0.92rem; }
+
+.reason-detail { margin-top: 6px; }
+.reason-detail summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 4px 2px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+  list-style: none;
+}
+.reason-detail summary::-webkit-details-marker { display: none; }
+.reason-detail summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  margin-left: 1px;
+  transition: transform 0.15s ease;
+}
+.reason-detail[open] summary::after { transform: rotate(45deg); }
+.reason-detail .reason { font-size: 0.85rem; color: var(--text-dim); margin: 4px 0 8px; }
+.reason-detail .prob-source { font-size: 0.78rem; color: var(--text-faint); margin: 0 0 6px; }
+.reason-detail .verify {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  border-top: 1px dashed var(--border-soft);
+  padding-top: 6px;
+  margin: 6px 0 0;
+}
+
+/* ---------- collapsibles: angles / avoid / boosts ---------- */
+.more {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.more summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  padding: 12px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+.more summary::-webkit-details-marker { display: none; }
+.more summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--text-faint);
+  border-bottom: 2px solid var(--text-faint);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+.more[open] summary::after { transform: rotate(45deg); }
+.more[open] summary { border-bottom: 1px solid var(--border-soft); }
+.more > *:not(summary) { margin: 10px 14px; }
+.more > *:not(summary):last-child { margin-bottom: 14px; }
+.more ul { padding-left: 1.2em; list-style: disc; }
+.more li { margin-bottom: 6px; font-size: 0.88rem; color: var(--text-dim); }
+.more li:last-child { margin-bottom: 0; }
+
+.avoid-item, .boost-item {
+  border-left: 3px solid var(--slate);
+  background: var(--bg-elevated-2);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.avoid-item { border-left-color: var(--negative); background: var(--negative-bg); }
+.avoid-sel { font-weight: 700; margin: 0 0 2px; }
+.avoid-why { font-size: 0.82rem; color: var(--text-dim); }
+
+.boost-item.fits { border-left-color: var(--positive); background: var(--positive-bg); }
+.boost-verdict { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-faint); margin: 0 0 2px; }
+.boost-item.fits .boost-verdict { color: var(--positive); }
+.boost-desc { font-size: 0.83rem; color: var(--text-dim); }
+
+/* ---------- weekend panel ---------- */
+.stoploss { display: flex; flex-direction: column; gap: 6px; }
+.stoploss-bar { height: 10px; border-radius: 999px; background: var(--bg-elevated-2); border: 1px solid var(--border-soft); overflow: hidden; }
+.stoploss-used { height: 100%; background: linear-gradient(90deg, var(--positive), var(--tier-lottery) 65%, var(--negative)); }
+.stoploss-text { font-size: 0.82rem; color: var(--text-dim); }
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.stat .label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-faint); margin-bottom: 4px; }
+.stat .value { font-size: 1.1rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stat .value.positive { color: var(--positive); }
+.stat .value.negative { color: var(--negative); }
+
+.slot-row { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.slot-row-head { display: flex; align-items: center; gap: 8px; }
+.slot-name { font-weight: 800; }
+.slot-date { color: var(--text-faint); font-size: 0.82rem; }
+.slot-status {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--bg-elevated-2);
+  color: var(--text-dim);
+  border: 1px solid var(--border-soft);
+  white-space: nowrap;
+}
+.slot-row.published .slot-status { color: var(--open); background: var(--open-bg); border-color: transparent; }
+.slot-row.graded .slot-status { color: var(--text-dim); }
+.slot-row.skipped, .slot-row.future { opacity: 0.72; }
+
+.slot-bets { margin: 8px 0 0; }
+.slot-bet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+}
+.slot-bet:last-child { border-bottom: none; padding-bottom: 0; }
+.slot-bet:first-child { padding-top: 0; }
+.slot-bet-tier {
+  flex: 0 0 auto;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-faint);
+  background: var(--bg-elevated-2);
+  border-radius: 5px;
+  padding: 2px 6px;
+}
+.slot-bet-sel { flex: 1 1 150px; min-width: 0; font-weight: 600; }
+.slot-bet-line { flex: 0 0 auto; color: var(--text-dim); font-variant-numeric: tabular-nums; font-size: 0.8rem; }
+
+/* ---------- legs panel ---------- */
+.leg-group { display: flex; flex-direction: column; gap: 8px; }
+.leg-group-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.leg-group-title .kickoff { font-size: 0.78rem; font-weight: 500; color: var(--text-faint); white-space: nowrap; }
+
+.leg { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.leg-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 5px; }
+.leg-head .leg-sel { font-weight: 700; min-width: 0; }
+.leg-head .odds { flex: 0 0 auto; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+.leg-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 5px; font-size: 0.82rem; }
+.leg-meta .market {
+  text-transform: uppercase;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+.leg-meta .prop-tag { font-size: 0.72rem; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 2px 8px; }
+.leg-meta .prob { padding: 2px 8px; font-size: 0.78rem; }
+.leg-meta .prob .k { font-size: 0.66rem; }
+.leg-meta .edge { font-size: 0.82rem; }
+.leg-reason { font-size: 0.83rem; color: var(--text-dim); }
+
+/* ---------- record panel ---------- */
+.alltime-line {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.card-record, .last-weekend { display: flex; flex-direction: column; gap: 8px; }
+.card-record-note { font-size: 0.82rem; color: var(--text-faint); }
+.record-note { font-size: 0.8rem; color: var(--text-faint); font-style: italic; }
 </style>
 </head>
 <body>
-  <h1>Weekly Betting Cheat Sheet</h1>
+<header class="topbar">
+  <div class="topbar-row">
+    <h1 class="brand">Cheat Sheet</h1>
+    <button type="button" class="refresh-btn" onclick="location.reload()" aria-label="Refresh">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.66-5.66L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.66 5.66L4 16"/><path d="M4 20v-4h4"/></svg>
+    </button>
+  </div>
+  <p class="topbar-meta"><span class="updated">{{UPDATED_AT}}</span><span class="next">{{NEXT_UPDATE}}</span></p>
+</header>
 
-  {{SAMPLE_BANNER}}
+{{SAMPLE_BANNER}}
 
-  <div class="advice-only">Advice only &mdash; Gus places every bet himself in the DK app.</div>
+<main class="panels">
+  <!-- ids are panel-*, NOT the bare tab names: if an element's id matched the
+       #today/#weekend/... hash, the browser would anchor-jump to it on launch
+       (start_url ends in #today) and slide the top of the card under the
+       sticky header. No element matches the hash, so there's nothing to jump to. -->
+  <section class="panel is-active" id="panel-today">{{TODAY}}</section>
+  <section class="panel" id="panel-weekend">{{WEEKEND}}</section>
+  <section class="panel" id="panel-legs">{{LEGS}}</section>
+  <section class="panel" id="panel-record">{{RECORD}}</section>
+</main>
 
-  <section class="scoreboard" id="scoreboard">
-    <h2>Scoreboard</h2>
-    <div class="section-body">{{SCOREBOARD}}</div>
-  </section>
+<nav class="tabbar" aria-label="Sections">
+  <a href="#today" class="tab-link" data-tab="today" aria-current="page">
+    <svg class="tab-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.25"/><circle cx="12" cy="12" r="3.6"/></svg>
+    <span class="tab-label">Today</span>
+  </a>
+  <a href="#weekend" class="tab-link" data-tab="weekend">
+    <svg class="tab-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.75h17"/><path d="M8 3v4M16 3v4"/></svg>
+    <span class="tab-label">Weekend</span>
+  </a>
+  <a href="#legs" class="tab-link" data-tab="legs">
+    <svg class="tab-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 3.75 8.25 12 13l8.25-4.75Z"/><path d="M3.75 12 12 16.75 20.25 12"/><path d="M3.75 15.75 12 20.5l8.25-4.75"/></svg>
+    <span class="tab-label">Legs</span>
+  </a>
+  <a href="#record" class="tab-link" data-tab="record">
+    <svg class="tab-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 20V11M9.5 20V4.5M14.5 20v-8M19.5 20v-5"/></svg>
+    <span class="tab-label">Record</span>
+  </a>
+</nav>
 
-  <section class="card-section" id="card">
-    <h2>This Week&rsquo;s Card</h2>
-    <div class="section-body">{{CARD}}</div>
-  </section>
+<script>
+(function () {
+  var TABS = ['today', 'weekend', 'legs', 'record'];
+  var panels = {};
+  var links = {};
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  for (var i = 0; i < TABS.length; i++) {
+    panels[TABS[i]] = document.getElementById('panel-' + TABS[i]);
+  }
+  var anchors = document.querySelectorAll('.tab-link');
+  for (var j = 0; j < anchors.length; j++) {
+    links[anchors[j].getAttribute('data-tab')] = anchors[j];
+  }
 
-  <section class="leg-bank" id="leg-bank">
-    <h2>Leg Bank</h2>
-    <div class="section-body">{{LEG_BANK}}</div>
-  </section>
+  function currentTab() {
+    var id = (location.hash || '#today').slice(1);
+    return TABS.indexOf(id) === -1 ? 'today' : id;
+  }
 
-  <section class="boost-check" id="boost-check">
-    <h2>Boost Check</h2>
-    <div class="section-body">{{BOOST_CHECK}}</div>
-  </section>
+  function show(id) {
+    for (var i = 0; i < TABS.length; i++) {
+      var t = TABS[i];
+      var panel = panels[t];
+      var link = links[t];
+      var active = t === id;
+      if (panel) panel.classList.toggle('is-active', active);
+      if (link) {
+        if (active) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
+      }
+    }
+  }
 
-  <section class="avoid-list" id="avoid-list">
-    <h2>Avoid List</h2>
-    <div class="section-body">{{AVOID_LIST}}</div>
-  </section>
+  function activate() {
+    show(currentTab());
+    // Panels are id="panel-*" so the #today-style hash never matches an
+    // element (no native anchor jump). Still reset to the top on every tab
+    // change and after first paint, belt and braces.
+    window.scrollTo(0, 0);
+  }
 
-  <section class="last-week" id="last-week-graded">
-    <h2>Last Week, Graded</h2>
-    <div class="section-body">{{LAST_WEEK_GRADED}}</div>
-  </section>
-
-  <footer>Built {{BUILT_AT}}</footer>
+  window.addEventListener('hashchange', activate);
+  if (!location.hash) {
+    history.replaceState(null, '', '#today');
+  }
+  activate();
+  window.addEventListener('load', activate);
+  requestAnimationFrame(function () {
+    requestAnimationFrame(activate);
+  });
+})();
+</script>
 </body>
 </html>

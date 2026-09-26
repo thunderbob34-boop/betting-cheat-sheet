@@ -1,128 +1,97 @@
 ---
-description: Research real lines/context for the upcoming NFL or CFB slate, build the week JSON, show the diff, wait for approval before pushing
+description: Grade finished bets, research today's slot, build the three-tier card, publish the phone page (runs unattended on a schedule)
 ---
 
-# /cheatsheet nfl|cfb
+# /cheatsheet [auto|thu|sat|sun|mon]
 
-Argument: `$1` is `nfl` or `cfb`. If missing, ask which.
+Default `auto`: figure out the slot from today's date. This command runs **unattended** from a
+scheduled task on Gus's Mac — nobody is watching. Publishing is automatic; `build.py`'s rules are
+the safety net. Read `CLAUDE.md` in full first (ground rules 1–12, research playbook).
 
-Read `CLAUDE.md` in full first — Section 3 is non-negotiable, and `src/build.py`
-hard-fails on a card that violates it. Read `../docs/betting-cheat-sheet-plan.md`
-for the full design if you haven't already this session.
+Repo: `/Users/gusjohnson/HQ/ME/Personal Goose/Betting Cheat Sheet/Engine`. Run every command from
+there. Times are US Eastern.
 
-## 1. Figure out which edition this is
+## 0. Sync
 
-- `nfl` → the next upcoming Sunday's NFL slate (the plan's convention is Saturday
-  night research for Sunday games). `cfb` → the next upcoming Saturday's slate.
-- Week file name: `data/weeks/<season>-<sport>-wk<NN>.json`, e.g.
-  `2026-nfl-wk03.json`. Check `data/weeks/` for the most recent prior edition of
-  this sport to know the last week number and to diff against.
-- Only research the single upcoming game day Gus actually asked about for this
-  run (e.g. "Sunday's games") — not every game in the NFL week unless told
-  otherwise.
+`git pull --ff-only`. If it fails (diverged), stop, don't force anything, and report why.
 
-## 2. Research — real data only, never fabricate
+## 1. Where are we
 
-Use WebSearch for anything time-sensitive (lines, injuries, props, promos) —
-prefer Firecrawl search if it's connected and working, but don't waste retries
-on it if it's erroring; fall back to WebSearch. This environment's WebSearch is
-grounded to the real current date, so current-week content is genuinely
-findable.
+`python3 src/slate.py status` → weekend id, today's slot (or none on Tue/Wed), this slot's budget
+(`easy`, `fun`, `total`, and the plain-English `why`), whether the weekend's lottery ticket is
+still available, and open bets. Use those stake numbers exactly — never exceed them.
 
-**CRITICAL HONESTY RULES — these are not optional:**
+## 2. Grade first
 
-- Every line, odds number, injury note, or probability must come from an
-  actual search result you actually got back. An honest "not found" beats a
-  plausible-sounding invention, always.
-- **Never estimate a card bet's probability from a single source.** Find at
-  least two independent real win-probability models or analytical predictions
-  (e.g. a prediction-market-implied probability like Kalshi/Polymarket, plus a
-  published model like Stats Insider, SportsLine, or similar) and average
-  them. Cite both sources and show the averaging math in
-  `estimated_prob_source`. This was a real mistake caught on the first real
-  edition (2026-nfl-wk02) — a single-sourced estimate overstated the edge, and
-  Gus caught it. Don't repeat it. If a genuinely averaged edge comes out small
-  or negative, that's a correct, honest result — report it as such, don't
-  chase a bigger number.
-- When you get a number from a page, prefer fetching the actual page directly
-  over trusting a search engine's auto-summary of it — summaries have been
-  observed to garble a specific figure (a search summary showed 71% for a game
-  where the actual page said 74%). If a number matters, confirm it against the
-  real page text.
-- If two sources disagree meaningfully (not just book-to-book vig), report
-  both with their sources rather than silently picking one.
+`python3 src/grade.py pending` lists bets whose games should be over. For each: find the real
+final score / player stat line (box score pages — fetch the page itself, don't trust a search
+summary), then `python3 src/grade.py set <wid> <slot> <tier> Won|Lost|Push|Void`. A parlay is
+Won only if every leg hit (Void legs per DK rules → if unsure, leave it pending and say so). If a
+result can't be confirmed from a real source, leave it pending — never guess. Grading first
+matters: the next slot's budget depends on it.
 
-## 3. Build the week JSON
+If there's no slot today (Tue/Wed) or no games left in the slot (season over), skip to step 5
+after grading.
 
-Follow the exact schema in the most recent existing week file (card, leg_bank,
-boost_check, avoid_list, last_week_graded, verify blocks) — `data/weeks/sample-phase1.json`
-demonstrates all three card tiers if you want a clean reference. `is_sample: false`.
-Every guardrail in `src/build.py` (Section 3, all rules) must pass — if it
-doesn't, fix the data, never the rule.
+## 3. Research today's slot
 
-`week["card"]` is three named tiers, **built in this order** (a build-order
-discipline like Rule 3 — nothing checks this mechanically, so actually do it
-in order):
+Slot → games: **thu** = Thursday NFL · **sat** = Saturday college football (ranked/notable games
+plus any NFL Saturday games late in the season) · **sun** = every Sunday NFL game (1 PM, 4 PM,
+SNF) · **mon** = Monday NFL. Only consider games kicking off **at least 60 minutes from now**.
 
-1. **`easy_bet`** (required) — a single straight bet, highest probability with
-   real edge, ~$2-3. Fields: `id`, `selection`, `market`, `dk_odds`,
-   `estimated_prob`, `estimated_prob_source`, `is_pre_kickoff: true`, `stake`,
-   `reason_summary` (one line, always visible on the page), `reason` (the full
-   reasoning — rendered behind a tap-to-expand, so it's fine for this to be as
-   long as the research actually supports), `verify`.
-2. **`fun_parlay`** (optional — at most one) — 2-3 legs, `legs: [{selection,
-   estimated_prob, reason}]`, **every leg's `estimated_prob` >= 0.55** or
-   `build.py` rejects it. Same top-level fields as `easy_bet` (`dk_odds` is the
-   overall parlay price, `reason_summary`/`reason`/`verify` at the parlay
-   level), ~$1-2.
-3. **`lottery_ticket`** (optional — at most one, **only decide this after 1
-   and 2 are set**) — one 10-20 leg parlay (`legs`, same leg shape as
-   `fun_parlay`). `stake` must be **exactly 0.50** — not a range, not
-   approximate. No leg-probability floor (that's the point — pick something
-   genuinely long-shot if you're including this tier at all, don't water it
-   down to look safer). Its stake is outside the $5/week line by design; don't
-   let it influence tiers 1-2's sizing. `dk_odds` is the actual DK-listed/
-   boosted payout odds for the ticket (used to show a "payout-implied"
-   probability on the page, honestly contrasted against the real combined
-   probability computed from the legs).
+For the candidate games, from real sources (WebSearch to find, WebFetch to read the page):
+- DraftKings lines (spread, total, moneylines) and **player props**. If DK's own number isn't
+  findable, use another named book and say which.
+- Injury reports / inactives, weather for outdoor games.
+- **≥2 independent win/probability sources** per bet you might put on the card (prediction
+  markets like Kalshi/Polymarket, models like SportsLine, numberFire, Dimers, Stats Insider,
+  ESPN FPI). Record each in `prob_sources` as `{"name", "prob"}`.
+- Records: flag every **0–2 team** (desperation angle). Each team's **sack leader** and the
+  opposing QB (skip vs mobile QBs).
+- For props, a projection source (e.g. FantasyPros / numberFire projections vs the line) counts
+  as a probability source only if it states a probability or you can show the math plainly.
 
-Only build a Lottery Ticket when you actually have 10-20 real, researched legs
-to put in it — an empty/thin one is worse than skipping the tier entirely for
-that edition.
+## 4. Build the slot card
 
-Other sections, unchanged:
-- `leg_bank`: real entries across multiple games/markets — `build.py` sorts by
-  estimated_prob automatically, don't worry about order.
-- `boost_check`: real current promos if found, honest "nothing found" if not.
-- `avoid_list`: 3-5 real traps from the actual slate.
-- `last_week_graded`: pull the real settled bets for the prior slate straight
-  from `data/bet_log.csv` — never invent a result for an Open/unsettled bet.
+Write `data/weekends/<wid>/<slot>.json` (copy the shape of the newest existing slot file; include
+the `budget` snapshot from step 1 and an `angles` list). Order matters:
 
-Run `python3 -m unittest discover -s src -p "test_*.py" -v` and
-`python3 src/build.py data/weeks/<new-file>.json` yourself. Both must succeed
-before you show this to Gus.
+1. **Easy Bet** — one straight bet, highest probability with a real (averaged, ≥2-source) edge,
+   stake = `budget.easy` (or less if nothing clears the bar — say so). Sources must agree within
+   10 points (rule 11). Near-zero edge is fine if it's still the best, safest bet; say so plainly.
+2. **Fun Parlay** — 2–3 legs, every leg ≥55%, stake = `budget.fun` (or omit it and give the Easy
+   Bet the full `budget.total`).
+3. **Game-script check** (rule 10) — tag every bet/leg `neutral` / `<TEAM> leading` /
+   `<TEAM> trailing`; the Easy Bet and a Fun Parlay leg can't need the same side ahead.
+4. **Lottery Ticket** — only if `lottery_available` and this is the **Sunday** slot (or Monday if
+   Sunday passed without one): 10–20 real legs, stake exactly $0.50, real combined probability.
+5. Leg bank (10–15 real entries incl. player props, each with `player`/`game`/`kickoff` where it
+   applies), boost check (real promos or an honest "none found"), avoid list (3–5 real traps).
 
-## 4. Diff against the previous edition
+Every bet and leg needs `game` ("AWAY @ HOME"), `kickoff` (ISO with offset), `game_script`,
+`reason_summary` (one line — Gus scans, he doesn't read), `reason` (full, behind tap-to-expand),
+and `verify` (source, fetched_at, "confirm the price in the DK app"). No blacklisted players
+(`config.blacklist`). If `budget.total` is 0 (stop-loss hit), still publish the card with $0
+stakes and a clear "stop-loss reached — watch only" summary.
 
-Find the most recent prior week file for this sport in `data/weeks/`. Produce
-a clear, human-readable diff for Gus: what changed in the card (same pick,
-different odds/probability? a different pick entirely?), what changed in the
-scoreboard (new results logged since last time), and call out anything that
-moved meaningfully (a line move, an injury that flipped a recommendation).
-If there's no prior edition for this sport yet, say so plainly instead of
-diffing against nothing.
+## 5. Build, test, publish
 
-## 5. Show Gus — do NOT push yet
+```
+python3 -m unittest discover -s src -p "test_*.py"
+python3 src/build.py --publish <wid>/<slot>      # plain `python3 src/build.py` on grading-only days
+```
+A `RuleViolation` means the card breaks a rule: fix the **data** (swap the bet, trim the stake)
+and rebuild. Never edit a rule to get through. If it can't be fixed, don't publish the slot file
+— publish grading only and report why.
 
-Present the new card, the diff from the previous edition, and any honesty
-caveats (single-source gaps, source disagreements, etc.) in chat. Do **not**
-run `git add`/`git commit`/`git push` at this point, even if this command was
-triggered by a schedule/cron run and no one is watching live — wait for an
-explicit approval message before pushing. This matches how every edition of
-this page has been built so far; don't silently change that just because a run
-happens to be unattended.
+Then `git add data/weekends docs/index.html` (never `data/bet_log.csv` — it's only appended from
+Gus's real slips, never by this run), `git commit -m "<slot> card <date>: <easy bet>"`, and
+`git push`. Poll `gh api repos/thunderbob34-boop/betting-cheat-sheet/pages/builds/latest` until
+`built`, then confirm the live page shows the new card.
 
-Once Gus approves (in this session or a follow-up message), commit with a
-clear message (ending with the standing attribution lines for this session)
-and push to `main`. Poll GitHub Pages until the build shows `built` and confirm
-the live URL reflects the change before reporting done.
+## 6. Report
+
+End with a short report: the three bets (selection, odds, stake), this weekend's net and what's
+left of the $5 stop-loss, anything graded, anything left pending or unverified. If a
+PushNotification tool is available, send Gus one line: "<Day> card is up: <easy bet> $X,
+<fun parlay> $Y". Facts only.

@@ -1,0 +1,169 @@
+{
+  "weekend_id": "2026-09-24",
+  "slot": "thu",
+  "date": "2026-09-24",
+  "sport": "NFL",
+  "generated_at": "2026-09-26T00:00:00-04:00",
+  "is_sample": false,
+  "historical_import": true,
+  "angles": [
+    "Historical import only -- this slot documents what Gus actually bet on the real 2026-09-24 TNF card (ATL @ GB), pulled from data/bet_log.csv, not a new recommendation."
+  ],
+  "card": {
+    "easy_bet": {
+      "id": "thu-easy-2026-09-24",
+      "selection": "MarShawn Lloyd 25+ rush+rec yds",
+      "market": "rush+rec yards",
+      "dk_odds": -216,
+      "estimated_prob": 0.68,
+      "estimated_prob_source": "Historical import: no original research estimate was recorded when this bet was placed. estimated_prob here approximates the -216 market-implied probability (68.3%) purely for display -- it is a reconstruction, not a figure that was actually logged at bet time.",
+      "is_pre_kickoff": true,
+      "stake": 2.25,
+      "reason_summary": "Imported from the real bet log (2026-09-24) — Lost. Lloyd + Johnson combined for just 17 yards on 8 carries; GB trailed all game.",
+      "reason": "Historical import from data/bet_log.csv, not a new recommendation -- this is a faithful record of a real bet Gus already placed, not a card built by this pipeline. Placed pre-kickoff on TNF (ATL @ GB, Sept 24 2026). Per the log's notes column: \"Lloyd + K. Johnson combined 17 yds on 8 carries; GB trailed all game.\" No prob_sources were recorded for this bet at the time it was placed, so the source-agreement rule (RULE 11) does not apply to this file.",
+      "verify": {
+        "source": "data/bet_log.csv, row dated 2026-09-24 (pre-kick), NFL, \"Straight (Easy Bet)\"",
+        "fetched_at": "2026-09-24 (pre-kick)",
+        "note": "Historical record only -- nothing left to verify going forward."
+      },
+      "game": "ATL @ GB",
+      "kickoff": "2026-09-24T20:15:00-04:00",
+      "game_script": "GB leading",
+      "player": "MarShawn Lloyd",
+      "result": "Lost",
+      "net": -2.25
+    },
+    "fun_parlay": {
+      "id": "thu-fun-2026-09-24",
+      "legs": [
+        {
+          "selection": "Drake London 5+ rec",
+          "estimated_prob": 0.62,
+          "reason": "Historical import — hit (9 receptions). No original per-leg estimate was recorded at bet time; 0.62 approximates the -209 market-implied price, reconstructed for this import only.",
+          "game": "ATL @ GB",
+          "kickoff": "2026-09-24T20:15:00-04:00",
+          "game_script": "neutral",
+          "player": "Drake London",
+          "market": "reception"
+        },
+        {
+          "selection": "Bijan Robinson 4+ rec",
+          "estimated_prob": 0.6,
+          "reason": "Historical import — missed (2 receptions). No original per-leg estimate was recorded at bet time; 0.60 approximates the -279 market-implied price, reconstructed for this import only. game_script is \"ATL trailing\" since Bijan's receiving volume depended on Atlanta needing to throw catch-up passes.",
+          "game": "ATL @ GB",
+          "kickoff": "2026-09-24T20:15:00-04:00",
+          "game_script": "ATL trailing",
+          "player": "Bijan Robinson",
+          "market": "reception"
+        }
+      ],
+      "dk_odds": 101,
+      "estimated_prob_source": "Historical import: the real DraftKings SGP price was never recorded at bet time -- the log's notes estimate it at roughly +101. dk_odds here uses that same rough log estimate, not a confirmed DraftKings quote.",
+      "is_pre_kickoff": true,
+      "stake": 1.25,
+      "reason_summary": "Imported from the real bet log (2026-09-24) — Lost. London hit (9 rec), Bijan missed (2 rec); a parlay needs every leg to hit.",
+      "reason": "Historical import from data/bet_log.csv, not a new recommendation. Per the log's notes column: \"London hit (9 rec); Bijan missed (2 rec); exact DK SGP price not recorded (~+101 est).\" The dk_odds field (101) is that same rough estimate, not a confirmed price -- flagged here rather than presented as verified.",
+      "verify": {
+        "source": "data/bet_log.csv, row dated 2026-09-24 (pre-kick), NFL, \"SGP parlay (Fun Parlay)\"",
+        "fetched_at": "2026-09-24 (pre-kick)",
+        "note": "Historical record only -- the exact DK SGP price was never recorded, only a rough estimate."
+      },
+      "game": "ATL @ GB",
+      "kickoff": "2026-09-24T20:15:00-04:00",
+      "game_script": "neutral",
+      "result": "Lost",
+      "net": -1.25,
+      "odds_estimated": true
+    },
+    "lottery_ticket": {
+      "id": "thu-lottery-2026-09-24",
+      "legs": [
+        {
+          "selection": "Lloyd 25+ R+R",
+          "estimated_prob": 0.63,
+          "reason": "Historical import — missed; reconstructed estimate, not originally recorded."
+        },
+        {
+          "selection": "London 5+ rec",
+          "estimated_prob": 0.68,
+          "reason": "Historical import — hit; reconstructed estimate, not originally recorded."
+        },
+        {
+          "selection": "Bijan 4+ rec",
+          "estimated_prob": 0.65,
+          "reason": "Historical import — missed; reconstructed estimate, not originally recorded."
+        },
+        {
+          "selection": "Bijan 40+ rec yds",
+          "estimated_prob": 0.63,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Cooper 4+ tkl",
+          "estimated_prob": 0.68,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Franklin 3+ tkl",
+          "estimated_prob": 0.7,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Bates 3+ tkl",
+          "estimated_prob": 0.68,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Hughes 3+ tkl",
+          "estimated_prob": 0.68,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Folk 1+ FG",
+          "estimated_prob": 0.84,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Smack 1+ FG",
+          "estimated_prob": 0.8,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Love 1+ pass TD",
+          "estimated_prob": 0.72,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Z. Smith 1+ sack",
+          "estimated_prob": 0.6,
+          "reason": "Historical import — reconstructed estimate, not originally recorded; per-leg result not itemized in the log."
+        },
+        {
+          "selection": "Van Ness 1+ sack",
+          "estimated_prob": 0.6,
+          "reason": "Historical import — reconstructed estimate, not originally recorded. Per the log's notes, the Lloyd leg alone was enough to sink the whole ticket."
+        }
+      ],
+      "dk_odds": 15300,
+      "estimated_prob_source": "Historical import: the exact DraftKings price for this 13-leg SGP was never recorded at bet time -- the log estimated true combined odds at roughly 1 in 154. dk_odds (15300) is a reconstructed placeholder in that neighborhood, not a confirmed DraftKings quote. Every per-leg estimated_prob value in this ticket is likewise reconstructed for this import, not a figure that was actually recorded when the bet was placed.",
+      "is_pre_kickoff": true,
+      "stake": 0.5,
+      "reason_summary": "Imported from the real bet log (2026-09-24) — Lost. Est. true odds ~1 in 154; exact DK price not recorded; the Lloyd leg alone sank it.",
+      "reason": "Historical import from data/bet_log.csv, not a new recommendation. Per the log's notes column: \"Est true odds ~1 in 154; exact DK price not recorded; Lloyd leg sank it.\" Neither the exact DraftKings payout odds nor the original per-leg probability estimates were recorded when this ticket was placed -- both are reconstructed here for display purposes only, and this ticket does not count against the $5/weekend stop-loss (Gus's rule keeps the Lottery Ticket outside that line).",
+      "verify": {
+        "source": "data/bet_log.csv, row dated 2026-09-24 (pre-kick), NFL, \"SGP parlay (Lottery Ticket)\"",
+        "fetched_at": "2026-09-24 (pre-kick)",
+        "note": "Historical record only -- the exact DK price was never recorded, only a rough true-odds estimate."
+      },
+      "game": "ATL @ GB",
+      "kickoff": "2026-09-24T20:15:00-04:00",
+      "game_script": "neutral",
+      "result": "Lost",
+      "net": -0.5,
+      "odds_estimated": true
+    }
+  },
+  "leg_bank": [],
+  "boost_check": [],
+  "avoid_list": []
+}

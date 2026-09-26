@@ -2,9 +2,11 @@ import unittest
 
 from odds import (
     american_to_implied_prob,
+    american_to_decimal,
     parlay_implied_prob,
     edge,
     format_prob,
+    format_prob_signed,
     format_one_in_x,
 )
 
@@ -30,6 +32,22 @@ class TestAmericanToImpliedProb(unittest.TestCase):
     def test_zero_raises_value_error(self):
         with self.assertRaises(ValueError):
             american_to_implied_prob(0)
+
+
+class TestAmericanToDecimal(unittest.TestCase):
+    def test_negative_110(self):
+        # decimal 1.909090... ; stake $1 win -> net $0.91
+        self.assertAlmostEqual(american_to_decimal(-110), 1.9090909, delta=0.0001)
+
+    def test_positive_150(self):
+        self.assertAlmostEqual(american_to_decimal(150), 2.5, delta=0.0001)
+
+    def test_negative_216(self):
+        self.assertAlmostEqual(american_to_decimal(-216), 1.463, delta=0.001)
+
+    def test_zero_raises_value_error(self):
+        with self.assertRaises(ValueError):
+            american_to_decimal(0)
 
 
 class TestParlayImpliedProb(unittest.TestCase):
@@ -78,6 +96,17 @@ class TestFormatOneInX(unittest.TestCase):
 
     def test_certainty_is_one_in_one(self):
         self.assertEqual(format_one_in_x(1.0), "1 in 1")
+
+
+class TestFormatProbSigned(unittest.TestCase):
+    def test_positive_edge_gets_plus_sign(self):
+        self.assertEqual(format_prob_signed(0.035), "+3.5%")
+
+    def test_negative_edge_keeps_minus_sign(self):
+        self.assertEqual(format_prob_signed(-0.107), "-10.7%")
+
+    def test_zero_gets_plus_sign(self):
+        self.assertEqual(format_prob_signed(0.0), "+0.0%")
 
 
 if __name__ == "__main__":

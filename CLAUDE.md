@@ -1,161 +1,125 @@
-# CLAUDE.md — Weekly Betting Cheat Sheet
+# CLAUDE.md — Betting Cheat Sheet
 
-This file governs how Claude Code works in this repo. The full master plan lives at
-`../docs/betting-cheat-sheet-plan.md` (outside this repo, in the job folder). Read it
-before doing any work beyond Phase 0.
+This file governs how Claude Code works in this repo. The original master plan lives at
+`../betting-cheat-sheet-plan.md` (the job folder, one level up from this `Engine/` repo, after
+the 2026-09-16 `~/HQ` reorg). This file overrides the plan wherever they disagree.
 
-**Current status: Phase 2 (real weekly research) live.** `docs/index.html`
-currently renders `data/weeks/2026-nfl-wk01-mnf.json` (a one-off single-game
-edition, Under 43.5 on Broncos @ Chiefs MNF, Sept 14 2026) — built same-day,
-same evening as kickoff, and pushed same-day. `data/weeks/2026-nfl-wk02.json`
-(NFL Week 2, Sunday Sept 20 2026 — a real Easy Bet + Fun Parlay) is the
-prior edition and is **not currently the one rendering** — `build.py` only
-ever renders whichever week file it's pointed at; both files still exist and
-either can be rebuilt any time. `is_sample: false` on both.
-`.claude/commands/cheatsheet.md` is the real `/cheatsheet nfl|cfb` command —
-read it before running or scheduling a new edition. `grade.py` (Phase 3) is
-still not built.
+## What this is now (as of 2026-09-26)
 
-**Card schema (2026-09-14): three named tiers, not a flat bet list.**
-`week["card"]` is now `{"easy_bet": {...}, "fun_parlay": {...} | absent,
-"lottery_ticket": {...} | absent}` — see rule 6 above for what each tier
-requires. Every card/leg_bank/leg-bank-leg bet object needs both
-`reason_summary` (one line, always visible) and `reason` (the full
-reasoning, rendered inside a `<details>` tap-to-expand alongside the prob
-source and verify block — see `_reason_detail_html`). `render_scoreboard`'s
-"Weekly Budget Used" tile is no longer opt-in (the old `show_weekly_budget_tile`
-field is gone) — it's always computed as `easy_bet.stake + fun_parlay.stake`
-(never the Lottery Ticket's). All three existing week files
-(`sample-phase1.json`, `2026-nfl-wk01-mnf.json`, `2026-nfl-wk02.json`) were
-migrated to this schema the same day it was introduced — `sample-phase1.json`
-demonstrates all three tiers, including a 12-leg Lottery Ticket example.
+An autonomous phone app: a card for **every game day, Thursday through Monday, all season**,
+built, graded, and published by a scheduled Claude run on Gus's Mac — no approval step per
+edition. Gus opens the page (installed to his home screen), sees **three bets for the current
+time slot**, and places them himself in DraftKings.
 
-**Open cross-edition budget question, still unresolved as of 2026-09-14:**
-tonight's MNF edition spends $2.00 of the $5/week cap on its own Easy Bet
-tier. The already-built `2026-nfl-wk02.json` separately totals its own
-Easy Bet + Fun Parlay at a full $5.00. If both are meant to share one
-$5/week pool (Gus's own framing when he approved the MNF card was "this
-week's $5"), `2026-nfl-wk02.json` needs trimming to fit within the ~$3
-remaining before it's next approved/pushed — it has NOT been trimmed yet.
-Today's tier restructuring doesn't resolve this on its own (each edition's
-budget tile only reflects that one file's own tiers 1-2, not a running
-total across multiple editions in the same real week). The scheduled Sat
-9/19 8pm ET refresh routine (trig_01LMYBqnhdXhcZxogaZFP9jN) was created
-before this constraint existed and does not know about it either — check
-with Gus before pushing whatever that routine produces, and make sure it
-reads `.claude/commands/cheatsheet.md` for the current tier schema (it will,
-per its own prompt, but it was written to describe the old flat schema, so
-say so explicitly if reviewing its output).
+- Live page: https://thunderbob34-boop.github.io/betting-cheat-sheet/ (GitHub Pages from `docs/`).
+- Four tabs: **Today** (this slot's three bets), **Weekend** (every slot Thu–Mon, results, the
+  stop-loss meter), **Legs** (leg bank incl. player props), **Record** (real record from
+  `bet_log.csv`, the card's own record, last weekend).
+- Automation: a local scheduled task (Claude desktop app → Scheduled) runs `/cheatsheet auto`
+  on the mornings of each slot day plus a Tuesday grading run. It only runs while the Claude
+  app is open on the Mac; a missed run fires on next launch.
+- Publishing is automatic. The safety net is `src/build.py`: any rule violation hard-fails the
+  build and nothing is published. Never weaken a rule to get a build through — fix the data.
 
-**Honesty rule learned the hard way on 2026-nfl-wk02:** never estimate a card
-bet's probability from a single source — average at least two independent
-real win-probability models and cite both. A single-sourced Kalshi-only
-estimate overstated the edge (+5.2%) until Gus caught it; averaging a second
-real source (Stats Insider) brought it to a more honest +4.2%. Also: prefer
-fetching a page directly over trusting a search engine's auto-summary of it —
-a summary once reported 71% for a page whose actual text said 74%.
+## Ground rules (non-negotiable — `build.py` enforces what a file can prove)
 
-**Rendering rule learned the same day:** real source citations include long
-URLs inline in reason/verify text. `templates/page.html`'s `body` CSS has
-`overflow-wrap: anywhere` for exactly this reason — don't remove it, and don't
-assume "no fixed-width CSS" is enough evidence a page won't scroll sideways;
-actually render it and measure `scrollWidth` vs `clientWidth` at 390px.
+1. **Weekend stop-loss: $5.** Gus's words: "only a $5 loss per weekend… if I win Thursday I
+   have more to play with Saturday… if I lose, a little more reserved, but I do want to bet on
+   all those days." Each slot's Easy Bet + Fun Parlay stake comes from `src/slate.py`:
+   capacity = $5 + this weekend's settled net − stakes still open, spread over the slots left,
+   ×0.75 when the weekend is down, rounded down to $0.05, $0 below $0.10. Worst case for a
+   weekend is −$5 on tiers 1–2. Season bankroll is $50 plus winnings (scoreboard shows it,
+   never floored). Constants live in `data/config.json`.
+2. **Pre-kickoff only.** No live bets, ever, even when Gus pushes. At publish every card bet and
+   leg must carry a `kickoff` timestamp still in the future, or the build fails.
+3. **Bet first, boost second.** Pick on merit; boosts are checked afterward in their own section.
+4. **Leg count follows probability.** Fun Parlay legs are each ≥55%. No parlay gets more than 3
+   coin-flip legs. The Lottery Ticket is the one exemption (see 6).
+5. **Every odds number shows implied probability, true-probability estimate, and edge.**
+6. **Each slot's card is three labeled tiers, in order:** Easy Bet (required — one straight
+   bet, highest probability with real edge, ~60% of the slot budget), Fun Parlay (optional —
+   2–3 legs, each ≥55%, the rest of the slot budget), Lottery Ticket (optional, **at most one
+   per weekend**, flat $0.50, 10–20 legs, exempt from rule 4's floor, **outside** the $5
+   stop-loss and excluded from pacing both ways, shows real combined probability and
+   "1 in X"). Build the Lottery Ticket only after tiers 1–2 are set.
+7. **Claude never places a bet.** The page is advice; Gus places every bet himself.
+8. **Honesty.** Every fact comes from a source actually read. Every edge claim needs ≥2
+   independent probability sources, cited, with the averaging math shown. Verify a number on
+   the source page itself, not a search engine's summary (a summary once said 71% where the
+   page said 74%). A near-zero or negative averaged edge is a correct answer — report it,
+   size down, don't chase. Flag "right player, wrong price" bets and keep them off the card.
+9. **Blacklist:** `data/config.json` → `blacklist`. Currently **MarShawn Lloyd** (Packers RB)
+   — never on any tier, any leg, or the leg bank. His leg sank the entire 9/24 card.
+10. **Game-script check.** Tag every card bet/leg `game_script`: `neutral`, `<TEAM> leading`, or
+    `<TEAM> trailing`. The Easy Bet and a Fun Parlay leg may not need the same side ahead in
+    the same game ("ATL leading" = "GB trailing" in ATL @ GB). Swap one for a neutral bet.
+11. **Source disagreement is a warning sign.** If an Easy Bet's probability sources differ by
+    more than 10 points, don't average them into an edge — it can't be the Easy Bet.
+12. **No sack legs against mobile QBs** (`config.mobile_qbs`: Jalen Hurts, Caleb Williams,
+    Jayden Daniels). Sack legs carry `opp_qb`.
 
-The scoreboard is split into two scopes, both computed fresh from
-`data/bet_log.csv` on every run (`data/config.json` holds `season_start` and
-`starting_bankroll`):
+Rules 3 and "Lottery Ticket after tiers 1–2" are build-order discipline no file can prove; the
+rest are checked by `build.py` (RULE numbers in its error messages match this list).
 
-- **This Season** (bets on/after `season_start`, currently 2026-09-01) is the
-  primary set of stat tiles — this is what "Bankroll Remaining" now means.
-  Verified: 0 W / 0 CO / 7 L / 2 Open, cash P/L –$9.00, bankroll remaining
-  $41.00, current streak L7.
-- **All-time** (unchanged, includes the March–August NCAAB/MLB/World Cup
-  history) renders as one muted footnote line below the tiles, labeled
-  dynamically from the earliest row's date (currently "since Mar 2026"), not
-  hardcoded. Verified: 1 W / 1 CO / 18 L / 2 Open, cash P/L ≈ –$55.93.
+## Research playbook (angles, not hard rules)
 
-Neither number is ever floored at zero — the tool is honest about being
-underwater if a scope's bankroll goes negative.
+- **0–2 desperation (NFL):** a 0–2 team fights to avoid 0–3 (that's when coaches get fired) —
+  treat it as a live side regardless of venue. Proof: 9/24, 0–2 Atlanta won 35–14 at Green Bay
+  as a 5.5-pt underdog. Flag every 0–2 team in the slot's `angles`; don't write a card that
+  needs a 0–2 team blown out unless research clearly supports it.
+- **Sack leader 1+ sack (Gus's favorite):** each team's sack leader to record 1+ sack — skip it
+  against mobile QBs (rule 12). Still has to clear the probability rules; under 55% it goes to
+  the Lottery Ticket, not the Fun Parlay.
+- **Game script decides RB props.** 9/24 lesson: Lloyd's yards collapsed when GB trailed;
+  Bijan's catches collapsed when ATL led and ran. Volume receivers (London, 9 catches) are
+  neutral — that leg hit. Split backfields and patched-up offensive lines are warning signs.
+- **Screenshot mode:** building a card from DraftKings screenshots Gus pastes only happens for
+  that week's already-chosen featured game — not for every screenshot he sends.
 
-`src/build.py` hard-fails (raises `RuleViolation`, non-zero exit, page not
-written) on any week JSON that would violate Rule 1 (>$5 card), Rule 2 (a live
-or non-pre-kickoff bet), or Rule 6 (more than 1 straight + 1 parlay). Rule 4
-(coin-flip legs cap a parlay at 3) is enforced for parlays with >3 legs. Rules
-3 and 5 are structural (boosts rendered in a separate section, never driving
-`card`; every odds number always rendered next to its implied probability).
-Rule 7 holds trivially — grep confirms no network/HTTP code exists anywhere in
-`src/`. Run `python3 -m unittest discover -s src -p "test_*.py" -v` before
-touching any of these files again.
+## Data
 
-## Ground rules (plan §3 — non-negotiable, the page enforces them)
+- `data/bet_log.csv` — **real money history. Never edit existing rows; only append.** Gus's
+  actual DK bets, logged from his screenshots. Drives the Record tab's real record/bankroll.
+  - Known gap: the 9/14 (KC@DEN) and 9/17 (DET@BUF) Easy Bet and Fun Parlay **wins** and their
+    two lost 18-leg lottery tickets, plus a 9/17 off-system live 4-leg SGP ($0.35, lost), are
+    not logged yet — waiting on Gus's DK slips (stake + payout). Until then the season record
+    shows 0 wins, which is wrong. Never guess stakes or payouts.
+  - DK balance was ~$0.07 after 9/24; Gus deposits himself.
+- `data/weekends/<thursday-date>/<slot>.json` — one file per slot card (thu/sat/sun/mon). Each
+  bet carries `result`/`net`, set only via `src/grade.py`. These files are the card ledger and
+  drive pacing, the Weekend tab, and the card record ("if every card bet was placed as
+  written"). `historical_import: true` marks files imported from `bet_log.csv` (exempt from
+  research-quality rules and the blacklist, since they record what actually happened).
+- `data/weeks/` — legacy one-card-per-week files (Sept 13–14). Archive; not rendered.
+- `data/config.json` — season start, bankroll, stop-loss/pacing constants, blacklist, mobile QBs.
 
-1. **Bankroll:** $50 for the season plus winnings. **Weekly budget: $5.** The page never recommends more than $5 total per week across NFL + CFB. (The Lottery Ticket tier's flat $0.50 — see rule 6 — is explicitly outside this line, by design, not an exception being quietly taken.)
-2. **Pre-kickoff only.** Sheet is built Friday night (CFB) and Saturday night (NFL). No live-bet recommendations. No exceptions for any tier, including the Lottery Ticket.
-3. **Bet first, boost second.** Pick the ticket on merit, then check whether an available boost happens to fit. Never build a ticket to qualify for a boost.
-4. **Leg count follows probability.** For the Fun Parlay tier (see rule 6), every leg must be ≥55% to hit. The Lottery Ticket tier is explicitly exempt from any leg-probability floor — that's the point of it — but must still show its honest combined probability and "1 in X" plainly (see rule 6).
-5. **Every odds number is shown with its implied probability.** Gus should never have to guess what –455 or +2100 means.
-6. **The weekly card is three labeled tiers, in this order:**
-   - **Easy Bet** (required, exactly one) — a single straight bet, highest probability with real edge, ~$2-3.
-   - **Fun Parlay** (optional, at most one) — 2-3 legs, every leg ≥55% to hit, ~$1-2.
-   - **Lottery Ticket** (optional, at most one, added 2026-09-14) — one 10-20 leg parlay, stake flat at exactly $0.50, targeting a big payout. Labeled plainly as a lottery ticket. Shows its honest combined probability (the real product of the legs, not the DK payout-implied number) and a "1 in X" figure next to it. Explicitly exempt from the leg-count/probability rule in 4 and from the $5/week line in rule 1 — it must never crowd out tiers 1-2. Built **only after** tiers 1 and 2 are set (a build-order discipline, like rule 3 — not something a finished file can prove, so this is enforced by following `.claude/commands/cheatsheet.md`'s order, not by `build.py`).
-7. **Claude never places a bet.** The page is advice; Gus places every bet himself in the app.
-
-## Audit rule
-
-Anything the page or any tool in this repo could produce that recommends more than
-$5/week total, a live bet, or a boost-first ticket **is a bug**. Full stop — treat it
-as a correctness failure, not a style nit, and fix it before anything else.
-
-## bet_log.csv is real money history
-
-`data/bet_log.csv` contains Gus's actual DraftKings bet history. **Never edit the
-values in existing rows** — not to "fix" a blank-details row, a fuzzy "(approx)" date,
-an open/unsettled bet, or anything else. Only append new rows. If a row looks wrong,
-leave it as-is; it's the historical record, not a bug.
-
-## Weekly workflow (plan §8)
-
-| When | Who | What |
-|---|---|---|
-| Fri evening | Claude Code | `/cheatsheet cfb` → research, write week JSON, build page, push |
-| Sat evening | Claude Code | `/cheatsheet nfl` → same for NFL |
-| Sat/Sun morning | Gus | Open page on phone, place bets in DK app, screenshot each bet slip |
-| Sun night / Mon | Gus | Drop screenshots into Claude; Claude appends to `bet_log.csv` |
-| Mon morning | Claude Code | `/grade` → pull finals, mark results, rebuild scoreboard, push |
-
-Bet logging stays manual (screenshots) in v1.
-
-## Repo layout (plan §7)
+## Commands
 
 ```
-betting-cheat-sheet/
-  CLAUDE.md                  # rules from §3, workflow from §8, house style
-  .claude/
-    commands/
-      cheatsheet.md           # the real /cheatsheet nfl|cfb command (Phase 2)
-  data/
-    bet_log.csv              # every bet Gus places (seed from dk_bet_history.csv)
-    config.json              # season_start + starting_bankroll — scopes the
-                              # scoreboard to the current season; missing file
-                              # falls back to in-code defaults, never crashes
-    weeks/
-      2026-nfl-wk02.json     # researched lines, legs, card, boosts for one edition
-      2026-cfb-wk03.json
-  src/
-    odds.py                  # American ↔ implied probability, parlay math, edge
-    build.py                 # week JSON + bet_log.csv → docs/index.html
-    grade.py                 # scores → mark bets won/lost, update log + scoreboard
-  templates/
-    page.html                # single mobile-first template, no framework
-  docs/
-    index.html               # GitHub Pages output (the phone page)
-    archive/                 # previous weeks' pages
+python3 src/slate.py status                 # which slot, weekend net, this slot's budget, open bets
+python3 src/grade.py pending                # bets whose games are done but ungraded
+python3 src/grade.py set <wid> <slot> <tier> Won|Lost|Push|Void
+python3 src/build.py                        # validate + render docs/index.html
+python3 src/build.py --publish <wid>/<slot> # also enforce kickoff-in-future + slot budget
+python3 -m unittest discover -s src -p "test_*.py" -v
 ```
+
+`.claude/commands/cheatsheet.md` is the full run procedure (research → slot file → grade →
+build → commit → push). The scheduled task just runs it.
+
+## Lessons that must not be relearned
+
+- **Single-source edges lie** (2026-nfl-wk02: Kalshi-only said +5.2%, averaged with a second
+  model it was +4.2%; a week later, after lines moved, it was ~0).
+- **Lines move a lot in a week** — build each slot the morning of, not days ahead.
+- **Cloud routines can't fetch pages** (egress proxy blocks WebFetch; only search snippets) —
+  that's why automation runs locally on the Mac, where page fetches and `git push` work.
+- **Long URLs break a 390px layout** unless text can wrap mid-word — keep `overflow-wrap:
+  anywhere` on `body`, and verify by measuring `scrollWidth` vs `clientWidth` at 390px.
 
 ## House style
 
-- Mobile-first. Gus reads this on his phone, standing up, Saturday night.
-- No frameworks, no build step beyond `python src/build.py` (once that exists). One HTML file.
-- Function first. Field Instrument styling (the `my-style` skill / design system) comes
-  in Phase 4, after the page works — do not spend Phase 0–3 effort on visual polish.
-- Every number Gus could act on needs to be self-explanatory (see ground rule 5).
+- Mobile-first, installable (home-screen web app), four tabs, crisp and scannable: one-line
+  summary per bet, full reasoning behind a tap-to-expand. Gus: "I don't care how you style it,"
+  so function and clarity win over ornament.
+- No frameworks, no build step beyond `python3 src/build.py`. Python stdlib only.

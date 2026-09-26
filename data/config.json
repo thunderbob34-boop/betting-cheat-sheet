@@ -1,4 +1,18 @@
 {
   "season_start": "2026-09-01",
-  "starting_bankroll": 50.00
+  "starting_bankroll": 50.00,
+  "weekend_loss_limit": 5.00,
+  "reserve_factor_when_down": 0.75,
+  "min_stake": 0.10,
+  "stake_step": 0.05,
+  "easy_share": 0.60,
+  "slots": ["thu", "sat", "sun", "mon"],
+  "lottery_stake": 0.50,
+  "nfl_week1_thursday": "2026-09-10",
+  "timezone": "America/New_York",
+  "blacklist": ["MarShawn Lloyd"],
+  "mobile_qbs": ["Jalen Hurts", "Caleb Williams", "Jayden Daniels"],
+  "record_caveats": [
+    "9/14 and 9/17 wins not logged to the bet log yet — the record above understates the true total."
+  ]
 }
