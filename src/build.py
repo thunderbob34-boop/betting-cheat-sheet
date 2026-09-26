@@ -1583,6 +1583,62 @@ def _fantasy_player_line(slot, p, note=""):
 </li>'''
 
 
+def _latest_fantasy(fantasy_dir):
+    fantasy_dir = Path(fantasy_dir or DEFAULT_FANTASY_DIR)
+    files = [f for f in (sorted(fantasy_dir.glob("*-wk*.json")) if fantasy_dir.is_dir() else [])
+             if not f.name.startswith("research-")]
+    return _load_json_file(files[-1]) if files else None
+
+
+def _pct(x):
+    return f"{round(float(x) * 100):d}%"
+
+
+def _matchup_html(m, compact=False):
+    """Projected result of this week's matchup: best lineup vs the
+    opponent's current lineup, with ESPN's own win probability beside ours."""
+    if not m:
+        return ""
+    best = f'You {m["my_best"]:.1f} vs {escape(m["opponent"])} {m["opp_proj"]:.1f}'
+    ours = _pct(m["win_prob_best"])
+    espn = _pct(m["espn_win_prob"]) if m.get("espn_win_prob") is not None else "n/a"
+    pick = m.get("with_pickups")
+    pick_line = ""
+    if pick:
+        pick_line = f'<p class="fx-mline">With the pickups: {pick["my_best"]:.1f} · <b>{_pct(pick["win_prob"])}</b> to win</p>'
+    if compact:
+        return (f'<p class="fx-mline"><b>{ours}</b> to win with the best lineup · {best}</p>'
+                f'<p class="fx-mline dim">ESPN: {espn} (your lineup as set now)</p>')
+    return f'''<div class="fx-matchup">
+  <p class="fx-changes-title">This week: vs {escape(m["opponent"])}</p>
+  <p class="fx-mline">Best lineup: {m["my_best"]:.1f} vs {m["opp_proj"]:.1f} · <b>{ours}</b> to win</p>
+  <p class="fx-mline">Lineup as set in ESPN now: {m["my_current"]:.1f} · {_pct(m["win_prob_current"])}</p>
+  {pick_line}
+  <p class="fx-mline dim">ESPN's own projection: {m["espn_my_proj"]:.1f} vs {m["espn_opp_proj"]:.1f}, {espn} to win. Our win % assumes the margin swings about ±{35} pts; opponent counted as currently set.</p>
+</div>'''
+
+
+def render_fantasy_summary(fantasy_dir=None):
+    """Compact 'set your team' card for the Today tab."""
+    data = _latest_fantasy(fantasy_dir)
+    if not data:
+        return ""
+    rows = []
+    for lg in data.get("leagues") or []:
+        if lg.get("error"):
+            continue
+        changes = lg.get("changes") or []
+        todo = f'{len(changes)} change{"s" if len(changes) != 1 else ""} to make' if changes else "Lineup already set"
+        rows.append(f'''<div class="fx-sum-league">
+  <p class="fx-sum-title">{escape(lg.get("league_name", ""))} <span class="fx-team-name">{escape(todo)}</span></p>
+  {_matchup_html(lg.get("matchup"), compact=True)}
+</div>''')
+    if not rows:
+        return ""
+    return (f'<section class="fx-summary"><h3>Fantasy · Week {int(data.get("week", 0))}</h3>{"".join(rows)}'
+            '<a class="fx-sum-link" href="#lineup">Open lineups →</a></section>')
+
+
 def render_lineup(fantasy_dir=None):
     fantasy_dir = Path(fantasy_dir or DEFAULT_FANTASY_DIR)
     files = sorted(fantasy_dir.glob("*-wk*.json")) if fantasy_dir.is_dir() else []
@@ -1638,6 +1694,7 @@ def render_lineup(fantasy_dir=None):
   <h3>{title} <span class="fx-team-name">{escape(lg.get("team_name", ""))}</span></h3>
   <p class="fx-total">Projected starters: <b>{total:.1f}</b></p>
   {changes_html}
+  {_matchup_html(lg.get("matchup"))}
   {research_html}
   {notes_html}
   <ul class="fx-list">{rows}</ul>
@@ -1659,6 +1716,7 @@ def render_page(template_path, weekends_dir, csv_path, config, now, fantasy_dir=
     legs_html = render_legs(window, config, weekends_dir, now)
     record_html = render_record(config, csv_path, weekends_dir, window)
     lineup_html = render_lineup(fantasy_dir)
+    today_html = render_fantasy_summary(fantasy_dir) + today_html
 
     updated_at = f"Updated {local_now.strftime('%a')} {_fmt_time_ampm(local_now)} ET"
     next_update = f"Next card: {_next_card_short(window)} ~9 AM"

@@ -30,6 +30,16 @@
         "NBC Sports, DraftSharks, SI and CBS start/sit and rankings pieces",
         "Yahoo, FantasyAlarm, CBS and Bleacher Report weather reports (9/25-9/26)",
         "ESPN (DraftKings lines), StatMuse defensive game logs, NFL.com injury reports"
+      ],
+      "moves": [
+        {
+          "add": "Giants D/ST",
+          "drop": "Kaelon Black"
+        },
+        {
+          "add": "Daniel Carlson",
+          "drop": "Chris Boswell"
+        }
       ]
     },
     "250898504": {
@@ -62,6 +72,20 @@
         "ESPN game logs and box scores, team injury reports (therams.com, 49ers.com, panthers.com, NBC)",
         "FFToday and Fantasy Six Pack usage reports, SI and CBS matchup notes",
         "Weather: Yahoo, FantasyAlarm (9/26)"
+      ],
+      "moves": [
+        {
+          "add": "Parker Washington",
+          "drop": "Bo Nix"
+        },
+        {
+          "add": "Dalton Schultz",
+          "drop": "T.J. Hockenson"
+        },
+        {
+          "add": "Brandon Aubrey",
+          "drop": "Chris Boswell"
+        }
       ]
     }
   }

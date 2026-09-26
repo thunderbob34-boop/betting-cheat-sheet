@@ -136,5 +136,21 @@ class TestLineupChanges(unittest.TestCase):
             p["current_slot"] = slots.get(p["key"], "BENCH")
         self.assertEqual(fantasy.lineup_changes(r["starters"], roster), [])
 
+
+class TestWinProbability(unittest.TestCase):
+    def test_even_and_ahead(self):
+        self.assertEqual(fantasy.win_probability(120, 120), 0.5)
+        self.assertGreater(fantasy.win_probability(130, 115), 0.65)
+        self.assertLess(fantasy.win_probability(100, 130), 0.2)
+
+    def test_current_lineup_counts_only_starting_slots(self):
+        roster = _roster()
+        for p in roster:
+            p["current_slot"] = "BENCH"
+        roster[0]["current_slot"] = "QB"
+        roster[2]["current_slot"] = "RB"
+        roster[2]["status"] = "OUT"   # started but out -> 0
+        self.assertEqual(fantasy._current_lineup_points(roster), 20.0)
+
 if __name__ == "__main__":
     unittest.main()

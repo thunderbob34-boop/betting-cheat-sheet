@@ -17,6 +17,7 @@ Python 3 stdlib only.
 
 import argparse
 import json
+import math
 import sys
 import urllib.error
 import urllib.request
@@ -263,13 +264,17 @@ def _espn_week_projection(player, week):
     return None
 
 
-def espn_player_pool(season, week, limit=1500):
-    """ESPN's public player list (default full-PPR scoring, no login) --
-    used to look up a roster typed in by hand when a league is private."""
-    url = (ESPN_BASE.format(season=season) + f"/segments/0/leaguedefaults/3"
+def espn_player_pool(season, week, limit=1500, league_id=None):
+    """ESPN's public player list, no login. With league_id it's that league's
+    free agents, projected in that league's own scoring (leagues differ);
+    without, ESPN's default full-PPR list (for rosters typed in by hand)."""
+    scope = f"leagues/{league_id}" if league_id else "leaguedefaults/3"
+    url = (ESPN_BASE.format(season=season) + f"/segments/0/{scope}"
            f"?scoringPeriodId={week}&view=kona_player_info")
     flt = {"players": {"filterSlotIds": {"value": [0, 2, 4, 6, 16, 17]}, "limit": limit,
                        "sortPercOwned": {"sortPriority": 1, "sortAsc": False}}}
+    if league_id:
+        flt["players"]["filterStatus"] = {"value": ["FREEAGENT", "WAIVERS"]}
     req = urllib.request.Request(url, headers={"User-Agent": "betting-cheat-sheet/1.0",
                                                "X-Fantasy-Filter": json.dumps(flt)})
     try:
@@ -312,64 +317,165 @@ def manual_roster_entries(roster, pool):
     return entries, missing
 
 
-def pull_league(league, season, week, pro_teams, sleeper, now, pool=None):
+# Rough spread of a fantasy matchup's margin (points, one standard deviation).
+# An assumption, not a sourced number: weekly team scores swing ~20-25 pts
+# each, so the gap between two teams swings ~30-40. ESPN's own win probability
+# is shown beside ours as the second opinion.
+MATCHUP_MARGIN_SD = 35.0
+STARTING = ("QB", "RB", "WR", "TE", "FLEX", "K", "D/ST")
+
+
+def win_probability(my_pts, opp_pts, sd=MATCHUP_MARGIN_SD):
+    """Chance my_pts beats opp_pts if the margin is normal around the
+    projected gap."""
+    return round(0.5 * (1 + math.erf((my_pts - opp_pts) / (sd * math.sqrt(2)))), 3)
+
+
+def _espn_week_actual(player, week):
+    for s in player.get("stats") or []:
+        if s.get("scoringPeriodId") == week and s.get("statSourceId") == 0 and s.get("statSplitTypeId") == 1:
+            return round(float(s.get("appliedTotal", 0.0)), 2)
+    return None
+
+
+def _player_from_entry(e, week, pro_teams, sleeper, now):
+    pl = (e.get("playerPoolEntry") or {}).get("player") or {}
+    pos = POSITIONS.get(pl.get("defaultPositionId"))
+    if not pos:
+        return None
+    pro = pro_teams.get(pl.get("proTeamId")) or {}
+    abbrev = pro.get("abbrev", "FA")
+    espn = _espn_week_projection(pl, week)
+    if pos == "D/ST":
+        rw = sleeper.get(f"DEF:{ESPN_TO_SLEEPER_TEAM.get(abbrev, abbrev)}")
+    else:
+        rw = sleeper.get(str(pl.get("id")))
+        if rw is None:
+            rw = sleeper.get(name_key(pl.get("fullName"), abbrev, pos))
+    pts, used, disagree = combine_projection(espn, rw)
+    ko = kickoff_for(pro, week) if pro else None
+    locked = bool(ko and ko <= now)
+    actual = _espn_week_actual(pl, week) if locked else None
+    if actual is not None:
+        # His game has started or finished: what he's actually scored beats any projection.
+        pts, used, disagree = actual, ["ESPN actual"], False
+    return {
+        "key": str(pl.get("id")),
+        "name": pl.get("fullName", "?"),
+        "pos": pos,
+        "team": abbrev,
+        "status": normalize_status(pl.get("injuryStatus")),
+        "bye": pro.get("bye") == week,
+        "kickoff": ko.isoformat() if ko else None,
+        "locked": locked,
+        "actual": actual,
+        "current_slot": ESPN_SLOTS.get(e.get("lineupSlotId"), "BENCH"),
+        "espn": espn,
+        "rotowire": rw,
+        "proj": pts,
+        "sources": used,
+        "disagree": disagree,
+    }
+
+
+def _team_name(t):
+    return (t.get("name") or f"{t.get('location', '')} {t.get('nickname', '')}").strip()
+
+
+def _lineup_value(p):
+    """Points a player counts for in a lineup total: what he actually scored
+    if his game has started, otherwise his usable projection."""
+    return float(p["proj"]) if p.get("locked") else effective_points(p)
+
+
+def _current_lineup_points(players):
+    return round(sum(_lineup_value(p) for p in players if p.get("current_slot") in STARTING), 1)
+
+
+def _starter_points(result):
+    return round(sum(_lineup_value(e["player"]) for e in result["starters"] if e.get("player")), 1)
+
+
+def apply_moves(players, moves, pool, week, pro_teams, sleeper, now):
+    """Roster after the suggested add/drops (research file `moves`)."""
+    by_name = {_plain(pl.get("fullName")): pl for pl in pool}
+    out = list(players)
+    applied = []
+    for m in moves or []:
+        add = by_name.get(_plain(m.get("add")))
+        drop = _plain(m.get("drop"))
+        if add is None or not any(_plain(p["name"]) == drop for p in out):
+            continue
+        out = [p for p in out if _plain(p["name"]) != drop]
+        new = _player_from_entry({"playerPoolEntry": {"player": add}, "lineupSlotId": 20}, week, pro_teams, sleeper, now)
+        if new:
+            out.append(new)
+            applied.append(f"+{new['name']} / -{m.get('drop')}")
+    return out, applied
+
+
+def pull_league(league, season, week, pro_teams, sleeper, now, pool=None, moves=None):
     if league.get("roster"):
         entries, missing = manual_roster_entries(league["roster"], pool or espn_player_pool(season, week))
         team = {"_name": league.get("team_name") or "My team", "roster": {"entries": entries}}
-        data = {}
-        return _lineup_from_team(league, team, data, week, pro_teams, sleeper, now,
+        return _lineup_from_team(league, team, {}, week, pro_teams, sleeper, now,
                                  extra_notes=[f"Couldn't find {m!r} in ESPN's player list -- check the spelling." for m in missing])
     url = (ESPN_BASE.format(season=season) + f"/segments/0/leagues/{league['league_id']}"
-           f"?view=mTeam&view=mRoster&view=mSettings&scoringPeriodId={week}")
+           f"?view=mTeam&view=mRoster&view=mSettings&view=mMatchupScore&scoringPeriodId={week}")
     data = fetch_json(url)
     want = (league.get("team_name") or "").strip().lower()
     team = None
     for t in data.get("teams") or []:
-        name = (t.get("name") or f"{t.get('location', '')} {t.get('nickname', '')}").strip()
-        if (want and name.lower() == want) or (league.get("team_id") and t.get("id") == league["team_id"]):
+        if (want and _team_name(t).lower() == want) or (league.get("team_id") and t.get("id") == league["team_id"]):
             team = t
-            team["_name"] = name
+            team["_name"] = _team_name(t)
             break
     if team is None:
-        names = [(t.get("name") or f"{t.get('location', '')} {t.get('nickname', '')}").strip() for t in data.get("teams") or []]
+        names = [_team_name(t) for t in data.get("teams") or []]
         raise FantasyError(f"league {league['league_id']}: no team named {league.get('team_name')!r}; teams are {names}")
-    return _lineup_from_team(league, team, data, week, pro_teams, sleeper, now)
+    result = _lineup_from_team(league, team, data, week, pro_teams, sleeper, now)
+
+    # --- This week's matchup: best lineup vs the opponent's current lineup. ---
+    game = next((m for m in data.get("schedule") or []
+                 if m.get("matchupPeriodId") == week
+                 and team["id"] in ((m.get("home") or {}).get("teamId"), (m.get("away") or {}).get("teamId"))), None)
+    if game:
+        me_side, opp_side = ("home", "away") if game["home"]["teamId"] == team["id"] else ("away", "home")
+        opp_team = next((t for t in data["teams"] if t["id"] == game[opp_side]["teamId"]), None)
+        opp_players = [p for p in (_player_from_entry(e, week, pro_teams, sleeper, now)
+                                   for e in ((opp_team or {}).get("roster") or {}).get("entries") or []) if p]
+        opp_pts = _current_lineup_points(opp_players)
+        best_pts = _starter_points(result)
+        current_pts = _current_lineup_points(result["_players"])
+        matchup = {
+            "opponent": _team_name(opp_team or {}),
+            "opp_proj": opp_pts,
+            "my_best": best_pts,
+            "my_current": current_pts,
+            "win_prob_best": win_probability(best_pts, opp_pts),
+            "win_prob_current": win_probability(current_pts, opp_pts),
+            "espn_my_proj": round(float(game[me_side].get("totalProjectedPoints") or 0.0), 1),
+            "espn_opp_proj": round(float(game[opp_side].get("totalProjectedPoints") or 0.0), 1),
+            "espn_win_prob": game[me_side].get("winProbability"),
+        }
+        if moves:
+            pool = espn_player_pool(season, week, limit=600, league_id=league["league_id"])
+            moved, applied = apply_moves(result["_players"], moves, pool, week, pro_teams, sleeper, now)
+            if applied:
+                alt = optimize_lineup(moved, league.get("slots") or DEFAULT_SLOTS)
+                matchup["with_pickups"] = {
+                    "moves": applied,
+                    "my_best": _starter_points(alt),
+                    "win_prob": win_probability(_starter_points(alt), opp_pts),
+                }
+        result["matchup"] = matchup
+    result.pop("_players", None)
+    return result
 
 
 def _lineup_from_team(league, team, data, week, pro_teams, sleeper, now, extra_notes=()):
-    players = []
-    for e in (team.get("roster") or {}).get("entries") or []:
-        pl = (e.get("playerPoolEntry") or {}).get("player") or {}
-        pos = POSITIONS.get(pl.get("defaultPositionId"))
-        if not pos:
-            continue
-        pro = pro_teams.get(pl.get("proTeamId")) or {}
-        abbrev = pro.get("abbrev", "FA")
-        espn = _espn_week_projection(pl, week)
-        if pos == "D/ST":
-            rw = sleeper.get(f"DEF:{ESPN_TO_SLEEPER_TEAM.get(abbrev, abbrev)}")
-        else:
-            rw = sleeper.get(str(pl.get("id")))
-            if rw is None:
-                rw = sleeper.get(name_key(pl.get("fullName"), abbrev, pos))
-        pts, used, disagree = combine_projection(espn, rw)
-        ko = kickoff_for(pro, week) if pro else None
-        players.append({
-            "key": str(pl.get("id")),
-            "name": pl.get("fullName", "?"),
-            "pos": pos,
-            "team": abbrev,
-            "status": normalize_status(pl.get("injuryStatus")),
-            "bye": pro.get("bye") == week,
-            "kickoff": ko.isoformat() if ko else None,
-            "locked": bool(ko and ko <= now),
-            "current_slot": ESPN_SLOTS.get(e.get("lineupSlotId"), "BENCH"),
-            "espn": espn,
-            "rotowire": rw,
-            "proj": pts,
-            "sources": used,
-            "disagree": disagree,
-        })
+    players = [p for p in (_player_from_entry(e, week, pro_teams, sleeper, now)
+                           for e in (team.get("roster") or {}).get("entries") or []) if p]
     slots = league.get("slots") or DEFAULT_SLOTS
     result = optimize_lineup(players, slots)
     result["notes"] = list(extra_notes) + result["notes"]
@@ -380,6 +486,7 @@ def _lineup_from_team(league, team, data, week, pro_teams, sleeper, now, extra_n
         "league_id": league["league_id"],
         "team_name": team["_name"],
         "slots": slots,
+        "_players": players,
         **result,
     }
 
@@ -391,9 +498,14 @@ def cmd_pull(week):
     pro_teams = load_pro_teams(season)
     sleeper = sleeper_projections(season, week)
     leagues = []
+    research_path = OUT_DIR / f"research-{season}-wk{week:02d}.json"
+    research = json.loads(research_path.read_text()).get("leagues", {}) if research_path.exists() else {}
     for league in config["leagues"]:
         try:
-            leagues.append(pull_league(league, season, week, pro_teams, sleeper, now))
+            moves = (research.get(str(league.get("league_id"))) or {}).get("moves")
+            lg = pull_league(league, season, week, pro_teams, sleeper, now, moves=moves)
+            lg.pop("_players", None)
+            leagues.append(lg)
         except FantasyError as e:
             leagues.append({"league_name": league.get("name") or str(league["league_id"]),
                             "league_id": league["league_id"], "error": str(e)})

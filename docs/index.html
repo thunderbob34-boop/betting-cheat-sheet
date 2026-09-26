@@ -637,6 +637,14 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
 .fx-changes { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
 .fx-changes-title { font-weight: 800; font-size: 0.85rem; }
 .fx-changes ul { margin: 6px 0 0; padding-left: 18px; font-weight: 600; font-size: 0.9rem; }
+.fx-matchup { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+.fx-mline { margin: 0 0 4px; font-size: 0.85rem; }
+.fx-mline.dim { color: var(--text-faint); font-size: 0.76rem; }
+.fx-summary { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin-bottom: 14px; }
+.fx-summary h3 { margin: 0 0 8px; font-size: 0.95rem; }
+.fx-sum-league { padding: 6px 0; border-top: 1px solid var(--border-soft); }
+.fx-sum-title { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; font-weight: 700; margin: 0 0 3px; }
+.fx-sum-link { display: inline-block; margin-top: 6px; font-weight: 700; font-size: 0.85rem; color: var(--accent); text-decoration: none; }
 .fx-note { display: block; margin-top: 3px; font-size: 0.78rem; font-weight: 500; color: var(--text-dim); }
 .fx-research { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; font-size: 0.85rem; }
 .fx-research p { margin: 0 0 6px; }
@@ -664,7 +672,7 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.66-5.66L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.66 5.66L4 16"/><path d="M4 20v-4h4"/></svg>
     </button>
   </div>
-  <p class="topbar-meta"><span class="updated">Updated Sat 6:31 PM ET</span><span class="next">Next card: Sun ~9 AM</span></p>
+  <p class="topbar-meta"><span class="updated">Updated Sat 6:36 PM ET</span><span class="next">Next card: Sun ~9 AM</span></p>
 </header>
 
 
@@ -674,7 +682,13 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
        #today/#weekend/... hash, the browser would anchor-jump to it on launch
        (start_url ends in #today) and slide the top of the card under the
        sticky header. No element matches the hash, so there's nothing to jump to. -->
-  <section class="panel is-active" id="panel-today"><header class="slot-head">
+  <section class="panel is-active" id="panel-today"><section class="fx-summary"><h3>Fantasy · Week 3</h3><div class="fx-sum-league">
+  <p class="fx-sum-title">Johnson’s Friends <span class="fx-team-name">1 change to make</span></p>
+  <p class="fx-mline"><b>54%</b> to win with the best lineup · You 125.8 vs Heels on the Field 122.5</p><p class="fx-mline dim">ESPN: 51% (your lineup as set now)</p>
+</div><div class="fx-sum-league">
+  <p class="fx-sum-title">Extrordinary Charlotteans  <span class="fx-team-name">2 changes to make</span></p>
+  <p class="fx-mline"><b>76%</b> to win with the best lineup · You 134.5 vs My strategy is panic. 109.5</p><p class="fx-mline dim">ESPN: 62% (your lineup as set now)</p>
+</div><a class="fx-sum-link" href="#lineup">Open lineups →</a></section><header class="slot-head">
   <h2 class="slot-title">Sunday · Sep 27</h2>
   <p class="slot-sub">NFL Week 3 · 16 games</p>
 </header><div class="budget">
@@ -1708,6 +1722,13 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
   <h3>Johnson’s Friends <span class="fx-team-name">Im Sorry Smith-Jaxson</span></h3>
   <p class="fx-total">Projected starters: <b>125.8</b></p>
   <div class="fx-changes"><p class="fx-changes-title">Changes to make in ESPN</p><ul><li>Start Malik Nabers (13.2) instead of Devaughn Vele (10.8)</li></ul></div>
+  <div class="fx-matchup">
+  <p class="fx-changes-title">This week: vs Heels on the Field</p>
+  <p class="fx-mline">Best lineup: 125.8 vs 122.5 · <b>54%</b> to win</p>
+  <p class="fx-mline">Lineup as set in ESPN now: 123.4 · 51%</p>
+  <p class="fx-mline">With the pickups: 126.8 · <b>55%</b> to win</p>
+  <p class="fx-mline dim">ESPN's own projection: 127.1 vs 125.5, 51% to win. Our win % assumes the margin swings about ±35 pts; opponent counted as currently set.</p>
+</div>
   <div class="fx-research"><p class="fx-changes-title">Research call</p><p>Research agrees with the lineup: one move -- start Nabers over Vele. RB/FLEX: Kyren, Achane, Hubbard are ranked RB13-15 by the expert consensus, all well ahead of Vele (flex #65). Optional small upgrades: Giants D/ST and kicker Daniel Carlson from free agency.</p><p class="fx-changes-title">Waiver ideas</p><ul><li>Optional: add Giants D/ST (free agent, 8.5 projected) -- home vs the 0-2 Titans in the week&#x27;s worst storm (lowest total on the board, 38.5). Storms favor defenses. Drop Kaelon Black to make room and start the Giants over the Bengals.</li><li>Optional: kicker Daniel Carlson (free agent, NO, 8.8 projected) kicks indoors as a 3-pt favorite vs Boswell (8.3) in wind. Small gain -- swap only if the add is free.</li></ul><p class="fx-src">Sources: FantasyPros Week 3 PPR rankings (ECR, updated 9/26) and Week 3 Primer; NBC Sports, DraftSharks, SI and CBS start/sit and rankings pieces; Yahoo, FantasyAlarm, CBS and Bleacher Report weather reports (9/25-9/26); ESPN (DraftKings lines), StatMuse defensive game logs, NFL.com injury reports</p></div>
   
   <ul class="fx-list"><li class="fx-row">
@@ -1806,6 +1827,13 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
   <h3>Extrordinary Charlotteans  <span class="fx-team-name">Third Down For What?!</span></h3>
   <p class="fx-total">Projected starters: <b>134.5</b></p>
   <div class="fx-changes"><p class="fx-changes-title">Changes to make in ESPN</p><ul><li>Start Tyler Shough (18.8) instead of Bo Nix (16.8)</li><li>Start Harold Fannin Jr. (9.5) instead of T.J. Hockenson (9.0)</li></ul></div>
+  <div class="fx-matchup">
+  <p class="fx-changes-title">This week: vs My strategy is panic.</p>
+  <p class="fx-mline">Best lineup: 134.5 vs 109.5 · <b>76%</b> to win</p>
+  <p class="fx-mline">Lineup as set in ESPN now: 131.9 · 74%</p>
+  <p class="fx-mline">With the pickups: 137.5 · <b>79%</b> to win</p>
+  <p class="fx-mline dim">ESPN's own projection: 134.5 vs 109.3, 62% to win. Our win % assumes the margin swings about ±35 pts; opponent counted as currently set.</p>
+</div>
   <div class="fx-research"><p class="fx-changes-title">Research call</p><p>Start Shough over Nix and Fannin over Hockenson (both confirmed by expert ranks). Best move this week: three free-agent pickups -- Parker Washington (WR9), Dalton Schultz (TE6) and Brandon Aubrey (K1) all outrank what you&#x27;d start. With them: QB Shough, RB Walker + Taylor, FLEX Achane, WR Olave + Washington, TE Schultz, K Aubrey, D/ST Rams.</p><p class="fx-changes-title">Waiver ideas</p><ul><li>Add Parker Washington (WR, JAX) -- expert rank WR9, above every WR you have; 42.9% target share in Week 2 (highest of any WR). Start him over Adams. Drop Bo Nix to make room -- free-agent QBs (Lawrence, Kyler Murray) project as well as Nix if you ever need a fill-in.</li><li>Add Dalton Schultz (TE, HOU) -- TE6; 14 targets in Week 2, Nico Collins is out, and Indianapolis gave up 304 and 371 passing yds. Start him; drop Hockenson.</li><li>Add Brandon Aubrey (K, DAL) -- K1 in the week&#x27;s highest-total game. Drop Boswell (K17).</li></ul><p class="fx-src">Sources: FantasyPros Week 3 consensus rankings (QB, PPR WR/TE, DST, K; updated 9/26); ESPN game logs and box scores, team injury reports (therams.com, 49ers.com, panthers.com, NBC); FFToday and Fantasy Six Pack usage reports, SI and CBS matchup notes; Weather: Yahoo, FantasyAlarm (9/26)</p></div>
   <ul class="fx-notes"><li>Close call at WR: Davante Adams 14.9 vs George Pickens 14.4 -- check inactives before kickoff.</li><li>Close call at TE: Harold Fannin Jr. 9.5 vs T.J. Hockenson 9.0 -- check inactives before kickoff.</li></ul>
   <ul class="fx-list"><li class="fx-row">
