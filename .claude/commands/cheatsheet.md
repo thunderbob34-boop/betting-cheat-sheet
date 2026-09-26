@@ -2,11 +2,17 @@
 description: Grade finished bets, research today's slot, build the three-tier card, publish the phone page (runs unattended on a schedule)
 ---
 
-# /cheatsheet [auto|thu|sat|sun|mon]
+# /cheatsheet [auto|next|thu|sat|sun|mon]
 
-Default `auto`: figure out the slot from today's date. This command runs **unattended** from a
-scheduled task on Gus's Mac — nobody is watching. Publishing is automatic; `build.py`'s rules are
-the safety net. Read `CLAUDE.md` in full first (ground rules 1–12, research playbook).
+- `auto` (default, what the 9 AM schedule uses): the slot is today's (`today_slot`); Tue/Wed have
+  no slot, so those runs only grade and republish.
+- `next`: build the slot **after** today's (`next_slot`) — e.g. Saturday evening → Sunday's card.
+  Used for a manual "give me tomorrow's card early" run.
+- `thu|sat|sun|mon`: that slot of the current weekend.
+
+This command runs **unattended** from a scheduled task on Gus's Mac — nobody is watching.
+Publishing is automatic; `build.py`'s rules are the safety net. Read `CLAUDE.md` in full first
+(ground rules 1–12, research playbook).
 
 Repo: `/Users/gusjohnson/HQ/ME/Personal Goose/Betting Cheat Sheet/Engine`. Run every command from
 there. Times are US Eastern.
@@ -20,6 +26,11 @@ there. Times are US Eastern.
 `python3 src/slate.py status` → weekend id, today's slot (or none on Tue/Wed), this slot's budget
 (`easy`, `fun`, `total`, and the plain-English `why`), whether the weekend's lottery ticket is
 still available, and open bets. Use those stake numbers exactly — never exceed them.
+
+For `next` or an explicit slot: take that slot's date (`next_slot_date`, or the matching day of
+the current weekend) and run `python3 src/slate.py status --date <that date>` to get **that**
+slot's budget. Never pass `--date`/`--now` to `build.py --publish` — the kickoff check must use
+the real clock.
 
 ## 2. Grade first
 
