@@ -92,6 +92,13 @@ LOTTERY_TICKET_MAX_LEGS = 20
 FUN_PARLAY_MIN_LEGS = 2
 FUN_PARLAY_MAX_LEGS = 3
 FUN_PARLAY_LEG_FLOOR = 0.55
+# Tier 3 is the Lottery Ticket when this slot carries the weekend's one
+# ticket, otherwise an optional second Fun Parlay (a different mix of legs,
+# same rules, sharing the slot's fun budget) -- Gus wants three bets to
+# pick from every slot.
+FUN_TIERS = ("fun_parlay", "fun_parlay_2")
+STAKED_TIERS = ("easy_bet",) + FUN_TIERS  # inside the $5 stop-loss
+ALL_TIERS = STAKED_TIERS + ("lottery_ticket",)
 SOURCE_DISAGREEMENT_MAX_SPREAD = 0.10
 SOURCE_AVERAGE_TOLERANCE = 0.02
 
@@ -226,16 +233,13 @@ def _check_blacklist(slot, config, label):
     if easy:
         _scan_blacklist(easy.get("selection"), f"[{label}] card.easy_bet.selection", names)
         _scan_blacklist(easy.get("player"), f"[{label}] card.easy_bet.player", names)
-    fun = card.get("fun_parlay")
-    if fun:
-        for i, leg in enumerate(fun.get("legs") or []):
-            _scan_blacklist(leg.get("selection"), f"[{label}] card.fun_parlay.legs[{i}].selection", names)
-            _scan_blacklist(leg.get("player"), f"[{label}] card.fun_parlay.legs[{i}].player", names)
-    lot = card.get("lottery_ticket")
-    if lot:
-        for i, leg in enumerate(lot.get("legs") or []):
-            _scan_blacklist(leg.get("selection"), f"[{label}] card.lottery_ticket.legs[{i}].selection", names)
-            _scan_blacklist(leg.get("player"), f"[{label}] card.lottery_ticket.legs[{i}].player", names)
+    for tier in FUN_TIERS + ("lottery_ticket",):
+        bet = card.get(tier)
+        if not bet:
+            continue
+        for i, leg in enumerate(bet.get("legs") or []):
+            _scan_blacklist(leg.get("selection"), f"[{label}] card.{tier}.legs[{i}].selection", names)
+            _scan_blacklist(leg.get("player"), f"[{label}] card.{tier}.legs[{i}].player", names)
     for i, leg in enumerate(slot.get("leg_bank") or []):
         _scan_blacklist(leg.get("selection"), f"[{label}] leg_bank[{i}].selection", names)
         _scan_blacklist(leg.get("player"), f"[{label}] leg_bank[{i}].player", names)
@@ -283,7 +287,7 @@ def _script_ahead_side(game, script):
     return others[0] if others else None
 
 
-def _check_game_script(easy_bet, fun_parlay, label):
+def _check_game_script(easy_bet, fun_parlay, label, tier="fun_parlay"):
     """RULE 10 -- easy_bet vs each fun_parlay leg: if same game and they
     need the same side to be ahead, fail. Neutral never conflicts. Game
     equality is whitespace/case/separator/team-order tolerant (see
@@ -302,7 +306,7 @@ def _check_game_script(easy_bet, fun_parlay, label):
         if leg_side is not None and leg_side.lower() == easy_side.lower():
             raise RuleViolation(
                 f"RULE 10 VIOLATION: [{label}] card.easy_bet and "
-                f"card.fun_parlay.legs[{i}] are both in {easy_game} and "
+                f"card.{tier}.legs[{i}] are both in {easy_game} and "
                 f"both need {leg_side} to be ahead -- pick a genuinely "
                 "independent leg instead"
             )
@@ -351,14 +355,12 @@ def _iter_market_entries(slot):
     easy = card.get("easy_bet")
     if easy:
         yield "card.easy_bet", easy
-    fun = card.get("fun_parlay")
-    if fun:
-        for i, leg in enumerate(fun.get("legs") or []):
-            yield f"card.fun_parlay.legs[{i}]", leg
-    lot = card.get("lottery_ticket")
-    if lot:
-        for i, leg in enumerate(lot.get("legs") or []):
-            yield f"card.lottery_ticket.legs[{i}]", leg
+    for tier in FUN_TIERS + ("lottery_ticket",):
+        bet = card.get(tier)
+        if not bet:
+            continue
+        for i, leg in enumerate(bet.get("legs") or []):
+            yield f"card.{tier}.legs[{i}]", leg
     for i, leg in enumerate(slot.get("leg_bank") or []):
         yield f"leg_bank[{i}]", leg
 
@@ -398,11 +400,8 @@ def _check_historical_claim(slot, now, label):
     itself is a RuleViolation, so a fresh/hallucinated slot can never sail
     past every other rule just by setting this one flag."""
     card = slot.get("card") or {}
-    for tier_label, bet in (
-        ("easy_bet", card.get("easy_bet")),
-        ("fun_parlay", card.get("fun_parlay")),
-        ("lottery_ticket", card.get("lottery_ticket")),
-    ):
+    for tier_label in ALL_TIERS:
+        bet = card.get(tier_label)
         if bet is None:
             continue
         if bet.get("result") is None:
@@ -460,6 +459,7 @@ def validate_slot_rules(slot, config, now=None):
     card = slot.get("card") or {}
     easy_bet = card.get("easy_bet")
     fun_parlay = card.get("fun_parlay")
+    fun_parlay_2 = card.get("fun_parlay_2")
     lottery_ticket = card.get("lottery_ticket")
     label = f"{slot.get('weekend_id', '?')}/{slot.get('slot', '?')}"
 
@@ -490,7 +490,8 @@ def validate_slot_rules(slot, config, now=None):
     # --- stakes must never be negative (always enforced -- a negative
     # stake can offset a real one in a sum and hide it under the RULE 1
     # budget cap). ---
-    for tier_label, bet in (("easy_bet", easy_bet), ("fun_parlay", fun_parlay)):
+    for tier_label in STAKED_TIERS:
+        bet = card.get(tier_label)
         if bet is None:
             continue
         stake = bet.get("stake")
@@ -508,11 +509,36 @@ def validate_slot_rules(slot, config, now=None):
                 "than $0"
             )
 
-    if fun_parlay is not None:
-        legs = fun_parlay.get("legs") or []
+    if fun_parlay_2 is not None:
+        if fun_parlay is None:
+            raise RuleViolation(
+                f"[{label}] TIER STRUCTURE VIOLATION: card.fun_parlay_2 needs "
+                "a card.fun_parlay first -- it is the second variety, not a "
+                "replacement"
+            )
+        if lottery_ticket is not None:
+            raise RuleViolation(
+                f"[{label}] TIER STRUCTURE VIOLATION: card.fun_parlay_2 and "
+                "card.lottery_ticket both claim tier 3 -- a slot carries one "
+                "or the other"
+            )
+        sels_1 = sorted((l.get("selection") or "").strip().lower() for l in fun_parlay.get("legs") or [])
+        sels_2 = sorted((l.get("selection") or "").strip().lower() for l in fun_parlay_2.get("legs") or [])
+        if sels_1 == sels_2:
+            raise RuleViolation(
+                f"[{label}] TIER STRUCTURE VIOLATION: card.fun_parlay_2 has "
+                "the same legs as card.fun_parlay -- the second parlay must "
+                "be a different mix"
+            )
+
+    for tier_label in FUN_TIERS:
+        bet = card.get(tier_label)
+        if bet is None:
+            continue
+        legs = bet.get("legs") or []
         if not (FUN_PARLAY_MIN_LEGS <= len(legs) <= FUN_PARLAY_MAX_LEGS):
             raise RuleViolation(
-                f"[{label}] TIER STRUCTURE VIOLATION: card.fun_parlay must "
+                f"[{label}] TIER STRUCTURE VIOLATION: card.{tier_label} must "
                 f"have {FUN_PARLAY_MIN_LEGS}-{FUN_PARLAY_MAX_LEGS} legs, "
                 f"got {len(legs)}"
             )
@@ -520,7 +546,7 @@ def validate_slot_rules(slot, config, now=None):
             p = leg.get("estimated_prob", 0.0)
             if p < FUN_PARLAY_LEG_FLOOR:
                 raise RuleViolation(
-                    f"[{label}] TIER STRUCTURE VIOLATION: card.fun_parlay "
+                    f"[{label}] TIER STRUCTURE VIOLATION: card.{tier_label} "
                     f"leg '{leg.get('selection', '<unnamed leg>')}' has "
                     f"estimated_prob {p}, below the {FUN_PARLAY_LEG_FLOOR:.0%} "
                     "floor every Fun Parlay leg must clear"
@@ -548,11 +574,8 @@ def validate_slot_rules(slot, config, now=None):
         return
 
     # --- RULE 2 (structural): pre-kickoff only, every tier. ---
-    for tier_label, bet in (
-        ("easy_bet", easy_bet),
-        ("fun_parlay", fun_parlay),
-        ("lottery_ticket", lottery_ticket),
-    ):
+    for tier_label in ALL_TIERS:
+        bet = card.get(tier_label)
         if bet is None:
             continue
         _check_pre_kickoff(bet, f"[{label}] {bet.get('id') or tier_label}")
@@ -560,8 +583,9 @@ def validate_slot_rules(slot, config, now=None):
     # --- RULE 9: blacklist. ---
     _check_blacklist(slot, config, label)
 
-    # --- RULE 10: game script conflict (easy_bet vs each fun_parlay leg). ---
-    _check_game_script(easy_bet, fun_parlay, label)
+    # --- RULE 10: game script conflict (easy_bet vs each fun parlay's legs). ---
+    for tier_label in FUN_TIERS:
+        _check_game_script(easy_bet, card.get(tier_label), label, tier=tier_label)
 
     # --- RULE 11: source disagreement (easy_bet prob_sources). ---
     if easy_bet is not None:
@@ -600,11 +624,8 @@ def validate_publish(slot, weekend_id, slot_name, config, now, weekends_dir):
         )
     card = slot.get("card") or {}
 
-    for tier_label, bet in (
-        ("easy_bet", card.get("easy_bet")),
-        ("fun_parlay", card.get("fun_parlay")),
-        ("lottery_ticket", card.get("lottery_ticket")),
-    ):
+    for tier_label in ALL_TIERS:
+        bet = card.get(tier_label)
         if bet is None:
             continue
         _check_kickoff_future(bet, now, f"[{label}] {tier_label}", config)
@@ -614,10 +635,9 @@ def validate_publish(slot, weekend_id, slot_name, config, now, weekends_dir):
     # Sum of stakes CLAMPED at zero each -- a negative stake must never be
     # able to net against a real one and hide it under the budget cap.
     stake_total = 0.0
-    if card.get("easy_bet"):
-        stake_total += max(0.0, float(card["easy_bet"].get("stake", 0.0)))
-    if card.get("fun_parlay"):
-        stake_total += max(0.0, float(card["fun_parlay"].get("stake", 0.0)))
+    for tier_label in STAKED_TIERS:
+        if card.get(tier_label):
+            stake_total += max(0.0, float(card[tier_label].get("stake", 0.0)))
 
     budget = slate.slot_budget(weekend_id, slot_name, config, now, weekends_dir=weekends_dir)
     if stake_total > budget["total"] + EPSILON:
@@ -829,7 +849,7 @@ def compute_card_record(weekends_dir):
             for path in sorted(weekend_dir.glob("*.json")):
                 slot = _load_json_file(path)
                 card = slot.get("card") or {}
-                for tier in ("easy_bet", "fun_parlay"):
+                for tier in STAKED_TIERS:
                     bet = card.get(tier)
                     if not bet:
                         continue
@@ -872,7 +892,7 @@ def _find_most_recent_graded_slot(weekends_dir):
         slots.sort(key=lambda s: s.get("date", ""), reverse=True)
         for slot in slots:
             card = slot.get("card") or {}
-            tiers = [card.get(t) for t in ("easy_bet", "fun_parlay", "lottery_ticket") if card.get(t)]
+            tiers = [card.get(t) for t in ALL_TIERS if card.get(t)]
             if tiers and all(t.get("result") is not None for t in tiers):
                 return slot
     return None
@@ -888,7 +908,7 @@ def _distinct_games(slot):
             games.append(g)
 
     card = slot.get("card") or {}
-    for tier in ("easy_bet", "fun_parlay", "lottery_ticket"):
+    for tier in ALL_TIERS:
         bet = card.get(tier)
         if not bet:
             continue
@@ -1017,6 +1037,7 @@ def _reason_detail_html(bet):
 _TIER_META = {
     "easy_bet": (1, "Easy Bet", "tier-easy"),
     "fun_parlay": (2, "Fun Parlay", "tier-fun"),
+    "fun_parlay_2": (3, "Fun Parlay #2", "tier-fun"),
     "lottery_ticket": (3, "Lottery Ticket", "tier-lottery"),
 }
 
@@ -1024,7 +1045,7 @@ _TIER_META = {
 def render_card_bet(tier_key, bet, tz, historical=False):
     num, tier_label, cls = _TIER_META[tier_key]
     legs = bet.get("legs") or []
-    is_parlay = tier_key in ("fun_parlay", "lottery_ticket")
+    is_parlay = tier_key in FUN_TIERS + ("lottery_ticket",)
     title = f"{len(legs)}-leg parlay" if is_parlay else escape(bet.get("selection", ""))
     dk_odds = bet.get("dk_odds")
     stake = float(bet.get("stake", 0.0))
@@ -1097,7 +1118,7 @@ def render_card_bet(tier_key, bet, tz, historical=False):
 def render_card_section(card, tz, historical=False):
     """The three tiers, in order, skipping any that are absent."""
     parts = []
-    for tier in ("easy_bet", "fun_parlay", "lottery_ticket"):
+    for tier in ALL_TIERS:
         if card.get(tier):
             parts.append(render_card_bet(tier, card[tier], tz, historical=historical))
     return "".join(parts)
@@ -1231,7 +1252,7 @@ def render_slot_row(slot_name, slot_date, status, slot_data, tz):
     if slot_data:
         card = slot_data.get("card") or {}
         items = []
-        for tier, short in (("easy_bet", "Easy"), ("fun_parlay", "Fun"), ("lottery_ticket", "Lottery")):
+        for tier, short in (("easy_bet", "Easy"), ("fun_parlay", "Fun"), ("fun_parlay_2", "Fun #2"), ("lottery_ticket", "Lottery")):
             bet = card.get(tier)
             if not bet:
                 continue
@@ -1286,7 +1307,7 @@ def _slot_row_status(data, today):
     if data is None:
         return None
     card = data.get("card") or {}
-    tiers = [card.get(t) for t in ("easy_bet", "fun_parlay", "lottery_ticket") if card.get(t)]
+    tiers = [card.get(t) for t in ALL_TIERS if card.get(t)]
     if tiers and all(t.get("result") is not None for t in tiers):
         return "graded"
     return "published"
@@ -1411,7 +1432,7 @@ def _last_weekend_html(prev_weekend_id, config, weekends_dir):
         off = slate._SLOT_OFFSET.get(s, 0)
         d = thursday + timedelta(days=off)
         card = data.get("card") or {}
-        tiers = [card.get(t) for t in ("easy_bet", "fun_parlay", "lottery_ticket") if card.get(t)]
+        tiers = [card.get(t) for t in ALL_TIERS if card.get(t)]
         row_status = "graded" if tiers and all(t.get("result") is not None for t in tiers) else "published"
         rows.append(render_slot_row(s, d, row_status, data, tz))
 

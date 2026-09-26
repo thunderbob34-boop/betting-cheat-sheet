@@ -262,5 +262,19 @@ class TestPending(unittest.TestCase):
         self.assertEqual(results, [])
 
 
+
+class TestSecondFunParlayGrading(unittest.TestCase):
+    def test_grades_fun_parlay_2(self):
+        with tempfile.TemporaryDirectory() as td:
+            _write_slot(td, "2026-09-24", "sun", {
+                "weekend_id": "2026-09-24",
+                "slot": "sun",
+                "card": {"fun_parlay_2": {"stake": 0.10, "dk_odds": 300,
+                                          "legs": [{"selection": "a"}, {"selection": "b"}]}},
+            })
+            bet = grade.set_result("2026-09-24", "sun", "fun_parlay_2", "Won", weekends_dir=td)
+            self.assertEqual(bet["result"], "Won")
+            self.assertAlmostEqual(bet["net"], 0.30, delta=1e-9)
+
 if __name__ == "__main__":
     unittest.main()

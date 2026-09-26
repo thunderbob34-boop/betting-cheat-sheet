@@ -20,9 +20,9 @@
     "Thin board: across 14 Sunday games, only a few favorites show a positive averaged edge vs the DraftKings price, and none by much. Stakes are small on purpose.",
     "0-2 teams (desperation angle): Chargers (at BUF), Commanders (vs SEA, Jayden Daniels out), Texans and Colts (vs each other), Dolphins (vs KC), Titans (at NYG), Buccaneers (vs MIN). The card needs none of them blown out -- the Fun Parlay only needs Buffalo to win, not cover.",
     "Puka Nacua (Rams, groin/hip) is doubtful for SNF; McVay said doubtful means more unlikely than likely. Kalshi's Rams price (54%) looks like it already reflects that; ESPN's FPI (63.7%) may not.",
-    "No Lottery Ticket: this weekend's one ticket was already used on Thursday (ATL @ GB).",
     "Sack-leader props were not researched this run (no verified DK sack prices found) -- none on the card or leg bank.",
-    "No player props on the card: the only prop price verified was McCaffrey anytime TD (Fanatics -225), and it's overpriced vs Dimers -- see Skip these."
+    "No player props on the card: the only prop price verified was McCaffrey anytime TD (Fanatics -225), and it's overpriced vs Dimers -- see Skip these.",
+    "No Lottery Ticket: this weekend's one ticket was already used Thursday (ATL @ GB), so tier 3 is a second Fun Parlay instead."
   ],
   "card": {
     "easy_bet": {
@@ -92,11 +92,61 @@
       "kickoff": "2026-09-27T13:00:00-04:00",
       "game_script": "neutral",
       "reason_summary": "Bills ML + Lions ML (~+74), both 1 PM. ~56% to hit, priced about fair (-1.3% edge) -- so it's sized down to $0.15, not the full $0.25.",
-      "reason": "Two big home favorites, each well above the 55% leg floor, in different games from the Easy Bet (no game-script conflict). Every source agrees closely on both, but DraftKings has priced them right -- the averaged edge is slightly negative (-1.3% on the parlay). Per the 'size down, don't chase' rule it gets $0.15 instead of the $0.25 slate.py allows; the unused $0.10 stays in the weekend's stop-loss room for Monday. Skip it entirely if you'd rather not play a no-edge ticket.",
+      "reason": "Two big home favorites, each well above the 55% leg floor, in different games from the Easy Bet (no game-script conflict). Every source agrees closely on both, but DraftKings has priced them right -- the averaged edge is slightly negative (-1.3% on the parlay). Per the 'size down, don't chase' rule it gets $0.15 instead of the $0.25 slate.py allows; the other $0.10 goes to Fun Parlay #2. Skip it entirely if you'd rather not play a no-edge ticket.",
       "verify": {
         "source": "ESPN 'NFL Week 3 betting: odds, lines and totals for every game' (DraftKings lines, published 2026-09-25 10:21 ET) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN 'What to know for NFL Week 3' FPI win probabilities (fetched 2026-09-26) https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers NFL predictions hub (fetched 2026-09-26) https://www.dimers.com/nfl/predictions; Kalshi via https://predictionmarketspicks.com/nfl/chargers-vs-bills-week-03-2026 and /jets-vs-lions-week-03-2026",
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
         "note": "Confirm both prices and the combined parlay price in the DK app. Bills WR DJ Moore and DE Ed Oliver were questionable."
+      }
+    },
+    "fun_parlay_2": {
+      "id": "sun-fun2-2026-09-27",
+      "legs": [
+        {
+          "selection": "Carolina Panthers moneyline (at Cleveland Browns)",
+          "market": "moneyline",
+          "dk_odds": -148,
+          "estimated_prob": 0.5923,
+          "game": "CAR @ CLE",
+          "kickoff": "2026-09-27T13:00:00-04:00",
+          "game_script": "CAR leading",
+          "reason": "Averaged: ESPN FPI 62.8% + Dimers 59.9% + Kalshi 55% = 59.2% vs -148 (59.7% implied) -- about -0.5%, priced fair. Both 1-1. Risk: Carolina's secondary is thin (Nick Scott and Claudin Cherelus out; Devin Lloyd and Jaelan Phillips limited)."
+        },
+        {
+          "selection": "Cincinnati Bengals moneyline (at Pittsburgh Steelers)",
+          "market": "moneyline",
+          "dk_odds": -175,
+          "estimated_prob": 0.6315,
+          "game": "CIN @ PIT",
+          "kickoff": "2026-09-27T13:00:00-04:00",
+          "game_script": "CIN leading",
+          "reason": "Averaged: ESPN FPI 61.7% + Dimers 64.6% = 63.2% vs -175 (63.6% implied) -- about -0.5%, priced fair. Bengals 2-0, Steelers 1-1. Risk: road division game; WR Andrei Iosivas out 4-6 weeks."
+        },
+        {
+          "selection": "New Orleans Saints moneyline (vs Las Vegas Raiders)",
+          "market": "moneyline",
+          "dk_odds": -185,
+          "estimated_prob": 0.6405,
+          "game": "LV @ NO",
+          "kickoff": "2026-09-27T16:25:00-04:00",
+          "game_script": "NO leading",
+          "reason": "Averaged: ESPN FPI 63.9% + Dimers 64.2% = 64.1% vs -185 (64.9% implied) -- about -0.9%, priced fair. Risk: the Raiders are 2-0 with Kirk Cousins playing well; Brock Bowers is questionable."
+        }
+      ],
+      "dk_odds": 306,
+      "odds_estimated": true,
+      "estimated_prob_source": "Combined true probability 59.2% x 63.2% x 64.1% = 24.0%. dk_odds +306 is computed from the three DK moneylines (4.057 decimal), not a quoted DK parlay price -- confirm in the app. +306 implies 24.6%, so the edge is about -0.7%: no real edge.",
+      "is_pre_kickoff": true,
+      "stake": 0.1,
+      "game": "CAR @ CLE + CIN @ PIT + LV @ NO",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "reason_summary": "Panthers + Bengals + Saints ML (~+306). About a 1-in-4 shot for a bigger payout, priced about fair. $0.10.",
+      "reason": "A different flavor from Fun Parlay #1: three mid-sized favorites (each 59-64%) instead of two big ones, so it pays about +306 instead of +74 but hits only about 24% of the time. No overlap with the Easy Bet's game (Rams @ Broncos) or with Parlay #1's games. Every leg is priced about fair by DraftKings -- no real edge, just more fun for $0.10. It shares Parlay #1's $0.25 fun budget, so the card's total stays at the slot's $0.55.",
+      "verify": {
+        "source": "ESPN Week 3 DK lines (2026-09-25) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN FPI https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers https://www.dimers.com/nfl/predictions; Kalshi (Panthers) via https://predictionmarketspicks.com/nfl/panthers-vs-browns-week-03-2026",
+        "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
+        "note": "Confirm all three prices and the combined parlay price in the DK app."
       }
     }
   },

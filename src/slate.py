@@ -188,7 +188,7 @@ def _load_slot(path):
 
 
 def _bet_summary(bet, tier):
-    if tier == "fun_parlay":
+    if tier in ("fun_parlay", "fun_parlay_2"):
         legs = bet.get("legs") or []
         sels = "; ".join(leg.get("selection", "") for leg in legs)
         return f"{len(legs)}-leg parlay: {sels}"
@@ -224,7 +224,7 @@ def weekend_status(weekend_id, config, weekends_dir=None, exclude_slot=None):
         if slot == exclude_slot:
             continue
         card = data.get("card") or {}
-        for tier in ("easy_bet", "fun_parlay"):
+        for tier in ("easy_bet", "fun_parlay", "fun_parlay_2"):
             bet = card.get(tier)
             if not bet:
                 continue

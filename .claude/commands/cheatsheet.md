@@ -74,8 +74,13 @@ the `budget` snapshot from step 1 and an `angles` list). Order matters:
    Bet the full `budget.total`).
 3. **Game-script check** (rule 10) — tag every bet/leg `neutral` / `<TEAM> leading` /
    `<TEAM> trailing`; the Easy Bet and a Fun Parlay leg can't need the same side ahead.
-4. **Lottery Ticket** — only if `lottery_available` and this is the **Sunday** slot (or Monday if
-   Sunday passed without one): 10–20 real legs, stake exactly $0.50, real combined probability.
+4. **Tier 3 — Lottery Ticket or Fun Parlay #2.** Lottery Ticket only if `lottery_available` and
+   this is the **Sunday** slot (or Monday if Sunday passed without one): 10–20 real legs, stake
+   exactly $0.50, real combined probability. **Every other slot gets `fun_parlay_2`** — a
+   different variety of Fun Parlay (different legs/games, e.g. a 3-leg mid-favorite ticket for a
+   bigger price), same leg rules and game-script check. `fun_parlay` + `fun_parlay_2` stakes
+   together = `budget.fun` (split it, e.g. $0.15 / $0.10; each ≥ $0.10 unless the fun budget is
+   too small for two, in which case skip #2 and say so). Grade it with tier `fun_parlay_2`.
 5. Leg bank (10–15 real entries incl. player props, each with `player`/`game`/`kickoff` where it
    applies), boost check (real promos or an honest "none found"), avoid list (3–5 real traps).
 

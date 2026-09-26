@@ -9,7 +9,7 @@ the 2026-09-16 `~/HQ` reorg). This file overrides the plan wherever they disagre
 An autonomous phone app: a card for **every game day, Thursday through Monday, all season**,
 built, graded, and published by a scheduled Claude run on Gus's Mac — no approval step per
 edition. Gus opens the page (installed to his home screen), sees **three bets for the current
-time slot**, and places them himself in DraftKings.
+time slot** (Easy Bet, Fun Parlay, and a third bet), and places them himself in DraftKings.
 
 - Live page: https://thunderbob34-boop.github.io/betting-cheat-sheet/ (GitHub Pages from `docs/`).
 - Four tabs: **Today** (this slot's three bets), **Weekend** (every slot Thu–Mon, results, the
@@ -42,6 +42,13 @@ time slot**, and places them himself in DraftKings.
    per weekend**, flat $0.50, 10–20 legs, exempt from rule 4's floor, **outside** the $5
    stop-loss and excluded from pacing both ways, shows real combined probability and
    "1 in X"). Build the Lottery Ticket only after tiers 1–2 are set.
+   **Tier 3 on every other slot is Fun Parlay #2** (`card.fun_parlay_2`) — Gus (2026-09-26):
+   "just feed me the three I need… I still want to see a couple of varieties of fun leg
+   parlays." Same rules as the Fun Parlay (2–3 legs, each ≥55%, game-script check vs the Easy
+   Bet), a genuinely different mix (not the same legs — e.g. two big favorites in one, three
+   mid-favorites for a bigger price in the other), and it **shares the slot's fun budget**
+   with Fun Parlay #1, so it counts toward the $5 stop-loss and never adds money. A slot has
+   either a Lottery Ticket or a Fun Parlay #2, never both.
 7. **Claude never places a bet.** The page is advice; Gus places every bet himself.
 8. **Honesty.** Every fact comes from a source actually read. Every edge claim needs ≥2
    independent probability sources, cited, with the averaging math shown. Verify a number on

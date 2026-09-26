@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import build
 import slate
@@ -1166,13 +1167,124 @@ class TestOddsEstimatedLabel(unittest.TestCase):
         self.assertTrue(seed["card"]["fun_parlay"].get("odds_estimated"))
         self.assertTrue(seed["card"]["lottery_ticket"].get("odds_estimated"))
         self.assertFalse(seed["card"]["easy_bet"].get("odds_estimated", False))
-        now = datetime(2026, 9, 26, 20, 0, tzinfo=timezone.utc)
-        window = slate.current_window(now, CONFIG)
-        html = render_today(window, CONFIG, SEED_WEEKENDS_DIR, now)
+        # Render the Thursday card itself -- which slot the Today tab shows
+        # depends on whatever later slot files exist, so don't go through it.
+        html = render_card_section(seed["card"], self.tz, historical=True)
         self.assertIn("+101 est.", html)
         self.assertIn("+15300 est.", html)
         self.assertNotIn("-216 est.", html)
 
+
+
+# ---------------------------------------------------------------------------
+# Tier 3 as a second Fun Parlay (when the slot has no Lottery Ticket)
+# ---------------------------------------------------------------------------
+
+def _second_fun_parlay(**overrides):
+    bet = _valid_fun_parlay(id="fun-parlay-2", **overrides)
+    bet["legs"] = [
+        {"selection": "Leg 3", "estimated_prob": 0.60, "reason": "x", "game": "EEE @ FFF",
+         "kickoff": FUTURE_KICKOFF, "game_script": "neutral"},
+        {"selection": "Leg 4", "estimated_prob": 0.62, "reason": "x", "game": "GGG @ HHH",
+         "kickoff": FUTURE_KICKOFF, "game_script": "neutral"},
+    ]
+    return bet
+
+
+class TestSecondFunParlay(unittest.TestCase):
+    def test_valid_second_fun_parlay_passes(self):
+        slot = _valid_slot()
+        slot["card"]["fun_parlay_2"] = _second_fun_parlay()
+        validate_slot_rules(slot, CONFIG)  # should not raise
+
+    def test_needs_first_fun_parlay(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["fun_parlay_2"] = _second_fun_parlay()
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_cannot_share_slot_with_lottery_ticket(self):
+        slot = _valid_slot(include_lottery_ticket=True)
+        slot["card"]["fun_parlay_2"] = _second_fun_parlay()
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_same_legs_as_first_parlay_rejected(self):
+        slot = _valid_slot()
+        slot["card"]["fun_parlay_2"] = _valid_fun_parlay(id="fun-parlay-2")
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_leg_floor_applies(self):
+        slot = _valid_slot()
+        second = _second_fun_parlay()
+        second["legs"][0]["estimated_prob"] = 0.50
+        slot["card"]["fun_parlay_2"] = second
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_game_script_conflict_with_easy_bet(self):
+        slot = _valid_slot()
+        slot["card"]["easy_bet"]["game"] = "ATL @ GB"
+        slot["card"]["easy_bet"]["game_script"] = "ATL leading"
+        second = _second_fun_parlay()
+        second["legs"][0]["game"] = "ATL @ GB"
+        second["legs"][0]["game_script"] = "GB trailing"
+        slot["card"]["fun_parlay_2"] = second
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_blacklist_applies(self):
+        slot = _valid_slot()
+        second = _second_fun_parlay()
+        second["legs"][0]["selection"] = "MarShawn Lloyd 25+ rush yds"
+        slot["card"]["fun_parlay_2"] = second
+        config = dict(CONFIG, blacklist=["MarShawn Lloyd"])
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, config)
+
+    def test_stake_counts_toward_slot_budget(self):
+        with tempfile.TemporaryDirectory() as td:
+            # Fresh weekend, thu budget is $1.25 total: 0.75 + 0.45 fits,
+            # adding a 0.10 second parlay pushes it over.
+            slot = _valid_slot(weekend_id="2026-09-24", slot="thu")
+            slot["card"]["easy_bet"]["stake"] = 0.75
+            slot["card"]["fun_parlay"]["stake"] = 0.45
+            now = datetime.now(timezone.utc)
+            validate_publish(slot, "2026-09-24", "thu", CONFIG, now, td)  # fits
+            slot["card"]["fun_parlay_2"] = _second_fun_parlay(stake=0.10)
+            with self.assertRaises(RuleViolation):
+                validate_publish(slot, "2026-09-24", "thu", CONFIG, now, td)
+
+    def test_counts_in_weekend_pacing(self):
+        with tempfile.TemporaryDirectory() as td:
+            slot = _valid_slot(weekend_id="2026-09-24", slot="thu")
+            slot["card"]["easy_bet"].update(stake=0.50, result="Lost", net=-0.50)
+            slot["card"]["fun_parlay"].update(stake=0.30, result="Lost", net=-0.30)
+            slot["card"]["fun_parlay_2"] = _second_fun_parlay(stake=0.20)
+            _write_slot(td, slot)
+            status = slate.weekend_status("2026-09-24", CONFIG, weekends_dir=td)
+            self.assertAlmostEqual(status["settled_net"], -0.80)
+            self.assertAlmostEqual(status["open_stakes"], 0.20)
+            self.assertEqual(status["open_bets"][0]["tier"], "fun_parlay_2")
+
+    def test_renders_as_tier_three(self):
+        card = {"easy_bet": _valid_easy_bet(), "fun_parlay": _valid_fun_parlay(),
+                "fun_parlay_2": _second_fun_parlay()}
+        html = render_card_section(card, ZoneInfo("America/New_York"))
+        self.assertIn("3 · Fun Parlay #2", html)
+        self.assertLess(html.index("2 · Fun Parlay"), html.index("3 · Fun Parlay #2"))
+
+    def test_counts_in_card_record(self):
+        with tempfile.TemporaryDirectory() as td:
+            slot = _valid_slot(weekend_id="2026-09-24", slot="thu", include_fun_parlay=True)
+            slot["card"]["easy_bet"].update(result="Lost", net=-3.0)
+            slot["card"]["fun_parlay"].update(result="Lost", net=-2.0)
+            slot["card"]["fun_parlay_2"] = _second_fun_parlay(stake=1.0, result="Won", net=1.5)
+            _write_slot(td, slot)
+            rec = compute_card_record(td)
+            self.assertEqual(rec["tiers12"], {"W": 1, "L": 2, "P": 0})
+            self.assertAlmostEqual(rec["net12"], -3.5)
 
 if __name__ == "__main__":
     unittest.main()

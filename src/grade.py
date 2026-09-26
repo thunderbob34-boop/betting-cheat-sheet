@@ -5,7 +5,7 @@ is edited by hand (screenshots -> Claude appends rows) elsewhere. This tool
 only ever writes to data/weekends/<weekend_id>/<slot>.json.
 
 Usage:
-    python3 src/grade.py set <weekend_id> <slot> <easy_bet|fun_parlay|lottery_ticket> <Won|Lost|Push|Void>
+    python3 src/grade.py set <weekend_id> <slot> <easy_bet|fun_parlay|fun_parlay_2|lottery_ticket> <Won|Lost|Push|Void>
     python3 src/grade.py pending [--now ISO]
 
 Python 3 stdlib only.
@@ -23,7 +23,7 @@ import odds
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_WEEKENDS_DIR = REPO_ROOT / "data" / "weekends"
 
-VALID_TIERS = ("easy_bet", "fun_parlay", "lottery_ticket")
+VALID_TIERS = ("easy_bet", "fun_parlay", "fun_parlay_2", "lottery_ticket")
 VALID_RESULTS = ("Won", "Lost", "Push", "Void")
 
 PENDING_GRACE = timedelta(hours=4)
