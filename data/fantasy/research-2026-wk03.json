@@ -31,6 +31,38 @@
         "Yahoo, FantasyAlarm, CBS and Bleacher Report weather reports (9/25-9/26)",
         "ESPN (DraftKings lines), StatMuse defensive game logs, NFL.com injury reports"
       ]
+    },
+    "250898504": {
+      "verdict": "Start Shough over Nix and Fannin over Hockenson (both confirmed by expert ranks). Best move this week: three free-agent pickups -- Parker Washington (WR9), Dalton Schultz (TE6) and Brandon Aubrey (K1) all outrank what you'd start. With them: QB Shough, RB Walker + Taylor, FLEX Achane, WR Olave + Washington, TE Schultz, K Aubrey, D/ST Rams.",
+      "players": {
+        "Tyler Shough": "QB10 by expert consensus. 410 yds/3 TD in Week 1, rushing TD in Week 2. Dome game, Saints favored by 3.",
+        "Bo Nix": "QB16. Rushing has disappeared (5 yds total in 2 games). Also plays against your Rams D/ST -- starting both works against itself. Bench (or drop).",
+        "Kenneth Walker III": "Top RB this week (290 rush yds, 6.2 YPC through 2 games); Chiefs are 10.5-pt favorites.",
+        "Jonathan Taylor": "Strong RB1 start; Houston is 0-2.",
+        "De'Von Achane": "RB14: 83% of snaps, steady targets. Miami is a big underdog, which caps the ceiling. FLEX.",
+        "Chris Olave": "Dome game vs LV; projects ~17.8. Start.",
+        "Davante Adams": "WR11. 8-195-2 in Week 2 with Nacua out, and Nacua is doubtful again. Start if you don't add Parker Washington.",
+        "George Pickens": "WR13. Highest-total game (53.5 in Rio), but only 68 yds and no TDs so far; rain on a re-stitched field is the worry.",
+        "Mike Evans": "WR15 but QUESTIONABLE (hip): missed Wed/Thu practice, limited Fri. 4:05 game -- risky.",
+        "Jalen Coker": "WR22, QUESTIONABLE (ankle), expected to play. 16 catches in 2 games.",
+        "Malik Nabers": "WR18, but the week's worst storm (17-23 mph wind, 90% rain) and Jameis Winston at QB. Bench here -- you have better options.",
+        "Harold Fannin Jr.": "TE13, 8 spots above Hockenson. Start if you don't add Schultz.",
+        "T.J. Hockenson": "TE21: only 4-5 targets a game even with a good matchup at TB. Bench (or drop for Schultz).",
+        "Rams D/ST": "DST10 -- a fine mid-tier start at DEN (Broncos scored 10 and 20). 49ers D/ST (free agent, DST6) is only a slight upgrade.",
+        "Chris Boswell": "K17 with 12-14 mph wind in Pittsburgh. Swap for Aubrey (K1).",
+        "TreVeyon Henderson": "RB29, split backfield, tough Jacksonville run defense. Bench."
+      },
+      "waivers": [
+        "Add Parker Washington (WR, JAX) -- expert rank WR9, above every WR you have; 42.9% target share in Week 2 (highest of any WR). Start him over Adams. Drop Bo Nix to make room -- free-agent QBs (Lawrence, Kyler Murray) project as well as Nix if you ever need a fill-in.",
+        "Add Dalton Schultz (TE, HOU) -- TE6; 14 targets in Week 2, Nico Collins is out, and Indianapolis gave up 304 and 371 passing yds. Start him; drop Hockenson.",
+        "Add Brandon Aubrey (K, DAL) -- K1 in the week's highest-total game. Drop Boswell (K17)."
+      ],
+      "sources": [
+        "FantasyPros Week 3 consensus rankings (QB, PPR WR/TE, DST, K; updated 9/26)",
+        "ESPN game logs and box scores, team injury reports (therams.com, 49ers.com, panthers.com, NBC)",
+        "FFToday and Fantasy Six Pack usage reports, SI and CBS matchup notes",
+        "Weather: Yahoo, FantasyAlarm (9/26)"
+      ]
     }
   }
 }
