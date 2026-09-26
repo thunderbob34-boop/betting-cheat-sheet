@@ -123,6 +123,16 @@ game already kicked off locked where ESPN has him, and writes `data/fantasy/<sea
 Then `python3 src/build.py` renders the Lineup tab. Close calls (< 1 pt), questionable starters and
 big source disagreements are flagged, not hidden. The page only advises; Gus sets his lineup in the ESPN app.
 
+**Projections alone aren't the job** (Gus, 2026-09-26: "I can see the projections… do your research
+online for the best possible start"). Every week, after `pull`, research each real start/sit decision
+from pages actually read: FantasyPros PPR expert consensus rank (ECR), usage (snaps, target share,
+carries, red-zone work), the opposing defense vs the position, injury/practice news, Vegas spread and
+total (game script), and weather for outdoor games. Also check the league's free agents
+(`kona_player_info` with `filterStatus` FREEAGENT) for K, D/ST and TE streams. Write the result to
+`data/fantasy/research-<season>-wk<NN>.json` (`verdict`, per-player `players` notes, `waivers`,
+`sources`) keyed by league ID — the Lineup tab shows it under each player. When research disagrees
+with the projection-based lineup, say so in `verdict` and give the reason; don't silently override.
+
 `.claude/commands/cheatsheet.md` is the full run procedure (research → slot file → grade →
 build → commit → push). The scheduled task just runs it.
 

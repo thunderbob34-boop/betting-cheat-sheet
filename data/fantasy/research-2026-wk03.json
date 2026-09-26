@@ -1,0 +1,36 @@
+{
+  "season": 2026,
+  "week": 3,
+  "researched_at": "2026-09-26 evening ET",
+  "leagues": {
+    "8873570": {
+      "verdict": "Research agrees with the lineup: one move -- start Nabers over Vele. RB/FLEX: Kyren, Achane, Hubbard are ranked RB13-15 by the expert consensus, all well ahead of Vele (flex #65). Optional small upgrades: Giants D/ST and kicker Daniel Carlson from free agency.",
+      "players": {
+        "Justin Herbert": "Only QB on the roster. LAC at BUF: dry, light wind, 50.5 total -- good passing spot.",
+        "Jaxon Smith-Njigba": "Consensus WR1. 11 targets, 9-155-3 in Week 2. Wind 18-20 mph in Washington but he's a must-start.",
+        "Malik Nabers": "Consensus WR18 (experts range WR12-23), 21% target share and first read. Shoulder cleared (full practice Thu/Fri). Risk: Winston at QB (40.7% completions in relief) and the week's worst weather -- 17-23 mph wind, gusts ~40, 90% rain. Still ahead of Vele/Wilson; if he's inactive, start Vele.",
+        "Devaughn Vele": "WR29 but best bench WR: dome game, LV allows the 2nd-most yards per target to slot WRs. First backup if Nabers sits.",
+        "Michael Wilson": "WR28 by rank but tough matchup -- SF allows the 7th-fewest points per target to outside WRs; the FantasyPros Primer says sit.",
+        "Kyren Williams": "RB13. Denver has allowed the 4th-most fantasy points to RBs (220 rush yds to KC in Week 1). Splits some work with Corum. Plays Sunday night.",
+        "De'Von Achane": "RB14. 83% snap share, 11 targets in 2 games protect his PPR floor. Miami is a 10.5-pt underdog vs a top-10 run defense -- lower ceiling.",
+        "Chuba Hubbard": "RB15. Lead back with Jonathon Brooks on IR; small favorite vs a middling Cleveland run defense. Only 10-12 carries a game so far.",
+        "TreVeyon Henderson": "RB29. Split with Stevenson, zero targets in Week 2, tough Jacksonville run defense. Bench.",
+        "Kaelon Black": "RB37, McCaffrey's backup (McCaffrey practiced fully). Bench.",
+        "Tyler Warren": "Consensus TE9, must-start per the FantasyPros Primer.",
+        "Oronde Gadsden": "TE16. Growing role with Njoku and Kolar out, but Buffalo is tough on TEs. Bench.",
+        "Chris Boswell": "Pittsburgh wind 12-14 mph, gusts to 21, dry -- a mild knock for a kicker.",
+        "Bengals D/ST": "Faces Aaron Rodgers' Steelers in dry conditions; 8.0 projected."
+      },
+      "waivers": [
+        "Optional: add Giants D/ST (free agent, 8.5 projected) -- home vs the 0-2 Titans in the week's worst storm (lowest total on the board, 38.5). Storms favor defenses. Drop Kaelon Black to make room and start the Giants over the Bengals.",
+        "Optional: kicker Daniel Carlson (free agent, NO, 8.8 projected) kicks indoors as a 3-pt favorite vs Boswell (8.3) in wind. Small gain -- swap only if the add is free."
+      ],
+      "sources": [
+        "FantasyPros Week 3 PPR rankings (ECR, updated 9/26) and Week 3 Primer",
+        "NBC Sports, DraftSharks, SI and CBS start/sit and rankings pieces",
+        "Yahoo, FantasyAlarm, CBS and Bleacher Report weather reports (9/25-9/26)",
+        "ESPN (DraftKings lines), StatMuse defensive game logs, NFL.com injury reports"
+      ]
+    }
+  }
+}

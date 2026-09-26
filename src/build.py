@@ -1558,7 +1558,7 @@ def render_record(config, csv_path, weekends_dir, window):
 DEFAULT_FANTASY_DIR = REPO_ROOT / "data" / "fantasy"
 
 
-def _fantasy_player_line(slot, p):
+def _fantasy_player_line(slot, p, note=""):
     status = (p.get("status") or "ACTIVE").upper()
     chips = ""
     if p.get("locked"):
@@ -1578,7 +1578,7 @@ def _fantasy_player_line(slot, p):
     return f'''<li class="fx-row">
   <span class="fx-slot">{escape(slot)}</span>
   <span class="fx-name">{escape(p.get("name", ""))} <span class="fx-team">{escape(p.get("pos", ""))} · {escape(p.get("team", ""))}</span>{chips}
-    <span class="fx-src">{escape(src)}</span></span>
+    <span class="fx-src">{escape(src)}</span>{f'<span class="fx-note">{escape(note)}</span>' if note else ""}</span>
   <span class="fx-pts">{float(p.get("proj", 0.0)):.1f}</span>
 </li>'''
 
@@ -1591,7 +1591,12 @@ def render_lineup(fantasy_dir=None):
             "No lineups yet",
             "Add your ESPN league IDs to data/fantasy.json, then run python3 src/fantasy.py pull.",
         )
+    files = [f for f in files if not f.name.startswith("research-")]
+    if not files:
+        return render_empty_state("No lineups yet", "Run python3 src/fantasy.py pull.")
     data = _load_json_file(files[-1])
+    research_path = fantasy_dir / f"research-{data.get('season')}-wk{int(data.get('week', 0)):02d}.json"
+    research = _load_json_file(research_path).get("leagues", {}) if research_path.exists() else {}
     parts = [f'''<header class="slot-head">
   <h2 class="slot-title">Week {int(data.get("week", 0))} lineups</h2>
   <p class="slot-sub">{escape(data.get("scoring", ""))} · {escape(data.get("sources", ""))}</p>
@@ -1601,13 +1606,24 @@ def render_lineup(fantasy_dir=None):
         if lg.get("error"):
             parts.append(f'<section class="fx-league"><h3>{title}</h3><p class="fx-error">{escape(lg["error"])}</p></section>')
             continue
+        rs = research.get(str(lg.get("league_id"))) or {}
+        pnotes = rs.get("players") or {}
         rows = "".join(
-            _fantasy_player_line(s["slot"], s["player"]) if s.get("player")
+            _fantasy_player_line(s["slot"], s["player"], pnotes.get(s["player"].get("name"), "")) if s.get("player")
             else f'<li class="fx-row empty"><span class="fx-slot">{escape(s["slot"])}</span><span class="fx-name">Empty -- pick someone up</span><span class="fx-pts">0.0</span></li>'
             for s in lg.get("starters") or []
         )
         total = sum(float(s["player"].get("proj", 0.0)) for s in lg.get("starters") or [] if s.get("player"))
-        bench = "".join(_fantasy_player_line("BN", b) for b in lg.get("bench") or [])
+        bench = "".join(_fantasy_player_line("BN", b, pnotes.get(b.get("name"), "")) for b in lg.get("bench") or [])
+        research_html = ""
+        if rs:
+            waivers = "".join(f"<li>{escape(w)}</li>" for w in rs.get("waivers") or [])
+            srcs = escape("; ".join(rs.get("sources") or []))
+            research_html = (
+                f'<div class="fx-research"><p class="fx-changes-title">Research call</p><p>{escape(rs.get("verdict", ""))}</p>'
+                + (f'<p class="fx-changes-title">Waiver ideas</p><ul>{waivers}</ul>' if waivers else "")
+                + f'<p class="fx-src">Sources: {srcs}</p></div>'
+            )
         changes = lg.get("changes")
         if changes is None:
             changes_html = ""
@@ -1622,6 +1638,7 @@ def render_lineup(fantasy_dir=None):
   <h3>{title} <span class="fx-team-name">{escape(lg.get("team_name", ""))}</span></h3>
   <p class="fx-total">Projected starters: <b>{total:.1f}</b></p>
   {changes_html}
+  {research_html}
   {notes_html}
   <ul class="fx-list">{rows}</ul>
   <details class="more"><summary>Bench</summary><ul class="fx-list">{bench}</ul></details>
