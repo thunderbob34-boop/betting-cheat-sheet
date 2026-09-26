@@ -132,6 +132,15 @@ total (game script), and weather for outdoor games. Also check the league's free
 `data/fantasy/research-<season>-wk<NN>.json` (`verdict`, per-player `players` notes, `waivers`,
 `sources`) keyed by league ID — the Lineup tab shows it under each player. When research disagrees
 with the projection-based lineup, say so in `verdict` and give the reason; don't silently override.
+Suggested pickups also go in `moves` (`[{"add", "drop"}]`); `pull` re-runs the lineup with them so
+the page shows the projected score and win % with and without the pickups.
+
+**Timing** (Gus, 2026-09-26: "I want to wake up on Wednesday or Thursday morning and be able to set
+my team and set my bets"). The scheduled run adds a Wednesday 9 AM run that builds the week's
+lineups + research for both leagues (after ESPN waivers process); Thu/Sun/Mon runs refresh them.
+The Today tab opens with a fantasy summary (changes to make, projected win %, ESPN's win %) above the
+bet card. Win % = normal model on the projected margin with a ±35-pt swing (an assumption, stated on
+the page), shown beside ESPN's own number.
 
 `.claude/commands/cheatsheet.md` is the full run procedure (research → slot file → grade →
 build → commit → push). The scheduled task just runs it.
