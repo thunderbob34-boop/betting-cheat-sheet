@@ -1,0 +1,14 @@
+{
+  "season": 2026,
+  "week": 3,
+  "generated_at": "2026-09-26T22:11:03.407357+00:00",
+  "scoring": "Full PPR",
+  "sources": "ESPN projection (league scoring) + Rotowire full-PPR projection (via Sleeper), averaged",
+  "leagues": [
+    {
+      "league_name": "League 1",
+      "league_id": 8873570,
+      "error": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues/8873570?view=mTeam&view=mRoster&view=mSettings&scoringPeriodId=3 returned HTTP 401: the league is private. Ask the league manager to turn on 'Make league viewable to public' (League Settings -> Basic Settings), or send roster screenshots instead. This tool never uses login cookies."
+    }
+  ]
+}

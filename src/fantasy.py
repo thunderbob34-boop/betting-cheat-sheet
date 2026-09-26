@@ -245,7 +245,62 @@ def _espn_week_projection(player, week):
     return None
 
 
-def pull_league(league, season, week, pro_teams, sleeper, now):
+def espn_player_pool(season, week, limit=1500):
+    """ESPN's public player list (default full-PPR scoring, no login) --
+    used to look up a roster typed in by hand when a league is private."""
+    url = (ESPN_BASE.format(season=season) + f"/segments/0/leaguedefaults/3"
+           f"?scoringPeriodId={week}&view=kona_player_info")
+    flt = {"players": {"filterSlotIds": {"value": [0, 2, 4, 6, 16, 17]}, "limit": limit,
+                       "sortPercOwned": {"sortPriority": 1, "sortAsc": False}}}
+    req = urllib.request.Request(url, headers={"User-Agent": "betting-cheat-sheet/1.0",
+                                               "X-Fantasy-Filter": json.dumps(flt)})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = json.loads(r.read().decode("utf-8"))
+    except (urllib.error.URLError, TimeoutError) as e:
+        raise FantasyError(f"could not reach ESPN's player list: {e}")
+    return [p["player"] for p in data.get("players") or [] if p.get("player")]
+
+
+def _plain(name):
+    words = "".join(c for c in (name or "").lower() if c.isalnum() or c == " ").split()
+    return " ".join(w for w in words if w not in ("jr", "sr", "ii", "iii", "iv", "v"))
+
+
+def manual_roster_entries(roster, pool):
+    """Turn a hand-typed roster (["Lamar Jackson", {"name": "Bijan Robinson",
+    "slot": "RB"}, "Broncos D/ST", ...]) into ESPN-style roster entries.
+    `slot` is only needed for players whose game already kicked off (so they
+    stay where they were); everyone else can be written as a plain name."""
+    by_name = {}
+    for pl in pool:
+        by_name.setdefault(_plain(pl.get("fullName")), pl)
+    slot_ids = {v: k for k, v in ESPN_SLOTS.items()}
+    entries, missing = [], []
+    for item in roster:
+        name = item if isinstance(item, str) else item.get("name", "")
+        slot = None if isinstance(item, str) else item.get("slot")
+        key = _plain(name)
+        # "Broncos D/ST", "Broncos DST", "Broncos Defense" and "Broncos DEF" all mean the same unit.
+        for alias in (" defense", " def", " d st"):
+            if key.endswith(alias):
+                key = key[: -len(alias)] + " dst"
+        pl = by_name.get(key)
+        if pl is None:
+            missing.append(name)
+            continue
+        entries.append({"playerPoolEntry": {"player": pl},
+                        "lineupSlotId": slot_ids.get((slot or "BENCH").upper(), 20)})
+    return entries, missing
+
+
+def pull_league(league, season, week, pro_teams, sleeper, now, pool=None):
+    if league.get("roster"):
+        entries, missing = manual_roster_entries(league["roster"], pool or espn_player_pool(season, week))
+        team = {"_name": league.get("team_name") or "My team", "roster": {"entries": entries}}
+        data = {}
+        return _lineup_from_team(league, team, data, week, pro_teams, sleeper, now,
+                                 extra_notes=[f"Couldn't find {m!r} in ESPN's player list -- check the spelling." for m in missing])
     url = (ESPN_BASE.format(season=season) + f"/segments/0/leagues/{league['league_id']}"
            f"?view=mTeam&view=mRoster&view=mSettings&scoringPeriodId={week}")
     data = fetch_json(url)
@@ -260,7 +315,10 @@ def pull_league(league, season, week, pro_teams, sleeper, now):
     if team is None:
         names = [(t.get("name") or f"{t.get('location', '')} {t.get('nickname', '')}").strip() for t in data.get("teams") or []]
         raise FantasyError(f"league {league['league_id']}: no team named {league.get('team_name')!r}; teams are {names}")
+    return _lineup_from_team(league, team, data, week, pro_teams, sleeper, now)
 
+
+def _lineup_from_team(league, team, data, week, pro_teams, sleeper, now, extra_notes=()):
     players = []
     for e in (team.get("roster") or {}).get("entries") or []:
         pl = (e.get("playerPoolEntry") or {}).get("player") or {}
@@ -296,6 +354,7 @@ def pull_league(league, season, week, pro_teams, sleeper, now):
         })
     slots = league.get("slots") or DEFAULT_SLOTS
     result = optimize_lineup(players, slots)
+    result["notes"] = list(extra_notes) + result["notes"]
     return {
         "league_name": league.get("name") or data.get("settings", {}).get("name") or str(league["league_id"]),
         "league_id": league["league_id"],

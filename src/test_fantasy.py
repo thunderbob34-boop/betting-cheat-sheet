@@ -96,5 +96,23 @@ class TestOptimizeLineup(unittest.TestCase):
         self.assertTrue(any("No eligible player for K" in n for n in r["notes"]))
 
 
+
+class TestManualRoster(unittest.TestCase):
+    POOL = [
+        {"id": 1, "fullName": "Travis Etienne Jr.", "defaultPositionId": 2},
+        {"id": -16007, "fullName": "Broncos D/ST", "defaultPositionId": 16},
+        {"id": 3, "fullName": "Bijan Robinson", "defaultPositionId": 2},
+    ]
+
+    def test_names_suffixes_and_defense_aliases(self):
+        entries, missing = fantasy.manual_roster_entries(
+            ["Travis Etienne", "Broncos Defense", {"name": "Bijan Robinson", "slot": "RB"}, "Nobody Real"],
+            self.POOL)
+        ids = [e["playerPoolEntry"]["player"]["id"] for e in entries]
+        self.assertEqual(ids, [1, -16007, 3])
+        self.assertEqual(entries[2]["lineupSlotId"], 2)    # RB
+        self.assertEqual(entries[0]["lineupSlotId"], 20)   # bench by default
+        self.assertEqual(missing, ["Nobody Real"])
+
 if __name__ == "__main__":
     unittest.main()
