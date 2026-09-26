@@ -170,3 +170,23 @@ After the card on Today, optional collapsibles (each only if it has content):
 
 Headings inside panels use `h2` for the panel/slot title and `h3` below it. Money is always
 formatted `$0.00` with a sign where it's a result. Times are Eastern, e.g. `Sun 1:00 PM`.
+
+
+## 2026-09-26 plain-language + glass redesign
+
+The template also owns a fixed `<div class="aurora">` backdrop and a script that saves the
+Today checklist's ticks to localStorage (key `plan:<data-key>`, per phone only). New fragment
+pieces build.py emits (all styled by the template):
+
+- Today plan: `section.plan.glass > .eyebrow, h2.plan-title, ul.checklist > li > label.check >
+  input[type=checkbox][data-key] + span.box + span.check-body > .check-where, .check-text,
+  .check-lines > span, .check-sub`
+- Bet card face: `.bet-title` (plain words), `.bet-money`, `.bet-chance > .value-tag.good|fair|bad|long`,
+  `.bet-when`, `.reason-summary` (the bet's `plain_summary`); the odds math lives inside
+  `details.reason-detail` ("Why & the numbers"). Fun Parlay #2 cards carry `tier-fun2`.
+- Legs: each `details.leg[data-cat] > summary > .leg-head, .leg-game, .leg-line` + `.leg-more`;
+  `.chip` replaces the old prop/book/source tags.
+- Lineup: `section.league.glass > .eyebrow, h2.league-team, .verdict.good|fair|bad
+  (.verdict-word, .verdict-vs, .verdict-small), .todo-box[.soft|.done] (.box-title, ul, .why),
+  .list-title, ul.roster > li > details.player > summary (.slot, .pname, .pmeta, .chip, .ppts) +
+  .player-more (.player-note, .tiny)`, `details.more > .more-body`.

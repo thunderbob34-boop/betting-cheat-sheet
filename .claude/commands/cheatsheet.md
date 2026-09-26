@@ -98,8 +98,10 @@ the `budget` snapshot from step 1 and an `angles` list). Order matters:
    beats a parlay leg on edge, use it in a Fun Parlay (props count as legs like any other).
    Then boost check (real promos or an honest "none found"), avoid list (3–5 real traps).
 
-Every bet and leg needs `game` ("AWAY @ HOME"), `kickoff` (ISO with offset), `game_script`,
-`reason_summary` (one line — Gus scans, he doesn't read), `reason` (full, behind tap-to-expand),
+Every card bet also needs `plain_summary`: one or two plain sentences, no percentages or
+model names — what the bet is and why, the way you'd tell a friend (it's the text on the card's
+face). Every bet and leg needs `game` ("AWAY @ HOME"), `kickoff` (ISO with offset), `game_script`,
+`reason_summary` (one line — shown behind the tap now), `reason` (full, behind tap-to-expand),
 and `verify` (source, fetched_at, "confirm the price in the DK app"). No blacklisted players
 (`config.blacklist`). If `budget.total` is 0 (stop-loss hit), still publish the card with $0
 stakes and a clear "stop-loss reached — watch only" summary.

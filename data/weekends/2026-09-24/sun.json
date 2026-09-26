@@ -18,10 +18,10 @@
   },
   "angles": [
     "Thin board: across 14 Sunday games, only a few favorites show a positive averaged edge vs the DraftKings price, and none by much. Stakes are small on purpose.",
-    "0-2 teams (desperation angle): Chargers (at BUF), Commanders (vs SEA, Jayden Daniels out), Texans and Colts (vs each other), Dolphins (vs KC), Titans (at NYG), Buccaneers (vs MIN). The card needs none of them blown out -- the Fun Parlay only needs Buffalo to win, not cover.",
+    "0-2 teams (desperation angle): Chargers (at BUF), Commanders (vs SEA, Jayden Daniels out), Texans and Colts (vs each other), Dolphins (vs KC), Titans (at NYG), Buccaneers (vs MIN). The card needs none of them blown out — the Fun Parlay only needs Buffalo to win, not cover.",
     "Puka Nacua (Rams, groin/hip) is doubtful for SNF; McVay said doubtful means more unlikely than likely. Kalshi's Rams price (54%) looks like it already reflects that; ESPN's FPI (63.7%) may not.",
     "No Lottery Ticket: this weekend's one ticket was already used Thursday (ATL @ GB), so tier 3 is a second Fun Parlay instead.",
-    "Prop board: ~65 player props across all 14 games are on the Legs tab. Almost every one is priced at or above what the models say -- books carry their margin on props. The few with 2+ sources and a positive edge are listed under Best value, and none of them is 55%+, so none went into the parlays.",
+    "Prop board: ~65 player props across all 14 games are on the Legs tab. Almost every one is priced at or above what the models say — books carry their margin on props. The few with 2+ sources and a positive edge are listed under Best value, and none of them is 55%+, so none went into the parlays.",
     "No verified prices were found for sacks, tackles, kicker or D/ST markets this week (the pages that list them didn't show readable odds), so those markets are missing rather than guessed."
   ],
   "card": {
@@ -51,13 +51,14 @@
       "game": "LAR @ DEN",
       "kickoff": "2026-09-27T20:20:00-04:00",
       "game_script": "LAR leading",
-      "reason_summary": "Rams ML -135 (SNF). 3 sources avg 59.7% vs 57.4% implied = small +2.2% edge. Nacua doubtful -- skip if DK is shorter than -150.",
-      "reason": "Picked on merit: the Rams are favored by every source read -- ESPN FPI 63.7%, Dimers 61.3% (projects Rams 23-20), Kalshi 54% as of 9/26. Averaged 59.7% vs DraftKings -135 (57.4% implied) = +2.2%, a small edge, not a big one. Honest caveats: (1) Puka Nacua is doubtful (missed every practice this week) and FPI may predate that news, which is why Kalshi sits 10 points lower -- the sources are only just inside the 10-point agreement rule. (2) Correction: Denver's RBs J.K. Dobbins and RJ Harvey carry no injury designation (full practice, denverbroncos.com 9/25) -- only rookie Jonah Coleman is out. Covers expects a low-scoring game (Under 44.5), which favors the side that runs better -- LA with Kyren Williams and Blake Corum. (3) Neither team is 0-2 (both 1-1). If the DK price has moved shorter than -150, the edge is gone -- skip it. If it's moved to -125 or so (Kalshi-like), the edge is a bit bigger.",
+      "reason_summary": "Rams ML -135 (SNF). 3 sources avg 59.7% vs 57.4% implied = small +2.2% edge. Nacua doubtful — skip if DK is shorter than -150.",
+      "reason": "Picked on merit: the Rams are favored by every source read — ESPN FPI 63.7%, Dimers 61.3% (projects Rams 23-20), Kalshi 54% as of 9/26. Averaged 59.7% vs DraftKings -135 (57.4% implied) = +2.2%, a small edge, not a big one. Honest caveats: (1) Puka Nacua is doubtful (missed every practice this week) and FPI may predate that news, which is why Kalshi sits 10 points lower — the sources are only just inside the 10-point agreement rule. (2) Correction: Denver's RBs J.K. Dobbins and RJ Harvey carry no injury designation (full practice, denverbroncos.com 9/25) — only rookie Jonah Coleman is out. Covers expects a low-scoring game (Under 44.5), which favors the side that runs better — LA with Kyren Williams and Blake Corum. (3) Neither team is 0-2 (both 1-1). If the DK price has moved shorter than -150, the edge is gone — skip it. If it's moved to -125 or so (Kalshi-like), the edge is a bit bigger.",
       "verify": {
         "source": "ESPN 'NFL Week 3 betting: odds, lines and totals for every game' (DraftKings lines, published 2026-09-25 10:21 ET) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN 'What to know for NFL Week 3' FPI win probabilities (fetched 2026-09-26) https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers https://www.dimers.com/nfl/predictions/2026_3_den_la; Kalshi via https://predictionmarketspicks.com/nfl/rams-vs-broncos-week-03-2026; SI (DK -135, 2026-09-23); Nacua status: therams.com / NFL.com injury report",
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
-        "note": "Confirm the price in the DK app -- the -135 is from 9/23-9/25 and Kalshi has since drifted toward Denver. Check Nacua's inactive status ~6:50 PM ET."
-      }
+        "note": "Confirm the price in the DK app — the -135 is from 9/23-9/25 and Kalshi has since drifted toward Denver. Check Nacua's inactive status ~6:50 PM ET."
+      },
+      "plain_summary": "LA should edge a Denver team that's struggled on offense, and the models like the Rams a bit more than DraftKings does. If DraftKings has them worse than -150, skip it."
     },
     "fun_parlay": {
       "id": "sun-fun-2026-09-27",
@@ -70,7 +71,7 @@
           "game": "LAC @ BUF",
           "kickoff": "2026-09-27T13:00:00-04:00",
           "game_script": "BUF leading",
-          "reason": "Averaged: ESPN FPI 78.2% + Dimers 75.7% + Kalshi 76% = 76.6% vs -340 (77.3% implied) -- about -0.7%, essentially no edge. Bills 2-0, scoring 38.5/game; Chargers 0-2 with a thin injury list (Tomlinson, Molden out). Risk: Buffalo has allowed 30+ both games, and 0-2 teams fight -- this leg needs only a win, not a cover."
+          "reason": "Averaged: ESPN FPI 78.2% + Dimers 75.7% + Kalshi 76% = 76.6% vs -340 (77.3% implied) — about -0.7%, essentially no edge. Bills 2-0, scoring 38.5/game; Chargers 0-2 with a thin injury list (Tomlinson, Molden out). Risk: Buffalo has allowed 30+ both games, and 0-2 teams fight — this leg needs only a win, not a cover."
         },
         {
           "selection": "Detroit Lions moneyline (vs NY Jets)",
@@ -80,24 +81,25 @@
           "game": "NYJ @ DET",
           "kickoff": "2026-09-27T13:00:00-04:00",
           "game_script": "DET leading",
-          "reason": "Averaged: ESPN FPI 74.7% + Dimers 72.0% + Kalshi 73% = 73.2% vs -290 (74.4% implied) -- about -1.1%, essentially no edge. Both 1-1. Risk: Detroit's O-line is banged up (Bartch out of practice, three others limited) and the Jets' rookie edge David Bailey has 2 sacks."
+          "reason": "Averaged: ESPN FPI 74.7% + Dimers 72.0% + Kalshi 73% = 73.2% vs -290 (74.4% implied) — about -1.1%, essentially no edge. Both 1-1. Risk: Detroit's O-line is banged up (Bartch out of practice, three others limited) and the Jets' rookie edge David Bailey has 2 sacks."
         }
       ],
       "dk_odds": 74,
       "odds_estimated": true,
-      "estimated_prob_source": "Combined true probability 76.6% x 73.2% = 56.1%. dk_odds +74 is computed from the two DK moneylines (1.294 x 1.345 = 1.740 decimal), not a quoted DK parlay price -- confirm in the app. +74 implies 57.5%, so this parlay is about -1.3% edge: no real edge.",
+      "estimated_prob_source": "Combined true probability 76.6% x 73.2% = 56.1%. dk_odds +74 is computed from the two DK moneylines (1.294 x 1.345 = 1.740 decimal), not a quoted DK parlay price — confirm in the app. +74 implies 57.5%, so this parlay is about -1.3% edge: no real edge.",
       "is_pre_kickoff": true,
       "stake": 0.15,
       "game": "LAC @ BUF + NYJ @ DET",
       "kickoff": "2026-09-27T13:00:00-04:00",
       "game_script": "neutral",
-      "reason_summary": "Bills ML + Lions ML (~+74), both 1 PM. ~56% to hit, priced about fair (-1.3% edge) -- so it's sized down to $0.15, not the full $0.25.",
-      "reason": "Two big home favorites, each well above the 55% leg floor, in different games from the Easy Bet (no game-script conflict). Every source agrees closely on both, but DraftKings has priced them right -- the averaged edge is slightly negative (-1.3% on the parlay). Per the 'size down, don't chase' rule it gets $0.15 instead of the $0.25 slate.py allows; the other $0.10 goes to Fun Parlay #2. Skip it entirely if you'd rather not play a no-edge ticket.",
+      "reason_summary": "Bills ML + Lions ML (~+74), both 1 PM. ~56% to hit, priced about fair (-1.3% edge) — so it's sized down to $0.15, not the full $0.25.",
+      "reason": "Two big home favorites, each well above the 55% leg floor, in different games from the Easy Bet (no game-script conflict). Every source agrees closely on both, but DraftKings has priced them right — the averaged edge is slightly negative (-1.3% on the parlay). Per the 'size down, don't chase' rule it gets $0.15 instead of the $0.25 slate.py allows; the other $0.10 goes to Fun Parlay #2. Skip it entirely if you'd rather not play a no-edge ticket.",
       "verify": {
         "source": "ESPN 'NFL Week 3 betting: odds, lines and totals for every game' (DraftKings lines, published 2026-09-25 10:21 ET) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN 'What to know for NFL Week 3' FPI win probabilities (fetched 2026-09-26) https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers NFL predictions hub (fetched 2026-09-26) https://www.dimers.com/nfl/predictions; Kalshi via https://predictionmarketspicks.com/nfl/chargers-vs-bills-week-03-2026 and /jets-vs-lions-week-03-2026",
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
         "note": "Confirm both prices and the combined parlay price in the DK app. Bills WR DJ Moore and DE Ed Oliver were questionable."
-      }
+      },
+      "plain_summary": "Two big home favorites — both should win. The price is fair, not a steal, so it's a small bet."
     },
     "fun_parlay_2": {
       "id": "sun-fun2-2026-09-27",
@@ -110,7 +112,7 @@
           "game": "CAR @ CLE",
           "kickoff": "2026-09-27T13:00:00-04:00",
           "game_script": "CAR leading",
-          "reason": "Averaged: ESPN FPI 62.8% + Dimers 59.9% + Kalshi 55% = 59.2% vs -148 (59.7% implied) -- about -0.5%, priced fair. Both 1-1. Risk: Carolina's secondary is thin (Nick Scott and Claudin Cherelus out; Devin Lloyd and Jaelan Phillips limited)."
+          "reason": "Averaged: ESPN FPI 62.8% + Dimers 59.9% + Kalshi 55% = 59.2% vs -148 (59.7% implied) — about -0.5%, priced fair. Both 1-1. Risk: Carolina's secondary is thin (Nick Scott and Claudin Cherelus out; Devin Lloyd and Jaelan Phillips limited)."
         },
         {
           "selection": "Cincinnati Bengals moneyline (at Pittsburgh Steelers)",
@@ -120,7 +122,7 @@
           "game": "CIN @ PIT",
           "kickoff": "2026-09-27T13:00:00-04:00",
           "game_script": "CIN leading",
-          "reason": "Averaged: ESPN FPI 61.7% + Dimers 64.6% = 63.2% vs -175 (63.6% implied) -- about -0.5%, priced fair. Bengals 2-0, Steelers 1-1. Risk: road division game; WR Andrei Iosivas out 4-6 weeks."
+          "reason": "Averaged: ESPN FPI 61.7% + Dimers 64.6% = 63.2% vs -175 (63.6% implied) — about -0.5%, priced fair. Bengals 2-0, Steelers 1-1. Risk: road division game; WR Andrei Iosivas out 4-6 weeks."
         },
         {
           "selection": "New Orleans Saints moneyline (vs Las Vegas Raiders)",
@@ -130,24 +132,25 @@
           "game": "LV @ NO",
           "kickoff": "2026-09-27T16:25:00-04:00",
           "game_script": "NO leading",
-          "reason": "Averaged: ESPN FPI 63.9% + Dimers 64.2% = 64.1% vs -185 (64.9% implied) -- about -0.9%, priced fair. Risk: the Raiders are 2-0 with Kirk Cousins playing well; Brock Bowers is questionable."
+          "reason": "Averaged: ESPN FPI 63.9% + Dimers 64.2% = 64.1% vs -185 (64.9% implied) — about -0.9%, priced fair. Risk: the Raiders are 2-0 with Kirk Cousins playing well; Brock Bowers is questionable."
         }
       ],
       "dk_odds": 306,
       "odds_estimated": true,
-      "estimated_prob_source": "Combined true probability 59.2% x 63.2% x 64.1% = 24.0%. dk_odds +306 is computed from the three DK moneylines (4.057 decimal), not a quoted DK parlay price -- confirm in the app. +306 implies 24.6%, so the edge is about -0.7%: no real edge.",
+      "estimated_prob_source": "Combined true probability 59.2% x 63.2% x 64.1% = 24.0%. dk_odds +306 is computed from the three DK moneylines (4.057 decimal), not a quoted DK parlay price — confirm in the app. +306 implies 24.6%, so the edge is about -0.7%: no real edge.",
       "is_pre_kickoff": true,
       "stake": 0.1,
       "game": "CAR @ CLE + CIN @ PIT + LV @ NO",
       "kickoff": "2026-09-27T13:00:00-04:00",
       "game_script": "neutral",
       "reason_summary": "Panthers + Bengals + Saints ML (~+306). About a 1-in-4 shot for a bigger payout, priced about fair. $0.10.",
-      "reason": "A different flavor from Fun Parlay #1: three mid-sized favorites (each 59-64%) instead of two big ones, so it pays about +306 instead of +74 but hits only about 24% of the time. No overlap with the Easy Bet's game (Rams @ Broncos) or with Parlay #1's games. Every leg is priced about fair by DraftKings -- no real edge, just more fun for $0.10. It shares Parlay #1's $0.25 fun budget, so the card's total stays at the slot's $0.55.",
+      "reason": "A different flavor from Fun Parlay #1: three mid-sized favorites (each 59-64%) instead of two big ones, so it pays about +306 instead of +74 but hits only about 24% of the time. No overlap with the Easy Bet's game (Rams @ Broncos) or with Parlay #1's games. Every leg is priced about fair by DraftKings — no real edge, just more fun for $0.10. It shares Parlay #1's $0.25 fun budget, so the card's total stays at the slot's $0.55.",
       "verify": {
         "source": "ESPN Week 3 DK lines (2026-09-25) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN FPI https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers https://www.dimers.com/nfl/predictions; Kalshi (Panthers) via https://predictionmarketspicks.com/nfl/panthers-vs-browns-week-03-2026",
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
         "note": "Confirm all three prices and the combined parlay price in the DK app."
-      }
+      },
+      "plain_summary": "Three solid favorites for a bigger payout. Hits about 1 in 4 — small stake, big smile if it lands."
     }
   },
   "leg_bank": [
@@ -984,7 +987,7 @@
         }
       ],
       "single_source": true,
-      "reason": "DK -265 (72.6%) vs Dimers 61.9% -- negative. Fanatics -265, BetMGM -235. Bosa out for SF. Sources: Dimers 61.9%.",
+      "reason": "DK -265 (72.6%) vs Dimers 61.9% — negative. Fanatics -265, BetMGM -235. Bosa out for SF. Sources: Dimers 61.9%.",
       "source": "https://www.espn.com/nfl/odds/_/gameId/401872958",
       "dk_odds": -265
     },
@@ -1030,7 +1033,7 @@
         }
       ],
       "single_source": true,
-      "reason": "Priced above Dimers -- negative. Sources: Dimers 34.8%.",
+      "reason": "Priced above Dimers — negative. Sources: Dimers 34.8%.",
       "source": "https://sports.betmgm.com/en/blog/nfl/cardinals-49ers-first-anytime-td-odds-picks-week-3-gaa/",
       "odds": 155,
       "book": "BetMGM"
@@ -1072,7 +1075,7 @@
         }
       ],
       "single_source": true,
-      "reason": "DK -115 (53.5%) vs Dimers 44.6% -- negative. Tampa is 0-2. Sources: Dimers 44.6%.",
+      "reason": "DK -115 (53.5%) vs Dimers 44.6% — negative. Tampa is 0-2. Sources: Dimers 44.6%.",
       "source": "https://www.espn.com/nfl/odds/_/gameId/401872959",
       "dk_odds": -115
     },
@@ -1179,7 +1182,7 @@
         }
       ],
       "single_source": false,
-      "reason": "DK -250 (71.4%) vs sources ~63.8% -- negative. Dallas allowed 347 rush yds in 2 games. Rain-damaged turf in Rio. Sources: Dimers 63.1% + Kalshi (via Bettors Insider) 64.5% = 63.8%.",
+      "reason": "DK -250 (71.4%) vs sources ~63.8% — negative. Dallas allowed 347 rush yds in 2 games. Rain-damaged turf in Rio. Sources: Dimers 63.1% + Kalshi (via Bettors Insider) 64.5% = 63.8%.",
       "source": "https://www.espn.com/nfl/odds/_/gameId/401872960",
       "dk_odds": -250
     },
@@ -1614,7 +1617,7 @@
         }
       ],
       "single_source": false,
-      "reason": "Only TD prop in these two games that isn't negative -- and just barely (+0.4 across 3 sources). Sources: Dimers 41.7% + ESPN (Mike Clay fair odds) 44.4% + Kalshi 37.5% = 41.2%.",
+      "reason": "Only TD prop in these two games that isn't negative — and just barely (+0.4 across 3 sources). Sources: Dimers 41.7% + ESPN (Mike Clay fair odds) 44.4% + Kalshi 37.5% = 41.2%.",
       "source": "https://www.scoresandodds.com/prop-bets/3491988/chris-olave",
       "dk_odds": 145
     },
@@ -1729,7 +1732,7 @@
   "avoid_list": [
     {
       "selection": "Seattle Seahawks ML -355",
-      "why_avoid": "Implies 78%; ESPN FPI 66.2% and Dimers 74.1%. Washington is 0-2 and at home -- desperation angle."
+      "why_avoid": "Implies 78%; ESPN FPI 66.2% and Dimers 74.1%. Washington is 0-2 and at home — desperation angle."
     },
     {
       "selection": "Kansas City Chiefs ML -650",

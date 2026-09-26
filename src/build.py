@@ -944,6 +944,48 @@ def format_odds(o):
     return f"{int(o):+d}"
 
 
+def chance_words(p):
+    """A probability as something a person says out loud."""
+    p = max(0.0, min(1.0, float(p or 0.0)))
+    if p >= 0.95:
+        return "wins almost every time"
+    if p >= 0.1:
+        n = round(p * 10)
+        return f"wins about {n} time{'s' if n != 1 else ''} in 10"
+    if p <= 0:
+        return "very unlikely"
+    return f"about a 1-in-{round(1 / p):,} shot"
+
+
+def value_words(edge_val):
+    """(label, css class) for how the price compares with our estimate."""
+    if edge_val >= 0.02:
+        return "Good price", "good"
+    if edge_val > -0.02:
+        return "Fair price", "fair"
+    return "Overpriced", "bad"
+
+
+def payout_back(stake, american):
+    """Total returned (stake + winnings) if the bet wins."""
+    return float(stake) * odds.american_to_decimal(int(american))
+
+
+_ML_RE = re.compile(r"^(.*?)\s+(?:moneyline|ML)\b.*$", re.IGNORECASE)
+
+
+def plain_selection(sel):
+    """'Buffalo Bills moneyline (vs LA Chargers)' -> 'Buffalo Bills win'."""
+    m = _ML_RE.match(sel or "")
+    return f"{m.group(1)} win" if m else (sel or "")
+
+
+def strip_numbers_in_parens(text):
+    """'Start Malik Nabers (13.2) instead of Devaughn Vele (10.8)' ->
+    'Start Malik Nabers instead of Devaughn Vele'."""
+    return re.sub(r"\s*\([-+]?\d+(?:\.\d+)?\)", "", text or "")
+
+
 def format_money(v):
     """Signed dollar string, e.g. -5.93 -> '-$5.93', 44.07 -> '$44.07'."""
     sign = "-" if v < 0 else ""
@@ -1013,10 +1055,10 @@ def _result_badge_html(result, net):
     return f'<span class="result-badge {cls}">{escape(label)}</span>'
 
 
-def _reason_detail_html(bet):
-    """The collapsible tail every tier shares -- full reasoning + prob
-    source + verify line, behind a native <details> so it's zero-JS and
-    defaults closed."""
+def _reason_detail_html(bet, numbers_html=""):
+    """Everything behind the tap: the odds math (ground rule 5 -- implied
+    chance, our estimate, edge), full reasoning, sources. Native <details>,
+    closed by default."""
     reason = bet.get("reason", "")
     source = bet.get("estimated_prob_source", "")
     verify = bet.get("verify") or {}
@@ -1027,7 +1069,8 @@ def _reason_detail_html(bet):
     verify_p = f'<p class="verify">{verify_line}</p>' if verify_line else ""
 
     return f'''<details class="reason-detail">
-    <summary>Why &amp; sources</summary>
+    <summary>Why &amp; the numbers</summary>
+    {numbers_html}
     <p class="reason">{escape(reason)}</p>
     {source_p}
     {verify_p}
@@ -1037,36 +1080,46 @@ def _reason_detail_html(bet):
 _TIER_META = {
     "easy_bet": (1, "Easy Bet", "tier-easy"),
     "fun_parlay": (2, "Fun Parlay", "tier-fun"),
-    "fun_parlay_2": (3, "Fun Parlay #2", "tier-fun"),
+    "fun_parlay_2": (3, "Fun Parlay #2", "tier-fun2"),
     "lottery_ticket": (3, "Lottery Ticket", "tier-lottery"),
 }
+
+
+def bet_title(tier_key, bet):
+    legs = bet.get("legs") or []
+    if not legs:
+        return plain_selection(bet.get("selection", ""))
+    if tier_key == "lottery_ticket" or len(legs) > 3:
+        return f"{len(legs)}-leg parlay"
+    return " + ".join(plain_selection(l.get("selection", "")) for l in legs)
 
 
 def render_card_bet(tier_key, bet, tz, historical=False):
     num, tier_label, cls = _TIER_META[tier_key]
     legs = bet.get("legs") or []
     is_parlay = tier_key in FUN_TIERS + ("lottery_ticket",)
-    title = f"{len(legs)}-leg parlay" if is_parlay else escape(bet.get("selection", ""))
+    title = escape(bet_title(tier_key, bet))
     dk_odds = bet.get("dk_odds")
     stake = float(bet.get("stake", 0.0))
     game = bet.get("game", "") or ""
     kickoff_disp = _format_kickoff_et(bet.get("kickoff"), tz)
+    est_tag = " est." if bet.get("odds_estimated") else ""
 
     # historical_import numbers are reconstructed after the fact, not
     # recorded when the bet was placed -- that caveat must travel with the
-    # figure wherever it's shown, not sit only behind the tap-to-expand
-    # "Why & sources" detail.
+    # figure wherever it's shown, not sit only behind the tap-to-expand detail.
     reconstructed_tag = '<span class="reconstructed-tag">Reconstructed</span>' if historical else ""
 
     if tier_key == "lottery_ticket":
-        combined = odds.parlay_implied_prob([leg.get("estimated_prob", 0.0) for leg in legs])
+        est_prob = odds.parlay_implied_prob([leg.get("estimated_prob", 0.0) for leg in legs])
         payout_implied = odds.american_to_implied_prob(dk_odds)
-        prob_row = f'''<div class="prob-row lottery-odds">
+        numbers = f'''<div class="prob-row lottery-odds">
     {reconstructed_tag}
     <span class="prob"><span class="k">Payout-implied</span> <b>{odds.format_prob(payout_implied)}</b></span>
-    <span class="prob"><span class="k">Real chance</span> <b>{odds.format_prob(combined)}</b></span>
-    <span class="prob one-in-x"><b>{odds.format_one_in_x(combined)}</b></span>
+    <span class="prob"><span class="k">Real chance</span> <b>{odds.format_prob(est_prob)}</b></span>
+    <span class="prob one-in-x"><b>{odds.format_one_in_x(est_prob)}</b></span>
   </div>'''
+        value_html = '<span class="value-tag long">Long shot</span>'
     else:
         if is_parlay:
             est_prob = odds.parlay_implied_prob([leg.get("estimated_prob", 0.0) for leg in legs])
@@ -1075,14 +1128,16 @@ def render_card_bet(tier_key, bet, tz, historical=False):
         implied = odds.american_to_implied_prob(dk_odds)
         edge_val = odds.edge(est_prob, implied)
         edge_cls = "positive" if edge_val >= 0 else "negative"
-        prob_row = f'''<div class="prob-row">
+        numbers = f'''<div class="prob-row">
     {reconstructed_tag}
+    <span class="prob"><span class="k">Odds</span> <b>{format_odds(dk_odds)}{est_tag}</b></span>
     <span class="prob"><span class="k">Implied</span> <b>{odds.format_prob(implied)}</b></span>
     <span class="prob"><span class="k">Est.</span> <b>{odds.format_prob(est_prob)}</b></span>
     <span class="prob"><span class="k">Edge</span> <b class="edge {edge_cls}">{odds.format_prob_signed(edge_val)}</b></span>
   </div>'''
+        label, vcls = value_words(edge_val)
+        value_html = f'<span class="value-tag {vcls}">{label}</span>'
 
-    leg_list_html = ""
     if is_parlay:
         leg_prob_cls = "leg-prob reconstructed" if historical else "leg-prob"
         items = "".join(
@@ -1090,28 +1145,29 @@ def render_card_bet(tier_key, bet, tz, historical=False):
             f'<span class="{leg_prob_cls}">{odds.format_prob(leg.get("estimated_prob", 0.0))}</span></li>'
             for leg in legs
         )
-        leg_list_html = f'<ul class="leg-list">{items}</ul>'
+        numbers += f'<ul class="leg-list">{items}</ul>'
 
     badge = _result_badge_html(bet.get("result"), bet.get("net"))
+    back = payout_back(stake, dk_odds) if dk_odds is not None else 0.0
+    if bet.get("result") is None:
+        money_line = (f'Bet <b>${stake:.2f}</b> → get back <b>${back:.2f}</b> if it wins'
+                      if stake > 0 else "Watch only -- $0 (weekend limit reached)")
+    else:
+        money_line = f'Bet ${stake:.2f}'
+    summary = bet.get("plain_summary") or bet.get("reason_summary", "")
+    when = " · ".join(x for x in (escape(kickoff_disp), escape(game)) if x)
 
     return f'''<article class="bet {cls}">
   <div class="bet-top">
     <span class="tier-badge">{num} · {escape(tier_label)}</span>
-    {badge}
+    {reconstructed_tag}{badge}
   </div>
-  <div class="bet-head">
-    <h3 class="bet-title">{title}</h3>
-    <span class="odds">{format_odds(dk_odds)}{" est." if bet.get("odds_estimated") else ""}</span>
-  </div>
-  <p class="bet-meta">
-    <span class="stake">${stake:.2f}</span>
-    <span class="game">{escape(game)}</span>
-    <span class="kickoff">{escape(kickoff_disp)}</span>
-  </p>
-  {prob_row}
-  {leg_list_html}
-  <p class="reason-summary">{escape(bet.get("reason_summary", ""))}</p>
-  {_reason_detail_html(bet)}
+  <h3 class="bet-title">{title}</h3>
+  <p class="bet-money">{money_line}</p>
+  <p class="bet-chance">{value_html} <span>{escape(chance_words(est_prob)).capitalize()}</span></p>
+  <p class="bet-when">{when} · <span class="odds">{format_odds(dk_odds)}{est_tag}</span></p>
+  <p class="reason-summary">{escape(summary)}</p>
+  {_reason_detail_html(bet, numbers)}
 </article>'''
 
 
@@ -1129,7 +1185,7 @@ def render_more_collapsibles(slot):
     angles = slot.get("angles") or []
     if angles:
         items = "".join(f"<li>{escape(a)}</li>" for a in angles)
-        parts.append(f'<details class="more angles"><summary>Angles</summary><ul>{items}</ul></details>')
+        parts.append(f'<details class="more angles"><summary>Notes</summary><ul>{items}</ul></details>')
 
     avoid = slot.get("avoid_list") or []
     if avoid:
@@ -1138,7 +1194,7 @@ def render_more_collapsibles(slot):
             f'<p class="avoid-why">{escape(a.get("why_avoid", ""))}</p></div>'
             for a in avoid
         )
-        parts.append(f'<details class="more avoid"><summary>Skip these</summary>{items}</details>')
+        parts.append(f'<details class="more avoid"><summary>Don&#x27;t bet these</summary>{items}</details>')
 
     boosts = slot.get("boost_check") or []
     if boosts:
@@ -1148,7 +1204,7 @@ def render_more_collapsibles(slot):
             f'<p class="boost-desc">{escape(b.get("boost_description", ""))}</p></div>'
             for b in boosts
         )
-        parts.append(f'<details class="more boosts"><summary>Boosts</summary>{items}</details>')
+        parts.append(f'<details class="more boosts"><summary>Promos</summary>{items}</details>')
 
     return "".join(parts)
 
@@ -1161,10 +1217,18 @@ def render_empty_state(title, sub):
 
 
 def _budget_block_html(budget):
+    net = float(budget.get("settled_net", 0.0))
+    if net < 0:
+        standing = f"Down ${-net:.2f} this weekend"
+    elif net > 0:
+        standing = f"Up ${net:.2f} this weekend"
+    else:
+        standing = "Even this weekend"
+    left = float(budget.get("capacity", 0.0))
     return f'''<div class="budget">
   <span class="budget-amount">${budget["total"]:.2f}</span>
-  <span class="budget-label">to play this slot</span>
-  <p class="budget-why">{escape(budget["why"])}</p>
+  <span class="budget-label">to bet today</span>
+  <p class="budget-why">{standing} · ${left:.2f} left before your $5 weekend limit</p>
 </div>'''
 
 
@@ -1221,7 +1285,7 @@ def render_today(window, config, weekends_dir, now):
     game_word = "game" if n_games == 1 else "games"
     sub = f"{window['nfl_week_label']} · {n_games} {game_word}"
 
-    head = _slot_head_html(_slot_day_title(d), sub)
+    head = '<span id="today-bets"></span>' + _slot_head_html(_slot_day_title(d), sub)
     budget = slate.slot_budget(weekend_id, slot_name, config, now, weekends_dir=weekends_dir)
     budget_html = _budget_block_html(budget)
     card = slot.get("card") or {}
@@ -1286,7 +1350,7 @@ def _stoploss_html(status, config):
         pct = max(0.0, min(100.0, (loss_used / limit) * 100))
     return f'''<div class="stoploss">
   <div class="stoploss-bar"><div class="stoploss-used" style="width:{pct:.0f}%"></div></div>
-  <p class="stoploss-text">${loss_used:.2f} of the ${limit:.2f} stop-loss used · ${capacity_left:.2f} left</p>
+  <p class="stoploss-text">${loss_used:.2f} of your ${limit:.0f} weekend limit used · ${capacity_left:.2f} left to bet</p>
 </div>'''
 
 
@@ -1297,9 +1361,9 @@ def _weekend_stat_grid_html(status, config):
     cap_cls = "positive" if capacity_left >= 0 else "negative"
     lottery_label = "Used" if status["lottery_used"] else "Available"
     return f'''<div class="stat-grid">
-  <div class="stat"><span class="label">Tiers 1-2 Net</span><span class="value {net_cls}">{_money_signed(net)}</span></div>
-  <div class="stat"><span class="label">Capacity Left</span><span class="value {cap_cls}">${capacity_left:.2f}</span></div>
-  <div class="stat"><span class="label">Lottery Ticket</span><span class="value">{lottery_label}</span></div>
+  <div class="stat"><span class="label">This weekend</span><span class="value {net_cls}">{_money_signed(net)}</span></div>
+  <div class="stat"><span class="label">Left to bet</span><span class="value {cap_cls}">${capacity_left:.2f}</span></div>
+  <div class="stat"><span class="label">Long shot</span><span class="value">{lottery_label}</span></div>
 </div>'''
 
 
@@ -1410,8 +1474,8 @@ def render_legs(window, config, weekends_dir, now):
     if best:
         items = "".join(render_leg_entry(leg, show_game=True) for leg in best)
         parts.append(
-            '<section class="leg-group best-value"><h3 class="leg-group-title">Best value '
-            '<span class="kickoff">2+ sources, edge above 0</span></h3>'
+            '<section class="leg-group best-value glass"><h3 class="leg-group-title">Best value today '
+            '<span class="kickoff">priced better than our estimate</span></h3>'
             f'{items}</section>'
         )
 
@@ -1454,49 +1518,53 @@ def render_leg_entry(leg, show_game=False):
     edge_val = odds.edge(est_prob, implied)
     edge_cls = "positive" if edge_val >= 0 else "negative"
     label, cat = _market_label(leg.get("market"))
-    prop_tag = '<span class="prop-tag">Player prop</span>' if leg.get("player") else ""
-    book_tag = "" if book == "DraftKings" else f'<span class="book-tag">{escape(book)} price</span>'
-    source_tag = '<span class="source-tag">1 source only</span>' if not _is_multi_source(leg) else ""
-    game_line = f'<p class="leg-game">{escape(leg.get("game") or "")}</p>' if show_game else ""
+    vlabel, vcls = value_words(edge_val)
+    book_tag = "" if book == "DraftKings" else f'<span class="chip">{escape(book)} price</span>'
+    source_tag = '<span class="chip">1 source only</span>' if not _is_multi_source(leg) else ""
+    game_line = f'<span class="leg-game">{escape(leg.get("game") or "")}</span>' if show_game else ""
+    hits = chance_words(est_prob).replace("wins", "hits").capitalize()
 
-    return f'''<div class="leg" data-cat="{escape(cat)}">
-  <div class="leg-head"><span class="leg-sel">{escape(leg.get("selection", ""))}</span><span class="odds">{format_odds(price)}</span></div>
-  {game_line}
-  <p class="leg-meta">
-    <span class="market">{escape(label)}</span> {prop_tag}{book_tag}{source_tag}
-    <span class="prob"><span class="k">Impl</span> {odds.format_prob(implied)}</span>
-    <span class="prob"><span class="k">Est</span> {odds.format_prob(est_prob)}</span>
-    <span class="edge {edge_cls}">{odds.format_prob_signed(edge_val)}</span>
-  </p>
-  <p class="leg-reason">{escape(leg.get("reason", ""))}</p>
-</div>'''
+    return f"""<details class="leg" data-cat="{escape(cat)}">
+  <summary>
+    <span class="leg-head"><span class="leg-sel">{escape(plain_selection(leg.get("selection", "")))}</span><span class="odds">{format_odds(price)}</span></span>
+    {game_line}
+    <span class="leg-line"><span class="value-tag {vcls}">{vlabel}</span> <span>{escape(hits)}</span> {book_tag}{source_tag}</span>
+  </summary>
+  <div class="leg-more">
+    <p class="leg-meta"><span class="market">{escape(label)}</span>
+      <span class="prob"><span class="k">Implied</span> {odds.format_prob(implied)}</span>
+      <span class="prob"><span class="k">Est</span> {odds.format_prob(est_prob)}</span>
+      <span class="edge {edge_cls}">{odds.format_prob_signed(edge_val)}</span></p>
+    <p class="leg-reason">{escape(leg.get("reason", ""))}</p>
+  </div>
+</details>"""
 
 
 def render_scoreboard(season_sb):
     """The Record panel's primary stat-grid, scoped to the current season."""
-    record_str = f'{season_sb["wins"]}W-{season_sb["losses"]}L-{season_sb["cashouts"]}CO-{season_sb["open"]}Open'
+    record_str = f'{season_sb["wins"]}–{season_sb["losses"]}'
     pl_cls = "positive" if season_sb["cash_pl"] >= 0 else "negative"
     bank_cls = "positive" if season_sb["bankroll_remaining"] >= 0 else "negative"
     return f'''<div class="stat-grid">
   <div class="stat"><span class="label">Record</span><span class="value">{escape(record_str)}</span></div>
-  <div class="stat"><span class="label">Cash P/L</span><span class="value {pl_cls}">{escape(format_money(season_sb["cash_pl"]))}</span></div>
-  <div class="stat"><span class="label">Bankroll left</span><span class="value {bank_cls}">{escape(format_money(season_sb["bankroll_remaining"]))}</span></div>
+  <div class="stat"><span class="label">Profit</span><span class="value {pl_cls}">{escape(format_money(season_sb["cash_pl"]))}</span></div>
+  <div class="stat"><span class="label">Bankroll</span><span class="value {bank_cls}">{escape(format_money(season_sb["bankroll_remaining"]))}</span></div>
   <div class="stat"><span class="label">Streak</span><span class="value">{escape(season_sb["current_streak"])}</span></div>
 </div>'''
 
 
 def _card_record_html(cr):
     t = cr["tiers12"]
-    record_str = f'{t["W"]}W-{t["L"]}L-{t["P"]}P'
+    record_str = f'{t["W"]}–{t["L"]}' + (f' ({t["P"]} push)' if t["P"] else "")
     net_cls = "positive" if cr["net12"] >= 0 else "negative"
     lot = cr["lottery"]
     return f'''<section class="card-record">
   <h3>Card record</h3>
-  <p class="card-record-note">If every card bet was placed as written</p>
+  <p class="card-record-note">If you'd placed every bet exactly as the card said</p>
   <div class="stat-grid">
-    <div class="stat"><span class="label">Tiers 1-2</span><span class="value">{escape(record_str)}</span></div>
-    <div class="stat"><span class="label">Tiers 1-2 Net</span><span class="value {net_cls}">{escape(_money_signed(cr["net12"]))}</span></div>
-    <div class="stat"><span class="label">Lottery</span><span class="value">{lot["W"]}W-{lot["L"]}L</span></div>
+    <div class="stat"><span class="label">Main bets</span><span class="value">{escape(record_str)}</span></div>
+    <div class="stat"><span class="label">Net</span><span class="value {net_cls}">{escape(_money_signed(cr["net12"]))}</span></div>
+    <div class="stat"><span class="label">Long shots</span><span class="value">{lot["W"]}–{lot["L"]}</span></div>
   </div>
 </section>'''
 
@@ -1533,8 +1601,8 @@ def render_record(config, csv_path, weekends_dir, window):
     alltime_line = (
         '<p class="alltime-line">'
         f'All-time since {escape(alltime_label)}: '
-        f'{alltime_sb["wins"]}W-{alltime_sb["losses"]}L-{alltime_sb["cashouts"]}CO-{alltime_sb["open"]}Open, '
-        f'cash P/L {escape(format_money(alltime_sb["cash_pl"]))}'
+        f'{alltime_sb["wins"]}–{alltime_sb["losses"]}, '
+        f'{escape(format_money(alltime_sb["cash_pl"]))}'
         '</p>'
     )
     note_parts = []
@@ -1558,31 +1626,6 @@ def render_record(config, csv_path, weekends_dir, window):
 DEFAULT_FANTASY_DIR = REPO_ROOT / "data" / "fantasy"
 
 
-def _fantasy_player_line(slot, p, note=""):
-    status = (p.get("status") or "ACTIVE").upper()
-    chips = ""
-    if p.get("locked"):
-        chips += '<span class="fx-chip">Played</span>'
-    if status != "ACTIVE":
-        chips += f'<span class="fx-chip warn">{escape(status.title().replace("_", " "))}</span>'
-    if p.get("bye"):
-        chips += '<span class="fx-chip warn">Bye</span>'
-    if p.get("disagree"):
-        chips += '<span class="fx-chip">Sources split</span>'
-    parts = []
-    if p.get("espn") is not None:
-        parts.append(f"ESPN {p['espn']:.1f}")
-    if p.get("rotowire") is not None:
-        parts.append(f"RW {p['rotowire']:.1f}")
-    src = " · ".join(parts) or "no projection"
-    return f'''<li class="fx-row">
-  <span class="fx-slot">{escape(slot)}</span>
-  <span class="fx-name">{escape(p.get("name", ""))} <span class="fx-team">{escape(p.get("pos", ""))} · {escape(p.get("team", ""))}</span>{chips}
-    <span class="fx-src">{escape(src)}</span>{f'<span class="fx-note">{escape(note)}</span>' if note else ""}</span>
-  <span class="fx-pts">{float(p.get("proj", 0.0)):.1f}</span>
-</li>'''
-
-
 def _latest_fantasy(fantasy_dir):
     fantasy_dir = Path(fantasy_dir or DEFAULT_FANTASY_DIR)
     files = [f for f in (sorted(fantasy_dir.glob("*-wk*.json")) if fantasy_dir.is_dir() else [])
@@ -1590,117 +1633,185 @@ def _latest_fantasy(fantasy_dir):
     return _load_json_file(files[-1]) if files else None
 
 
+def _fantasy_research(fantasy_dir, data):
+    fantasy_dir = Path(fantasy_dir or DEFAULT_FANTASY_DIR)
+    path = fantasy_dir / f"research-{data.get('season')}-wk{int(data.get('week', 0)):02d}.json"
+    return _load_json_file(path).get("leagues", {}) if path.exists() else {}
+
+
 def _pct(x):
     return f"{round(float(x) * 100):d}%"
 
 
-def _matchup_html(m, compact=False):
-    """Projected result of this week's matchup: best lineup vs the
-    opponent's current lineup, with ESPN's own win probability beside ours."""
-    if not m:
-        return ""
-    best = f'You {m["my_best"]:.1f} vs {escape(m["opponent"])} {m["opp_proj"]:.1f}'
-    ours = _pct(m["win_prob_best"])
-    espn = _pct(m["espn_win_prob"]) if m.get("espn_win_prob") is not None else "n/a"
-    pick = m.get("with_pickups")
-    pick_line = ""
-    if pick:
-        pick_line = f'<p class="fx-mline">With the pickups: {pick["my_best"]:.1f} · <b>{_pct(pick["win_prob"])}</b> to win</p>'
-    if compact:
-        return (f'<p class="fx-mline"><b>{ours}</b> to win with the best lineup · {best}</p>'
-                f'<p class="fx-mline dim">ESPN: {espn} (your lineup as set now)</p>')
-    return f'''<div class="fx-matchup">
-  <p class="fx-changes-title">This week: vs {escape(m["opponent"])}</p>
-  <p class="fx-mline">Best lineup: {m["my_best"]:.1f} vs {m["opp_proj"]:.1f} · <b>{ours}</b> to win</p>
-  <p class="fx-mline">Lineup as set in ESPN now: {m["my_current"]:.1f} · {_pct(m["win_prob_current"])}</p>
-  {pick_line}
-  <p class="fx-mline dim">ESPN's own projection: {m["espn_my_proj"]:.1f} vs {m["espn_opp_proj"]:.1f}, {espn} to win. Our win % assumes the margin swings about ±{35} pts; opponent counted as currently set.</p>
-</div>'''
+def matchup_words(p):
+    """(phrase, css class) for a win probability."""
+    p = float(p)
+    if p >= 0.70:
+        return "Big favorite", "good"
+    if p >= 0.57:
+        return "Favorite", "good"
+    if p >= 0.43:
+        return "Toss-up", "fair"
+    if p >= 0.30:
+        return "Underdog", "bad"
+    return "Big underdog", "bad"
 
 
-def render_fantasy_summary(fantasy_dir=None):
-    """Compact 'set your team' card for the Today tab."""
-    data = _latest_fantasy(fantasy_dir)
-    if not data:
-        return ""
-    rows = []
-    for lg in data.get("leagues") or []:
-        if lg.get("error"):
-            continue
-        changes = lg.get("changes") or []
-        todo = f'{len(changes)} change{"s" if len(changes) != 1 else ""} to make' if changes else "Lineup already set"
-        rows.append(f'''<div class="fx-sum-league">
-  <p class="fx-sum-title">{escape(lg.get("league_name", ""))} <span class="fx-team-name">{escape(todo)}</span></p>
-  {_matchup_html(lg.get("matchup"), compact=True)}
-</div>''')
-    if not rows:
-        return ""
-    return (f'<section class="fx-summary"><h3>Fantasy · Week {int(data.get("week", 0))}</h3>{"".join(rows)}'
-            '<a class="fx-sum-link" href="#lineup">Open lineups →</a></section>')
+def _player_row(slot, p, note=""):
+    status = (p.get("status") or "ACTIVE").upper()
+    chips = ""
+    if p.get("locked"):
+        chips += '<span class="chip">Played</span>'
+    if status != "ACTIVE":
+        chips += f'<span class="chip warn">{escape(status.title().replace("_", " "))}</span>'
+    if p.get("bye"):
+        chips += '<span class="chip warn">Bye</span>'
+    nums = []
+    if p.get("espn") is not None:
+        nums.append(f"ESPN {p['espn']:.1f}")
+    if p.get("rotowire") is not None:
+        nums.append(f"Rotowire {p['rotowire']:.1f}")
+    detail = ""
+    if note:
+        detail += f'<p class="player-note">{escape(note)}</p>'
+    detail += f'<p class="tiny">Projected points: {escape(" · ".join(nums) or "no projection")}</p>'
+    return f"""<li><details class="player">
+  <summary><span class="slot">{escape(slot)}</span><span class="pname">{escape(p.get("name", ""))} <span class="pmeta">{escape(p.get("team", ""))}</span>{chips}</span><span class="ppts">{float(p.get("proj", 0.0)):.1f}</span></summary>
+  <div class="player-more">{detail}</div>
+</details></li>"""
 
 
 def render_lineup(fantasy_dir=None):
-    fantasy_dir = Path(fantasy_dir or DEFAULT_FANTASY_DIR)
-    files = sorted(fantasy_dir.glob("*-wk*.json")) if fantasy_dir.is_dir() else []
-    if not files:
-        return render_empty_state(
-            "No lineups yet",
-            "Add your ESPN league IDs to data/fantasy.json, then run python3 src/fantasy.py pull.",
-        )
-    files = [f for f in files if not f.name.startswith("research-")]
-    if not files:
-        return render_empty_state("No lineups yet", "Run python3 src/fantasy.py pull.")
-    data = _load_json_file(files[-1])
-    research_path = fantasy_dir / f"research-{data.get('season')}-wk{int(data.get('week', 0)):02d}.json"
-    research = _load_json_file(research_path).get("leagues", {}) if research_path.exists() else {}
-    parts = [f'''<header class="slot-head">
-  <h2 class="slot-title">Week {int(data.get("week", 0))} lineups</h2>
-  <p class="slot-sub">{escape(data.get("scoring", ""))} · {escape(data.get("sources", ""))}</p>
-</header>''']
+    data = _latest_fantasy(fantasy_dir)
+    if not data:
+        return render_empty_state("No lineups yet", "Lineups show up here every Wednesday morning.")
+    research = _fantasy_research(fantasy_dir, data)
+    parts = [_slot_head_html(f"Week {int(data.get('week', 0))} lineups", "Set these in the ESPN app · tap a player for the why")]
     for lg in data.get("leagues") or []:
         title = escape(lg.get("league_name", ""))
         if lg.get("error"):
-            parts.append(f'<section class="fx-league"><h3>{title}</h3><p class="fx-error">{escape(lg["error"])}</p></section>')
+            parts.append(f'<section class="league glass"><p class="eyebrow">{title}</p><p class="fx-error">{escape(lg["error"])}</p></section>')
             continue
         rs = research.get(str(lg.get("league_id"))) or {}
-        pnotes = rs.get("players") or {}
+        notes = rs.get("players") or {}
+        m = lg.get("matchup")
+        matchup_html = ""
+        if m:
+            words, cls = matchup_words(m["win_prob_best"])
+            espn = f' · ESPN says {_pct(m["espn_win_prob"])}' if m.get("espn_win_prob") is not None else ""
+            matchup_html = (f'<div class="verdict {cls}"><span class="verdict-word">{words}</span>'
+                            f'<span class="verdict-vs">vs {escape(m["opponent"])}</span>'
+                            f'<span class="verdict-small">{_pct(m["win_prob_best"])} to win with this lineup{espn}</span></div>')
+        changes = lg.get("changes")
+        if changes:
+            items = "".join(f"<li>{escape(strip_numbers_in_parens(c))}</li>" for c in changes)
+            todo = f'<div class="todo-box"><p class="box-title">Do this in ESPN</p><ul>{items}</ul></div>'
+        elif changes is not None:
+            todo = '<div class="todo-box done"><p class="box-title">You&#x27;re all set: no changes</p></div>'
+        else:
+            todo = ""
+        pick = ""
+        if rs.get("moves"):
+            items = "".join(
+                f'<li><b>Add {escape(mv["add"])}</b>, drop {escape(mv["drop"])}'
+                + (f'<span class="why">{escape(mv["why"])}</span>' if mv.get("why") else "") + "</li>"
+                for mv in rs["moves"]
+            )
+            after = (m or {}).get("with_pickups")
+            after_line = f'<p class="tiny">With these: {_pct(after["win_prob"])} to win.</p>' if after else ""
+            pick = f'<div class="todo-box soft"><p class="box-title">Optional pickups</p><ul>{items}</ul>{after_line}</div>'
         rows = "".join(
-            _fantasy_player_line(s["slot"], s["player"], pnotes.get(s["player"].get("name"), "")) if s.get("player")
-            else f'<li class="fx-row empty"><span class="fx-slot">{escape(s["slot"])}</span><span class="fx-name">Empty -- pick someone up</span><span class="fx-pts">0.0</span></li>'
+            _player_row(s["slot"], s["player"], notes.get(s["player"].get("name"), "")) if s.get("player")
+            else f'<li><div class="player empty"><span class="slot">{escape(s["slot"])}</span><span class="pname">Empty: pick someone up</span></div></li>'
             for s in lg.get("starters") or []
         )
-        total = sum(float(s["player"].get("proj", 0.0)) for s in lg.get("starters") or [] if s.get("player"))
-        bench = "".join(_fantasy_player_line("BN", b, pnotes.get(b.get("name"), "")) for b in lg.get("bench") or [])
-        research_html = ""
-        if rs:
-            waivers = "".join(f"<li>{escape(w)}</li>" for w in rs.get("waivers") or [])
+        bench = "".join(_player_row("BN", b, notes.get(b.get("name"), "")) for b in lg.get("bench") or [])
+        how = ""
+        if rs or m:
             srcs = escape("; ".join(rs.get("sources") or []))
-            research_html = (
-                f'<div class="fx-research"><p class="fx-changes-title">Research call</p><p>{escape(rs.get("verdict", ""))}</p>'
-                + (f'<p class="fx-changes-title">Waiver ideas</p><ul>{waivers}</ul>' if waivers else "")
-                + f'<p class="fx-src">Sources: {srcs}</p></div>'
-            )
-        changes = lg.get("changes")
-        if changes is None:
-            changes_html = ""
-        elif changes:
-            items = "".join(f"<li>{escape(c)}</li>" for c in changes)
-            changes_html = f'<div class="fx-changes"><p class="fx-changes-title">Changes to make in ESPN</p><ul>{items}</ul></div>'
-        else:
-            changes_html = '<div class="fx-changes ok"><p class="fx-changes-title">Your ESPN lineup is already the best one -- no changes.</p></div>'
-        notes = "".join(f"<li>{escape(n)}</li>" for n in lg.get("notes") or [])
-        notes_html = f'<ul class="fx-notes">{notes}</ul>' if notes else ""
-        parts.append(f'''<section class="fx-league">
-  <h3>{title} <span class="fx-team-name">{escape(lg.get("team_name", ""))}</span></h3>
-  <p class="fx-total">Projected starters: <b>{total:.1f}</b></p>
-  {changes_html}
-  {_matchup_html(lg.get("matchup"))}
-  {research_html}
-  {notes_html}
-  <ul class="fx-list">{rows}</ul>
-  <details class="more"><summary>Bench</summary><ul class="fx-list">{bench}</ul></details>
-</section>''')
+            model = ""
+            if m:
+                model = (f'<p class="tiny">Projected: you {m["my_best"]:.1f} vs {m["opp_proj"]:.1f} (their lineup as set now). '
+                         f'ESPN projects {m["espn_my_proj"]:.1f} vs {m["espn_opp_proj"]:.1f}. '
+                         'Win % assumes the margin can swing about 35 points either way.</p>')
+            how = ('<details class="more"><summary>How we picked</summary><div class="more-body">'
+                   f'<p>{escape(rs.get("verdict", ""))}</p>{model}'
+                   + (f'<p class="tiny">Sources: {srcs}</p>' if srcs else "") + '</div></details>')
+        parts.append(f"""<section class="league glass">
+  <p class="eyebrow">{title}</p>
+  <h2 class="league-team">{escape(lg.get("team_name", ""))}</h2>
+  {matchup_html}
+  {todo}
+  {pick}
+  <p class="list-title">Your lineup</p>
+  <ul class="roster">{rows}</ul>
+  <details class="more"><summary>Bench</summary><div class="more-body"><ul class="roster">{bench}</ul></div></details>
+  {how}
+</section>""")
     return "".join(parts)
+
+
+def _check_lines(lines):
+    if not lines:
+        return ""
+    return '<span class="check-lines">' + "".join(f"<span>{escape(l)}</span>" for l in lines) + "</span>"
+
+
+def render_plan(window, config, weekends_dir, now, fantasy_dir=None):
+    """The checklist at the top of Today: every lineup change and every bet,
+    in words, each with a tick box (ticks live only on Gus's phone)."""
+    tz = ZoneInfo(config["timezone"])
+    today = now.astimezone(tz).date()
+    items = []
+
+    data = _latest_fantasy(fantasy_dir)
+    if data:
+        research = _fantasy_research(fantasy_dir, data)
+        for lg in data.get("leagues") or []:
+            if lg.get("error"):
+                continue
+            changes = [strip_numbers_in_parens(c) for c in lg.get("changes") or []]
+            if len(changes) > 1:
+                text = f"Make {len(changes)} lineup changes"
+            else:
+                text = changes[0] if changes else "Lineup's already set: nothing to change"
+            sub = []
+            m = lg.get("matchup")
+            if m:
+                sub.append(f'{matchup_words(m["win_prob_best"])[0]} vs {m["opponent"]}')
+            n_moves = len((research.get(str(lg.get("league_id"))) or {}).get("moves") or [])
+            if n_moves:
+                sub.append(f'{n_moves} optional pickup{"s" if n_moves != 1 else ""}')
+            items.append((f"fx-{lg.get('league_id')}-wk{data.get('week')}", lg.get("league_name", ""), text, " · ".join(sub),
+                          changes if len(changes) > 1 else []))
+
+    picked = _pick_today_slot(window, config, weekends_dir, now)
+    if picked and not picked[1].get("historical_import"):
+        slot = picked[1]
+        card = slot.get("card") or {}
+        bets = [(k, card[k]) for k in ALL_TIERS if card.get(k) and card[k].get("result") is None]
+        total = sum(float(b.get("stake", 0.0)) for _, b in bets)
+        if bets and total > 0:
+            lines = [f"${float(b.get('stake', 0.0)):.2f} on {bet_title(k, b)}" for k, b in bets]
+            items.append((f"bets-{slot.get('date')}", "DraftKings",
+                          f"Place {len(bets)} bet{'s' if len(bets) != 1 else ''}: ${total:.2f} total", "", lines))
+        elif bets:
+            items.append((f"bets-{slot.get('date')}", "DraftKings", "No bets today: weekend limit reached", "Watch only", []))
+    else:
+        items.append(("nobets", "DraftKings", "No bets today", f"Next card: {_next_card_full(window)}, around 9 AM", []))
+
+    lis = "".join(
+        f"""<li><label class="check"><input type="checkbox" data-key="{escape(key)}"><span class="box" aria-hidden="true"></span>
+  <span class="check-body"><span class="check-where">{escape(where)}</span><span class="check-text">{escape(text)}</span>{_check_lines(lines)}{f'<span class="check-sub">{escape(sub)}</span>' if sub else ""}</span></label></li>"""
+        for key, where, text, sub, lines in items
+    )
+    day = f"{today.strftime('%A')}, {today.strftime('%b')} {today.day}"
+    n = len(items)
+    return f"""<section class="plan glass">
+  <p class="eyebrow">{escape(day)}</p>
+  <h2 class="plan-title">{n} thing{"s" if n != 1 else ""} to do</h2>
+  <ul class="checklist">{lis}</ul>
+</section>"""
 
 
 def render_page(template_path, weekends_dir, csv_path, config, now, fantasy_dir=None):
@@ -1716,7 +1827,7 @@ def render_page(template_path, weekends_dir, csv_path, config, now, fantasy_dir=
     legs_html = render_legs(window, config, weekends_dir, now)
     record_html = render_record(config, csv_path, weekends_dir, window)
     lineup_html = render_lineup(fantasy_dir)
-    today_html = render_fantasy_summary(fantasy_dir) + today_html
+    today_html = render_plan(window, config, weekends_dir, now, fantasy_dir) + today_html
 
     updated_at = f"Updated {local_now.strftime('%a')} {_fmt_time_ampm(local_now)} ET"
     next_update = f"Next card: {_next_card_short(window)} ~9 AM"

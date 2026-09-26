@@ -36,7 +36,10 @@ time slot** (Easy Bet, Fun Parlay, and a third bet), and places them himself in 
 3. **Bet first, boost second.** Pick on merit; boosts are checked afterward in their own section.
 4. **Leg count follows probability.** Fun Parlay legs are each ≥55%. No parlay gets more than 3
    coin-flip legs. The Lottery Ticket is the one exemption (see 6).
-5. **Every odds number shows implied probability, true-probability estimate, and edge.**
+5. **Every odds number shows implied probability, true-probability estimate, and edge** — one tap
+   away ("Why & the numbers"). The face of every card is plain English (Gus, 2026-09-26: "I don't want
+   to see so many tiny numbers. Just tell me what is what and what to do where"): what to bet, what
+   it pays back, chance in words, and a Good / Fair / Overpriced price label.
 6. **Each slot's card is three labeled tiers, in order:** Easy Bet (required — one straight
    bet, highest probability with real edge, ~60% of the slot budget), Fun Parlay (optional —
    2–3 legs, each ≥55%, the rest of the slot budget), Lottery Ticket (optional, **at most one
@@ -157,7 +160,8 @@ build → commit → push). The scheduled task just runs it.
 
 ## House style
 
-- Mobile-first, installable (home-screen web app), four tabs, crisp and scannable: one-line
-  summary per bet, full reasoning behind a tap-to-expand. Gus: "I don't care how you style it,"
-  so function and clarity win over ornament.
+- Mobile-first, installable (home-screen web app), five tabs. Today opens with a tick-off
+  "things to do" checklist (lineup changes + bets). Look (Gus, 2026-09-26): "fun, bubbly… like
+  something Apple made, with glass" — frosted glass cards over a soft night-game color glow, rounded
+  type, a floating glass tab bar. Plain words on the face, numbers behind a tap.
 - No frameworks, no build step beyond `python3 src/build.py`. Python stdlib only.

@@ -611,7 +611,7 @@ class TestRenderCardBet(unittest.TestCase):
         self.assertIn("1 · Easy Bet", html)
         self.assertIn('class="result-badge open"', html)
         self.assertIn("tier-easy", html)
-        self.assertIn('<summary>Why &amp; sources</summary>', html)
+        self.assertIn('<summary>Why &amp; the numbers</summary>', html)
 
     def test_easy_bet_graded_shows_signed_money(self):
         bet = _valid_easy_bet(result="Won", net=1.50)
@@ -619,10 +619,10 @@ class TestRenderCardBet(unittest.TestCase):
         self.assertIn('class="result-badge won"', html)
         self.assertIn("+$1.50", html)
 
-    def test_fun_parlay_title_is_leg_count(self):
+    def test_fun_parlay_title_names_its_legs(self):
         bet = _valid_fun_parlay()
         html = render_card_bet("fun_parlay", bet, self.tz)
-        self.assertIn("2-leg parlay", html)
+        self.assertIn('<h3 class="bet-title">Leg 1 + Leg 2</h3>', html)
         self.assertIn("2 · Fun Parlay", html)
         self.assertIn("Leg 1", html)
         self.assertIn("Leg 2", html)
@@ -1339,6 +1339,34 @@ class TestLegsTabProps(unittest.TestCase):
             self.assertIn("Best value", html)
             for chip in ("All", "Receiving", "Game lines", "Kicker"):
                 self.assertIn(f">{chip}</button>", html)
+
+
+class TestPlainLanguage(unittest.TestCase):
+    def test_chance_words(self):
+        self.assertEqual(build.chance_words(0.597), "wins about 6 times in 10")
+        self.assertEqual(build.chance_words(0.24), "wins about 2 times in 10")
+        self.assertEqual(build.chance_words(0.0005), "about a 1-in-2,000 shot")
+        self.assertEqual(build.chance_words(0.97), "wins almost every time")
+
+    def test_value_words(self):
+        self.assertEqual(build.value_words(0.03)[0], "Good price")
+        self.assertEqual(build.value_words(-0.013)[0], "Fair price")
+        self.assertEqual(build.value_words(-0.05)[0], "Overpriced")
+
+    def test_payout_and_names(self):
+        self.assertAlmostEqual(build.payout_back(0.30, -135), 0.5222, places=3)
+        self.assertEqual(build.plain_selection("Buffalo Bills moneyline (vs LA Chargers)"), "Buffalo Bills win")
+        self.assertEqual(build.plain_selection("Los Angeles Rams ML (at DEN)"), "Los Angeles Rams win")
+        self.assertEqual(build.plain_selection("Chris Olave anytime TD"), "Chris Olave anytime TD")
+        self.assertEqual(build.strip_numbers_in_parens("Start A (13.2) instead of B (10.8)"), "Start A instead of B")
+
+    def test_bet_card_leads_with_money_and_words(self):
+        html = render_card_bet("easy_bet", _valid_easy_bet(stake=0.30, dk_odds=-135, estimated_prob=0.597),
+                               ZoneInfo("America/New_York"))
+        self.assertIn("get back <b>$0.52</b>", html)
+        self.assertIn("Wins about 6 times in 10", html)
+        # the numbers are still there, behind the tap (ground rule 5)
+        self.assertIn("Implied", html)
 
 if __name__ == "__main__":
     unittest.main()
