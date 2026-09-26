@@ -617,6 +617,24 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
 .leg-chip.is-on { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
 .by-game.is-empty, .by-game .leg.is-hidden { display: none; }
 
+/* ---------- lineup panel ---------- */
+.fx-league { margin-bottom: 18px; }
+.fx-league h3 { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px; padding-bottom: 6px; border-bottom: 1px solid var(--border-soft); }
+.fx-team-name { font-size: 0.8rem; font-weight: 500; color: var(--text-faint); }
+.fx-total { font-size: 0.85rem; color: var(--text-dim); margin: 8px 0; }
+.fx-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.fx-row { display: flex; align-items: center; gap: 10px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; }
+.fx-row.empty { border-style: dashed; }
+.fx-slot { flex: 0 0 38px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em; color: var(--accent); }
+.fx-name { flex: 1 1 auto; min-width: 0; font-weight: 700; }
+.fx-team { font-size: 0.75rem; font-weight: 500; color: var(--text-faint); }
+.fx-src { display: block; font-size: 0.72rem; font-weight: 500; color: var(--text-faint); }
+.fx-pts { flex: 0 0 auto; font-weight: 800; font-variant-numeric: tabular-nums; }
+.fx-chip { display: inline-block; margin-left: 6px; font-size: 0.66rem; font-weight: 700; border-radius: 6px; padding: 1px 6px; background: var(--bg-elevated-2); color: var(--text-dim); }
+.fx-chip.warn { background: var(--accent-soft); color: var(--negative); }
+.fx-notes { margin: 0 0 10px; padding-left: 18px; font-size: 0.83rem; color: var(--text-dim); }
+.fx-error { font-size: 0.85rem; color: var(--negative); }
+
 /* ---------- record panel ---------- */
 .alltime-line {
   font-size: 0.85rem;
@@ -653,6 +671,7 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
   <section class="panel" id="panel-weekend">{{WEEKEND}}</section>
   <section class="panel" id="panel-legs">{{LEGS}}</section>
   <section class="panel" id="panel-record">{{RECORD}}</section>
+  <section class="panel" id="panel-lineup">{{LINEUP}}</section>
 </main>
 
 <nav class="tabbar" aria-label="Sections">
@@ -672,11 +691,15 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
     <svg class="tab-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 20V11M9.5 20V4.5M14.5 20v-8M19.5 20v-5"/></svg>
     <span class="tab-label">Record</span>
   </a>
+  <a href="#lineup" class="tab-link" data-tab="lineup">
+    <svg class="tab-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3.25"/><path d="M5.5 20c.6-3.6 3.3-5.75 6.5-5.75S17.9 16.4 18.5 20"/></svg>
+    <span class="tab-label">Lineup</span>
+  </a>
 </nav>
 
 <script>
 (function () {
-  var TABS = ['today', 'weekend', 'legs', 'record'];
+  var TABS = ['today', 'weekend', 'legs', 'record', 'lineup'];
   var panels = {};
   var links = {};
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';

@@ -1555,7 +1555,72 @@ def render_record(config, csv_path, weekends_dir, window):
     return stat_grid + alltime_line + note + card_record_html + last_weekend_html
 
 
-def render_page(template_path, weekends_dir, csv_path, config, now):
+DEFAULT_FANTASY_DIR = REPO_ROOT / "data" / "fantasy"
+
+
+def _fantasy_player_line(slot, p):
+    status = (p.get("status") or "ACTIVE").upper()
+    chips = ""
+    if p.get("locked"):
+        chips += '<span class="fx-chip">Played</span>'
+    if status != "ACTIVE":
+        chips += f'<span class="fx-chip warn">{escape(status.title().replace("_", " "))}</span>'
+    if p.get("bye"):
+        chips += '<span class="fx-chip warn">Bye</span>'
+    if p.get("disagree"):
+        chips += '<span class="fx-chip">Sources split</span>'
+    parts = []
+    if p.get("espn") is not None:
+        parts.append(f"ESPN {p['espn']:.1f}")
+    if p.get("rotowire") is not None:
+        parts.append(f"RW {p['rotowire']:.1f}")
+    src = " · ".join(parts) or "no projection"
+    return f'''<li class="fx-row">
+  <span class="fx-slot">{escape(slot)}</span>
+  <span class="fx-name">{escape(p.get("name", ""))} <span class="fx-team">{escape(p.get("pos", ""))} · {escape(p.get("team", ""))}</span>{chips}
+    <span class="fx-src">{escape(src)}</span></span>
+  <span class="fx-pts">{float(p.get("proj", 0.0)):.1f}</span>
+</li>'''
+
+
+def render_lineup(fantasy_dir=None):
+    fantasy_dir = Path(fantasy_dir or DEFAULT_FANTASY_DIR)
+    files = sorted(fantasy_dir.glob("*-wk*.json")) if fantasy_dir.is_dir() else []
+    if not files:
+        return render_empty_state(
+            "No lineups yet",
+            "Add your ESPN league IDs to data/fantasy.json, then run python3 src/fantasy.py pull.",
+        )
+    data = _load_json_file(files[-1])
+    parts = [f'''<header class="slot-head">
+  <h2 class="slot-title">Week {int(data.get("week", 0))} lineups</h2>
+  <p class="slot-sub">{escape(data.get("scoring", ""))} · {escape(data.get("sources", ""))}</p>
+</header>''']
+    for lg in data.get("leagues") or []:
+        title = escape(lg.get("league_name", ""))
+        if lg.get("error"):
+            parts.append(f'<section class="fx-league"><h3>{title}</h3><p class="fx-error">{escape(lg["error"])}</p></section>')
+            continue
+        rows = "".join(
+            _fantasy_player_line(s["slot"], s["player"]) if s.get("player")
+            else f'<li class="fx-row empty"><span class="fx-slot">{escape(s["slot"])}</span><span class="fx-name">Empty -- pick someone up</span><span class="fx-pts">0.0</span></li>'
+            for s in lg.get("starters") or []
+        )
+        total = sum(float(s["player"].get("proj", 0.0)) for s in lg.get("starters") or [] if s.get("player"))
+        bench = "".join(_fantasy_player_line("BN", b) for b in lg.get("bench") or [])
+        notes = "".join(f"<li>{escape(n)}</li>" for n in lg.get("notes") or [])
+        notes_html = f'<ul class="fx-notes">{notes}</ul>' if notes else ""
+        parts.append(f'''<section class="fx-league">
+  <h3>{title} <span class="fx-team-name">{escape(lg.get("team_name", ""))}</span></h3>
+  <p class="fx-total">Projected starters: <b>{total:.1f}</b></p>
+  {notes_html}
+  <ul class="fx-list">{rows}</ul>
+  <details class="more"><summary>Bench</summary><ul class="fx-list">{bench}</ul></details>
+</section>''')
+    return "".join(parts)
+
+
+def render_page(template_path, weekends_dir, csv_path, config, now, fantasy_dir=None):
     with open(template_path, "r", encoding="utf-8") as f:
         template = f.read()
 
@@ -1567,6 +1632,7 @@ def render_page(template_path, weekends_dir, csv_path, config, now):
     weekend_html = render_weekend(window, config, weekends_dir, now)
     legs_html = render_legs(window, config, weekends_dir, now)
     record_html = render_record(config, csv_path, weekends_dir, window)
+    lineup_html = render_lineup(fantasy_dir)
 
     updated_at = f"Updated {local_now.strftime('%a')} {_fmt_time_ampm(local_now)} ET"
     next_update = f"Next card: {_next_card_short(window)} ~9 AM"
@@ -1584,6 +1650,7 @@ def render_page(template_path, weekends_dir, csv_path, config, now):
         "{{WEEKEND}}": weekend_html,
         "{{LEGS}}": legs_html,
         "{{RECORD}}": record_html,
+        "{{LINEUP}}": lineup_html,
         "{{UPDATED_AT}}": updated_at,
         "{{NEXT_UPDATE}}": next_update,
         "{{SAMPLE_BANNER}}": sample_banner,

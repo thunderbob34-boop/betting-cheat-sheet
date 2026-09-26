@@ -112,6 +112,17 @@ python3 src/build.py --publish <wid>/<slot> # also enforce kickoff-in-future + s
 python3 -m unittest discover -s src -p "test_*.py" -v
 ```
 
+## Fantasy lineups (Lineup tab)
+
+Gus's two ESPN leagues, both full PPR, slots QB / RB / RB / WR / WR / TE / FLEX / K / D/ST.
+`data/fantasy.json` holds the league IDs and his team name in each. `python3 src/fantasy.py pull`
+reads each league's rosters from ESPN's public API (the league must be viewable to the public;
+never use login cookies), averages ESPN's projection (league scoring) with Rotowire's full-PPR
+projection (via Sleeper's public API), sits OUT / IR / doubtful / bye players, keeps anyone whose
+game already kicked off locked where ESPN has him, and writes `data/fantasy/<season>-wk<NN>.json`.
+Then `python3 src/build.py` renders the Lineup tab. Close calls (< 1 pt), questionable starters and
+big source disagreements are flagged, not hidden. The page only advises; Gus sets his lineup in the ESPN app.
+
 `.claude/commands/cheatsheet.md` is the full run procedure (research → slot file → grade →
 build → commit → push). The scheduled task just runs it.
 
