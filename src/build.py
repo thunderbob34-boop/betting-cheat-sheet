@@ -1403,12 +1403,13 @@ def render_weekend(window, config, weekends_dir, now):
 # Leg-bank market keys -> (short label, filter chip). Anything unknown falls
 # under "Other" so a new market name never breaks the page.
 MARKET_LABELS = {
-    "moneyline": ("Moneyline", "Game lines"),
-    "spread": ("Spread", "Game lines"),
-    "total": ("Total", "Game lines"),
+    "moneyline": ("Moneyline", "Moneylines"),
+    "spread": ("Spread", "Spreads"),
+    "total": ("Over/Under", "Over/Unders"),
     "anytime_td": ("Anytime TD", "TD"),
     "pass_td": ("Pass TDs", "Pass TD"),
     "passing_yards": ("Pass yds", "Passing"),
+    "pass_yds": ("Pass yds", "Passing"),
     "receiving_yards": ("Rec yds", "Receiving"),
     "receptions": ("Receptions", "Receiving"),
     "rushing_yards": ("Rush yds", "Rushing"),
@@ -1419,6 +1420,13 @@ MARKET_LABELS = {
     "special_teams": ("Kicker/ST", "Kicker"),
 }
 BEST_VALUE_MAX = 8
+# Legs tab sections, in the order Gus sees them: player props first, game lines last.
+LEG_SECTIONS = [
+    ("Receiving", "Receiving props"), ("Rushing", "Rushing props"), ("TD", "Touchdown scorers"),
+    ("Pass TD", "QB touchdowns"), ("Passing", "QB passing yards"), ("Tackles", "Tackles"),
+    ("Sacks", "Sacks"), ("Kicker", "Kickers"), ("D/ST", "Defense & special teams"),
+    ("Over/Unders", "Over/Unders"), ("Spreads", "Spreads"), ("Moneylines", "Moneylines"), ("Other", "Other bets"),
+]
 
 
 def _market_label(market):
@@ -1479,34 +1487,24 @@ def render_legs(window, config, weekends_dir, now):
             f'{items}</section>'
         )
 
-    cats = []
-    for leg in leg_bank:
-        cat = _market_label(leg.get("market"))[1]
-        if cat not in cats:
-            cats.append(cat)
-    if len(cats) > 1:
-        chips = '<button type="button" class="leg-chip is-on" data-cat="all">All</button>' + "".join(
-            f'<button type="button" class="leg-chip" data-cat="{escape(c)}">{escape(c)}</button>' for c in cats
-        )
-        parts.append(f'<div class="leg-filter" role="group" aria-label="Filter legs by market">{chips}</div>')
-
-    ranked = sort_leg_bank(leg_bank)
     groups = {}
-    order = []
-    for leg in ranked:
-        game = leg.get("game") or "—"
-        if game not in groups:
-            groups[game] = []
-            order.append(game)
-        groups[game].append(leg)
+    for leg in sort_leg_bank(leg_bank):
+        groups.setdefault(_market_label(leg.get("market"))[1], []).append(leg)
+    order = [c for c, _ in LEG_SECTIONS if c in groups] + [c for c in groups if c not in dict(LEG_SECTIONS)]
 
-    for game in order:
-        legs = groups[game]
-        kickoff_disp = _format_kickoff_et(legs[0].get("kickoff"), tz)
-        items = "".join(render_leg_entry(leg) for leg in legs)
+    if len(order) > 1:
+        chips = '<button type="button" class="leg-chip is-on" data-cat="all">All</button>' + "".join(
+            f'<button type="button" class="leg-chip" data-cat="{escape(c)}">{escape(c)}</button>' for c in order
+        )
+        parts.append(f'<div class="leg-filter" role="group" aria-label="Filter legs by type">{chips}</div>')
+
+    titles = dict(LEG_SECTIONS)
+    for cat in order:
+        legs = groups[cat]
+        items = "".join(render_leg_entry(leg, show_game=True) for leg in legs)
         parts.append(
-            f'<section class="leg-group by-game"><h3 class="leg-group-title">{escape(game)} '
-            f'<span class="kickoff">{escape(kickoff_disp)}</span></h3>{items}</section>'
+            f'<section class="leg-group by-game"><h3 class="leg-group-title">{escape(titles.get(cat, cat))} '
+            f'<span class="kickoff">{len(legs)} bet{"s" if len(legs) != 1 else ""}</span></h3>{items}</section>'
         )
     return "".join(parts)
 

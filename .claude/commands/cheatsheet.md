@@ -77,8 +77,10 @@ the `budget` snapshot from step 1 and an `angles` list). Order matters:
 4. **Tier 3 — Lottery Ticket or Fun Parlay #2.** Lottery Ticket only if `lottery_available` and
    this is the **Sunday** slot (or Monday if Sunday passed without one): 10–20 real legs, stake
    exactly $0.50, real combined probability. **Every other slot gets `fun_parlay_2`** — a
-   different variety of Fun Parlay (different legs/games, e.g. a 3-leg mid-favorite ticket for a
-   bigger price), same leg rules and game-script check. `fun_parlay` + `fun_parlay_2` stakes
+   different variety of Fun Parlay, same leg rules and game-script check. **Make #2 the player-prop /
+   over-under parlay** whenever 2–3 such legs clear the 55% floor at a readable DraftKings price
+   (receptions, yardage, pass TDs, unders in bad weather…) — Gus wants individual player bets on the
+   card, not only moneylines. Fall back to game lines only if no prop/total qualifies, and say so. `fun_parlay` + `fun_parlay_2` stakes
    together = `budget.fun` (split it, e.g. $0.15 / $0.10; each ≥ $0.10 unless the fun budget is
    too small for two, in which case skip #2 and say so). Grade it with tier `fun_parlay_2`.
 5. **Leg bank — the full prop board** (Gus, 2026-09-26: "add in all the individual odds…
@@ -86,7 +88,9 @@ the `budget` snapshot from step 1 and an `angles` list). Order matters:
    the slot's games, covering every market that has a readable price: anytime TD, QB pass TDs,
    D/ST (defense TD, team sacks), special teams / kicker (FGs, kicking points), tackles+assists,
    sacks (`opp_qb` required; never vs `config.mobile_qbs`), receiving yards, receptions, rushing
-   yards, rush+rec yards, plus game lines. Use these `market` keys: `anytime_td`, `pass_td`, `dst`,
+   yards, rush+rec yards, plus game lines — **every game's over/under and spread, both sides, with
+   their own ≥2 probability sources** (Gus, 2026-09-26: "I'm not seeing over/unders… no individual
+   player bets on here"), not just moneylines. Use these `market` keys: `anytime_td`, `pass_td`, `dst`,
    `special_teams`, `tackles`, `sacks`, `receiving_yards`, `receptions`, `rushing_yards`,
    `rush_rec_yards`, `passing_yards`, `moneyline`, `spread`, `total`. Each entry: `selection`,
    `player`, `game`, `kickoff`, `game_script`, `estimated_prob` (the average of `prob_sources`),

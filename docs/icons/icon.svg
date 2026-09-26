@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="gBlue" cx="0.2" cy="0.15" r="0.75">
+      <stop offset="0" stop-color="#2f7bff"/>
+      <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gCoral" cx="0.95" cy="0.35" r="0.6">
+      <stop offset="0" stop-color="#ff5e8a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ff5e8a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gMint" cx="0.25" cy="1.0" r="0.7">
+      <stop offset="0" stop-color="#1ed6a0"/>
+      <stop offset="1" stop-color="#1ed6a0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gAmber" cx="0.95" cy="1.0" r="0.5">
+      <stop offset="0" stop-color="#ffb547" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffb547" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="ball" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd48a"/>
+      <stop offset="0.55" stop-color="#ff9a3c"/>
+      <stop offset="1" stop-color="#e8663a"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="check" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3ee8b5"/>
+      <stop offset="1" stop-color="#2f7bff"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="drop" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- night-game backdrop -->
+  <rect width="1024" height="1024" fill="#070b1a"/>
+  <rect width="1024" height="1024" fill="url(#gBlue)"/>
+  <rect width="1024" height="1024" fill="url(#gCoral)"/>
+  <rect width="1024" height="1024" fill="url(#gMint)"/>
+  <rect width="1024" height="1024" fill="url(#gAmber)"/>
+
+  <!-- frosted glass tile -->
+  <g filter="url(#drop)">
+    <rect x="172" y="172" width="680" height="680" rx="170" fill="url(#glass)"/>
+    <rect x="172" y="172" width="680" height="680" rx="170" fill="none" stroke="url(#edge)" stroke-width="6"/>
+  </g>
+
+  <!-- the football -->
+  <g transform="rotate(-35 512 512)" filter="url(#drop)">
+    <ellipse cx="512" cy="512" rx="250" ry="150" fill="url(#ball)"/>
+    <ellipse cx="480" cy="440" rx="170" ry="52" fill="url(#shine)" opacity="0.8"/>
+    <path d="M300 512 H724" stroke="#ffffff" stroke-width="22" stroke-linecap="round" opacity="0.95"/>
+    <g stroke="#ffffff" stroke-width="20" stroke-linecap="round" opacity="0.95">
+      <path d="M392 478 V546"/>
+      <path d="M452 472 V552"/>
+      <path d="M512 470 V554"/>
+      <path d="M572 472 V552"/>
+      <path d="M632 478 V546"/>
+    </g>
+  </g>
+
+  <!-- the check -->
+  <g filter="url(#drop)">
+    <circle cx="724" cy="724" r="118" fill="url(#check)"/>
+    <circle cx="724" cy="724" r="118" fill="none" stroke="#ffffff" stroke-opacity="0.7" stroke-width="8"/>
+    <path d="M668 726 L708 766 L784 686" fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

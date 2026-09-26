@@ -1337,7 +1337,7 @@ class TestLegsTabProps(unittest.TestCase):
             window = slate.current_window(now, CONFIG)
             html = build.render_legs(window, CONFIG, td, now)
             self.assertIn("Best value", html)
-            for chip in ("All", "Receiving", "Game lines", "Kicker"):
+            for chip in ("All", "Receiving", "Moneylines", "Kicker"):
                 self.assertIn(f">{chip}</button>", html)
 
 
