@@ -596,6 +596,26 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
 .leg-meta .prob .k { font-size: 0.66rem; }
 .leg-meta .edge { font-size: 0.82rem; }
 .leg-reason { font-size: 0.83rem; color: var(--text-dim); }
+.leg-game { font-size: 0.78rem; color: var(--text-faint); margin: -2px 0 5px; }
+.leg-meta .book-tag,
+.leg-meta .source-tag { font-size: 0.72rem; border-radius: 6px; padding: 2px 8px; background: var(--bg-elevated-2); color: var(--text-dim); border: 1px solid var(--border-soft); }
+.leg-meta .source-tag { font-style: italic; }
+.best-value { margin-bottom: 14px; }
+.leg-filter { display: none; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.js .leg-filter { display: flex; }
+.leg-chip {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 11px;
+  cursor: pointer;
+}
+.leg-chip.is-on { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
+.by-game.is-empty, .by-game .leg.is-hidden { display: none; }
 
 /* ---------- record panel ---------- */
 .alltime-line {
@@ -619,7 +639,7 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.66-5.66L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.66 5.66L4 16"/><path d="M4 20v-4h4"/></svg>
     </button>
   </div>
-  <p class="topbar-meta"><span class="updated">Updated Sat 5:31 PM ET</span><span class="next">Next card: Sun ~9 AM</span></p>
+  <p class="topbar-meta"><span class="updated">Updated Sat 5:48 PM ET</span><span class="next">Next card: Sun ~9 AM</span></p>
 </header>
 
 
@@ -631,7 +651,7 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
        sticky header. No element matches the hash, so there's nothing to jump to. -->
   <section class="panel is-active" id="panel-today"><header class="slot-head">
   <h2 class="slot-title">Sunday · Sep 27</h2>
-  <p class="slot-sub">NFL Week 3 · 15 games</p>
+  <p class="slot-sub">NFL Week 3 · 16 games</p>
 </header><div class="budget">
   <span class="budget-amount">$0.55</span>
   <span class="budget-label">to play this slot</span>
@@ -660,7 +680,7 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
   <p class="reason-summary">Rams ML -135 (SNF). 3 sources avg 59.7% vs 57.4% implied = small +2.2% edge. Nacua doubtful -- skip if DK is shorter than -150.</p>
   <details class="reason-detail">
     <summary>Why &amp; sources</summary>
-    <p class="reason">Picked on merit: the Rams are favored by every source read -- ESPN FPI 63.7%, Dimers 61.3% (projects Rams 23-20), Kalshi 54% as of 9/26. Averaged 59.7% vs DraftKings -135 (57.4% implied) = +2.2%, a small edge, not a big one. Honest caveats: (1) Puka Nacua is doubtful (missed every practice this week) and FPI may predate that news, which is why Kalshi sits 10 points lower -- the sources are only just inside the 10-point agreement rule. (2) Denver&#x27;s backfield is banged up (Dobbins and Harvey questionable) and Covers expects a low-scoring game (Under 44.5), which favors the side that runs better -- LA with Kyren Williams and Blake Corum. (3) Neither team is 0-2 (both 1-1). If the DK price has moved shorter than -150, the edge is gone -- skip it. If it&#x27;s moved to -125 or so (Kalshi-like), the edge is a bit bigger.</p>
+    <p class="reason">Picked on merit: the Rams are favored by every source read -- ESPN FPI 63.7%, Dimers 61.3% (projects Rams 23-20), Kalshi 54% as of 9/26. Averaged 59.7% vs DraftKings -135 (57.4% implied) = +2.2%, a small edge, not a big one. Honest caveats: (1) Puka Nacua is doubtful (missed every practice this week) and FPI may predate that news, which is why Kalshi sits 10 points lower -- the sources are only just inside the 10-point agreement rule. (2) Correction: Denver&#x27;s RBs J.K. Dobbins and RJ Harvey carry no injury designation (full practice, denverbroncos.com 9/25) -- only rookie Jonah Coleman is out. Covers expects a low-scoring game (Under 44.5), which favors the side that runs better -- LA with Kyren Williams and Blake Corum. (3) Neither team is 0-2 (both 1-1). If the DK price has moved shorter than -150, the edge is gone -- skip it. If it&#x27;s moved to -125 or so (Kalshi-like), the edge is a bit bigger.</p>
     <p class="prob-source">Averaged: ESPN FPI 63.7% + Dimers 61.3% + Kalshi 54% = 179.0 / 3 = 59.7%. Spread between sources 9.7 points (inside the 10-point limit, but close). -135 implies 57.4%, so edge is about +2.2%.</p>
     <p class="verify">ESPN &#x27;NFL Week 3 betting: odds, lines and totals for every game&#x27; (DraftKings lines, published 2026-09-25 10:21 ET) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN &#x27;What to know for NFL Week 3&#x27; FPI win probabilities (fetched 2026-09-26) https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers https://www.dimers.com/nfl/predictions/2026_3_den_la; Kalshi via https://predictionmarketspicks.com/nfl/rams-vs-broncos-week-03-2026; SI (DK -135, 2026-09-23); Nacua status: therams.com / NFL.com injury report · 2026-09-26 ~17:30 ET (Saturday-evening research run) · Confirm the price in the DK app -- the -135 is from 9/23-9/25 and Kalshi has since drifted toward Denver. Check Nacua&#x27;s inactive status ~6:50 PM ET.</p>
   </details>
@@ -720,7 +740,7 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
     <p class="prob-source">Combined true probability 59.2% x 63.2% x 64.1% = 24.0%. dk_odds +306 is computed from the three DK moneylines (4.057 decimal), not a quoted DK parlay price -- confirm in the app. +306 implies 24.6%, so the edge is about -0.7%: no real edge.</p>
     <p class="verify">ESPN Week 3 DK lines (2026-09-25) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN FPI https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers https://www.dimers.com/nfl/predictions; Kalshi (Panthers) via https://predictionmarketspicks.com/nfl/panthers-vs-browns-week-03-2026 · 2026-09-26 ~17:30 ET (Saturday-evening research run) · Confirm all three prices and the combined parlay price in the DK app.</p>
   </details>
-</article><details class="more angles"><summary>Angles</summary><ul><li>Thin board: across 14 Sunday games, only a few favorites show a positive averaged edge vs the DraftKings price, and none by much. Stakes are small on purpose.</li><li>0-2 teams (desperation angle): Chargers (at BUF), Commanders (vs SEA, Jayden Daniels out), Texans and Colts (vs each other), Dolphins (vs KC), Titans (at NYG), Buccaneers (vs MIN). The card needs none of them blown out -- the Fun Parlay only needs Buffalo to win, not cover.</li><li>Puka Nacua (Rams, groin/hip) is doubtful for SNF; McVay said doubtful means more unlikely than likely. Kalshi&#x27;s Rams price (54%) looks like it already reflects that; ESPN&#x27;s FPI (63.7%) may not.</li><li>Sack-leader props were not researched this run (no verified DK sack prices found) -- none on the card or leg bank.</li><li>No player props on the card: the only prop price verified was McCaffrey anytime TD (Fanatics -225), and it&#x27;s overpriced vs Dimers -- see Skip these.</li><li>No Lottery Ticket: this weekend&#x27;s one ticket was already used Thursday (ATL @ GB), so tier 3 is a second Fun Parlay instead.</li></ul></details><details class="more avoid"><summary>Skip these</summary><div class="avoid-item"><p class="avoid-sel">Christian McCaffrey anytime TD (-225 at Fanatics)</p><p class="avoid-why">-225 implies 69.2%; Dimers gives him 61.9%. Right player, wrong price.</p></div><div class="avoid-item"><p class="avoid-sel">Seattle Seahawks ML -355</p><p class="avoid-why">Implies 78%; ESPN FPI 66.2% and Dimers 74.1%. Washington is 0-2 and at home -- desperation angle.</p></div><div class="avoid-item"><p class="avoid-sel">Kansas City Chiefs ML -650</p><p class="avoid-why">Implies 86.7%; both models lower (FPI 85.3%, Dimers 79.9%). Tiny payout, negative edge, 0-2 opponent.</p></div><div class="avoid-item"><p class="avoid-sel">San Francisco 49ers ML -455</p><p class="avoid-why">FPI (89.9%) and Dimers (77.9%) disagree by 12 points, and Nick Bosa is on IR.</p></div><div class="avoid-item"><p class="avoid-sel">Anything Texans @ Colts</p><p class="avoid-why">Both 0-2, a coin flip (FPI 52.8% / Dimers 53.6% Houston), and Houston&#x27;s price (-125) is above both.</p></div></details><details class="more boosts"><summary>Boosts</summary><div class="boost-item no-fit"><p class="boost-verdict">No fit</p><p class="boost-desc">No DraftKings promos were verified this run (the DK promotions page wasn&#x27;t read). Check the Promos tab in the app; only use a boost on a bet already on this card.</p></div></details></section>
+</article><details class="more angles"><summary>Angles</summary><ul><li>Thin board: across 14 Sunday games, only a few favorites show a positive averaged edge vs the DraftKings price, and none by much. Stakes are small on purpose.</li><li>0-2 teams (desperation angle): Chargers (at BUF), Commanders (vs SEA, Jayden Daniels out), Texans and Colts (vs each other), Dolphins (vs KC), Titans (at NYG), Buccaneers (vs MIN). The card needs none of them blown out -- the Fun Parlay only needs Buffalo to win, not cover.</li><li>Puka Nacua (Rams, groin/hip) is doubtful for SNF; McVay said doubtful means more unlikely than likely. Kalshi&#x27;s Rams price (54%) looks like it already reflects that; ESPN&#x27;s FPI (63.7%) may not.</li><li>No Lottery Ticket: this weekend&#x27;s one ticket was already used Thursday (ATL @ GB), so tier 3 is a second Fun Parlay instead.</li><li>Prop board: ~65 player props across all 14 games are on the Legs tab. Almost every one is priced at or above what the models say -- books carry their margin on props. The few with 2+ sources and a positive edge are listed under Best value, and none of them is 55%+, so none went into the parlays.</li><li>No verified prices were found for sacks, tackles, kicker or D/ST markets this week (the pages that list them didn&#x27;t show readable odds), so those markets are missing rather than guessed.</li></ul></details><details class="more avoid"><summary>Skip these</summary><div class="avoid-item"><p class="avoid-sel">Seattle Seahawks ML -355</p><p class="avoid-why">Implies 78%; ESPN FPI 66.2% and Dimers 74.1%. Washington is 0-2 and at home -- desperation angle.</p></div><div class="avoid-item"><p class="avoid-sel">Kansas City Chiefs ML -650</p><p class="avoid-why">Implies 86.7%; both models lower (FPI 85.3%, Dimers 79.9%). Tiny payout, negative edge, 0-2 opponent.</p></div><div class="avoid-item"><p class="avoid-sel">San Francisco 49ers ML -455</p><p class="avoid-why">FPI (89.9%) and Dimers (77.9%) disagree by 12 points, and Nick Bosa is on IR.</p></div><div class="avoid-item"><p class="avoid-sel">Anything Texans @ Colts</p><p class="avoid-why">Both 0-2, a coin flip (FPI 52.8% / Dimers 53.6% Houston), and Houston&#x27;s price (-125) is above both.</p></div><div class="avoid-item"><p class="avoid-sel">Christian McCaffrey anytime TD (-265 at DK)</p><p class="avoid-why">-265 implies 72.6%; Dimers gives him 61.9%. Right player, wrong price.</p></div><div class="avoid-item"><p class="avoid-sel">Jahmyr Gibbs / Kenneth Walker / Derrick Henry anytime TD</p><p class="avoid-why">Stars&#x27; TD prices run 7-9 points above the models (Gibbs -300 vs 66.9%, Walker -220 vs 59.5%, Henry -250 vs ~64%).</p></div></details><details class="more boosts"><summary>Boosts</summary><div class="boost-item no-fit"><p class="boost-verdict">No fit</p><p class="boost-desc">No DraftKings promos were verified this run (the DK promotions page wasn&#x27;t read). Check the Promos tab in the app; only use a boost on a bet already on this card.</p></div></details></section>
   <section class="panel" id="panel-weekend"><div class="stoploss">
   <div class="stoploss-bar"><div class="stoploss-used" style="width:70%"></div></div>
   <p class="stoploss-text">$3.50 of the $5.00 stop-loss used · $0.95 left</p>
@@ -771,132 +791,876 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
     <span class="slot-name">Monday</span> <span class="slot-date">Sep 28</span>
     <span class="slot-status">Upcoming</span>
   </div></section></section>
-  <section class="panel" id="panel-legs"><section class="leg-group"><h3 class="leg-group-title">ARI @ SF <span class="kickoff">Sun 4:05 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">San Francisco 49ers ML (vs ARI)</span><span class="odds">-455</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 82.0%</span>
-    <span class="prob"><span class="k">Est</span> 83.9%</span>
-    <span class="edge positive">+1.9%</span>
-  </p>
-  <p class="leg-reason">Sources disagree by 12 points (rule 11 warning sign). Nick Bosa on IR.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">KC @ MIA <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Kansas City Chiefs ML (at MIA)</span><span class="odds">-650</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 86.7%</span>
-    <span class="prob"><span class="k">Est</span> 82.6%</span>
-    <span class="edge negative">-4.1%</span>
-  </p>
-  <p class="leg-reason">Overpriced (-4.1%). Miami is 0-2.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">LAC @ BUF <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Buffalo Bills ML (vs LAC)</span><span class="odds">-340</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 77.3%</span>
-    <span class="prob"><span class="k">Est</span> 76.6%</span>
-    <span class="edge negative">-0.6%</span>
-  </p>
-  <p class="leg-reason">Fun Parlay leg. Priced about fair.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">NYJ @ DET <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Detroit Lions ML (vs NYJ)</span><span class="odds">-290</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 74.4%</span>
-    <span class="prob"><span class="k">Est</span> 73.2%</span>
-    <span class="edge negative">-1.1%</span>
-  </p>
-  <p class="leg-reason">Fun Parlay leg. Priced about fair.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">SEA @ WAS <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Seattle Seahawks ML (at WAS)</span><span class="odds">-355</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 78.0%</span>
-    <span class="prob"><span class="k">Est</span> 70.2%</span>
-    <span class="edge negative">-7.9%</span>
-  </p>
-  <p class="leg-reason">Overpriced (-8%) even with Jayden Daniels out. Washington is 0-2.</p>
-</div><div class="leg">
+  <section class="panel" id="panel-legs"><section class="leg-group best-value"><h3 class="leg-group-title">Best value <span class="kickoff">2+ sources, edge above 0</span></h3><div class="leg" data-cat="Game lines">
   <div class="leg-head"><span class="leg-sel">Washington Commanders ML (vs SEA)</span><span class="odds">+280</span></div>
+  <p class="leg-game">SEA @ WAS</p>
   <p class="leg-meta">
-    <span class="market">moneyline</span> 
+    <span class="market">Moneyline</span> 
     <span class="prob"><span class="k">Impl</span> 26.3%</span>
     <span class="prob"><span class="k">Est</span> 29.8%</span>
     <span class="edge positive">+3.5%</span>
   </p>
   <p class="leg-reason">+3.5% on paper as a 0-2 home dog, but the sources are 8 points apart and it&#x27;s a ~30% shot. Not card material.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">LV @ NO <span class="kickoff">Sun 4:25 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">New Orleans Saints ML (vs LV)</span><span class="odds">-185</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 64.9%</span>
-    <span class="prob"><span class="k">Est</span> 64.0%</span>
-    <span class="edge negative">-0.9%</span>
-  </p>
-  <p class="leg-reason">About fair (-0.9%). Raiders are 2-0; Brock Bowers questionable.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">CIN @ PIT <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Cincinnati Bengals ML (at PIT)</span><span class="odds">-175</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 63.6%</span>
-    <span class="prob"><span class="k">Est</span> 63.1%</span>
-    <span class="edge negative">-0.5%</span>
-  </p>
-  <p class="leg-reason">About fair (-0.5%). Iosivas out 4-6 weeks.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">LAR @ DEN <span class="kickoff">Sun 8:20 PM</span></h3><div class="leg">
+</div><div class="leg" data-cat="Game lines">
   <div class="leg-head"><span class="leg-sel">Los Angeles Rams ML (at DEN)</span><span class="odds">-135</span></div>
+  <p class="leg-game">LAR @ DEN</p>
   <p class="leg-meta">
-    <span class="market">moneyline</span> 
+    <span class="market">Moneyline</span> 
     <span class="prob"><span class="k">Impl</span> 57.4%</span>
     <span class="prob"><span class="k">Est</span> 59.7%</span>
     <span class="edge positive">+2.2%</span>
   </p>
   <p class="leg-reason">The Easy Bet. Small +2.2% averaged edge; Nacua doubtful.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">NE @ JAX <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Jacksonville Jaguars ML (vs NE)</span><span class="odds">-155</span></div>
+</div><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">San Francisco 49ers ML (vs ARI)</span><span class="odds">-455</span></div>
+  <p class="leg-game">ARI @ SF</p>
   <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 60.8%</span>
-    <span class="prob"><span class="k">Est</span> 59.2%</span>
-    <span class="edge negative">-1.5%</span>
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 82.0%</span>
+    <span class="prob"><span class="k">Est</span> 83.9%</span>
+    <span class="edge positive">+1.9%</span>
   </p>
-  <p class="leg-reason">Slightly overpriced (-1.6%).</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">CAR @ CLE <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Carolina Panthers ML (at CLE)</span><span class="odds">-148</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 59.7%</span>
-    <span class="prob"><span class="k">Est</span> 59.2%</span>
-    <span class="edge negative">-0.4%</span>
-  </p>
-  <p class="leg-reason">About fair (-0.5%). Carolina&#x27;s defense is thin (Scott, Cherelus out; Lloyd, Phillips limited).</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">BAL @ DAL <span class="kickoff">Sun 4:25 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Baltimore Ravens ML (vs DAL, Brazil)</span><span class="odds">-175</span></div>
-  <p class="leg-meta">
-    <span class="market">moneyline</span> 
-    <span class="prob"><span class="k">Impl</span> 63.6%</span>
-    <span class="prob"><span class="k">Est</span> 58.4%</span>
-    <span class="edge negative">-5.2%</span>
-  </p>
-  <p class="leg-reason">Overpriced (-5.2%).</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">MIN @ TB <span class="kickoff">Sun 4:05 PM</span></h3><div class="leg">
+  <p class="leg-reason">Sources disagree by 12 points (rule 11 warning sign). Nick Bosa on IR.</p>
+</div><div class="leg" data-cat="Game lines">
   <div class="leg-head"><span class="leg-sel">Minnesota Vikings ML (at TB)</span><span class="odds">-120</span></div>
+  <p class="leg-game">MIN @ TB</p>
   <p class="leg-meta">
-    <span class="market">moneyline</span> 
+    <span class="market">Moneyline</span> 
     <span class="prob"><span class="k">Impl</span> 54.5%</span>
     <span class="prob"><span class="k">Est</span> 56.3%</span>
     <span class="edge positive">+1.8%</span>
   </p>
   <p class="leg-reason">+1.8% edge on paper, but Tampa is 0-2 (desperation angle) and Kyler Murray is coming back from a concussion. Left off the card.</p>
-</div></section><section class="leg-group"><h3 class="leg-group-title">HOU @ IND <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg">
-  <div class="leg-head"><span class="leg-sel">Houston Texans ML (at IND)</span><span class="odds">-125</span></div>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">David Montgomery anytime TD</span><span class="odds">+100</span></div>
+  <p class="leg-game">HOU @ IND</p>
   <p class="leg-meta">
-    <span class="market">moneyline</span> 
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 50.0%</span>
+    <span class="prob"><span class="k">Est</span> 51.0%</span>
+    <span class="edge positive">+1.0%</span>
+  </p>
+  <p class="leg-reason">About +1% (3 sources). Only 6 carries in Week 2 with Woody Marks taking 13 touches. Colts have the worst scoring defense. Sources: Dimers 52.0% + Kalshi (via Covers) 48.0% + Covers (Inglis model) 53.0% = 51.0%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Deebo Samuel anytime TD</span><span class="odds">+188</span></div>
+  <p class="leg-game">ARI @ SF</p>
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 34.7%</span>
+    <span class="prob"><span class="k">Est</span> 35.4%</span>
+    <span class="edge positive">+0.6%</span>
+  </p>
+  <p class="leg-reason">Thin edge at BetMGM +188; DK was +155 (negative there). Covers fair price is an analyst estimate. More targets with SF WRs hurt. Sources: Kalshi (via Covers) 33.0% + Covers fair-price estimate 37.7% = 35.4%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Woody Marks anytime TD</span><span class="odds">+290</span></div>
+  <p class="leg-game">HOU @ IND</p>
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 25.6%</span>
+    <span class="prob"><span class="k">Est</span> 26.1%</span>
+    <span class="edge positive">+0.5%</span>
+  </p>
+  <p class="leg-reason">About even at BetMGM +290; DraftKings is only +225 (negative there). Sources: Dimers 24.2% + Kalshi (via Covers) 28.0% = 26.1%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Chris Olave anytime TD</span><span class="odds">+145</span></div>
+  <p class="leg-game">LV @ NO</p>
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span>
+    <span class="prob"><span class="k">Impl</span> 40.8%</span>
+    <span class="prob"><span class="k">Est</span> 41.2%</span>
+    <span class="edge positive">+0.4%</span>
+  </p>
+  <p class="leg-reason">Only TD prop in these two games that isn&#x27;t negative -- and just barely (+0.4 across 3 sources). Sources: Dimers 41.7% + ESPN (Mike Clay fair odds) 44.4% + Kalshi 37.5% = 41.2%.</p>
+</div></section><div class="leg-filter" role="group" aria-label="Filter legs by market"><button type="button" class="leg-chip is-on" data-cat="all">All</button><button type="button" class="leg-chip" data-cat="Game lines">Game lines</button><button type="button" class="leg-chip" data-cat="TD">TD</button><button type="button" class="leg-chip" data-cat="Receiving">Receiving</button><button type="button" class="leg-chip" data-cat="D/ST">D/ST</button><button type="button" class="leg-chip" data-cat="Rushing">Rushing</button><button type="button" class="leg-chip" data-cat="Pass TD">Pass TD</button></div><section class="leg-group by-game"><h3 class="leg-group-title">ARI @ SF <span class="kickoff">Sun 4:05 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">San Francisco 49ers ML (vs ARI)</span><span class="odds">-455</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 82.0%</span>
+    <span class="prob"><span class="k">Est</span> 83.9%</span>
+    <span class="edge positive">+1.9%</span>
+  </p>
+  <p class="leg-reason">Sources disagree by 12 points (rule 11 warning sign). Nick Bosa on IR.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Christian McCaffrey anytime TD</span><span class="odds">-265</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 72.6%</span>
+    <span class="prob"><span class="k">Est</span> 61.9%</span>
+    <span class="edge negative">-10.7%</span>
+  </p>
+  <p class="leg-reason">DK -265 (72.6%) vs Dimers 61.9% -- negative. Fanatics -265, BetMGM -235. Bosa out for SF. Sources: Dimers 61.9%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Jeremiyah Love anytime TD</span><span class="odds">+145</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 40.8%</span>
+    <span class="prob"><span class="k">Est</span> 38.9%</span>
+    <span class="edge negative">-1.9%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Arizona is an 8.5-pt dog. Sources: Dimers 38.9%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Deebo Samuel anytime TD</span><span class="odds">+188</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 34.7%</span>
+    <span class="prob"><span class="k">Est</span> 35.4%</span>
+    <span class="edge positive">+0.6%</span>
+  </p>
+  <p class="leg-reason">Thin edge at BetMGM +188; DK was +155 (negative there). Covers fair price is an analyst estimate. More targets with SF WRs hurt. Sources: Kalshi (via Covers) 33.0% + Covers fair-price estimate 37.7% = 35.4%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">George Kittle anytime TD</span><span class="odds">+155</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 39.2%</span>
+    <span class="prob"><span class="k">Est</span> 34.8%</span>
+    <span class="edge negative">-4.4%</span>
+  </p>
+  <p class="leg-reason">Priced above Dimers -- negative. Sources: Dimers 34.8%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">KC @ MIA <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Kansas City Chiefs ML (at MIA)</span><span class="odds">-650</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 86.7%</span>
+    <span class="prob"><span class="k">Est</span> 82.6%</span>
+    <span class="edge negative">-4.1%</span>
+  </p>
+  <p class="leg-reason">Overpriced (-4.1%). Miami is 0-2.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Kenneth Walker anytime TD</span><span class="odds">-220</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 68.8%</span>
+    <span class="prob"><span class="k">Est</span> 59.5%</span>
+    <span class="edge negative">-9.3%</span>
+  </p>
+  <p class="leg-reason">Negative (~-9). 290 rush yds, 6.2 YPC through 2 games. Sources: Dimers 59.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">De&#x27;Von Achane anytime TD</span><span class="odds">+115</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 46.5%</span>
+    <span class="prob"><span class="k">Est</span> 40.4%</span>
+    <span class="edge negative">-6.1%</span>
+  </p>
+  <p class="leg-reason">Negative (~-6). Sources: Dimers 40.4%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Xavier Worthy anytime TD</span><span class="odds">+170</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 37.0%</span>
+    <span class="prob"><span class="k">Est</span> 35.0%</span>
+    <span class="edge negative">-2.0%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Twice Rice&#x27;s red-zone targets. Sources: Kalshi (via Covers) 35.0%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">LAR @ DEN <span class="kickoff">Sun 8:20 PM</span></h3><div class="leg" data-cat="Pass TD">
+  <div class="leg-head"><span class="leg-sel">Matthew Stafford 1+ passing TD</span><span class="odds">-456</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Pass TDs</span> <span class="prop-tag">Player prop</span><span class="book-tag">Kalshi price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 82.0%</span>
+    <span class="prob"><span class="k">Est</span> 81.5%</span>
+    <span class="edge negative">-0.5%</span>
+  </p>
+  <p class="leg-reason">High-probability, but priced and estimated from the same Kalshi market; no DK price read. Sources: Kalshi (1+) 81.5%.</p>
+</div><div class="leg" data-cat="Rushing">
+  <div class="leg-head"><span class="leg-sel">Kyren Williams 40+ rushing yards</span><span class="odds">-213</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Rush yds</span> <span class="prop-tag">Player prop</span><span class="book-tag">Kalshi price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 68.1%</span>
+    <span class="prob"><span class="k">Est</span> 67.0%</span>
+    <span class="edge negative">-1.1%</span>
+  </p>
+  <p class="leg-reason">High-probability, but the price and the probability are the same Kalshi market (so no edge), and no DK alt line was read. Thin volume. Sources: Kalshi 67.0%.</p>
+</div><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Los Angeles Rams ML (at DEN)</span><span class="odds">-135</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 57.4%</span>
+    <span class="prob"><span class="k">Est</span> 59.7%</span>
+    <span class="edge positive">+2.2%</span>
+  </p>
+  <p class="leg-reason">The Easy Bet. Small +2.2% averaged edge; Nacua doubtful.</p>
+</div><div class="leg" data-cat="Pass TD">
+  <div class="leg-head"><span class="leg-sel">Bo Nix under 1.5 passing TDs</span><span class="odds">-164</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Pass TDs</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 62.1%</span>
+    <span class="prob"><span class="k">Est</span> 58.5%</span>
+    <span class="edge negative">-3.6%</span>
+  </p>
+  <p class="leg-reason">Fits the Rams story, but the price is too short (~-4). Sources: Kalshi (1 - Nix 2+) 58.5%.</p>
+</div><div class="leg" data-cat="Rushing">
+  <div class="leg-head"><span class="leg-sel">Kyren Williams over 52.5 rushing yards</span><span class="odds">-113</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Rush yds</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 53.1%</span>
+    <span class="prob"><span class="k">Est</span> 53.0%</span>
+    <span class="edge negative">-0.1%</span>
+  </p>
+  <p class="leg-reason">About even. Sources: Kalshi ladder (50+/60+ interpolated) 53.0%.</p>
+</div><div class="leg" data-cat="Receiving">
+  <div class="leg-head"><span class="leg-sel">Davante Adams over 5.5 receptions</span><span class="odds">-119</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Receptions</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 54.3%</span>
+    <span class="prob"><span class="k">Est</span> 52.5%</span>
+    <span class="edge negative">-1.8%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Sources: Kalshi (6+) 52.5%.</p>
+</div><div class="leg" data-cat="Receiving">
+  <div class="leg-head"><span class="leg-sel">Davante Adams over 70.5 receiving yards</span><span class="odds">-112</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Rec yds</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 52.8%</span>
+    <span class="prob"><span class="k">Est</span> 51.0%</span>
+    <span class="edge negative">-1.8%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Sources: Kalshi ladder (60+/80+ interpolated) 51.0%.</p>
+</div><div class="leg" data-cat="Pass TD">
+  <div class="leg-head"><span class="leg-sel">Matthew Stafford 2+ passing TDs</span><span class="odds">-105</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Pass TDs</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 51.2%</span>
+    <span class="prob"><span class="k">Est</span> 49.5%</span>
+    <span class="edge negative">-1.7%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Sources: Kalshi (2+) 49.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Kyren Williams anytime TD</span><span class="odds">-115</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span>
+    <span class="prob"><span class="k">Impl</span> 53.5%</span>
+    <span class="prob"><span class="k">Est</span> 47.3%</span>
+    <span class="edge negative">-6.2%</span>
+  </p>
+  <p class="leg-reason">Negative (~-6). Splits work with Blake Corum. Sources: Kalshi 50.5% + ESPN (Mike Clay fair odds) 44.1% = 47.3%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Davante Adams anytime TD</span><span class="odds">+110</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 47.6%</span>
+    <span class="prob"><span class="k">Est</span> 45.5%</span>
+    <span class="edge negative">-2.1%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. More targets with Nacua doubtful; 8-195-2 in Week 2. Sources: Kalshi 45.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Courtland Sutton anytime TD</span><span class="odds">+250</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 28.6%</span>
+    <span class="prob"><span class="k">Est</span> 24.5%</span>
+    <span class="edge negative">-4.1%</span>
+  </p>
+  <p class="leg-reason">Negative (~-4). Sources: Kalshi 24.5%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">BAL @ DAL <span class="kickoff">Sun 4:25 PM</span></h3><div class="leg" data-cat="Receiving">
+  <div class="leg-head"><span class="leg-sel">LaJohntay Wester under 1.5 receptions</span><span class="odds">+116</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Receptions</span> <span class="prop-tag">Player prop</span><span class="book-tag">Caesars price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 46.3%</span>
+    <span class="prob"><span class="k">Est</span> 80.5%</span>
+    <span class="edge positive">+34.2%</span>
+  </p>
+  <p class="leg-reason">Suspiciously large edge from one source; Flowers questionable and Lane hurt could raise his usage. Verify before using. Sources: Dimers 80.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Derrick Henry anytime TD</span><span class="odds">-250</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span>
+    <span class="prob"><span class="k">Impl</span> 71.4%</span>
+    <span class="prob"><span class="k">Est</span> 63.8%</span>
+    <span class="edge negative">-7.6%</span>
+  </p>
+  <p class="leg-reason">DK -250 (71.4%) vs sources ~63.8% -- negative. Dallas allowed 347 rush yds in 2 games. Rain-damaged turf in Rio. Sources: Dimers 63.1% + Kalshi (via Bettors Insider) 64.5% = 63.8%.</p>
+</div><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Baltimore Ravens ML (vs DAL, Brazil)</span><span class="odds">-175</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 63.6%</span>
+    <span class="prob"><span class="k">Est</span> 58.4%</span>
+    <span class="edge negative">-5.2%</span>
+  </p>
+  <p class="leg-reason">Overpriced (-5.2%).</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Javonte Williams anytime TD</span><span class="odds">-165</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 62.3%</span>
+    <span class="prob"><span class="k">Est</span> 56.7%</span>
+    <span class="edge negative">-5.6%</span>
+  </p>
+  <p class="leg-reason">Negative. Sources: Dimers 56.7%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">CeeDee Lamb anytime TD</span><span class="odds">+110</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 47.6%</span>
+    <span class="prob"><span class="k">Est</span> 38.9%</span>
+    <span class="edge negative">-8.7%</span>
+  </p>
+  <p class="leg-reason">Negative. Sources: Dimers 38.9%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Mark Andrews anytime TD</span><span class="odds">+120</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 45.5%</span>
+    <span class="prob"><span class="k">Est</span> 35.7%</span>
+    <span class="edge negative">-9.8%</span>
+  </p>
+  <p class="leg-reason">Negative. Zay Flowers questionable. Sources: Dimers 35.7%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">George Pickens anytime TD</span><span class="odds">+210</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 32.3%</span>
+    <span class="prob"><span class="k">Est</span> 32.1%</span>
+    <span class="edge negative">-0.2%</span>
+  </p>
+  <p class="leg-reason">About fair. Sources: Dimers 32.1%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Jake Ferguson anytime TD</span><span class="odds">+210</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span>
+    <span class="prob"><span class="k">Impl</span> 32.3%</span>
+    <span class="prob"><span class="k">Est</span> 28.2%</span>
+    <span class="edge negative">-4.1%</span>
+  </p>
+  <p class="leg-reason">Negative at DK. Sources: Kalshi (via Covers) 27.0% + Covers fair-price estimate 29.4% = 28.2%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">LAC @ BUF <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Buffalo Bills ML (vs LAC)</span><span class="odds">-340</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 77.3%</span>
+    <span class="prob"><span class="k">Est</span> 76.6%</span>
+    <span class="edge negative">-0.6%</span>
+  </p>
+  <p class="leg-reason">Fun Parlay leg. Priced about fair.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">James Cook anytime TD</span><span class="odds">-165</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 62.3%</span>
+    <span class="prob"><span class="k">Est</span> 57.0%</span>
+    <span class="edge negative">-5.3%</span>
+  </p>
+  <p class="leg-reason">Negative (~-5). Bills WRs Moore and Coleman practicing sparingly. Sources: Dimers 57.0%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Josh Allen anytime TD</span><span class="odds">-135</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 57.4%</span>
+    <span class="prob"><span class="k">Est</span> 52.2%</span>
+    <span class="edge negative">-5.2%</span>
+  </p>
+  <p class="leg-reason">Negative (~-5). Sources: Dimers 52.2%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Omarion Hampton anytime TD</span><span class="odds">-105</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 51.2%</span>
+    <span class="prob"><span class="k">Est</span> 48.6%</span>
+    <span class="edge negative">-2.6%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Scored on both carries inside the 10 so far. Sources: Dimers 48.6%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Oronde Gadsden anytime TD</span><span class="odds">+270</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 27.0%</span>
+    <span class="prob"><span class="k">Est</span> 24.0%</span>
+    <span class="edge negative">-3.0%</span>
+  </p>
+  <p class="leg-reason">Negative. More snaps with Njoku and Kolar out. Sources: Kalshi (via Covers) 24.0%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">TEN @ NYG <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Receiving">
+  <div class="leg-head"><span class="leg-sel">Isaiah Likely under 4.5 receptions</span><span class="odds">-190</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Receptions</span> <span class="prop-tag">Player prop</span><span class="book-tag">Caesars price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 65.5%</span>
+    <span class="prob"><span class="k">Est</span> 73.9%</span>
+    <span class="edge positive">+8.4%</span>
+  </p>
+  <p class="leg-reason">+8 on one source. Against it: RotoWire likes the over, and he had 5 catches on 10 targets in Week 2. Jameis Winston starts; a Nor&#x27;easter is expected. Sources: Dimers 73.9%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Cam Skattebo anytime TD</span><span class="odds">-105</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 51.2%</span>
+    <span class="prob"><span class="k">Est</span> 43.6%</span>
+    <span class="edge negative">-7.6%</span>
+  </p>
+  <p class="leg-reason">Negative (~-8). Sources: Dimers 46.2% + Kalshi (via Covers) 41.0% = 43.6%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Tony Pollard anytime TD</span><span class="odds">+145</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 40.8%</span>
+    <span class="prob"><span class="k">Est</span> 37.4%</span>
+    <span class="edge negative">-3.4%</span>
+  </p>
+  <p class="leg-reason">Negative (~-3). Only Titans RB with a carry inside the 5. Sources: Dimers 37.4%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">NYJ @ DET <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Detroit Lions ML (vs NYJ)</span><span class="odds">-290</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 74.4%</span>
+    <span class="prob"><span class="k">Est</span> 73.2%</span>
+    <span class="edge negative">-1.1%</span>
+  </p>
+  <p class="leg-reason">Fun Parlay leg. Priced about fair.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Jahmyr Gibbs anytime TD</span><span class="odds">-300</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 75.0%</span>
+    <span class="prob"><span class="k">Est</span> 66.9%</span>
+    <span class="edge negative">-8.1%</span>
+  </p>
+  <p class="leg-reason">Negative (~-8). Sources: Dimers 66.9%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Amon-Ra St. Brown anytime TD</span><span class="odds">-125</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 55.6%</span>
+    <span class="prob"><span class="k">Est</span> 49.6%</span>
+    <span class="edge negative">-6.0%</span>
+  </p>
+  <p class="leg-reason">Negative (~-6). Sources: Dimers 49.6%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Breece Hall anytime TD</span><span class="odds">+100</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 50.0%</span>
+    <span class="prob"><span class="k">Est</span> 44.2%</span>
+    <span class="edge negative">-5.8%</span>
+  </p>
+  <p class="leg-reason">Negative (~-6). Sources: Dimers 44.2%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Garrett Wilson anytime TD</span><span class="odds">+155</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 39.2%</span>
+    <span class="prob"><span class="k">Est</span> 36.2%</span>
+    <span class="edge negative">-3.0%</span>
+  </p>
+  <p class="leg-reason">Negative (~-3). Detroit&#x27;s top two safeties are out. Sources: Dimers 35.4% + Kalshi (via Covers) 37.0% = 36.2%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">LV @ NO <span class="kickoff">Sun 4:25 PM</span></h3><div class="leg" data-cat="Receiving">
+  <div class="leg-head"><span class="leg-sel">Chris Olave 50+ receiving yards</span><span class="odds">-270</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Rec yds</span> <span class="prop-tag">Player prop</span><span class="book-tag">Kalshi price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 73.0%</span>
+    <span class="prob"><span class="k">Est</span> 72.0%</span>
+    <span class="edge negative">-1.0%</span>
+  </p>
+  <p class="leg-reason">High-probability, same-market price; DK main line o76.5 is slightly negative. Sources: Kalshi 72.0%.</p>
+</div><div class="leg" data-cat="Rushing">
+  <div class="leg-head"><span class="leg-sel">Ashton Jeanty 50+ rushing yards</span><span class="odds">-245</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Rush yds</span> <span class="prop-tag">Player prop</span><span class="book-tag">Kalshi price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 71.0%</span>
+    <span class="prob"><span class="k">Est</span> 70.0%</span>
+    <span class="edge negative">-1.0%</span>
+  </p>
+  <p class="leg-reason">High-probability, same-market price; quotes only, no trades. Sources: Kalshi 70.0%.</p>
+</div><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">New Orleans Saints ML (vs LV)</span><span class="odds">-185</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 64.9%</span>
+    <span class="prob"><span class="k">Est</span> 64.0%</span>
+    <span class="edge negative">-0.9%</span>
+  </p>
+  <p class="leg-reason">About fair (-0.9%). Raiders are 2-0; Brock Bowers questionable.</p>
+</div><div class="leg" data-cat="Pass TD">
+  <div class="leg-head"><span class="leg-sel">Kirk Cousins under 1.5 passing TDs</span><span class="odds">-180</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Pass TDs</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 64.3%</span>
+    <span class="prob"><span class="k">Est</span> 61.5%</span>
+    <span class="edge negative">-2.8%</span>
+  </p>
+  <p class="leg-reason">Negative (~-3). Sources: Kalshi (1 - Cousins 2+) 61.5%.</p>
+</div><div class="leg" data-cat="Receiving">
+  <div class="leg-head"><span class="leg-sel">Chris Olave over 5.5 receptions</span><span class="odds">-148</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Receptions</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 59.7%</span>
+    <span class="prob"><span class="k">Est</span> 57.5%</span>
+    <span class="edge negative">-2.2%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Sources: Kalshi (6+) 57.5%.</p>
+</div><div class="leg" data-cat="Rushing">
+  <div class="leg-head"><span class="leg-sel">Ashton Jeanty under 69.5 rushing yards</span><span class="odds">-112</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Rush yds</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 52.8%</span>
+    <span class="prob"><span class="k">Est</span> 50.5%</span>
+    <span class="edge negative">-2.3%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Dimers projects 58 yds (no probability). Sources: Kalshi (1 - 70+) 50.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Ashton Jeanty anytime TD</span><span class="odds">-118</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 54.1%</span>
+    <span class="prob"><span class="k">Est</span> 48.8%</span>
+    <span class="edge negative">-5.3%</span>
+  </p>
+  <p class="leg-reason">Negative (~-5); DK was -110 on 9/24 (still negative). Sources: Dimers 48.0% + ESPN (Mike Clay fair odds) 50.0% + Kalshi 48.5% = 48.8%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Chris Olave anytime TD</span><span class="odds">+145</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span>
+    <span class="prob"><span class="k">Impl</span> 40.8%</span>
+    <span class="prob"><span class="k">Est</span> 41.2%</span>
+    <span class="edge positive">+0.4%</span>
+  </p>
+  <p class="leg-reason">Only TD prop in these two games that isn&#x27;t negative -- and just barely (+0.4 across 3 sources). Sources: Dimers 41.7% + ESPN (Mike Clay fair odds) 44.4% + Kalshi 37.5% = 41.2%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Travis Etienne Jr. anytime TD</span><span class="odds">+140</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 41.7%</span>
+    <span class="prob"><span class="k">Est</span> 37.5%</span>
+    <span class="edge negative">-4.2%</span>
+  </p>
+  <p class="leg-reason">Negative (~-4). Limited Wednesday (hamstring). Sources: Kalshi 37.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Brock Bowers anytime TD</span><span class="odds">+220</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 31.2%</span>
+    <span class="prob"><span class="k">Est</span> 32.4%</span>
+    <span class="edge positive">+1.2%</span>
+  </p>
+  <p class="leg-reason">Small plus on one source; Bowers is questionable (knee), coach optimistic. Sources: Dimers 32.4%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">SEA @ WAS <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Seattle Seahawks ML (at WAS)</span><span class="odds">-355</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 78.0%</span>
+    <span class="prob"><span class="k">Est</span> 70.2%</span>
+    <span class="edge negative">-7.9%</span>
+  </p>
+  <p class="leg-reason">Overpriced (-8%) even with Jayden Daniels out. Washington is 0-2.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Jaxon Smith-Njigba anytime TD</span><span class="odds">+100</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 50.0%</span>
+    <span class="prob"><span class="k">Est</span> 48.2%</span>
+    <span class="edge negative">-1.8%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Has 4 of Seattle&#x27;s 5 TDs. Sources: Dimers 48.2%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Jacory Croskey-Merritt anytime TD</span><span class="odds">+250</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 28.6%</span>
+    <span class="prob"><span class="k">Est</span> 33.8%</span>
+    <span class="edge positive">+5.2%</span>
+  </p>
+  <p class="leg-reason">+5 on one source only. Washington likely trailing (SEA -7.5); Rachaad White splits the backfield; Mariota starts for the injured Daniels. Sources: Dimers 33.8%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Emanuel Wilson anytime TD</span><span class="odds">+220</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 31.2%</span>
+    <span class="prob"><span class="k">Est</span> 33.0%</span>
+    <span class="edge positive">+1.8%</span>
+  </p>
+  <p class="leg-reason">Small plus on one source. 3 goal-line carries in Week 2; Jadarian Price banged up. Sources: Covers (Inglis model) 33.0%.</p>
+</div><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Washington Commanders ML (vs SEA)</span><span class="odds">+280</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 26.3%</span>
+    <span class="prob"><span class="k">Est</span> 29.8%</span>
+    <span class="edge positive">+3.5%</span>
+  </p>
+  <p class="leg-reason">+3.5% on paper as a 0-2 home dog, but the sources are 8 points apart and it&#x27;s a ~30% shot. Not card material.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">AJ Barner anytime TD</span><span class="odds">+275</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 26.7%</span>
+    <span class="prob"><span class="k">Est</span> 24.8%</span>
+    <span class="edge negative">-1.9%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. DK price as quoted by Fantasy Life. Sources: Dimers 24.8%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">CIN @ PIT <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Cincinnati Bengals ML (at PIT)</span><span class="odds">-175</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 63.6%</span>
+    <span class="prob"><span class="k">Est</span> 63.1%</span>
+    <span class="edge negative">-0.5%</span>
+  </p>
+  <p class="leg-reason">About fair (-0.5%). Iosivas out 4-6 weeks.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Chase Brown anytime TD</span><span class="odds">-111</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 52.6%</span>
+    <span class="prob"><span class="k">Est</span> 47.5%</span>
+    <span class="edge negative">-5.1%</span>
+  </p>
+  <p class="leg-reason">Negative (~-5). Sources: Dimers 47.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Ja&#x27;Marr Chase anytime TD</span><span class="odds">+130</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 43.5%</span>
+    <span class="prob"><span class="k">Est</span> 42.5%</span>
+    <span class="edge negative">-1.0%</span>
+  </p>
+  <p class="leg-reason">About -1%. Iosivas out for CIN. Sources: Dimers 42.0% + Covers (Inglis model) 43.0% = 42.5%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Tee Higgins anytime TD</span><span class="odds">+175</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 36.4%</span>
+    <span class="prob"><span class="k">Est</span> 34.8%</span>
+    <span class="edge negative">-1.6%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Sources: Dimers 34.8%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">NE @ JAX <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Jacksonville Jaguars ML (vs NE)</span><span class="odds">-155</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 60.8%</span>
+    <span class="prob"><span class="k">Est</span> 59.2%</span>
+    <span class="edge negative">-1.5%</span>
+  </p>
+  <p class="leg-reason">Slightly overpriced (-1.6%).</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Bhayshul Tuten anytime TD</span><span class="odds">+140</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 41.7%</span>
+    <span class="prob"><span class="k">Est</span> 39.2%</span>
+    <span class="edge negative">-2.5%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Lead JAX back. Sources: Dimers 39.2%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">TreVeyon Henderson anytime TD</span><span class="odds">+188</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 34.7%</span>
+    <span class="prob"><span class="k">Est</span> 37.2%</span>
+    <span class="edge positive">+2.5%</span>
+  </p>
+  <p class="leg-reason">Small plus on one source only. Another BetMGM page lists +180. Split backfield with Stevenson. Sources: Dimers 37.2%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Hunter Henry anytime TD</span><span class="odds">+230</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 30.3%</span>
+    <span class="prob"><span class="k">Est</span> 26.7%</span>
+    <span class="edge negative">-3.7%</span>
+  </p>
+  <p class="leg-reason">Negative (~-4). Sources: Dimers 25.3% + Kalshi (via Covers) 28.0% = 26.7%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">CAR @ CLE <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Carolina Panthers ML (at CLE)</span><span class="odds">-148</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 59.7%</span>
+    <span class="prob"><span class="k">Est</span> 59.2%</span>
+    <span class="edge negative">-0.4%</span>
+  </p>
+  <p class="leg-reason">About fair (-0.5%). Carolina&#x27;s defense is thin (Scott, Cherelus out; Lloyd, Phillips limited).</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Chuba Hubbard anytime TD</span><span class="odds">-110</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 52.4%</span>
+    <span class="prob"><span class="k">Est</span> 50.1%</span>
+    <span class="edge negative">-2.3%</span>
+  </p>
+  <p class="leg-reason">About -2%. 13 mph wind expected. Sources: Dimers 48.2% + Kalshi (via Covers) 52.0% = 50.1%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Quinshon Judkins anytime TD</span><span class="odds">+115</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 46.5%</span>
+    <span class="prob"><span class="k">Est</span> 43.8%</span>
+    <span class="edge negative">-2.7%</span>
+  </p>
+  <p class="leg-reason">About -3%. Carolina allows 6.3 YPC to RBs. Sources: Dimers 43.6% + Kalshi (via Covers) 44.0% = 43.8%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Jalen Coker anytime TD</span><span class="odds">+190</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 34.5%</span>
+    <span class="prob"><span class="k">Est</span> 32.9%</span>
+    <span class="edge negative">-1.6%</span>
+  </p>
+  <p class="leg-reason">Slightly negative; 5 red-zone targets in 2 weeks. Sources: Dimers 32.9%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Tetairoa McMillan anytime TD</span><span class="odds">+165</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 37.7%</span>
+    <span class="prob"><span class="k">Est</span> 29.7%</span>
+    <span class="edge negative">-8.0%</span>
+  </p>
+  <p class="leg-reason">Negative (~-8). Sources: Dimers 31.4% + Kalshi (via Covers) 28.0% = 29.7%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">MIN @ TB <span class="kickoff">Sun 4:05 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Minnesota Vikings ML (at TB)</span><span class="odds">-120</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
+    <span class="prob"><span class="k">Impl</span> 54.5%</span>
+    <span class="prob"><span class="k">Est</span> 56.3%</span>
+    <span class="edge positive">+1.8%</span>
+  </p>
+  <p class="leg-reason">+1.8% edge on paper, but Tampa is 0-2 (desperation angle) and Kyler Murray is coming back from a concussion. Left off the card.</p>
+</div><div class="leg" data-cat="Receiving">
+  <div class="leg-head"><span class="leg-sel">Josh Oliver 2+ receptions</span><span class="odds">+138</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Receptions</span> <span class="prop-tag">Player prop</span><span class="book-tag">Kalshi price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 42.0%</span>
+    <span class="prob"><span class="k">Est</span> 52.0%</span>
+    <span class="edge positive">+10.0%</span>
+  </p>
+  <p class="leg-reason">Kalshi 42c vs model 52%. No DK price found. Sources: 7 Oracles model 52.0%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Aaron Jones anytime TD</span><span class="odds">-115</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 53.5%</span>
+    <span class="prob"><span class="k">Est</span> 44.6%</span>
+    <span class="edge negative">-8.9%</span>
+  </p>
+  <p class="leg-reason">DK -115 (53.5%) vs Dimers 44.6% -- negative. Tampa is 0-2. Sources: Dimers 44.6%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Bucky Irving anytime TD</span><span class="odds">+130</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 43.5%</span>
+    <span class="prob"><span class="k">Est</span> 40.7%</span>
+    <span class="edge negative">-2.8%</span>
+  </p>
+  <p class="leg-reason">About -3%. 75% of Tampa&#x27;s red-zone carries (Covers). Sources: Dimers 40.7%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Justin Jefferson anytime TD</span><span class="odds">+155</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 39.2%</span>
+    <span class="prob"><span class="k">Est</span> 37.0%</span>
+    <span class="edge negative">-2.2%</span>
+  </p>
+  <p class="leg-reason">Slightly negative. Sources: Dimers 37.0%.</p>
+</div><div class="leg" data-cat="D/ST">
+  <div class="leg-head"><span class="leg-sel">Vikings defense/special teams TD</span><span class="odds">+620</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Defense/ST</span> <span class="prop-tag">Player prop</span><span class="book-tag">Kalshi price</span><span class="source-tag">1 source only</span>
+    <span class="prob"><span class="k">Impl</span> 13.9%</span>
+    <span class="prob"><span class="k">Est</span> 15.4%</span>
+    <span class="edge positive">+1.5%</span>
+  </p>
+  <p class="leg-reason">Long shot. Mayfield has 4 turnovers in 2 games; Minnesota blitzes the most in the NFL. Worse than even at 6.0x. Sources: Covers playable-range estimate 15.4%.</p>
+</div></section><section class="leg-group by-game"><h3 class="leg-group-title">HOU @ IND <span class="kickoff">Sun 1:00 PM</span></h3><div class="leg" data-cat="Game lines">
+  <div class="leg-head"><span class="leg-sel">Houston Texans ML (at IND)</span><span class="odds">-125</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Moneyline</span> 
     <span class="prob"><span class="k">Impl</span> 55.6%</span>
     <span class="prob"><span class="k">Est</span> 53.2%</span>
     <span class="edge negative">-2.4%</span>
   </p>
   <p class="leg-reason">Overpriced (-2.4%). Both teams 0-2; Nico Collins out.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">David Montgomery anytime TD</span><span class="odds">+100</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 50.0%</span>
+    <span class="prob"><span class="k">Est</span> 51.0%</span>
+    <span class="edge positive">+1.0%</span>
+  </p>
+  <p class="leg-reason">About +1% (3 sources). Only 6 carries in Week 2 with Woody Marks taking 13 touches. Colts have the worst scoring defense. Sources: Dimers 52.0% + Kalshi (via Covers) 48.0% + Covers (Inglis model) 53.0% = 51.0%.</p>
+</div><div class="leg" data-cat="TD">
+  <div class="leg-head"><span class="leg-sel">Woody Marks anytime TD</span><span class="odds">+290</span></div>
+  
+  <p class="leg-meta">
+    <span class="market">Anytime TD</span> <span class="prop-tag">Player prop</span><span class="book-tag">BetMGM price</span>
+    <span class="prob"><span class="k">Impl</span> 25.6%</span>
+    <span class="prob"><span class="k">Est</span> 26.1%</span>
+    <span class="edge positive">+0.5%</span>
+  </p>
+  <p class="leg-reason">About even at BetMGM +290; DraftKings is only +225 (negative there). Sources: Dimers 24.2% + Kalshi (via Covers) 28.0% = 26.1%.</p>
 </div></section></section>
   <section class="panel" id="panel-record"><div class="stat-grid">
   <div class="stat"><span class="label">Record</span><span class="value">0W-10L-0CO-2Open</span></div>
@@ -972,6 +1736,28 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
     // element (no native anchor jump). Still reset to the top on every tab
     // change and after first paint, belt and braces.
     window.scrollTo(0, 0);
+  }
+
+  // Legs tab: market filter chips (the whole leg bank shows without JS).
+  var chips = document.querySelectorAll('.leg-chip');
+  function filterLegs(cat) {
+    for (var c = 0; c < chips.length; c++) {
+      chips[c].classList.toggle('is-on', chips[c].getAttribute('data-cat') === cat);
+    }
+    var groups = document.querySelectorAll('.leg-group.by-game');
+    for (var g = 0; g < groups.length; g++) {
+      var legs = groups[g].querySelectorAll('.leg');
+      var shown = 0;
+      for (var l = 0; l < legs.length; l++) {
+        var hide = cat !== 'all' && legs[l].getAttribute('data-cat') !== cat;
+        legs[l].classList.toggle('is-hidden', hide);
+        if (!hide) shown++;
+      }
+      groups[g].classList.toggle('is-empty', shown === 0);
+    }
+  }
+  for (var k = 0; k < chips.length; k++) {
+    chips[k].addEventListener('click', function () { filterLegs(this.getAttribute('data-cat')); });
   }
 
   window.addEventListener('hashchange', activate);

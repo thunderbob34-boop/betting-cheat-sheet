@@ -1286,5 +1286,59 @@ class TestSecondFunParlay(unittest.TestCase):
             self.assertEqual(rec["tiers12"], {"W": 1, "L": 2, "P": 0})
             self.assertAlmostEqual(rec["net12"], -3.5)
 
+
+# ---------------------------------------------------------------------------
+# Legs tab: props, best value, market filter
+# ---------------------------------------------------------------------------
+
+def _prop(selection, price, prob, market="receptions", book=None, sources=2, **extra):
+    leg = {"selection": selection, "market": market, "estimated_prob": prob, "player": "P",
+           "game": "AAA @ BBB", "kickoff": FUTURE_KICKOFF, "reason": "x",
+           "prob_sources": [{"name": f"S{i}", "prob": prob} for i in range(sources)]}
+    if book:
+        leg.update(odds=price, book=book)
+    else:
+        leg["dk_odds"] = price
+    leg.update(extra)
+    return leg
+
+
+class TestLegsTabProps(unittest.TestCase):
+    def test_best_value_needs_positive_edge_and_two_sources(self):
+        good = _prop("Good 5+ rec", -120, 0.60)            # implied 54.5% -> +5.5
+        better = _prop("Better 1+ sack", 110, 0.55, market="sacks", opp_qb="X")  # 47.6% -> +7.4
+        negative = _prop("Neg 50+ yds", -200, 0.60)         # 66.7% -> negative
+        single = _prop("Single TD", 150, 0.50, market="anytime_td", sources=1)
+        flagged = _prop("Flagged", 150, 0.50, single_source=True)
+        best = build.best_value_legs([good, better, negative, single, flagged])
+        self.assertEqual([l["selection"] for l in best], ["Better 1+ sack", "Good 5+ rec"])
+
+    def test_other_book_price_is_labelled_not_passed_off_as_dk(self):
+        html = render_leg_entry(_prop("CMC anytime TD", -225, 0.62, market="anytime_td", book="Fanatics"))
+        self.assertIn("-225", html)
+        self.assertIn("Fanatics price", html)
+        self.assertIn('data-cat="TD"', html)
+
+    def test_single_source_is_flagged(self):
+        html = render_leg_entry(_prop("X", -110, 0.6, sources=1))
+        self.assertIn("1 source only", html)
+
+    def test_legs_panel_has_best_value_and_filter_chips(self):
+        with tempfile.TemporaryDirectory() as td:
+            slot = _valid_slot(weekend_id="2026-09-24", slot="sun")
+            slot["date"] = "2026-09-27"
+            slot["leg_bank"] = [
+                _prop("Good 5+ rec", -120, 0.60),
+                _prop("Team ML", -150, 0.55, market="moneyline"),
+                _prop("Kicker 2+ FG", -130, 0.60, market="special_teams"),
+            ]
+            _write_slot(td, slot)
+            now = datetime(2026, 9, 26, 21, 0, tzinfo=timezone.utc)
+            window = slate.current_window(now, CONFIG)
+            html = build.render_legs(window, CONFIG, td, now)
+            self.assertIn("Best value", html)
+            for chip in ("All", "Receiving", "Game lines", "Kicker"):
+                self.assertIn(f">{chip}</button>", html)
+
 if __name__ == "__main__":
     unittest.main()

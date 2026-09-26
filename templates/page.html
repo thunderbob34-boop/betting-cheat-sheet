@@ -596,6 +596,26 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
 .leg-meta .prob .k { font-size: 0.66rem; }
 .leg-meta .edge { font-size: 0.82rem; }
 .leg-reason { font-size: 0.83rem; color: var(--text-dim); }
+.leg-game { font-size: 0.78rem; color: var(--text-faint); margin: -2px 0 5px; }
+.leg-meta .book-tag,
+.leg-meta .source-tag { font-size: 0.72rem; border-radius: 6px; padding: 2px 8px; background: var(--bg-elevated-2); color: var(--text-dim); border: 1px solid var(--border-soft); }
+.leg-meta .source-tag { font-style: italic; }
+.best-value { margin-bottom: 14px; }
+.leg-filter { display: none; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.js .leg-filter { display: flex; }
+.leg-chip {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 11px;
+  cursor: pointer;
+}
+.leg-chip.is-on { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
+.by-game.is-empty, .by-game .leg.is-hidden { display: none; }
 
 /* ---------- record panel ---------- */
 .alltime-line {
@@ -693,6 +713,28 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
     // element (no native anchor jump). Still reset to the top on every tab
     // change and after first paint, belt and braces.
     window.scrollTo(0, 0);
+  }
+
+  // Legs tab: market filter chips (the whole leg bank shows without JS).
+  var chips = document.querySelectorAll('.leg-chip');
+  function filterLegs(cat) {
+    for (var c = 0; c < chips.length; c++) {
+      chips[c].classList.toggle('is-on', chips[c].getAttribute('data-cat') === cat);
+    }
+    var groups = document.querySelectorAll('.leg-group.by-game');
+    for (var g = 0; g < groups.length; g++) {
+      var legs = groups[g].querySelectorAll('.leg');
+      var shown = 0;
+      for (var l = 0; l < legs.length; l++) {
+        var hide = cat !== 'all' && legs[l].getAttribute('data-cat') !== cat;
+        legs[l].classList.toggle('is-hidden', hide);
+        if (!hide) shown++;
+      }
+      groups[g].classList.toggle('is-empty', shown === 0);
+    }
+  }
+  for (var k = 0; k < chips.length; k++) {
+    chips[k].addEventListener('click', function () { filterLegs(this.getAttribute('data-cat')); });
   }
 
   window.addEventListener('hashchange', activate);

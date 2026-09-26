@@ -20,9 +20,9 @@
     "Thin board: across 14 Sunday games, only a few favorites show a positive averaged edge vs the DraftKings price, and none by much. Stakes are small on purpose.",
     "0-2 teams (desperation angle): Chargers (at BUF), Commanders (vs SEA, Jayden Daniels out), Texans and Colts (vs each other), Dolphins (vs KC), Titans (at NYG), Buccaneers (vs MIN). The card needs none of them blown out -- the Fun Parlay only needs Buffalo to win, not cover.",
     "Puka Nacua (Rams, groin/hip) is doubtful for SNF; McVay said doubtful means more unlikely than likely. Kalshi's Rams price (54%) looks like it already reflects that; ESPN's FPI (63.7%) may not.",
-    "Sack-leader props were not researched this run (no verified DK sack prices found) -- none on the card or leg bank.",
-    "No player props on the card: the only prop price verified was McCaffrey anytime TD (Fanatics -225), and it's overpriced vs Dimers -- see Skip these.",
-    "No Lottery Ticket: this weekend's one ticket was already used Thursday (ATL @ GB), so tier 3 is a second Fun Parlay instead."
+    "No Lottery Ticket: this weekend's one ticket was already used Thursday (ATL @ GB), so tier 3 is a second Fun Parlay instead.",
+    "Prop board: ~65 player props across all 14 games are on the Legs tab. Almost every one is priced at or above what the models say -- books carry their margin on props. The few with 2+ sources and a positive edge are listed under Best value, and none of them is 55%+, so none went into the parlays.",
+    "No verified prices were found for sacks, tackles, kicker or D/ST markets this week (the pages that list them didn't show readable odds), so those markets are missing rather than guessed."
   ],
   "card": {
     "easy_bet": {
@@ -52,7 +52,7 @@
       "kickoff": "2026-09-27T20:20:00-04:00",
       "game_script": "LAR leading",
       "reason_summary": "Rams ML -135 (SNF). 3 sources avg 59.7% vs 57.4% implied = small +2.2% edge. Nacua doubtful -- skip if DK is shorter than -150.",
-      "reason": "Picked on merit: the Rams are favored by every source read -- ESPN FPI 63.7%, Dimers 61.3% (projects Rams 23-20), Kalshi 54% as of 9/26. Averaged 59.7% vs DraftKings -135 (57.4% implied) = +2.2%, a small edge, not a big one. Honest caveats: (1) Puka Nacua is doubtful (missed every practice this week) and FPI may predate that news, which is why Kalshi sits 10 points lower -- the sources are only just inside the 10-point agreement rule. (2) Denver's backfield is banged up (Dobbins and Harvey questionable) and Covers expects a low-scoring game (Under 44.5), which favors the side that runs better -- LA with Kyren Williams and Blake Corum. (3) Neither team is 0-2 (both 1-1). If the DK price has moved shorter than -150, the edge is gone -- skip it. If it's moved to -125 or so (Kalshi-like), the edge is a bit bigger.",
+      "reason": "Picked on merit: the Rams are favored by every source read -- ESPN FPI 63.7%, Dimers 61.3% (projects Rams 23-20), Kalshi 54% as of 9/26. Averaged 59.7% vs DraftKings -135 (57.4% implied) = +2.2%, a small edge, not a big one. Honest caveats: (1) Puka Nacua is doubtful (missed every practice this week) and FPI may predate that news, which is why Kalshi sits 10 points lower -- the sources are only just inside the 10-point agreement rule. (2) Correction: Denver's RBs J.K. Dobbins and RJ Harvey carry no injury designation (full practice, denverbroncos.com 9/25) -- only rookie Jonah Coleman is out. Covers expects a low-scoring game (Under 44.5), which favors the side that runs better -- LA with Kyren Williams and Blake Corum. (3) Neither team is 0-2 (both 1-1). If the DK price has moved shorter than -150, the edge is gone -- skip it. If it's moved to -125 or so (Kalshi-like), the edge is a bit bigger.",
       "verify": {
         "source": "ESPN 'NFL Week 3 betting: odds, lines and totals for every game' (DraftKings lines, published 2026-09-25 10:21 ET) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN 'What to know for NFL Week 3' FPI win probabilities (fetched 2026-09-26) https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers https://www.dimers.com/nfl/predictions/2026_3_den_la; Kalshi via https://predictionmarketspicks.com/nfl/rams-vs-broncos-week-03-2026; SI (DK -135, 2026-09-23); Nacua status: therams.com / NFL.com injury report",
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
@@ -290,6 +290,1434 @@
       "estimated_prob": 0.2985,
       "reason": "+3.5% on paper as a 0-2 home dog, but the sources are 8 points apart and it's a ~30% shot. Not card material.",
       "source": "Averaged: ESPN FPI 33.8% + Dimers 25.9% = 29.8%. DK price from ESPN (2026-09-25)."
+    },
+    {
+      "selection": "James Cook anytime TD",
+      "market": "anytime_td",
+      "player": "James Cook",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.57,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.57,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_buf_lac"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-5). Bills WRs Moore and Coleman practicing sparingly. Sources: Dimers 57.0%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/chargers-bills-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -165,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Josh Allen anytime TD",
+      "market": "anytime_td",
+      "player": "Josh Allen",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.522,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.522,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_buf_lac"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-5). Sources: Dimers 52.2%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/chargers-bills-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -135,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Omarion Hampton anytime TD",
+      "market": "anytime_td",
+      "player": "Omarion Hampton",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.486,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.486,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_buf_lac"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Scored on both carries inside the 10 so far. Sources: Dimers 48.6%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/chargers-bills-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -105,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Oronde Gadsden anytime TD",
+      "market": "anytime_td",
+      "player": "Oronde Gadsden II",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.24,
+      "prob_sources": [
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.24,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative. More snaps with Njoku and Kolar out. Sources: Kalshi (via Covers) 24.0%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/chargers-bills-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 270,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Jahmyr Gibbs anytime TD",
+      "market": "anytime_td",
+      "player": "Jahmyr Gibbs",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.669,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.669,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_det_nyj"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-8). Sources: Dimers 66.9%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/jets-lions-prediction-odds-player-prop-bets-picks-week-3-jaa/",
+      "odds": -300,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Amon-Ra St. Brown anytime TD",
+      "market": "anytime_td",
+      "player": "Amon-Ra St. Brown",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.496,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.496,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_det_nyj"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-6). Sources: Dimers 49.6%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/jets-lions-prediction-odds-player-prop-bets-picks-week-3-jaa/",
+      "odds": -125,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Garrett Wilson anytime TD",
+      "market": "anytime_td",
+      "player": "Garrett Wilson",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.362,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.354,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_det_nyj"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.37,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": false,
+      "reason": "Negative (~-3). Detroit's top two safeties are out. Sources: Dimers 35.4% + Kalshi (via Covers) 37.0% = 36.2%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/jets-lions-prediction-odds-player-prop-bets-picks-week-3-jaa/",
+      "odds": 155,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Breece Hall anytime TD",
+      "market": "anytime_td",
+      "player": "Breece Hall",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.442,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.442,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_det_nyj"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-6). Sources: Dimers 44.2%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/jets-lions-prediction-odds-player-prop-bets-picks-week-3-jaa/",
+      "odds": 100,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Kenneth Walker anytime TD",
+      "market": "anytime_td",
+      "player": "Kenneth Walker III",
+      "game": "KC @ MIA",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.595,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.595,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_mia_kc"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-9). 290 rush yds, 6.2 YPC through 2 games. Sources: Dimers 59.5%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/chiefs-dolphins-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -220,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Xavier Worthy anytime TD",
+      "market": "anytime_td",
+      "player": "Xavier Worthy",
+      "game": "KC @ MIA",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.35,
+      "prob_sources": [
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.35,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Twice Rice's red-zone targets. Sources: Kalshi (via Covers) 35.0%.",
+      "source": "https://www.si.com/betting/chiefs-vs-dolphins-best-nfl-prop-bets-and-anytime-touchdown-scorer-picks-for-nfl-week-3-make-way-for-walker-01m3b7vpg0v6",
+      "dk_odds": 170
+    },
+    {
+      "selection": "De'Von Achane anytime TD",
+      "market": "anytime_td",
+      "player": "De'Von Achane",
+      "game": "KC @ MIA",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.404,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.404,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_mia_kc"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-6). Sources: Dimers 40.4%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/chiefs-dolphins-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 115,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "TreVeyon Henderson anytime TD",
+      "market": "anytime_td",
+      "player": "TreVeyon Henderson",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.372,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.372,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_jax_ne"
+        }
+      ],
+      "single_source": true,
+      "reason": "Small plus on one source only. Another BetMGM page lists +180. Split backfield with Stevenson. Sources: Dimers 37.2%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/patriots-jaguars-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 188,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Bhayshul Tuten anytime TD",
+      "market": "anytime_td",
+      "player": "Bhayshul Tuten",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.392,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.392,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_jax_ne"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Lead JAX back. Sources: Dimers 39.2%.",
+      "source": "https://www.si.com/betting/patriots-vs-jaguars-best-nfl-prop-bets-and-anytime-touchdown-scorer-picks-for-nfl-week-3-01m3f8g74nen",
+      "dk_odds": 140
+    },
+    {
+      "selection": "Hunter Henry anytime TD",
+      "market": "anytime_td",
+      "player": "Hunter Henry",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.2665,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.253,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_jax_ne"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.28,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": false,
+      "reason": "Negative (~-4). Sources: Dimers 25.3% + Kalshi (via Covers) 28.0% = 26.7%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/patriots-jaguars-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 230,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Ja'Marr Chase anytime TD",
+      "market": "anytime_td",
+      "player": "Ja'Marr Chase",
+      "game": "CIN @ PIT",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.425,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.42,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_pit_cin"
+        },
+        {
+          "name": "Covers (Inglis model)",
+          "prob": 0.43,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": false,
+      "reason": "About -1%. Iosivas out for CIN. Sources: Dimers 42.0% + Covers (Inglis model) 43.0% = 42.5%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/bengals-steelers-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 130,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Tee Higgins anytime TD",
+      "market": "anytime_td",
+      "player": "Tee Higgins",
+      "game": "CIN @ PIT",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.348,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.348,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_pit_cin"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Sources: Dimers 34.8%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/bengals-steelers-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 175,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Chase Brown anytime TD",
+      "market": "anytime_td",
+      "player": "Chase Brown",
+      "game": "CIN @ PIT",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.475,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.475,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_pit_cin"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-5). Sources: Dimers 47.5%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/bengals-steelers-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -111,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Chuba Hubbard anytime TD",
+      "market": "anytime_td",
+      "player": "Chuba Hubbard",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.501,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.482,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_cle_car"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.52,
+          "url": "https://www.covers.com/nfl/anytime-td-scorer-predictions-grades-week-3"
+        }
+      ],
+      "single_source": false,
+      "reason": "About -2%. 13 mph wind expected. Sources: Dimers 48.2% + Kalshi (via Covers) 52.0% = 50.1%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/panthers-browns-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -110,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Quinshon Judkins anytime TD",
+      "market": "anytime_td",
+      "player": "Quinshon Judkins",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.438,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.436,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_cle_car"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.44,
+          "url": "https://www.covers.com/nfl/anytime-td-scorer-predictions-grades-week-3"
+        }
+      ],
+      "single_source": false,
+      "reason": "About -3%. Carolina allows 6.3 YPC to RBs. Sources: Dimers 43.6% + Kalshi (via Covers) 44.0% = 43.8%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/panthers-browns-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 115,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Jalen Coker anytime TD",
+      "market": "anytime_td",
+      "player": "Jalen Coker",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.329,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.329,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_cle_car"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative; 5 red-zone targets in 2 weeks. Sources: Dimers 32.9%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/panthers-browns-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 190,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Tetairoa McMillan anytime TD",
+      "market": "anytime_td",
+      "player": "Tetairoa McMillan",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.297,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.314,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_cle_car"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.28,
+          "url": "https://www.covers.com/nfl/anytime-td-scorer-predictions-grades-week-3"
+        }
+      ],
+      "single_source": false,
+      "reason": "Negative (~-8). Sources: Dimers 31.4% + Kalshi (via Covers) 28.0% = 29.7%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/panthers-browns-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 165,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Jacory Croskey-Merritt anytime TD",
+      "market": "anytime_td",
+      "player": "Jacory Croskey-Merritt",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.338,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.338,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_was_sea"
+        }
+      ],
+      "single_source": true,
+      "reason": "+5 on one source only. Washington likely trailing (SEA -7.5); Rachaad White splits the backfield; Mariota starts for the injured Daniels. Sources: Dimers 33.8%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/seahawks-commanders-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 250,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Jaxon Smith-Njigba anytime TD",
+      "market": "anytime_td",
+      "player": "Jaxon Smith-Njigba",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.482,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.482,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_was_sea"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Has 4 of Seattle's 5 TDs. Sources: Dimers 48.2%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/seahawks-commanders-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 100,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Emanuel Wilson anytime TD",
+      "market": "anytime_td",
+      "player": "Emanuel Wilson",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.33,
+      "prob_sources": [
+        {
+          "name": "Covers (Inglis model)",
+          "prob": 0.33,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": true,
+      "reason": "Small plus on one source. 3 goal-line carries in Week 2; Jadarian Price banged up. Sources: Covers (Inglis model) 33.0%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/seahawks-commanders-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 220,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "AJ Barner anytime TD",
+      "market": "anytime_td",
+      "player": "AJ Barner",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.248,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.248,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_was_sea"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. DK price as quoted by Fantasy Life. Sources: Dimers 24.8%.",
+      "source": "https://www.fantasylife.com/articles/betting/anytime-td-picks-first-td-scorer-bets-for-week-3",
+      "dk_odds": 275
+    },
+    {
+      "selection": "David Montgomery anytime TD",
+      "market": "anytime_td",
+      "player": "David Montgomery",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.51,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.52,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_ind_hou"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.48,
+          "url": "https://www.covers.com/nfl/anytime-td-scorer-predictions-grades-week-3"
+        },
+        {
+          "name": "Covers (Inglis model)",
+          "prob": 0.53,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": false,
+      "reason": "About +1% (3 sources). Only 6 carries in Week 2 with Woody Marks taking 13 touches. Colts have the worst scoring defense. Sources: Dimers 52.0% + Kalshi (via Covers) 48.0% + Covers (Inglis model) 53.0% = 51.0%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/texans-colts-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 100,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Woody Marks anytime TD",
+      "market": "anytime_td",
+      "player": "Woody Marks",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.261,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.242,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_ind_hou"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.28,
+          "url": "https://www.covers.com/nfl/anytime-td-scorer-predictions-grades-week-3"
+        }
+      ],
+      "single_source": false,
+      "reason": "About even at BetMGM +290; DraftKings is only +225 (negative there). Sources: Dimers 24.2% + Kalshi (via Covers) 28.0% = 26.1%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/texans-colts-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 290,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Isaiah Likely under 4.5 receptions",
+      "market": "receptions",
+      "player": "Isaiah Likely",
+      "game": "TEN @ NYG",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.739,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.739,
+          "url": "https://www.dimers.com/best-props/nfl"
+        }
+      ],
+      "single_source": true,
+      "reason": "+8 on one source. Against it: RotoWire likes the over, and he had 5 catches on 10 targets in Week 2. Jameis Winston starts; a Nor'easter is expected. Sources: Dimers 73.9%.",
+      "source": "https://www.dimers.com/best-props/nfl",
+      "odds": -190,
+      "book": "Caesars"
+    },
+    {
+      "selection": "Cam Skattebo anytime TD",
+      "market": "anytime_td",
+      "player": "Cam Skattebo",
+      "game": "TEN @ NYG",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.436,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.462,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_nyg_ten"
+        },
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.41,
+          "url": "https://www.covers.com/nfl/anytime-td-scorer-predictions-grades-week-3"
+        }
+      ],
+      "single_source": false,
+      "reason": "Negative (~-8). Sources: Dimers 46.2% + Kalshi (via Covers) 41.0% = 43.6%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/titans-giants-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -105,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Tony Pollard anytime TD",
+      "market": "anytime_td",
+      "player": "Tony Pollard",
+      "game": "TEN @ NYG",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.374,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.374,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_nyg_ten"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-3). Only Titans RB with a carry inside the 5. Sources: Dimers 37.4%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/titans-giants-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 145,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Christian McCaffrey anytime TD",
+      "market": "anytime_td",
+      "player": "Christian McCaffrey",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.619,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.619,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_sf_ari"
+        }
+      ],
+      "single_source": true,
+      "reason": "DK -265 (72.6%) vs Dimers 61.9% -- negative. Fanatics -265, BetMGM -235. Bosa out for SF. Sources: Dimers 61.9%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872958",
+      "dk_odds": -265
+    },
+    {
+      "selection": "Deebo Samuel anytime TD",
+      "market": "anytime_td",
+      "player": "Deebo Samuel",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.3535,
+      "prob_sources": [
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.33,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        },
+        {
+          "name": "Covers fair-price estimate",
+          "prob": 0.377,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": false,
+      "reason": "Thin edge at BetMGM +188; DK was +155 (negative there). Covers fair price is an analyst estimate. More targets with SF WRs hurt. Sources: Kalshi (via Covers) 33.0% + Covers fair-price estimate 37.7% = 35.4%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/cardinals-49ers-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 188,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "George Kittle anytime TD",
+      "market": "anytime_td",
+      "player": "George Kittle",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.348,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.348,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_sf_ari"
+        }
+      ],
+      "single_source": true,
+      "reason": "Priced above Dimers -- negative. Sources: Dimers 34.8%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/cardinals-49ers-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 155,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Jeremiyah Love anytime TD",
+      "market": "anytime_td",
+      "player": "Jeremiyah Love",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.389,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.389,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_sf_ari"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Arizona is an 8.5-pt dog. Sources: Dimers 38.9%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/cardinals-49ers-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": 145,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Aaron Jones anytime TD",
+      "market": "anytime_td",
+      "player": "Aaron Jones",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.446,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.446,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_tb_min"
+        }
+      ],
+      "single_source": true,
+      "reason": "DK -115 (53.5%) vs Dimers 44.6% -- negative. Tampa is 0-2. Sources: Dimers 44.6%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872959",
+      "dk_odds": -115
+    },
+    {
+      "selection": "Bucky Irving anytime TD",
+      "market": "anytime_td",
+      "player": "Bucky Irving",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.407,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.407,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_tb_min"
+        }
+      ],
+      "single_source": true,
+      "reason": "About -3%. 75% of Tampa's red-zone carries (Covers). Sources: Dimers 40.7%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872959",
+      "dk_odds": 130
+    },
+    {
+      "selection": "Justin Jefferson anytime TD",
+      "market": "anytime_td",
+      "player": "Justin Jefferson",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.37,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.37,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_tb_min"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Sources: Dimers 37.0%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872959",
+      "dk_odds": 155
+    },
+    {
+      "selection": "Vikings defense/special teams TD",
+      "market": "dst",
+      "player": "Vikings D/ST",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.154,
+      "prob_sources": [
+        {
+          "name": "Covers playable-range estimate",
+          "prob": 0.154,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": true,
+      "reason": "Long shot. Mayfield has 4 turnovers in 2 games; Minnesota blitzes the most in the NFL. Worse than even at 6.0x. Sources: Covers playable-range estimate 15.4%.",
+      "source": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026",
+      "odds": 620,
+      "book": "Kalshi"
+    },
+    {
+      "selection": "Josh Oliver 2+ receptions",
+      "market": "receptions",
+      "player": "Josh Oliver",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.52,
+      "prob_sources": [
+        {
+          "name": "7 Oracles model",
+          "prob": 0.52,
+          "url": "https://predictionmarketspicks.com/nfl/vikings-vs-buccaneers-week-03-2026"
+        }
+      ],
+      "single_source": true,
+      "reason": "Kalshi 42c vs model 52%. No DK price found. Sources: 7 Oracles model 52.0%.",
+      "source": "https://predictionmarketspicks.com/nfl/vikings-vs-buccaneers-week-03-2026",
+      "odds": 138,
+      "book": "Kalshi"
+    },
+    {
+      "selection": "Derrick Henry anytime TD",
+      "market": "anytime_td",
+      "player": "Derrick Henry",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.638,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.631,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_dal_bal"
+        },
+        {
+          "name": "Kalshi (via Bettors Insider)",
+          "prob": 0.645,
+          "url": "https://bettorsinsider.com/nfl/2026/09/26/derrick-henry-jahmyr-gibbs-james-cook-iii-headline-sundays-best-skill-position-props/"
+        }
+      ],
+      "single_source": false,
+      "reason": "DK -250 (71.4%) vs sources ~63.8% -- negative. Dallas allowed 347 rush yds in 2 games. Rain-damaged turf in Rio. Sources: Dimers 63.1% + Kalshi (via Bettors Insider) 64.5% = 63.8%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872960",
+      "dk_odds": -250
+    },
+    {
+      "selection": "Javonte Williams anytime TD",
+      "market": "anytime_td",
+      "player": "Javonte Williams",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.567,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.567,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_dal_bal"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative. Sources: Dimers 56.7%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872960",
+      "dk_odds": -165
+    },
+    {
+      "selection": "George Pickens anytime TD",
+      "market": "anytime_td",
+      "player": "George Pickens",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.321,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.321,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_dal_bal"
+        }
+      ],
+      "single_source": true,
+      "reason": "About fair. Sources: Dimers 32.1%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872960",
+      "dk_odds": 210
+    },
+    {
+      "selection": "Jake Ferguson anytime TD",
+      "market": "anytime_td",
+      "player": "Jake Ferguson",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.282,
+      "prob_sources": [
+        {
+          "name": "Kalshi (via Covers)",
+          "prob": 0.27,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        },
+        {
+          "name": "Covers fair-price estimate",
+          "prob": 0.294,
+          "url": "https://www.covers.com/nfl/anytime-touchdown-picks-week-3-2026"
+        }
+      ],
+      "single_source": false,
+      "reason": "Negative at DK. Sources: Kalshi (via Covers) 27.0% + Covers fair-price estimate 29.4% = 28.2%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872960",
+      "dk_odds": 210
+    },
+    {
+      "selection": "Mark Andrews anytime TD",
+      "market": "anytime_td",
+      "player": "Mark Andrews",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.357,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.357,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_dal_bal"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative. Zay Flowers questionable. Sources: Dimers 35.7%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872960",
+      "dk_odds": 120
+    },
+    {
+      "selection": "LaJohntay Wester under 1.5 receptions",
+      "market": "receptions",
+      "player": "LaJohntay Wester",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.805,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.805,
+          "url": "https://www.dimers.com/nfl/props"
+        }
+      ],
+      "single_source": true,
+      "reason": "Suspiciously large edge from one source; Flowers questionable and Lane hurt could raise his usage. Verify before using. Sources: Dimers 80.5%.",
+      "source": "https://www.dimers.com/nfl/props",
+      "odds": 116,
+      "book": "Caesars"
+    },
+    {
+      "selection": "CeeDee Lamb anytime TD",
+      "market": "anytime_td",
+      "player": "CeeDee Lamb",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.389,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.389,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_dal_bal"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative. Sources: Dimers 38.9%.",
+      "source": "https://www.espn.com/nfl/odds/_/gameId/401872960",
+      "dk_odds": 110
+    },
+    {
+      "selection": "Kyren Williams anytime TD",
+      "market": "anytime_td",
+      "player": "Kyren Williams",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "LAR leading",
+      "estimated_prob": 0.473,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLTD-26SEP27LARDEN-LARKWILLIAMS23-1"
+        },
+        {
+          "name": "ESPN (Mike Clay fair odds)",
+          "prob": 0.441,
+          "url": "https://www.espn.com/espn/betting/story/_/id/49997138/nfl-week-3-touchdown-betting-odds-end-zone-scoring-predictions"
+        }
+      ],
+      "single_source": false,
+      "reason": "Negative (~-6). Splits work with Blake Corum. Sources: Kalshi 50.5% + ESPN (Mike Clay fair odds) 44.1% = 47.3%.",
+      "source": "https://www.scoresandodds.com/prop-bets/3492191/kyren-williams",
+      "dk_odds": -115
+    },
+    {
+      "selection": "Kyren Williams over 52.5 rushing yards",
+      "market": "rushing_yards",
+      "player": "Kyren Williams",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "LAR leading",
+      "estimated_prob": 0.53,
+      "prob_sources": [
+        {
+          "name": "Kalshi ladder (50+/60+ interpolated)",
+          "prob": 0.53,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRSHYDS-26SEP27LARDEN-LARKWILLIAMS23-50"
+        }
+      ],
+      "single_source": true,
+      "reason": "About even. Sources: Kalshi ladder (50+/60+ interpolated) 53.0%.",
+      "source": "https://www.scoresandodds.com/prop-bets/3492191/kyren-williams",
+      "dk_odds": -113
+    },
+    {
+      "selection": "Kyren Williams 40+ rushing yards",
+      "market": "rushing_yards",
+      "player": "Kyren Williams",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "LAR leading",
+      "estimated_prob": 0.67,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.67,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRSHYDS-26SEP27LARDEN-LARKWILLIAMS23-40"
+        }
+      ],
+      "single_source": true,
+      "reason": "High-probability, but the price and the probability are the same Kalshi market (so no edge), and no DK alt line was read. Thin volume. Sources: Kalshi 67.0%.",
+      "source": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRSHYDS-26SEP27LARDEN-LARKWILLIAMS23-40",
+      "odds": -213,
+      "book": "Kalshi"
+    },
+    {
+      "selection": "Davante Adams anytime TD",
+      "market": "anytime_td",
+      "player": "Davante Adams",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.455,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.455,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLTD-26SEP27LARDEN-LARDADAMS17-1"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. More targets with Nacua doubtful; 8-195-2 in Week 2. Sources: Kalshi 45.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/18106/davante-adams",
+      "dk_odds": 110
+    },
+    {
+      "selection": "Davante Adams over 5.5 receptions",
+      "market": "receptions",
+      "player": "Davante Adams",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.525,
+      "prob_sources": [
+        {
+          "name": "Kalshi (6+)",
+          "prob": 0.525,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLREC-26SEP27LARDEN-LARDADAMS17-6"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Sources: Kalshi (6+) 52.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/18106/davante-adams",
+      "dk_odds": -119
+    },
+    {
+      "selection": "Davante Adams over 70.5 receiving yards",
+      "market": "receiving_yards",
+      "player": "Davante Adams",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.51,
+      "prob_sources": [
+        {
+          "name": "Kalshi ladder (60+/80+ interpolated)",
+          "prob": 0.51,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRECYDS-26SEP27LARDEN-LARDADAMS17-60"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Sources: Kalshi ladder (60+/80+ interpolated) 51.0%.",
+      "source": "https://www.scoresandodds.com/prop-bets/18106/davante-adams",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Matthew Stafford 2+ passing TDs",
+      "market": "pass_td",
+      "player": "Matthew Stafford",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi (2+)",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLPASSTDS-26SEP27LARDEN-LARMSTAFFORD9-2"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Sources: Kalshi (2+) 49.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/11613/matthew-stafford",
+      "dk_odds": -105
+    },
+    {
+      "selection": "Matthew Stafford 1+ passing TD",
+      "market": "pass_td",
+      "player": "Matthew Stafford",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.815,
+      "prob_sources": [
+        {
+          "name": "Kalshi (1+)",
+          "prob": 0.815,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLPASSTDS-26SEP27LARDEN-LARMSTAFFORD9-1"
+        }
+      ],
+      "single_source": true,
+      "reason": "High-probability, but priced and estimated from the same Kalshi market; no DK price read. Sources: Kalshi (1+) 81.5%.",
+      "source": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLPASSTDS-26SEP27LARDEN-LARMSTAFFORD9-1",
+      "odds": -456,
+      "book": "Kalshi"
+    },
+    {
+      "selection": "Bo Nix under 1.5 passing TDs",
+      "market": "pass_td",
+      "player": "Bo Nix",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "LAR leading",
+      "estimated_prob": 0.585,
+      "prob_sources": [
+        {
+          "name": "Kalshi (1 - Nix 2+)",
+          "prob": 0.585,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLPASSTDS-26SEP27LARDEN-DENBNIX10-2"
+        }
+      ],
+      "single_source": true,
+      "reason": "Fits the Rams story, but the price is too short (~-4). Sources: Kalshi (1 - Nix 2+) 58.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/6227935/bo-nix",
+      "dk_odds": -164
+    },
+    {
+      "selection": "Courtland Sutton anytime TD",
+      "market": "anytime_td",
+      "player": "Courtland Sutton",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "DEN leading",
+      "estimated_prob": 0.245,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.245,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLTD-26SEP27LARDEN-DENCSUTTON14-1"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-4). Sources: Kalshi 24.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/328827/courtland-sutton",
+      "dk_odds": 250
+    },
+    {
+      "selection": "Ashton Jeanty anytime TD",
+      "market": "anytime_td",
+      "player": "Ashton Jeanty",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.4883,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.48,
+          "url": "https://www.dimers.com/nfl/news/brock-bowers-returns-to-raiders-to-face-saints-in-week-3-as-las-vegas-looks-for-3-0-start"
+        },
+        {
+          "name": "ESPN (Mike Clay fair odds)",
+          "prob": 0.5,
+          "url": "https://www.espn.com/espn/betting/story/_/id/49997138/nfl-week-3-touchdown-betting-odds-end-zone-scoring-predictions"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.485,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLTD-26SEP27LVNO-LVAJEANTY2-1"
+        }
+      ],
+      "single_source": false,
+      "reason": "Negative (~-5); DK was -110 on 9/24 (still negative). Sources: Dimers 48.0% + ESPN (Mike Clay fair odds) 50.0% + Kalshi 48.5% = 48.8%.",
+      "source": "https://sports.betmgm.com/en/blog/nfl/raiders-saints-first-anytime-td-odds-picks-week-3-gaa/",
+      "odds": -118,
+      "book": "BetMGM"
+    },
+    {
+      "selection": "Ashton Jeanty under 69.5 rushing yards",
+      "market": "rushing_yards",
+      "player": "Ashton Jeanty",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi (1 - 70+)",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRSHYDS-26SEP27LVNO-LVAJEANTY2-70"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Dimers projects 58 yds (no probability). Sources: Kalshi (1 - 70+) 50.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/8217222/ashton-jeanty",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Ashton Jeanty 50+ rushing yards",
+      "market": "rushing_yards",
+      "player": "Ashton Jeanty",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.7,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.7,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRSHYDS-26SEP27LVNO-LVAJEANTY2-50"
+        }
+      ],
+      "single_source": true,
+      "reason": "High-probability, same-market price; quotes only, no trades. Sources: Kalshi 70.0%.",
+      "source": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRSHYDS-26SEP27LVNO-LVAJEANTY2-50",
+      "odds": -245,
+      "book": "Kalshi"
+    },
+    {
+      "selection": "Chris Olave anytime TD",
+      "market": "anytime_td",
+      "player": "Chris Olave",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.412,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.417,
+          "url": "https://www.dimers.com/nfl/news/chris-olave-projected-fantasy-stats-nfl-week-3-2026-ac"
+        },
+        {
+          "name": "ESPN (Mike Clay fair odds)",
+          "prob": 0.444,
+          "url": "https://www.espn.com/espn/betting/story/_/id/49997138/nfl-week-3-touchdown-betting-odds-end-zone-scoring-predictions"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.375,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLTD-26SEP27LVNO-NOCOLAVE12-1"
+        }
+      ],
+      "single_source": false,
+      "reason": "Only TD prop in these two games that isn't negative -- and just barely (+0.4 across 3 sources). Sources: Dimers 41.7% + ESPN (Mike Clay fair odds) 44.4% + Kalshi 37.5% = 41.2%.",
+      "source": "https://www.scoresandodds.com/prop-bets/3491988/chris-olave",
+      "dk_odds": 145
+    },
+    {
+      "selection": "Chris Olave over 5.5 receptions",
+      "market": "receptions",
+      "player": "Chris Olave",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.575,
+      "prob_sources": [
+        {
+          "name": "Kalshi (6+)",
+          "prob": 0.575,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLREC-26SEP27LVNO-NOCOLAVE12-6"
+        }
+      ],
+      "single_source": true,
+      "reason": "Slightly negative. Sources: Kalshi (6+) 57.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/3491988/chris-olave",
+      "dk_odds": -148
+    },
+    {
+      "selection": "Chris Olave 50+ receiving yards",
+      "market": "receiving_yards",
+      "player": "Chris Olave",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.72,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.72,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRECYDS-26SEP27LVNO-NOCOLAVE12-50"
+        }
+      ],
+      "single_source": true,
+      "reason": "High-probability, same-market price; DK main line o76.5 is slightly negative. Sources: Kalshi 72.0%.",
+      "source": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLRECYDS-26SEP27LVNO-NOCOLAVE12-50",
+      "odds": -270,
+      "book": "Kalshi"
+    },
+    {
+      "selection": "Brock Bowers anytime TD",
+      "market": "anytime_td",
+      "player": "Brock Bowers",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.324,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.324,
+          "url": "https://www.dimers.com/nfl/news/brock-bowers-returns-to-raiders-to-face-saints-in-week-3-as-las-vegas-looks-for-3-0-start"
+        }
+      ],
+      "single_source": true,
+      "reason": "Small plus on one source; Bowers is questionable (knee), coach optimistic. Sources: Dimers 32.4%.",
+      "source": "https://www.scoresandodds.com/prop-bets/6228166/brock-bowers",
+      "dk_odds": 220
+    },
+    {
+      "selection": "Kirk Cousins under 1.5 passing TDs",
+      "market": "pass_td",
+      "player": "Kirk Cousins",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "NO leading",
+      "estimated_prob": 0.615,
+      "prob_sources": [
+        {
+          "name": "Kalshi (1 - Cousins 2+)",
+          "prob": 0.615,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLPASSTDS-26SEP27LVNO-LVKCOUSINS8-2"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-3). Sources: Kalshi (1 - Cousins 2+) 61.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/13563/kirk-cousins",
+      "dk_odds": -180
+    },
+    {
+      "selection": "Travis Etienne Jr. anytime TD",
+      "market": "anytime_td",
+      "player": "Travis Etienne Jr.",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "NO leading",
+      "estimated_prob": 0.375,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.375,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXNFLTD-26SEP27LVNO-NOTETIENNE3-1"
+        }
+      ],
+      "single_source": true,
+      "reason": "Negative (~-4). Limited Wednesday (hamstring). Sources: Kalshi 37.5%.",
+      "source": "https://www.scoresandodds.com/prop-bets/2861937/travis-etienne",
+      "dk_odds": 140
     }
   ],
   "boost_check": [
@@ -299,10 +1727,6 @@
     }
   ],
   "avoid_list": [
-    {
-      "selection": "Christian McCaffrey anytime TD (-225 at Fanatics)",
-      "why_avoid": "-225 implies 69.2%; Dimers gives him 61.9%. Right player, wrong price."
-    },
     {
       "selection": "Seattle Seahawks ML -355",
       "why_avoid": "Implies 78%; ESPN FPI 66.2% and Dimers 74.1%. Washington is 0-2 and at home -- desperation angle."
@@ -318,6 +1742,14 @@
     {
       "selection": "Anything Texans @ Colts",
       "why_avoid": "Both 0-2, a coin flip (FPI 52.8% / Dimers 53.6% Houston), and Houston's price (-125) is above both."
+    },
+    {
+      "selection": "Christian McCaffrey anytime TD (-265 at DK)",
+      "why_avoid": "-265 implies 72.6%; Dimers gives him 61.9%. Right player, wrong price."
+    },
+    {
+      "selection": "Jahmyr Gibbs / Kenneth Walker / Derrick Henry anytime TD",
+      "why_avoid": "Stars' TD prices run 7-9 points above the models (Gibbs -300 vs 66.9%, Walker -220 vs 59.5%, Henry -250 vs ~64%)."
     }
   ]
 }

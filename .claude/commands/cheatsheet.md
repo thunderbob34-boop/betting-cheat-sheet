@@ -81,8 +81,22 @@ the `budget` snapshot from step 1 and an `angles` list). Order matters:
    bigger price), same leg rules and game-script check. `fun_parlay` + `fun_parlay_2` stakes
    together = `budget.fun` (split it, e.g. $0.15 / $0.10; each ≥ $0.10 unless the fun budget is
    too small for two, in which case skip #2 and say so). Grade it with tier `fun_parlay_2`.
-5. Leg bank (10–15 real entries incl. player props, each with `player`/`game`/`kickoff` where it
-   applies), boost check (real promos or an honest "none found"), avoid list (3–5 real traps).
+5. **Leg bank — the full prop board** (Gus, 2026-09-26: "add in all the individual odds…
+   whatever else you can think of to give me the best odds"). Aim for ~40–60 real entries across
+   the slot's games, covering every market that has a readable price: anytime TD, QB pass TDs,
+   D/ST (defense TD, team sacks), special teams / kicker (FGs, kicking points), tackles+assists,
+   sacks (`opp_qb` required; never vs `config.mobile_qbs`), receiving yards, receptions, rushing
+   yards, rush+rec yards, plus game lines. Use these `market` keys: `anytime_td`, `pass_td`, `dst`,
+   `special_teams`, `tackles`, `sacks`, `receiving_yards`, `receptions`, `rushing_yards`,
+   `rush_rec_yards`, `passing_yards`, `moneyline`, `spread`, `total`. Each entry: `selection`,
+   `player`, `game`, `kickoff`, `game_script`, `estimated_prob` (the average of `prob_sources`),
+   `prob_sources` (`[{name, prob, url}]`, ≥2 stated probabilities; with only one, set
+   `single_source: true` and it stays off the card), and the price — `dk_odds` only when it's
+   DraftKings' own number read on a page, otherwise `odds` + `book` (never label another book's
+   price as DK). The Legs tab puts the positive-edge, 2+-source legs at the top ("Best value")
+   and lets Gus filter by market. When a prop in the Best value list clears the 55% floor and
+   beats a parlay leg on edge, use it in a Fun Parlay (props count as legs like any other).
+   Then boost check (real promos or an honest "none found"), avoid list (3–5 real traps).
 
 Every bet and leg needs `game` ("AWAY @ HOME"), `kickoff` (ISO with offset), `game_script`,
 `reason_summary` (one line — Gus scans, he doesn't read), `reason` (full, behind tap-to-expand),

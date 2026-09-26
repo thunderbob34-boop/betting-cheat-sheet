@@ -13,7 +13,8 @@ time slot** (Easy Bet, Fun Parlay, and a third bet), and places them himself in 
 
 - Live page: https://thunderbob34-boop.github.io/betting-cheat-sheet/ (GitHub Pages from `docs/`).
 - Four tabs: **Today** (this slot's three bets), **Weekend** (every slot Thu–Mon, results, the
-  stop-loss meter), **Legs** (leg bank incl. player props), **Record** (real record from
+  stop-loss meter), **Legs** (the full prop board — TDs, pass TDs, D/ST, kicker, tackles, sacks,
+  receiving, receptions, rushing, rush+rec, game lines — with a Best value list and market filter), **Record** (real record from
   `bet_log.csv`, the card's own record, last weekend).
 - Automation: a local scheduled task (Claude desktop app → Scheduled) runs `/cheatsheet auto`
   on the mornings of each slot day plus a Tuesday grading run. It only runs while the Claude

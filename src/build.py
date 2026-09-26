@@ -1336,16 +1336,96 @@ def render_weekend(window, config, weekends_dir, now):
     return _stoploss_html(status, config) + _weekend_stat_grid_html(status, config) + "".join(rows)
 
 
+# Leg-bank market keys -> (short label, filter chip). Anything unknown falls
+# under "Other" so a new market name never breaks the page.
+MARKET_LABELS = {
+    "moneyline": ("Moneyline", "Game lines"),
+    "spread": ("Spread", "Game lines"),
+    "total": ("Total", "Game lines"),
+    "anytime_td": ("Anytime TD", "TD"),
+    "pass_td": ("Pass TDs", "Pass TD"),
+    "passing_yards": ("Pass yds", "Passing"),
+    "receiving_yards": ("Rec yds", "Receiving"),
+    "receptions": ("Receptions", "Receiving"),
+    "rushing_yards": ("Rush yds", "Rushing"),
+    "rush_rec_yards": ("Rush+Rec yds", "Rushing"),
+    "tackles": ("Tackles", "Tackles"),
+    "sacks": ("Sacks", "Sacks"),
+    "dst": ("Defense/ST", "D/ST"),
+    "special_teams": ("Kicker/ST", "Kicker"),
+}
+BEST_VALUE_MAX = 8
+
+
+def _market_label(market):
+    key = (market or "").strip().lower()
+    if key in MARKET_LABELS:
+        return MARKET_LABELS[key]
+    if "sack" in key:
+        return (market, "Sacks")
+    return (market or "Other", "Other")
+
+
+def _leg_price(leg):
+    """A leg's price: dk_odds when it's DraftKings' own number, else the
+    named book's `odds` (never shown as if it were DK's)."""
+    if leg.get("dk_odds") is not None:
+        return leg["dk_odds"], "DraftKings"
+    return leg.get("odds"), leg.get("book") or "other book"
+
+
+def _leg_edge(leg):
+    price, _ = _leg_price(leg)
+    if price is None:
+        return None
+    return odds.edge(leg.get("estimated_prob", 0.0), odds.american_to_implied_prob(price))
+
+
+def _is_multi_source(leg):
+    if leg.get("single_source"):
+        return False
+    sources = leg.get("prob_sources")
+    return sources is None or len(sources) >= 2
+
+
+def best_value_legs(leg_bank, limit=BEST_VALUE_MAX):
+    """Positive-edge legs backed by 2+ probability sources, best edge first."""
+    picks = [l for l in leg_bank if _is_multi_source(l) and (_leg_edge(l) or 0.0) > EPSILON]
+    return sorted(picks, key=_leg_edge, reverse=True)[:limit]
+
+
 def render_legs(window, config, weekends_dir, now):
     picked = _pick_today_slot(window, config, weekends_dir, now)
     if picked is None:
         return ""
     _, slot = picked
-    leg_bank = slot.get("leg_bank") or []
+    leg_bank = [l for l in (slot.get("leg_bank") or []) if _leg_price(l)[0] is not None]
     if not leg_bank:
         return ""
 
     tz = ZoneInfo(config["timezone"])
+    parts = []
+
+    best = best_value_legs(leg_bank)
+    if best:
+        items = "".join(render_leg_entry(leg, show_game=True) for leg in best)
+        parts.append(
+            '<section class="leg-group best-value"><h3 class="leg-group-title">Best value '
+            '<span class="kickoff">2+ sources, edge above 0</span></h3>'
+            f'{items}</section>'
+        )
+
+    cats = []
+    for leg in leg_bank:
+        cat = _market_label(leg.get("market"))[1]
+        if cat not in cats:
+            cats.append(cat)
+    if len(cats) > 1:
+        chips = '<button type="button" class="leg-chip is-on" data-cat="all">All</button>' + "".join(
+            f'<button type="button" class="leg-chip" data-cat="{escape(c)}">{escape(c)}</button>' for c in cats
+        )
+        parts.append(f'<div class="leg-filter" role="group" aria-label="Filter legs by market">{chips}</div>')
+
     ranked = sort_leg_bank(leg_bank)
     groups = {}
     order = []
@@ -1356,31 +1436,34 @@ def render_legs(window, config, weekends_dir, now):
             order.append(game)
         groups[game].append(leg)
 
-    parts = []
     for game in order:
         legs = groups[game]
         kickoff_disp = _format_kickoff_et(legs[0].get("kickoff"), tz)
         items = "".join(render_leg_entry(leg) for leg in legs)
         parts.append(
-            f'<section class="leg-group"><h3 class="leg-group-title">{escape(game)} '
+            f'<section class="leg-group by-game"><h3 class="leg-group-title">{escape(game)} '
             f'<span class="kickoff">{escape(kickoff_disp)}</span></h3>{items}</section>'
         )
     return "".join(parts)
 
 
-def render_leg_entry(leg):
-    dk_odds = leg.get("dk_odds")
-    implied = odds.american_to_implied_prob(dk_odds)
+def render_leg_entry(leg, show_game=False):
+    price, book = _leg_price(leg)
+    implied = odds.american_to_implied_prob(price)
     est_prob = leg.get("estimated_prob", 0.0)
     edge_val = odds.edge(est_prob, implied)
     edge_cls = "positive" if edge_val >= 0 else "negative"
-    market = leg.get("market", "") or ""
+    label, cat = _market_label(leg.get("market"))
     prop_tag = '<span class="prop-tag">Player prop</span>' if leg.get("player") else ""
+    book_tag = "" if book == "DraftKings" else f'<span class="book-tag">{escape(book)} price</span>'
+    source_tag = '<span class="source-tag">1 source only</span>' if not _is_multi_source(leg) else ""
+    game_line = f'<p class="leg-game">{escape(leg.get("game") or "")}</p>' if show_game else ""
 
-    return f'''<div class="leg">
-  <div class="leg-head"><span class="leg-sel">{escape(leg.get("selection", ""))}</span><span class="odds">{format_odds(dk_odds)}</span></div>
+    return f'''<div class="leg" data-cat="{escape(cat)}">
+  <div class="leg-head"><span class="leg-sel">{escape(leg.get("selection", ""))}</span><span class="odds">{format_odds(price)}</span></div>
+  {game_line}
   <p class="leg-meta">
-    <span class="market">{escape(market)}</span> {prop_tag}
+    <span class="market">{escape(label)}</span> {prop_tag}{book_tag}{source_tag}
     <span class="prob"><span class="k">Impl</span> {odds.format_prob(implied)}</span>
     <span class="prob"><span class="k">Est</span> {odds.format_prob(est_prob)}</span>
     <span class="edge {edge_cls}">{odds.format_prob_signed(edge_val)}</span>
