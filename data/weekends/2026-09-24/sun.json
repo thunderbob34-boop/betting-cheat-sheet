@@ -21,8 +21,9 @@
     "0-2 teams (desperation angle): Chargers (at BUF), Commanders (vs SEA, Jayden Daniels out), Texans and Colts (vs each other), Dolphins (vs KC), Titans (at NYG), Buccaneers (vs MIN). The card needs none of them blown out — the Fun Parlay only needs Buffalo to win, not cover.",
     "Puka Nacua (Rams, groin/hip) is doubtful for SNF; McVay said doubtful means more unlikely than likely. Kalshi's Rams price (54%) looks like it already reflects that; ESPN's FPI (63.7%) may not.",
     "No Lottery Ticket: this weekend's one ticket was already used Thursday (ATL @ GB), so tier 3 is a second Fun Parlay instead.",
-    "Prop board: ~65 player props across all 14 games are on the Legs tab. Almost every one is priced at or above what the models say — books carry their margin on props. The few with 2+ sources and a positive edge are listed under Best value, and none of them is 55%+, so none went into the parlays.",
-    "No verified prices were found for sacks, tackles, kicker or D/ST markets this week (the pages that list them didn't show readable odds), so those markets are missing rather than guessed."
+    "Full board on the Legs tab: 147 bets -- player props, every game's over/under and spread (both sides), and moneylines. Books price almost all of it fairly; the few with a real edge are under Best value.",
+    "Fun Parlay #2 is now the player-prop + over/under ticket. Dalton Schultz and Parker Washington unders are left off on purpose -- you're adding both in fantasy.",
+    "No readable prices for sacks, tackles or kickers this week (Kalshi has no such markets for 9/27), so those are missing, not guessed."
   ],
   "card": {
     "easy_bet": {
@@ -93,7 +94,7 @@
       "kickoff": "2026-09-27T13:00:00-04:00",
       "game_script": "neutral",
       "reason_summary": "Bills ML + Lions ML (~+74), both 1 PM. ~56% to hit, priced about fair (-1.3% edge) — so it's sized down to $0.15, not the full $0.25.",
-      "reason": "Two big home favorites, each well above the 55% leg floor, in different games from the Easy Bet (no game-script conflict). Every source agrees closely on both, but DraftKings has priced them right — the averaged edge is slightly negative (-1.3% on the parlay). Per the 'size down, don't chase' rule it gets $0.15 instead of the $0.25 slate.py allows; the other $0.10 goes to Fun Parlay #2. Skip it entirely if you'd rather not play a no-edge ticket.",
+      "reason": "Two big home favorites, each well above the 55% leg floor, in different games from the Easy Bet (no game-script conflict). Every source agrees closely on both, but DraftKings has priced them right — the averaged edge is slightly negative (-1.3% on the parlay). Per the 'size down, don't chase' rule it gets $0.15 instead of the $0.25 slate.py allows; the other $0.10 goes to Fun Parlay #2 (the player-prop ticket). Skip it entirely if you'd rather not play a no-edge ticket.",
       "verify": {
         "source": "ESPN 'NFL Week 3 betting: odds, lines and totals for every game' (DraftKings lines, published 2026-09-25 10:21 ET) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN 'What to know for NFL Week 3' FPI win probabilities (fetched 2026-09-26) https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers NFL predictions hub (fetched 2026-09-26) https://www.dimers.com/nfl/predictions; Kalshi via https://predictionmarketspicks.com/nfl/chargers-vs-bills-week-03-2026 and /jets-vs-lions-week-03-2026",
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
@@ -105,52 +106,54 @@
       "id": "sun-fun2-2026-09-27",
       "legs": [
         {
-          "selection": "Carolina Panthers moneyline (at Cleveland Browns)",
-          "market": "moneyline",
-          "dk_odds": -148,
-          "estimated_prob": 0.5923,
-          "game": "CAR @ CLE",
-          "kickoff": "2026-09-27T13:00:00-04:00",
-          "game_script": "CAR leading",
-          "reason": "Averaged: ESPN FPI 62.8% + Dimers 59.9% + Kalshi 55% = 59.2% vs -148 (59.7% implied) — about -0.5%, priced fair. Both 1-1. Risk: Carolina's secondary is thin (Nick Scott and Claudin Cherelus out; Devin Lloyd and Jaelan Phillips limited)."
-        },
-        {
-          "selection": "Cincinnati Bengals moneyline (at Pittsburgh Steelers)",
-          "market": "moneyline",
-          "dk_odds": -175,
-          "estimated_prob": 0.6315,
-          "game": "CIN @ PIT",
-          "kickoff": "2026-09-27T13:00:00-04:00",
-          "game_script": "CIN leading",
-          "reason": "Averaged: ESPN FPI 61.7% + Dimers 64.6% = 63.2% vs -175 (63.6% implied) — about -0.5%, priced fair. Bengals 2-0, Steelers 1-1. Risk: road division game; WR Andrei Iosivas out 4-6 weeks."
-        },
-        {
-          "selection": "New Orleans Saints moneyline (vs Las Vegas Raiders)",
-          "market": "moneyline",
-          "dk_odds": -185,
-          "estimated_prob": 0.6405,
+          "selection": "Alvin Kamara under 3.5 receptions",
+          "market": "receptions",
+          "player": "Alvin Kamara",
+          "dk_odds": -171,
+          "estimated_prob": 0.631,
           "game": "LV @ NO",
           "kickoff": "2026-09-27T16:25:00-04:00",
           "game_script": "NO leading",
-          "reason": "Averaged: ESPN FPI 63.9% + Dimers 64.2% = 64.1% vs -185 (64.9% implied) — about -0.9%, priced fair. Risk: the Raiders are 2-0 with Kirk Cousins playing well; Brock Bowers is questionable."
+          "reason": "Averaged: Kalshi 64.5% (4+ catches at 35-36c) + sportsbook consensus via predictionmarketspicks 61.7% = 63.1% vs -171 (63.1% implied) -- priced fair. Running backs catch fewer passes when their team leads, and the Saints are 3-point favorites."
+        },
+        {
+          "selection": "Cooper Kupp under 2.5 receptions",
+          "market": "receptions",
+          "player": "Cooper Kupp",
+          "dk_odds": -161,
+          "estimated_prob": 0.619,
+          "game": "SEA @ WAS",
+          "kickoff": "2026-09-27T13:00:00-04:00",
+          "game_script": "neutral",
+          "reason": "Averaged: Kalshi 63.5% (3+ catches at 36-37c) + sportsbook consensus 60.2% = 61.9% vs -161 (61.7% implied) -- priced fair. 18-20 mph wind in Landover works against passing volume."
+        },
+        {
+          "selection": "Under 44.5 points (Rams @ Broncos)",
+          "market": "total",
+          "dk_odds": -118,
+          "estimated_prob": 0.553,
+          "game": "LAR @ DEN",
+          "kickoff": "2026-09-27T20:20:00-04:00",
+          "game_script": "neutral",
+          "reason": "Averaged: SportsLine model 58% ('nearly 60%' of simulations -- read from wording) + Kalshi 52.5% = 55.3% vs -118 (54.1% implied), about +1%. Neither team has gone over 44.5 this season, Puka Nacua is doubtful and Denver's backfield is thin. It doesn't depend on who wins, so it sits fine next to the Rams Easy Bet."
         }
       ],
-      "dk_odds": 306,
+      "dk_odds": 375,
       "odds_estimated": true,
-      "estimated_prob_source": "Combined true probability 59.2% x 63.2% x 64.1% = 24.0%. dk_odds +306 is computed from the three DK moneylines (4.057 decimal), not a quoted DK parlay price — confirm in the app. +306 implies 24.6%, so the edge is about -0.7%: no real edge.",
+      "estimated_prob_source": "Combined true probability 63.1% x 61.9% x 55.3% = 21.6%. dk_odds +375 is computed from the three DraftKings prices (4.746 decimal), not a quoted DK parlay price -- confirm in the app. +375 implies 21.1%, edge about +0.5%: priced about fair.",
       "is_pre_kickoff": true,
       "stake": 0.1,
-      "game": "CAR @ CLE + CIN @ PIT + LV @ NO",
+      "game": "LV @ NO + SEA @ WAS + LAR @ DEN",
       "kickoff": "2026-09-27T13:00:00-04:00",
       "game_script": "neutral",
-      "reason_summary": "Panthers + Bengals + Saints ML (~+306). About a 1-in-4 shot for a bigger payout, priced about fair. $0.10.",
-      "reason": "A different flavor from Fun Parlay #1: three mid-sized favorites (each 59-64%) instead of two big ones, so it pays about +306 instead of +74 but hits only about 24% of the time. No overlap with the Easy Bet's game (Rams @ Broncos) or with Parlay #1's games. Every leg is priced about fair by DraftKings — no real edge, just more fun for $0.10. It shares Parlay #1's $0.25 fun budget, so the card's total stays at the slot's $0.55.",
+      "reason_summary": "Player props + an under: Kamara under 3.5 catches, Kupp under 2.5 catches, Rams-Broncos under 44.5. Hits about 22%, pays about +375.",
+      "plain_summary": "Two player props and an over/under: Kamara and Kupp both catch fewer passes than their lines, and the Sunday night game stays low-scoring. Priced about fair -- a small, fun ticket.",
+      "reason": "Built from the prop and total board (Kalshi + sportsbook-consensus probabilities). Picked the likeliest legs priced closest to fair, from three different games. Deliberately left out the board's best-edge prop, Dalton Schultz under 5.5 catches, because Gus is advised to add and start Schultz in his Charlotteans fantasy league -- betting his under would bet against his own team. Every leg clears the 55% floor; the averaged edge is about zero, so it stays a $0.10 ticket.",
       "verify": {
-        "source": "ESPN Week 3 DK lines (2026-09-25) https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals; ESPN FPI https://www.espn.com/nfl/story/_/id/50014420/week-3-picks-predictions-schedule-fantasy-odds-2026; Dimers https://www.dimers.com/nfl/predictions; Kalshi (Panthers) via https://predictionmarketspicks.com/nfl/panthers-vs-browns-week-03-2026",
-        "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
-        "note": "Confirm all three prices and the combined parlay price in the DK app."
-      },
-      "plain_summary": "Three solid favorites for a bigger payout. Hits about 1 in 4 — small stake, big smile if it lands."
+        "source": "DraftKings prices via scoresandodds.com prop pages; Kalshi public API (KXNFLREC-26SEP27LVNO-NOAKAMARA41-4, KXNFLREC-26SEP27SEAWAS-SEACKUPP10-3, KXNFLTOTAL-26SEP27LARDEN); predictionmarketspicks.com/nfl/props (lv-no, sea-was); CBS/SportsLine Week 3 over/under picks",
+        "fetched_at": "2026-09-26 evening ET",
+        "note": "Confirm all three prices and the parlay price in the DK app. Same-game-parlay rules don't apply -- three different games."
+      }
     }
   },
   "leg_bank": [
@@ -1721,6 +1724,1431 @@
       "reason": "Negative (~-4). Limited Wednesday (hamstring). Sources: Kalshi 37.5%.",
       "source": "https://www.scoresandodds.com/prop-bets/2861937/travis-etienne",
       "dk_odds": 140
+    },
+    {
+      "selection": "Over 42.5 (CIN @ PIT)",
+      "market": "total",
+      "game": "CIN @ PIT",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27CINPIT"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Under 42.5 (CIN @ PIT)",
+      "market": "total",
+      "game": "CIN @ PIT",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27CINPIT"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Bengals -3.5",
+      "market": "spread",
+      "game": "CIN @ PIT",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "CIN leading",
+      "estimated_prob": 0.494,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.513,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_pit_cin"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.475,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27CINPIT"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Dimers 51.3% + Kalshi 47.5% = 49.4%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Steelers +3.5",
+      "market": "spread",
+      "game": "CIN @ PIT",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.506,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.487,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_pit_cin"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.525,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27CINPIT"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Dimers 48.7% + Kalshi 52.5% = 50.6%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Over 49.5 (LAC @ BUF)",
+      "market": "total",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.525,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.525,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27LACBUF"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 52.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -115
+    },
+    {
+      "selection": "Under 49.5 (LAC @ BUF)",
+      "market": "total",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.475,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.475,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27LACBUF"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 47.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -105
+    },
+    {
+      "selection": "Bills -7",
+      "market": "spread",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "BUF leading",
+      "estimated_prob": 0.521,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.521,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27LACBUF"
+        }
+      ],
+      "single_source": true,
+      "reason": "Kalshi push removed. Sources: Kalshi 52.1%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Chargers +7",
+      "market": "spread",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.479,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.479,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27LACBUF"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 47.9%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Over 45.5 (KC @ MIA)",
+      "market": "total",
+      "game": "KC @ MIA",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.485,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.485,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27KCMIA"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 48.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Under 45.5 (KC @ MIA)",
+      "market": "total",
+      "game": "KC @ MIA",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.515,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.515,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27KCMIA"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 51.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Chiefs -10",
+      "market": "spread",
+      "game": "KC @ MIA",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "KC leading",
+      "estimated_prob": 0.516,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.516,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27KCMIA"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 51.6%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Dolphins +10",
+      "market": "spread",
+      "game": "KC @ MIA",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.484,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.484,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27KCMIA"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 48.4%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Over 46.5 (NE @ JAX)",
+      "market": "total",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.485,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.485,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27NEJAC"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 48.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -105
+    },
+    {
+      "selection": "Under 46.5 (NE @ JAX)",
+      "market": "total",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.515,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.515,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27NEJAC"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 51.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -115
+    },
+    {
+      "selection": "Jaguars -3",
+      "market": "spread",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "JAX leading",
+      "estimated_prob": 0.483,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.483,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27NEJAC"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 48.3%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -102
+    },
+    {
+      "selection": "Patriots +3",
+      "market": "spread",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.517,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.517,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27NEJAC"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 51.7%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -118
+    },
+    {
+      "selection": "Over 48.5 (NYJ @ DET)",
+      "market": "total",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27NYJDET"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Under 48.5 (NYJ @ DET)",
+      "market": "total",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27NYJDET"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Lions -6.5",
+      "market": "spread",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "DET leading",
+      "estimated_prob": 0.5525,
+      "prob_sources": [
+        {
+          "name": "SportsLine model (\"well over 60%\", 60% used)",
+          "prob": 0.6,
+          "url": "https://www.cbssports.com/betting/news/nfl-odds-picks-predictions-week-3-2026/"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27NYJDET"
+        }
+      ],
+      "single_source": false,
+      "reason": "SportsLine figure is read from vague wording. Sources: SportsLine model (\"well over 60%\", 60% used) 60.0% + Kalshi 50.5% = 55.2%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -120
+    },
+    {
+      "selection": "Jets +6.5",
+      "market": "spread",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.4475,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27NYJDET"
+        },
+        {
+          "name": "SportsLine (complement)",
+          "prob": 0.4,
+          "url": "https://www.cbssports.com/betting/news/nfl-odds-picks-predictions-week-3-2026/"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 49.5% + SportsLine (complement) 40.0% = 44.8%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": 100
+    },
+    {
+      "selection": "Over 42.5 (CAR @ CLE)",
+      "market": "total",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27CARCLE"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -110
+    },
+    {
+      "selection": "Under 42.5 (CAR @ CLE)",
+      "market": "total",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27CARCLE"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -110
+    },
+    {
+      "selection": "Panthers -2.5",
+      "market": "spread",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "CAR leading",
+      "estimated_prob": 0.485,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.485,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27CARCLE"
+        }
+      ],
+      "single_source": true,
+      "reason": "Price read from scoresandodds; check it in the app. Sources: Kalshi 48.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Browns +2.5",
+      "market": "spread",
+      "game": "CAR @ CLE",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.515,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.515,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27CARCLE"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 51.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Over 40.5 (SEA @ WAS)",
+      "market": "total",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.5675,
+      "prob_sources": [
+        {
+          "name": "SportsLine model (66% of sims)",
+          "prob": 0.66,
+          "url": "https://www.cbssports.com/betting/news/nfl-betting-overunder-best-bets-picks-predictions-for-week-3-include-seahawks-commanders-ravens-cowboys/"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.475,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27SEAWAS"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources are 18.5 points apart -- a warning sign. 18-20 mph wind. Sources: SportsLine model (66% of sims) 66.0% + Kalshi 47.5% = 56.8%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -102
+    },
+    {
+      "selection": "Under 40.5 (SEA @ WAS)",
+      "market": "total",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.4325,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.525,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27SEAWAS"
+        },
+        {
+          "name": "SportsLine (complement)",
+          "prob": 0.34,
+          "url": "https://www.cbssports.com/betting/news/nfl-betting-overunder-best-bets-picks-predictions-for-week-3-include-seahawks-commanders-ravens-cowboys/"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 52.5% + SportsLine (complement) 34.0% = 43.2%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -118
+    },
+    {
+      "selection": "Seahawks -7.5",
+      "market": "spread",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "SEA leading",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27SEAWAS"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -118
+    },
+    {
+      "selection": "Commanders +7.5",
+      "market": "spread",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27SEAWAS"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -102
+    },
+    {
+      "selection": "Over 42.5 (HOU @ IND)",
+      "market": "total",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27HOUIND"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Under 42.5 (HOU @ IND)",
+      "market": "total",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27HOUIND"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Texans -1.5",
+      "market": "spread",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "HOU leading",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27HOUIND"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -118
+    },
+    {
+      "selection": "Colts +1.5",
+      "market": "spread",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27HOUIND"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -102
+    },
+    {
+      "selection": "Over 37.5 (TEN @ NYG)",
+      "market": "total",
+      "game": "TEN @ NYG",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27TENNYG"
+        }
+      ],
+      "single_source": true,
+      "reason": "Nor'easter game; heavy Kalshi volume says the weather is priced in. Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Under 37.5 (TEN @ NYG)",
+      "market": "total",
+      "game": "TEN @ NYG",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27TENNYG"
+        }
+      ],
+      "single_source": true,
+      "reason": "Nor'easter game; heavy Kalshi volume says the weather is priced in. Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Giants -2.5",
+      "market": "spread",
+      "game": "TEN @ NYG",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "NYG leading",
+      "estimated_prob": 0.5333,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.591,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_nyg_ten"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27TENNYG"
+        },
+        {
+          "name": "Alphr model",
+          "prob": 0.514,
+          "url": "https://alphr.com.au/nfl/match/2026-r3-new-york-giants-v-tennessee-titans"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Dimers 59.1% + Kalshi 49.5% + Alphr model 51.4% = 53.3%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -110
+    },
+    {
+      "selection": "Titans +2.5",
+      "market": "spread",
+      "game": "TEN @ NYG",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.457,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.409,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_nyg_ten"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27TENNYG"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Dimers 40.9% + Kalshi 50.5% = 45.7%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -110
+    },
+    {
+      "selection": "Over 47.5 (ARI @ SF)",
+      "market": "total",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.5525,
+      "prob_sources": [
+        {
+          "name": "SportsLine model (\"almost 60%\", 58% used)",
+          "prob": 0.58,
+          "url": "https://www.cbssports.com/betting/news/nfl-odds-picks-predictions-week-3-2026/"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.525,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27ARISF"
+        }
+      ],
+      "single_source": false,
+      "reason": "SportsLine figure is read from vague wording. Sources: SportsLine model (\"almost 60%\", 58% used) 58.0% + Kalshi 52.5% = 55.2%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -115
+    },
+    {
+      "selection": "Under 47.5 (ARI @ SF)",
+      "market": "total",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.4475,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.475,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27ARISF"
+        },
+        {
+          "name": "SportsLine (complement)",
+          "prob": 0.42,
+          "url": "https://www.cbssports.com/betting/news/nfl-odds-picks-predictions-week-3-2026/"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 47.5% + SportsLine (complement) 42.0% = 44.8%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -105
+    },
+    {
+      "selection": "49ers -8.5",
+      "market": "spread",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "SF leading",
+      "estimated_prob": 0.475,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.475,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27ARISF"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 47.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Cardinals +8.5",
+      "market": "spread",
+      "game": "ARI @ SF",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.525,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.525,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27ARISF"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 52.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Over 42.5 (MIN @ TB)",
+      "market": "total",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.495,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27MINTB"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 49.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -110
+    },
+    {
+      "selection": "Under 42.5 (MIN @ TB)",
+      "market": "total",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.505,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27MINTB"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 50.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -110
+    },
+    {
+      "selection": "Vikings -1.5",
+      "market": "spread",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "MIN leading",
+      "estimated_prob": 0.4995,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.514,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_tb_min"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.485,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27MINTB"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Dimers 51.4% + Kalshi 48.5% = 50.0%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Buccaneers +1.5",
+      "market": "spread",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.5005,
+      "prob_sources": [
+        {
+          "name": "Dimers",
+          "prob": 0.486,
+          "url": "https://www.dimers.com/nfl/predictions/2026_3_tb_min"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.515,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27MINTB"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Dimers 48.6% + Kalshi 51.5% = 50.0%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Over 53.5 (BAL @ DAL)",
+      "market": "total",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.5475,
+      "prob_sources": [
+        {
+          "name": "SportsLine model (\"more than 60%\", 60% used)",
+          "prob": 0.6,
+          "url": "https://www.cbssports.com/betting/news/nfl-betting-overunder-best-bets-picks-predictions-for-week-3-include-seahawks-commanders-ravens-cowboys/"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.495,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27BALDAL"
+        }
+      ],
+      "single_source": false,
+      "reason": "Played in Rio. Zay Flowers questionable. Sources: SportsLine model (\"more than 60%\", 60% used) 60.0% + Kalshi 49.5% = 54.8%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -108
+    },
+    {
+      "selection": "Under 53.5 (BAL @ DAL)",
+      "market": "total",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.4525,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.505,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27BALDAL"
+        },
+        {
+          "name": "SportsLine (complement)",
+          "prob": 0.4,
+          "url": "https://www.cbssports.com/betting/news/nfl-betting-overunder-best-bets-picks-predictions-for-week-3-include-seahawks-commanders-ravens-cowboys/"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 50.5% + SportsLine (complement) 40.0% = 45.2%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -112
+    },
+    {
+      "selection": "Ravens -3",
+      "market": "spread",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "BAL leading",
+      "estimated_prob": 0.539,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.539,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27BALDAL"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 53.9%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -118
+    },
+    {
+      "selection": "Cowboys +3",
+      "market": "spread",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.461,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.461,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27BALDAL"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 46.1%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -102
+    },
+    {
+      "selection": "Over 43.5 (LV @ NO)",
+      "market": "total",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.515,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.515,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27LVNO"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 51.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -118
+    },
+    {
+      "selection": "Under 43.5 (LV @ NO)",
+      "market": "total",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.485,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.485,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27LVNO"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 48.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -102
+    },
+    {
+      "selection": "Saints -3",
+      "market": "spread",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "NO leading",
+      "estimated_prob": 0.522,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.522,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27LVNO"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 52.2%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -122
+    },
+    {
+      "selection": "Raiders +3",
+      "market": "spread",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.478,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.478,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27LVNO"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 47.8%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": 102
+    },
+    {
+      "selection": "Over 44.5 (LAR @ DEN)",
+      "market": "total",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.4475,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.475,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27LARDEN"
+        },
+        {
+          "name": "SportsLine (complement)",
+          "prob": 0.42,
+          "url": "https://www.cbssports.com/betting/news/nfl-betting-overunder-best-bets-picks-predictions-for-week-3-include-seahawks-commanders-ravens-cowboys/"
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 47.5% + SportsLine (complement) 42.0% = 44.8%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -102
+    },
+    {
+      "selection": "Under 44.5 (LAR @ DEN)",
+      "market": "total",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.5525,
+      "prob_sources": [
+        {
+          "name": "SportsLine model (\"nearly 60%\", 58% used)",
+          "prob": 0.58,
+          "url": "https://www.cbssports.com/betting/news/nfl-betting-overunder-best-bets-picks-predictions-for-week-3-include-seahawks-commanders-ravens-cowboys/"
+        },
+        {
+          "name": "Kalshi",
+          "prob": 0.525,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLTOTAL-26SEP27LARDEN"
+        }
+      ],
+      "single_source": false,
+      "reason": "Neither team has gone over 44.5 this season; Nacua doubtful; thin Denver backfield. Sources: SportsLine model (\"nearly 60%\", 58% used) 58.0% + Kalshi 52.5% = 55.2%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -118
+    },
+    {
+      "selection": "Rams -2.5",
+      "market": "spread",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "LAR leading",
+      "estimated_prob": 0.485,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.485,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27LARDEN"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 48.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -105
+    },
+    {
+      "selection": "Broncos +2.5",
+      "market": "spread",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.515,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.515,
+          "url": "https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=KXNFLSPREAD-26SEP27LARDEN"
+        }
+      ],
+      "single_source": true,
+      "reason": "Sources: Kalshi 51.5%.",
+      "source": "https://www.espn.com/nfl/odds",
+      "dk_odds": -115
+    },
+    {
+      "selection": "Dalton Schultz under 5.5 receptions",
+      "market": "receptions",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.558,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.585
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.531
+        }
+      ],
+      "single_source": false,
+      "reason": "Best prop edge on the board -- but you're starting Schultz in fantasy (Charlotteans), so betting his under bets against yourself. Sources: Kalshi 58.5% + Sportsbook consensus (PMP) 53.1% = 55.8%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Dalton Schultz",
+      "dk_odds": -115
+    },
+    {
+      "selection": "Cooper Kupp under 2.5 receptions",
+      "market": "receptions",
+      "game": "SEA @ WAS",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.6185,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.635
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.602
+        }
+      ],
+      "single_source": false,
+      "reason": "On Fun Parlay #2. Sources: Kalshi 63.5% + Sportsbook consensus (PMP) 60.2% = 61.9%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Cooper Kupp",
+      "dk_odds": -161
+    },
+    {
+      "selection": "Alvin Kamara under 3.5 receptions",
+      "market": "receptions",
+      "game": "LV @ NO",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "NO leading",
+      "estimated_prob": 0.631,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.645
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.617
+        }
+      ],
+      "single_source": false,
+      "reason": "On Fun Parlay #2. Sources: Kalshi 64.5% + Sportsbook consensus (PMP) 61.7% = 63.1%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Alvin Kamara",
+      "dk_odds": -171
+    },
+    {
+      "selection": "Ted Hurst III under 2.5 receptions",
+      "market": "receptions",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.609,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.615
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.603
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 61.5% + Sportsbook consensus (PMP) 60.3% = 60.9%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Ted Hurst III",
+      "dk_odds": -158
+    },
+    {
+      "selection": "Jalen McMillan under 1.5 receptions",
+      "market": "receptions",
+      "game": "MIN @ TB",
+      "kickoff": "2026-09-27T16:05:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.5965,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.605
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.588
+        }
+      ],
+      "single_source": false,
+      "reason": "Same passing game as Hurst -- don't pair them. Sources: Kalshi 60.5% + Sportsbook consensus (PMP) 58.8% = 59.7%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Jalen McMillan",
+      "dk_odds": -150
+    },
+    {
+      "selection": "Jonathan Taylor under 3.5 receptions",
+      "market": "receptions",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "IND leading",
+      "estimated_prob": 0.598,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.615
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.581
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 61.5% + Sportsbook consensus (PMP) 58.1% = 59.8%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Jonathan Taylor",
+      "dk_odds": -152
+    },
+    {
+      "selection": "George Pickens under 5.5 receptions",
+      "market": "receptions",
+      "game": "BAL @ DAL",
+      "kickoff": "2026-09-27T16:25:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.57,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.585
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.555
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 58.5% + Sportsbook consensus (PMP) 55.5% = 57.0%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "George Pickens",
+      "dk_odds": -138
+    },
+    {
+      "selection": "Darius Slayton under 1.5 receptions",
+      "market": "receptions",
+      "game": "HOU @ IND",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.6585,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.675
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.642
+        }
+      ],
+      "single_source": false,
+      "reason": "Likeliest prop here, but the price is steep. Sources: Kalshi 67.5% + Sportsbook consensus (PMP) 64.2% = 65.8%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Darius Slayton",
+      "dk_odds": -201
+    },
+    {
+      "selection": "Parker Washington under 5.5 receptions",
+      "market": "receptions",
+      "game": "NE @ JAX",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.574,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.585
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.563
+        }
+      ],
+      "single_source": false,
+      "reason": "You're told to add Washington in fantasy -- skip his under. Sources: Kalshi 58.5% + Sportsbook consensus (PMP) 56.3% = 57.4%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Parker Washington",
+      "dk_odds": -141
+    },
+    {
+      "selection": "Dawson Knox under 1.5 receptions",
+      "market": "receptions",
+      "game": "LAC @ BUF",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.603,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.605
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.601
+        }
+      ],
+      "single_source": false,
+      "reason": "Sources: Kalshi 60.5% + Sportsbook consensus (PMP) 60.1% = 60.3%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Dawson Knox",
+      "dk_odds": -160
+    },
+    {
+      "selection": "Terrance Ferguson over 3.5 receptions",
+      "market": "receptions",
+      "game": "LAR @ DEN",
+      "kickoff": "2026-09-27T20:20:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.598,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.605
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.591
+        }
+      ],
+      "single_source": false,
+      "reason": "Dimers disagrees sharply (has the under at 74.8%). Sources: Kalshi 60.5% + Sportsbook consensus (PMP) 59.1% = 59.8%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Terrance Ferguson",
+      "dk_odds": -160
+    },
+    {
+      "selection": "Kenyon Sadiq over 2.5 receptions",
+      "market": "receptions",
+      "game": "NYJ @ DET",
+      "kickoff": "2026-09-27T13:00:00-04:00",
+      "game_script": "neutral",
+      "estimated_prob": 0.6085,
+      "prob_sources": [
+        {
+          "name": "Kalshi",
+          "prob": 0.615
+        },
+        {
+          "name": "Sportsbook consensus (PMP)",
+          "prob": 0.602
+        }
+      ],
+      "single_source": false,
+      "reason": "DK moved from -151 to -168 tonight. Sources: Kalshi 61.5% + Sportsbook consensus (PMP) 60.2% = 60.9%.",
+      "source": "https://www.scoresandodds.com/prop-bets/",
+      "player": "Kenyon Sadiq",
+      "dk_odds": -168
     }
   ],
   "boost_check": [
