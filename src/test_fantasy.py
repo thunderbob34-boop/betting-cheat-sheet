@@ -114,5 +114,27 @@ class TestManualRoster(unittest.TestCase):
         self.assertEqual(entries[0]["lineupSlotId"], 20)   # bench by default
         self.assertEqual(missing, ["Nobody Real"])
 
+
+class TestLineupChanges(unittest.TestCase):
+    def test_reports_real_swaps_not_rb_flex_relabels(self):
+        roster = _roster()
+        for p in roster:
+            p["current_slot"] = "BENCH"
+        cur = {"QB1": "QB", "RB1": "RB", "RB3": "RB", "RB2": "FLEX", "WR1": "WR", "WR3": "WR",
+               "TE1": "TE", "K1": "K", "DST1": "D/ST"}
+        for p in roster:
+            p["current_slot"] = cur.get(p["key"], "BENCH")
+        r = fantasy.optimize_lineup(roster)
+        changes = fantasy.lineup_changes(r["starters"], roster)
+        self.assertEqual(changes, ["Start WR2 (12.0) instead of WR3 (9.0)"])
+
+    def test_no_changes_when_already_optimal(self):
+        roster = _roster()
+        r = fantasy.optimize_lineup(roster)
+        slots = {e["player"]["key"]: e["slot"] for e in r["starters"]}
+        for p in roster:
+            p["current_slot"] = slots.get(p["key"], "BENCH")
+        self.assertEqual(fantasy.lineup_changes(r["starters"], roster), [])
+
 if __name__ == "__main__":
     unittest.main()

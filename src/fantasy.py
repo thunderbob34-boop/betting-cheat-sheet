@@ -182,6 +182,24 @@ def optimize_lineup(players, slots=None):
     return {"starters": starters, "bench": bench, "notes": notes}
 
 
+def lineup_changes(starters, players):
+    """Moves Gus has to make in the ESPN app: who comes in, who goes out,
+    comparing the recommended starters with who ESPN has starting now.
+    Swapping two starters between RB and FLEX changes nothing, so it's
+    not reported."""
+    recommended = {e["player"]["key"] for e in starters if e.get("player")}
+    current = {p["key"] for p in players if p.get("current_slot") not in (None, "BENCH", "IR")}
+    ins = [p for p in players if p["key"] in recommended - current]
+    outs = [p for p in players if p["key"] in current - recommended]
+    ins.sort(key=effective_points, reverse=True)
+    outs.sort(key=effective_points, reverse=True)
+    return [
+        f"Start {i['name']} ({effective_points(i):.1f}) instead of {o['name']} ({effective_points(o):.1f})"
+        for i, o in zip(ins, outs)
+    ] + [f"Start {i['name']} ({effective_points(i):.1f})" for i in ins[len(outs):]] \
+      + [f"Bench {o['name']} ({effective_points(o):.1f})" for o in outs[len(ins):]]
+
+
 def _why_zero(p):
     if p.get("bye"):
         return "bye week"
@@ -355,6 +373,8 @@ def _lineup_from_team(league, team, data, week, pro_teams, sleeper, now, extra_n
     slots = league.get("slots") or DEFAULT_SLOTS
     result = optimize_lineup(players, slots)
     result["notes"] = list(extra_notes) + result["notes"]
+    has_current = any(p.get("current_slot") not in (None, "BENCH") for p in players)
+    result["changes"] = lineup_changes(result["starters"], players) if has_current else None
     return {
         "league_name": league.get("name") or data.get("settings", {}).get("name") or str(league["league_id"]),
         "league_id": league["league_id"],

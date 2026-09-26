@@ -634,6 +634,9 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
 .fx-chip.warn { background: var(--accent-soft); color: var(--negative); }
 .fx-notes { margin: 0 0 10px; padding-left: 18px; font-size: 0.83rem; color: var(--text-dim); }
 .fx-error { font-size: 0.85rem; color: var(--negative); }
+.fx-changes { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+.fx-changes-title { font-weight: 800; font-size: 0.85rem; }
+.fx-changes ul { margin: 6px 0 0; padding-left: 18px; font-weight: 600; font-size: 0.9rem; }
 
 /* ---------- record panel ---------- */
 .alltime-line {
@@ -657,7 +660,7 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.66-5.66L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.66 5.66L4 16"/><path d="M4 20v-4h4"/></svg>
     </button>
   </div>
-  <p class="topbar-meta"><span class="updated">Updated Sat 6:12 PM ET</span><span class="next">Next card: Sun ~9 AM</span></p>
+  <p class="topbar-meta"><span class="updated">Updated Sat 6:16 PM ET</span><span class="next">Next card: Sun ~9 AM</span></p>
 </header>
 
 
@@ -1697,7 +1700,104 @@ html.js .panel.is-active { display: flex; flex: 1 1 auto; }
   <section class="panel" id="panel-lineup"><header class="slot-head">
   <h2 class="slot-title">Week 3 lineups</h2>
   <p class="slot-sub">Full PPR · ESPN projection (league scoring) + Rotowire full-PPR projection (via Sleeper), averaged</p>
-</header><section class="fx-league"><h3>League 1</h3><p class="fx-error">https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues/8873570?view=mTeam&amp;view=mRoster&amp;view=mSettings&amp;scoringPeriodId=3 returned HTTP 401: the league is private. Ask the league manager to turn on &#x27;Make league viewable to public&#x27; (League Settings -&gt; Basic Settings), or send roster screenshots instead. This tool never uses login cookies.</p></section></section>
+</header><section class="fx-league">
+  <h3>Johnson’s Friends <span class="fx-team-name">Im Sorry Smith-Jaxson</span></h3>
+  <p class="fx-total">Projected starters: <b>125.8</b></p>
+  <div class="fx-changes"><p class="fx-changes-title">Changes to make in ESPN</p><ul><li>Start Malik Nabers (13.2) instead of Devaughn Vele (10.8)</li></ul></div>
+  
+  <ul class="fx-list"><li class="fx-row">
+  <span class="fx-slot">QB</span>
+  <span class="fx-name">Justin Herbert <span class="fx-team">QB · LAC</span>
+    <span class="fx-src">ESPN 18.2 · RW 16.8</span></span>
+  <span class="fx-pts">17.5</span>
+</li><li class="fx-row">
+  <span class="fx-slot">RB</span>
+  <span class="fx-name">De&#x27;Von Achane <span class="fx-team">RB · MIA</span>
+    <span class="fx-src">ESPN 19.6 · RW 16.2</span></span>
+  <span class="fx-pts">17.9</span>
+</li><li class="fx-row">
+  <span class="fx-slot">RB</span>
+  <span class="fx-name">Chuba Hubbard <span class="fx-team">RB · CAR</span>
+    <span class="fx-src">ESPN 14.6 · RW 15.0</span></span>
+  <span class="fx-pts">14.8</span>
+</li><li class="fx-row">
+  <span class="fx-slot">WR</span>
+  <span class="fx-name">Jaxon Smith-Njigba <span class="fx-team">WR · SEA</span>
+    <span class="fx-src">ESPN 20.9 · RW 21.9</span></span>
+  <span class="fx-pts">21.4</span>
+</li><li class="fx-row">
+  <span class="fx-slot">WR</span>
+  <span class="fx-name">Malik Nabers <span class="fx-team">WR · NYG</span>
+    <span class="fx-src">ESPN 14.5 · RW 11.9</span></span>
+  <span class="fx-pts">13.2</span>
+</li><li class="fx-row">
+  <span class="fx-slot">TE</span>
+  <span class="fx-name">Tyler Warren <span class="fx-team">TE · IND</span>
+    <span class="fx-src">ESPN 12.3 · RW 10.3</span></span>
+  <span class="fx-pts">11.3</span>
+</li><li class="fx-row">
+  <span class="fx-slot">FLEX</span>
+  <span class="fx-name">Kyren Williams <span class="fx-team">RB · LAR</span>
+    <span class="fx-src">ESPN 13.1 · RW 13.7</span></span>
+  <span class="fx-pts">13.4</span>
+</li><li class="fx-row">
+  <span class="fx-slot">K</span>
+  <span class="fx-name">Chris Boswell <span class="fx-team">K · PIT</span>
+    <span class="fx-src">ESPN 8.7 · RW 7.8</span></span>
+  <span class="fx-pts">8.3</span>
+</li><li class="fx-row">
+  <span class="fx-slot">D/ST</span>
+  <span class="fx-name">Bengals D/ST <span class="fx-team">D/ST · CIN</span>
+    <span class="fx-src">ESPN 8.1 · RW 7.8</span></span>
+  <span class="fx-pts">8.0</span>
+</li></ul>
+  <details class="more"><summary>Bench</summary><ul class="fx-list"><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Michael Wilson <span class="fx-team">WR · ARI</span>
+    <span class="fx-src">ESPN 11.4 · RW 11.8</span></span>
+  <span class="fx-pts">11.6</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">TreVeyon Henderson <span class="fx-team">RB · NE</span>
+    <span class="fx-src">ESPN 10.6 · RW 12.5</span></span>
+  <span class="fx-pts">11.6</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Devaughn Vele <span class="fx-team">WR · NO</span>
+    <span class="fx-src">ESPN 11.6 · RW 10.1</span></span>
+  <span class="fx-pts">10.8</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Tre Tucker <span class="fx-team">WR · LV</span>
+    <span class="fx-src">ESPN 9.8 · RW 8.7</span></span>
+  <span class="fx-pts">9.2</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Oronde Gadsden <span class="fx-team">TE · LAC</span>
+    <span class="fx-src">ESPN 8.7 · RW 9.0</span></span>
+  <span class="fx-pts">8.9</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Keenan Allen <span class="fx-team">WR · IND</span>
+    <span class="fx-src">ESPN 9.6 · RW 7.3</span></span>
+  <span class="fx-pts">8.4</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Kaelon Black <span class="fx-team">RB · SF</span>
+    <span class="fx-src">ESPN 7.5 · RW 5.5</span></span>
+  <span class="fx-pts">6.5</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Jordan Mason <span class="fx-team">RB · MIN</span><span class="fx-chip warn">Injury Reserve</span>
+    <span class="fx-src">ESPN 0.0</span></span>
+  <span class="fx-pts">0.0</span>
+</li><li class="fx-row">
+  <span class="fx-slot">BN</span>
+  <span class="fx-name">Tyreek Hill <span class="fx-team">WR · FA</span><span class="fx-chip warn">Out</span>
+    <span class="fx-src">no projection</span></span>
+  <span class="fx-pts">0.0</span>
+</li></ul></details>
+</section></section>
 </main>
 
 <nav class="tabbar" aria-label="Sections">

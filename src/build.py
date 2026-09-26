@@ -1608,11 +1608,20 @@ def render_lineup(fantasy_dir=None):
         )
         total = sum(float(s["player"].get("proj", 0.0)) for s in lg.get("starters") or [] if s.get("player"))
         bench = "".join(_fantasy_player_line("BN", b) for b in lg.get("bench") or [])
+        changes = lg.get("changes")
+        if changes is None:
+            changes_html = ""
+        elif changes:
+            items = "".join(f"<li>{escape(c)}</li>" for c in changes)
+            changes_html = f'<div class="fx-changes"><p class="fx-changes-title">Changes to make in ESPN</p><ul>{items}</ul></div>'
+        else:
+            changes_html = '<div class="fx-changes ok"><p class="fx-changes-title">Your ESPN lineup is already the best one -- no changes.</p></div>'
         notes = "".join(f"<li>{escape(n)}</li>" for n in lg.get("notes") or [])
         notes_html = f'<ul class="fx-notes">{notes}</ul>' if notes else ""
         parts.append(f'''<section class="fx-league">
   <h3>{title} <span class="fx-team-name">{escape(lg.get("team_name", ""))}</span></h3>
   <p class="fx-total">Projected starters: <b>{total:.1f}</b></p>
+  {changes_html}
   {notes_html}
   <ul class="fx-list">{rows}</ul>
   <details class="more"><summary>Bench</summary><ul class="fx-list">{bench}</ul></details>
