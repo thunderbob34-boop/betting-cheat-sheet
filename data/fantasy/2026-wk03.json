@@ -1,7 +1,7 @@
 {
   "season": 2026,
   "week": 3,
-  "generated_at": "2026-09-26T22:36:20.768731+00:00",
+  "generated_at": "2026-09-27T16:27:31.485810+00:00",
   "scoring": "Full PPR",
   "sources": "ESPN projection (league scoring) + Rotowire full-PPR projection (via Sleeper), averaged",
   "leagues": [
@@ -35,8 +35,8 @@
             "actual": null,
             "current_slot": "QB",
             "espn": 18.24,
-            "rotowire": 16.79,
-            "proj": 17.52,
+            "rotowire": 16.86,
+            "proj": 17.55,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -58,8 +58,8 @@
             "actual": null,
             "current_slot": "RB",
             "espn": 19.55,
-            "rotowire": 16.2,
-            "proj": 17.88,
+            "rotowire": 16.35,
+            "proj": 17.95,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -81,8 +81,8 @@
             "actual": null,
             "current_slot": "FLEX",
             "espn": 14.56,
-            "rotowire": 15.03,
-            "proj": 14.79,
+            "rotowire": 14.71,
+            "proj": 14.64,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -104,8 +104,8 @@
             "actual": null,
             "current_slot": "WR",
             "espn": 20.94,
-            "rotowire": 21.92,
-            "proj": 21.43,
+            "rotowire": 22.02,
+            "proj": 21.48,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -125,10 +125,10 @@
             "kickoff": "2026-09-27T17:00:00+00:00",
             "locked": false,
             "actual": null,
-            "current_slot": "BENCH",
-            "espn": 14.5,
-            "rotowire": 11.9,
-            "proj": 13.2,
+            "current_slot": "WR",
+            "espn": 14.49,
+            "rotowire": 13.72,
+            "proj": 14.11,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -149,8 +149,8 @@
             "locked": false,
             "actual": null,
             "current_slot": "TE",
-            "espn": 12.35,
-            "rotowire": 10.33,
+            "espn": 12.37,
+            "rotowire": 10.32,
             "proj": 11.34,
             "sources": [
               "ESPN",
@@ -173,8 +173,8 @@
             "actual": null,
             "current_slot": "RB",
             "espn": 13.07,
-            "rotowire": 13.69,
-            "proj": 13.38,
+            "rotowire": 13.57,
+            "proj": 13.32,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -185,19 +185,19 @@
         {
           "slot": "K",
           "player": {
-            "key": "17372",
-            "name": "Chris Boswell",
+            "key": "3051909",
+            "name": "Daniel Carlson",
             "pos": "K",
-            "team": "PIT",
+            "team": "NO",
             "status": "ACTIVE",
             "bye": false,
-            "kickoff": "2026-09-27T17:00:00+00:00",
+            "kickoff": "2026-09-27T20:25:00+00:00",
             "locked": false,
             "actual": null,
             "current_slot": "K",
-            "espn": 8.72,
-            "rotowire": 7.84,
-            "proj": 8.28,
+            "espn": 9.15,
+            "rotowire": 8.48,
+            "proj": 8.82,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -208,19 +208,19 @@
         {
           "slot": "D/ST",
           "player": {
-            "key": "-16004",
-            "name": "Bengals D/ST",
+            "key": "-16019",
+            "name": "Giants D/ST",
             "pos": "D/ST",
-            "team": "CIN",
+            "team": "NYG",
             "status": "ACTIVE",
             "bye": false,
             "kickoff": "2026-09-27T17:00:00+00:00",
             "locked": false,
             "actual": null,
             "current_slot": "D/ST",
-            "espn": 8.1,
-            "rotowire": 7.85,
-            "proj": 7.97,
+            "espn": 8.78,
+            "rotowire": 8.56,
+            "proj": 8.67,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -242,8 +242,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 11.36,
-          "rotowire": 11.83,
-          "proj": 11.59,
+          "rotowire": 11.97,
+          "proj": 11.66,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -261,9 +261,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 10.58,
-          "rotowire": 12.53,
-          "proj": 11.55,
+          "espn": 10.59,
+          "rotowire": 12.55,
+          "proj": 11.57,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -280,7 +280,7 @@
           "kickoff": "2026-09-27T20:25:00+00:00",
           "locked": false,
           "actual": null,
-          "current_slot": "WR",
+          "current_slot": "BENCH",
           "espn": 11.56,
           "rotowire": 10.06,
           "proj": 10.81,
@@ -302,8 +302,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 9.85,
-          "rotowire": 8.66,
-          "proj": 9.25,
+          "rotowire": 8.89,
+          "proj": 9.37,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -321,9 +321,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 8.71,
-          "rotowire": 9.01,
-          "proj": 8.86,
+          "espn": 8.72,
+          "rotowire": 9.04,
+          "proj": 8.88,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -341,9 +341,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 9.59,
-          "rotowire": 7.27,
-          "proj": 8.43,
+          "espn": 9.6,
+          "rotowire": 7.7,
+          "proj": 8.65,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -351,19 +351,19 @@
           "disagree": false
         },
         {
-          "key": "4696044",
-          "name": "Kaelon Black",
-          "pos": "RB",
-          "team": "SF",
+          "key": "-16004",
+          "name": "Bengals D/ST",
+          "pos": "D/ST",
+          "team": "CIN",
           "status": "ACTIVE",
           "bye": false,
-          "kickoff": "2026-09-27T20:05:00+00:00",
+          "kickoff": "2026-09-27T17:00:00+00:00",
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 7.46,
-          "rotowire": 5.53,
-          "proj": 6.5,
+          "espn": 8.28,
+          "rotowire": 7.82,
+          "proj": 8.05,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -407,28 +407,20 @@
           "disagree": false
         }
       ],
-      "notes": [],
-      "changes": [
-        "Start Malik Nabers (13.2) instead of Devaughn Vele (10.8)"
+      "notes": [
+        "Close call at D/ST: Giants D/ST 8.7 vs Bengals D/ST 8.1 -- check inactives before kickoff."
       ],
+      "changes": [],
       "matchup": {
         "opponent": "Heels on the Field",
-        "opp_proj": 122.5,
-        "my_best": 125.8,
-        "my_current": 123.4,
-        "win_prob_best": 0.538,
-        "win_prob_current": 0.51,
-        "espn_my_proj": 127.1,
-        "espn_opp_proj": 125.5,
-        "espn_win_prob": 0.51,
-        "with_pickups": {
-          "moves": [
-            "+Giants D/ST / -Kaelon Black",
-            "+Daniel Carlson / -Chris Boswell"
-          ],
-          "my_best": 126.8,
-          "win_prob": 0.549
-        }
+        "opp_proj": 123.4,
+        "my_best": 127.9,
+        "my_current": 127.9,
+        "win_prob_best": 0.551,
+        "win_prob_current": 0.551,
+        "espn_my_proj": 131.2,
+        "espn_opp_proj": 125.6,
+        "espn_win_prob": 0.53
       }
     },
     {
@@ -459,10 +451,10 @@
             "kickoff": "2026-09-27T20:25:00+00:00",
             "locked": false,
             "actual": null,
-            "current_slot": "BENCH",
+            "current_slot": "QB",
             "espn": 19.22,
-            "rotowire": 18.33,
-            "proj": 18.77,
+            "rotowire": 18.35,
+            "proj": 18.79,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -484,8 +476,8 @@
             "actual": null,
             "current_slot": "RB",
             "espn": 21.08,
-            "rotowire": 20.41,
-            "proj": 20.74,
+            "rotowire": 20.24,
+            "proj": 20.66,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -507,8 +499,8 @@
             "actual": null,
             "current_slot": "RB",
             "espn": 20.7,
-            "rotowire": 19.72,
-            "proj": 20.21,
+            "rotowire": 19.9,
+            "proj": 20.3,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -542,19 +534,19 @@
         {
           "slot": "WR",
           "player": {
-            "key": "16800",
-            "name": "Davante Adams",
+            "key": "4432620",
+            "name": "Parker Washington",
             "pos": "WR",
-            "team": "LAR",
+            "team": "JAX",
             "status": "ACTIVE",
             "bye": false,
-            "kickoff": "2026-09-28T00:20:00+00:00",
+            "kickoff": "2026-09-27T17:00:00+00:00",
             "locked": false,
             "actual": null,
-            "current_slot": "WR",
-            "espn": 15.64,
-            "rotowire": 14.26,
-            "proj": 14.95,
+            "current_slot": "BENCH",
+            "espn": 15.03,
+            "rotowire": 15.19,
+            "proj": 15.11,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -565,19 +557,19 @@
         {
           "slot": "TE",
           "player": {
-            "key": "5083076",
-            "name": "Harold Fannin Jr.",
+            "key": "3117256",
+            "name": "Dalton Schultz",
             "pos": "TE",
-            "team": "CLE",
+            "team": "HOU",
             "status": "ACTIVE",
             "bye": false,
             "kickoff": "2026-09-27T17:00:00+00:00",
             "locked": false,
             "actual": null,
             "current_slot": "BENCH",
-            "espn": 9.8,
-            "rotowire": 9.27,
-            "proj": 9.54,
+            "espn": 11.0,
+            "rotowire": 11.77,
+            "proj": 11.38,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -599,8 +591,8 @@
             "actual": null,
             "current_slot": "FLEX",
             "espn": 19.49,
-            "rotowire": 16.2,
-            "proj": 17.84,
+            "rotowire": 16.35,
+            "proj": 17.92,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -611,19 +603,19 @@
         {
           "slot": "K",
           "player": {
-            "key": "17372",
-            "name": "Chris Boswell",
+            "key": "3953687",
+            "name": "Brandon Aubrey",
             "pos": "K",
-            "team": "PIT",
+            "team": "DAL",
             "status": "ACTIVE",
             "bye": false,
-            "kickoff": "2026-09-27T17:00:00+00:00",
+            "kickoff": "2026-09-27T20:25:00+00:00",
             "locked": false,
             "actual": null,
             "current_slot": "K",
-            "espn": 8.46,
-            "rotowire": 7.84,
-            "proj": 8.15,
+            "espn": 9.72,
+            "rotowire": 8.76,
+            "proj": 9.24,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -644,9 +636,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "D/ST",
-            "espn": 5.3,
-            "rotowire": 7.58,
-            "proj": 6.44,
+            "espn": 5.38,
+            "rotowire": 6.53,
+            "proj": 5.96,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -657,19 +649,19 @@
       ],
       "bench": [
         {
-          "key": "4426338",
-          "name": "Bo Nix",
-          "pos": "QB",
-          "team": "DEN",
+          "key": "16800",
+          "name": "Davante Adams",
+          "pos": "WR",
+          "team": "LAR",
           "status": "ACTIVE",
           "bye": false,
           "kickoff": "2026-09-28T00:20:00+00:00",
           "locked": false,
           "actual": null,
-          "current_slot": "QB",
-          "espn": 16.89,
-          "rotowire": 16.77,
-          "proj": 16.83,
+          "current_slot": "WR",
+          "espn": 15.64,
+          "rotowire": 14.21,
+          "proj": 14.93,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -688,8 +680,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 13.83,
-          "rotowire": 14.9,
-          "proj": 14.37,
+          "rotowire": 14.93,
+          "proj": 14.38,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -701,15 +693,15 @@
           "name": "Jalen Coker",
           "pos": "WR",
           "team": "CAR",
-          "status": "QUESTIONABLE",
+          "status": "ACTIVE",
           "bye": false,
           "kickoff": "2026-09-27T17:00:00+00:00",
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
           "espn": 13.85,
-          "rotowire": 14.5,
-          "proj": 14.18,
+          "rotowire": 14.7,
+          "proj": 14.27,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -728,8 +720,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 14.45,
-          "rotowire": 11.9,
-          "proj": 13.18,
+          "rotowire": 13.72,
+          "proj": 14.09,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -748,8 +740,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 12.52,
-          "rotowire": 12.57,
-          "proj": 12.54,
+          "rotowire": 12.6,
+          "proj": 12.56,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -767,9 +759,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 10.54,
-          "rotowire": 12.53,
-          "proj": 11.54,
+          "espn": 10.55,
+          "rotowire": 12.55,
+          "proj": 11.55,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -777,19 +769,19 @@
           "disagree": false
         },
         {
-          "key": "4036133",
-          "name": "T.J. Hockenson",
+          "key": "5083076",
+          "name": "Harold Fannin Jr.",
           "pos": "TE",
-          "team": "MIN",
+          "team": "CLE",
           "status": "ACTIVE",
           "bye": false,
-          "kickoff": "2026-09-27T20:05:00+00:00",
+          "kickoff": "2026-09-27T17:00:00+00:00",
           "locked": false,
           "actual": null,
           "current_slot": "TE",
-          "espn": 9.19,
-          "rotowire": 8.76,
-          "proj": 8.97,
+          "espn": 9.8,
+          "rotowire": 9.45,
+          "proj": 9.62,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -798,32 +790,22 @@
         }
       ],
       "notes": [
-        "Close call at WR: Davante Adams 14.9 vs George Pickens 14.4 -- check inactives before kickoff.",
-        "Close call at TE: Harold Fannin Jr. 9.5 vs T.J. Hockenson 9.0 -- check inactives before kickoff."
+        "Close call at WR: Parker Washington 15.1 vs Davante Adams 14.9 -- check inactives before kickoff."
       ],
       "changes": [
-        "Start Tyler Shough (18.8) instead of Bo Nix (16.8)",
-        "Start Harold Fannin Jr. (9.5) instead of T.J. Hockenson (9.0)"
+        "Start Parker Washington (15.1) instead of Davante Adams (14.9)",
+        "Start Dalton Schultz (11.4) instead of Harold Fannin Jr. (9.6)"
       ],
       "matchup": {
         "opponent": "My strategy is panic.",
-        "opp_proj": 109.5,
-        "my_best": 134.5,
-        "my_current": 131.9,
-        "win_prob_best": 0.762,
-        "win_prob_current": 0.739,
-        "espn_my_proj": 134.5,
-        "espn_opp_proj": 109.3,
-        "espn_win_prob": 0.62,
-        "with_pickups": {
-          "moves": [
-            "+Parker Washington / -Bo Nix",
-            "+Dalton Schultz / -T.J. Hockenson",
-            "+Brandon Aubrey / -Chris Boswell"
-          ],
-          "my_best": 137.5,
-          "win_prob": 0.788
-        }
+        "opp_proj": 123.0,
+        "my_best": 137.2,
+        "my_current": 135.2,
+        "win_prob_best": 0.658,
+        "win_prob_current": 0.636,
+        "espn_my_proj": 138.8,
+        "espn_opp_proj": 122.4,
+        "espn_win_prob": 0.57
       }
     }
   ]
