@@ -6,6 +6,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import build
+import odds as odds_mod
 import slate
 from build import (
     RuleViolation,
@@ -34,6 +35,10 @@ REAL_TEMPLATE_PATH = REPO_ROOT / "templates" / "page.html"
 SEED_WEEKENDS_DIR = REPO_ROOT / "data" / "weekends"
 
 CONFIG = dict(build._CONFIG_DEFAULTS)
+# Cards built before the sharp rules (RULES 13-14) -- the old tier rules
+# (Fun Parlay #2, Lottery Ticket, any named probability source) still hold
+# for them, and these tests pin those rules.
+LEGACY_CONFIG = dict(CONFIG, sharp_rules_from=None)
 FUTURE_KICKOFF = "2099-01-01T18:00:00-05:00"
 # January in America/New_York is EST (-05:00) -- kept correctly offset so
 # this constant tests exactly one thing ("kickoff in the past"), never
@@ -50,7 +55,7 @@ def _valid_easy_bet(**overrides):
         "dk_odds": -150,
         "estimated_prob": 0.62,
         "estimated_prob_source": "test",
-        "prob_sources": [{"name": "Source A", "prob": 0.60}, {"name": "Source B", "prob": 0.64}],
+        "prob_sources": [{"name": "Pinnacle", "prob": 0.60}, {"name": "Kalshi", "prob": 0.64}],
         "is_pre_kickoff": True,
         "stake": 3.00,
         "reason_summary": "test easy bet",
@@ -207,7 +212,7 @@ class TestTierStructure(unittest.TestCase):
         slot["card"]["lottery_ticket"]["legs"] = [
             {"selection": f"Leg {i}", "estimated_prob": 0.10} for i in range(14)
         ]
-        validate_slot_rules(slot, CONFIG)  # should not raise
+        validate_slot_rules(slot, LEGACY_CONFIG)  # should not raise
 
 
 # ---------------------------------------------------------------------------
@@ -366,7 +371,7 @@ class TestRule11SourceAgreement(unittest.TestCase):
             {"name": "A", "prob": 0.50}, {"name": "B", "prob": 0.60},
         ]
         slot["card"]["easy_bet"]["estimated_prob"] = 0.55  # matches the sources' average
-        validate_slot_rules(slot, CONFIG)  # should not raise
+        validate_slot_rules(slot, LEGACY_CONFIG)  # should not raise
 
     def test_historical_import_exempt(self):
         slot = _valid_slot(include_fun_parlay=False, historical=True)
@@ -605,7 +610,7 @@ class TestRenderCardBet(unittest.TestCase):
     def test_easy_bet_tier_badge_and_result_open(self):
         bet = _valid_easy_bet()
         html = render_card_bet("easy_bet", bet, self.tz)
-        self.assertIn("1 · Easy Bet", html)
+        self.assertIn("1 · Value Bet", html)
         self.assertIn('class="result-badge open"', html)
         self.assertIn("tier-easy", html)
         self.assertIn('<summary>Why &amp; the numbers</summary>', html)
@@ -635,7 +640,7 @@ class TestRenderCardBet(unittest.TestCase):
     def test_card_section_orders_tiers(self):
         card = {"easy_bet": _valid_easy_bet(), "fun_parlay": _valid_fun_parlay(), "lottery_ticket": _valid_lottery_ticket()}
         html = render_card_section(card, self.tz)
-        self.assertLess(html.index("Easy Bet"), html.index("Fun Parlay"))
+        self.assertLess(html.index("Value Bet"), html.index("Fun Parlay"))
         self.assertLess(html.index("Fun Parlay"), html.index("Lottery Ticket"))
 
 
@@ -948,7 +953,7 @@ class TestRule11EstimatedProbMatchesSources(unittest.TestCase):
         ]
         slot["card"]["easy_bet"]["estimated_prob"] = 0.95
         with self.assertRaises(RuleViolation):
-            validate_slot_rules(slot, CONFIG)
+            validate_slot_rules(slot, LEGACY_CONFIG)
 
     def test_estimated_prob_matching_source_average_passes(self):
         slot = _valid_slot(include_fun_parlay=False)
@@ -956,7 +961,7 @@ class TestRule11EstimatedProbMatchesSources(unittest.TestCase):
             {"name": "A", "prob": 0.56}, {"name": "B", "prob": 0.48},
         ]
         slot["card"]["easy_bet"]["estimated_prob"] = 0.52  # exact average
-        validate_slot_rules(slot, CONFIG)  # should not raise
+        validate_slot_rules(slot, LEGACY_CONFIG)  # should not raise
 
     def test_estimated_prob_within_tolerance_passes(self):
         slot = _valid_slot(include_fun_parlay=False)
@@ -964,7 +969,7 @@ class TestRule11EstimatedProbMatchesSources(unittest.TestCase):
             {"name": "A", "prob": 0.56}, {"name": "B", "prob": 0.48},
         ]
         slot["card"]["easy_bet"]["estimated_prob"] = 0.53  # avg 0.52, within tolerance
-        validate_slot_rules(slot, CONFIG)  # should not raise
+        validate_slot_rules(slot, LEGACY_CONFIG)  # should not raise
 
 
 # ---------------------------------------------------------------------------
@@ -1193,25 +1198,25 @@ class TestSecondFunParlay(unittest.TestCase):
     def test_valid_second_fun_parlay_passes(self):
         slot = _valid_slot()
         slot["card"]["fun_parlay_2"] = _second_fun_parlay()
-        validate_slot_rules(slot, CONFIG)  # should not raise
+        validate_slot_rules(slot, LEGACY_CONFIG)  # should not raise
 
     def test_needs_first_fun_parlay(self):
         slot = _valid_slot(include_fun_parlay=False)
         slot["card"]["fun_parlay_2"] = _second_fun_parlay()
         with self.assertRaises(RuleViolation):
-            validate_slot_rules(slot, CONFIG)
+            validate_slot_rules(slot, LEGACY_CONFIG)
 
     def test_cannot_share_slot_with_lottery_ticket(self):
         slot = _valid_slot(include_lottery_ticket=True)
         slot["card"]["fun_parlay_2"] = _second_fun_parlay()
         with self.assertRaises(RuleViolation):
-            validate_slot_rules(slot, CONFIG)
+            validate_slot_rules(slot, LEGACY_CONFIG)
 
     def test_same_legs_as_first_parlay_rejected(self):
         slot = _valid_slot()
         slot["card"]["fun_parlay_2"] = _valid_fun_parlay(id="fun-parlay-2")
         with self.assertRaises(RuleViolation):
-            validate_slot_rules(slot, CONFIG)
+            validate_slot_rules(slot, LEGACY_CONFIG)
 
     def test_leg_floor_applies(self):
         slot = _valid_slot()
@@ -1219,7 +1224,7 @@ class TestSecondFunParlay(unittest.TestCase):
         second["legs"][0]["estimated_prob"] = 0.50
         slot["card"]["fun_parlay_2"] = second
         with self.assertRaises(RuleViolation):
-            validate_slot_rules(slot, CONFIG)
+            validate_slot_rules(slot, LEGACY_CONFIG)
 
     def test_game_script_conflict_with_easy_bet(self):
         slot = _valid_slot()
@@ -1230,14 +1235,14 @@ class TestSecondFunParlay(unittest.TestCase):
         second["legs"][0]["game_script"] = "GB trailing"
         slot["card"]["fun_parlay_2"] = second
         with self.assertRaises(RuleViolation):
-            validate_slot_rules(slot, CONFIG)
+            validate_slot_rules(slot, LEGACY_CONFIG)
 
     def test_blacklist_applies(self):
         slot = _valid_slot()
         second = _second_fun_parlay()
         second["legs"][0]["selection"] = "MarShawn Lloyd 25+ rush yds"
         slot["card"]["fun_parlay_2"] = second
-        config = dict(CONFIG, blacklist=["MarShawn Lloyd"])
+        config = dict(LEGACY_CONFIG, blacklist=["MarShawn Lloyd"])
         with self.assertRaises(RuleViolation):
             validate_slot_rules(slot, config)
 
@@ -1368,3 +1373,184 @@ class TestPlainLanguage(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# ---------------------------------------------------------------------------
+# RULES 13-14 (2026-09-28): sharp prices, Pass, mostly straight bets
+# ---------------------------------------------------------------------------
+
+def _pass_bet(**overrides):
+    bet = {"pass": True, "stake": 0, "plain_summary": "Nothing beats the sharp price today.",
+           "reason": "Closest was Team A ML at -150 vs a 59% fair chance."}
+    bet.update(overrides)
+    return bet
+
+
+class TestRule13SharpEdge(unittest.TestCase):
+    def test_retail_model_source_rejected(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet"]["prob_sources"] = [{"name": "ESPN FPI", "prob": 0.62}, {"name": "Kalshi", "prob": 0.62}]
+        with self.assertRaisesRegex(RuleViolation, "RULE 13"):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_edge_below_bar_rejected(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet"]["dk_odds"] = -160  # 61.5% implied vs 62% fair
+        with self.assertRaisesRegex(RuleViolation, "make it a Pass"):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_devigged_prob_must_match_prices(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet"]["prob_sources"][0].update({"odds": -130, "other_side_odds": 110})
+        with self.assertRaisesRegex(RuleViolation, "de-vigged"):
+            validate_slot_rules(slot, CONFIG)
+        fair = odds_mod.devig_two_way(-130, 110)
+        slot["card"]["easy_bet"]["prob_sources"][0]["prob"] = round(fair, 4)
+        slot["card"]["easy_bet"]["estimated_prob"] = (round(fair, 4) + 0.64) / 2
+        slot["card"]["easy_bet"]["dk_odds"] = -125
+        validate_slot_rules(slot, CONFIG)  # should not raise
+
+    def test_boost_price_counts_toward_edge(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet"]["dk_odds"] = -170  # no edge at the regular price
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+        slot["card"]["easy_bet"]["boosted_odds"] = -130  # the boost makes it a good price
+        validate_slot_rules(slot, CONFIG)
+
+    def test_legacy_cards_keep_old_rules(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["date"] = "2026-09-27"
+        slot["card"]["easy_bet"]["prob_sources"] = [{"name": "ESPN FPI", "prob": 0.60}, {"name": "Dimers", "prob": 0.64}]
+        slot["card"]["easy_bet"]["dk_odds"] = -160
+        validate_slot_rules(slot, CONFIG)  # built before the sharp rules: still valid history
+
+
+class TestPass(unittest.TestCase):
+    def test_pass_is_valid_and_skips_price_rules(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet"] = _pass_bet()
+        validate_slot_rules(slot, CONFIG)
+
+    def test_pass_with_stake_rejected(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet"] = _pass_bet(stake=0.50)
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_pass_plus_fun_parlay_publishes_without_kickoff(self):
+        with tempfile.TemporaryDirectory() as td:
+            slot = _valid_slot(weekend_id="2026-10-01", slot="thu")
+            slot["date"] = "2026-10-01"
+            slot["card"]["easy_bet"] = _pass_bet()
+            slot["card"]["fun_parlay"]["stake"] = 0.20
+            now = datetime(2026, 10, 1, 13, 0, tzinfo=timezone.utc)
+            validate_publish(slot, "2026-10-01", "thu", CONFIG, now, td)
+
+    def test_pass_renders_plainly(self):
+        html = render_card_bet("easy_bet", _pass_bet(), ZoneInfo("America/New_York"))
+        self.assertIn("Pass", html)
+        self.assertIn("No straight bet today", html)
+        self.assertNotIn("Open", html)
+
+    def test_pass_never_holds_slot_open(self):
+        card = {"easy_bet": _pass_bet(), "fun_parlay": _valid_fun_parlay(result="Won", net=0.3)}
+        self.assertEqual([t for t, _ in build.live_tiers(card)], ["fun_parlay"])
+        self.assertEqual(build._slot_row_status({"card": card}, None), "graded")
+
+    def test_pass_excluded_from_weekend_pacing(self):
+        with tempfile.TemporaryDirectory() as td:
+            slot = _valid_slot(weekend_id="2026-10-01", slot="thu", include_fun_parlay=False)
+            slot["card"]["easy_bet"] = _pass_bet()
+            _write_slot(td, slot)
+            status = slate.weekend_status("2026-10-01", CONFIG, weekends_dir=td)
+            self.assertEqual(status["open_bets"], [])
+            self.assertEqual(status["open_stakes"], 0.0)
+
+
+class TestSecondValueBet(unittest.TestCase):
+    def test_second_straight_bet_valid(self):
+        slot = _valid_slot()
+        slot["card"]["easy_bet_2"] = _valid_easy_bet(id="easy-2", selection="Team C ML", game="CCC @ DDD")
+        validate_slot_rules(slot, CONFIG)
+
+    def test_second_needs_real_first(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet"] = _pass_bet()
+        slot["card"]["easy_bet_2"] = _valid_easy_bet(selection="Team C ML")
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_second_same_as_first_rejected(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet_2"] = _valid_easy_bet()
+        with self.assertRaises(RuleViolation):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_second_held_to_sharp_edge(self):
+        slot = _valid_slot(include_fun_parlay=False)
+        slot["card"]["easy_bet_2"] = _valid_easy_bet(selection="Team C ML", dk_odds=-200)
+        with self.assertRaisesRegex(RuleViolation, "easy_bet_2"):
+            validate_slot_rules(slot, CONFIG)
+
+
+class TestRule14MostlyStraight(unittest.TestCase):
+    def test_lottery_ticket_retired(self):
+        slot = _valid_slot(include_lottery_ticket=True)
+        with self.assertRaisesRegex(RuleViolation, "RULE 14"):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_fun_parlay_2_retired(self):
+        slot = _valid_slot()
+        slot["card"]["fun_parlay_2"] = _second_fun_parlay()
+        with self.assertRaisesRegex(RuleViolation, "RULE 14"):
+            validate_slot_rules(slot, CONFIG)
+
+    def test_fun_parlay_capped_at_fun_money(self):
+        with tempfile.TemporaryDirectory() as td:
+            slot = _valid_slot(weekend_id="2026-10-01", slot="thu")
+            slot["date"] = "2026-10-01"
+            now = datetime(2026, 10, 1, 13, 0, tzinfo=timezone.utc)
+            budget = slate.slot_budget("2026-10-01", "thu", CONFIG, now, weekends_dir=td)
+            slot["card"]["easy_bet"]["stake"] = 0.0
+            slot["card"]["fun_parlay"]["stake"] = budget["fun"] + 0.05
+            with self.assertRaisesRegex(RuleViolation, "RULE 14"):
+                validate_publish(slot, "2026-10-01", "thu", CONFIG, now, td)
+
+    def test_parlay_says_what_it_costs(self):
+        bet = _valid_fun_parlay()  # legs 65% x 70% = 45.5% at +150 (40% implied)... positive
+        bet["dk_odds"] = 100  # 50% implied vs 45.5% real -> costs ~9 cents per $1
+        html = render_card_bet("fun_parlay", bet, ZoneInfo("America/New_York"))
+        self.assertIn("Just for fun: costs ~9¢ per $1", html)
+
+
+class TestBoostVerdict(unittest.TestCase):
+    def test_boost_worth_it(self):
+        b = {"boost_description": "Rams ML boosted to +120", "boosted_odds": 120, "estimated_prob": 0.50}
+        self.assertEqual(build.boost_verdict(b), "Worth it: +10¢ per $1 expected")
+        self.assertTrue(build.boost_worth_it(b))
+
+    def test_boost_still_overpriced(self):
+        b = {"boost_description": "SGP boost", "boosted_odds": 300, "estimated_prob": 0.20}
+        self.assertEqual(build.boost_verdict(b), "Skip: still costs ~20¢ per $1")
+
+    def test_unpriced_boost_keeps_old_wording(self):
+        self.assertEqual(build.boost_verdict({"boost_description": "none found", "fits_card": False}), "No fit")
+
+
+class TestClosingLineValue(unittest.TestCase):
+    def test_counts_beats_and_average(self):
+        with tempfile.TemporaryDirectory() as td:
+            slot = _valid_slot(weekend_id="2026-10-01", slot="thu", include_fun_parlay=False)
+            slot["card"]["easy_bet"]["dk_odds"] = -110
+            slot["card"]["easy_bet"]["closing_odds"] = -130
+            slot["card"]["easy_bet_2"] = _valid_easy_bet(selection="Team C ML", dk_odds=-110, closing_odds=-105)
+            _write_slot(td, slot)
+            clv = build.compute_clv(td)
+            self.assertEqual(clv["n"], 2)
+            self.assertEqual(clv["beat"], 1)
+            self.assertIn("1 of 2", build._clv_html(clv))
+
+    def test_empty_explains_itself(self):
+        with tempfile.TemporaryDirectory() as td:
+            self.assertIn("Starting with the next card", build._clv_html(build.compute_clv(td)))

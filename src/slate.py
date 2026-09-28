@@ -224,9 +224,9 @@ def weekend_status(weekend_id, config, weekends_dir=None, exclude_slot=None):
         if slot == exclude_slot:
             continue
         card = data.get("card") or {}
-        for tier in ("easy_bet", "fun_parlay", "fun_parlay_2"):
+        for tier in ("easy_bet", "easy_bet_2", "fun_parlay", "fun_parlay_2"):
             bet = card.get(tier)
-            if not bet:
+            if not bet or bet.get("pass"):  # a Pass is $0 and never graded
                 continue
             stake = float(bet.get("stake", 0.0))
             result = bet.get("result")

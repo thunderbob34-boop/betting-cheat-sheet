@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import tempfile
 import unittest
@@ -278,3 +280,54 @@ class TestSecondFunParlayGrading(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSharpEraGrading(unittest.TestCase):
+    def test_boost_pays_at_boosted_price(self):
+        with tempfile.TemporaryDirectory() as td:
+            _write_slot(td, "2026-10-01", "thu", {"card": {"easy_bet": {
+                "stake": 1.00, "dk_odds": -150, "boosted_odds": 120, "selection": "Team A ML"}}})
+            bet = grade.set_result("2026-10-01", "thu", "easy_bet", "Won", weekends_dir=td)
+            self.assertAlmostEqual(bet["net"], 1.20)
+
+    def test_pass_cannot_be_graded_and_is_never_pending(self):
+        with tempfile.TemporaryDirectory() as td:
+            _write_slot(td, "2026-10-01", "thu", {"card": {"easy_bet": {"pass": True, "stake": 0}}})
+            with self.assertRaises(grade.GradeError):
+                grade.set_result("2026-10-01", "thu", "easy_bet", "Won", weekends_dir=td)
+            self.assertEqual(grade.pending(weekends_dir=td), [])
+
+    def test_second_value_bet_gradable(self):
+        with tempfile.TemporaryDirectory() as td:
+            _write_slot(td, "2026-10-01", "thu", {"card": {"easy_bet_2": {"stake": 0.50, "dk_odds": 100}}})
+            bet = grade.set_result("2026-10-01", "thu", "easy_bet_2", "Won", weekends_dir=td)
+            self.assertAlmostEqual(bet["net"], 0.50)
+
+    def test_close_records_price_once(self):
+        with tempfile.TemporaryDirectory() as td:
+            _write_slot(td, "2026-10-01", "thu", {"card": {"easy_bet": {"stake": 1.00, "dk_odds": -110}}})
+            bet = grade.set_closing("2026-10-01", "thu", "easy_bet", -125, weekends_dir=td)
+            self.assertEqual(bet["closing_odds"], -125)
+            with self.assertRaises(grade.GradeError):
+                grade.set_closing("2026-10-01", "thu", "easy_bet", -130, weekends_dir=td)
+
+    def test_close_rejects_parlays_and_bad_prices(self):
+        with tempfile.TemporaryDirectory() as td:
+            _write_slot(td, "2026-10-01", "thu", {"card": {"easy_bet": {"stake": 1.00, "dk_odds": -110}}})
+            with self.assertRaises(grade.GradeError):
+                grade.set_closing("2026-10-01", "thu", "fun_parlay", -110, weekends_dir=td)
+            with self.assertRaises(grade.GradeError):
+                grade.set_closing("2026-10-01", "thu", "easy_bet", 50, weekends_dir=td)
+
+    def test_close_cli_accepts_negative_price(self):
+        with tempfile.TemporaryDirectory() as td:
+            _write_slot(td, "2026-10-01", "thu", {"card": {"easy_bet": {"stake": 1.00, "dk_odds": -110}}})
+            orig = grade.DEFAULT_WEEKENDS_DIR
+            grade.DEFAULT_WEEKENDS_DIR = Path(td)
+            try:
+                with contextlib.redirect_stdout(io.StringIO()):
+                    grade.main(["grade.py", "close", "2026-10-01", "thu", "easy_bet", "-125"])
+            finally:
+                grade.DEFAULT_WEEKENDS_DIR = orig
+            data = json.loads((Path(td) / "2026-10-01" / "thu.json").read_text())
+            self.assertEqual(data["card"]["easy_bet"]["closing_odds"], -125)

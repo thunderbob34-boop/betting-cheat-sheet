@@ -4,15 +4,30 @@ This file governs how Claude Code works in this repo. The original master plan l
 `../betting-cheat-sheet-plan.md` (the job folder, one level up from this `Engine/` repo, after
 the 2026-09-16 `~/HQ` reorg). This file overrides the plan wherever they disagree.
 
-## What this is now (as of 2026-09-26)
+## What this is now (as of 2026-09-28)
 
 An autonomous phone app: a card for **every game day, Thursday through Monday, all season**,
 built, graded, and published by a scheduled Claude run on Gus's Mac — no approval step per
-edition. Gus opens the page (installed to his home screen), sees **three bets for the current
-time slot** (Easy Bet, Fun Parlay, and a third bet), and places them himself in DraftKings.
+edition. Gus opens the page (installed to his home screen), sees **this slot's bets** — one or
+two straight Value Bets (or a plain **Pass**) plus at most one small Fun Parlay — and places them
+himself in DraftKings.
+
+**The 2026-09-28 reset (Gus approved all four changes).** After a 1–2 Sunday and a long losing
+streak Gus asked "how is it I can bet better than you… off of pure instinct?" The honest answer:
+the old card averaged retail models (ESPN FPI, Dimers) that mostly repeat the market back, so its
+"edges" were noise, and it labeled coin flips "Easy Bet". Since then:
+1. **True odds come from the sharp market** — Pinnacle's price with its cut stripped out
+   (`src/sharp.py board`), plus Kalshi/Polymarket/Novig midpoints. A bet goes on the card only
+   when DraftKings' price beats that fair chance by `config.min_edge` (2%). RULE 13.
+2. **Hunt props and boosts** — DK's softest markets. Every DK boost gets its real value checked.
+3. **Mostly straight bets** — no Lottery Ticket, no Fun Parlay #2; one small Fun Parlay at most,
+   labeled with what it costs. RULE 14. `easy_share` is 0.80.
+4. **Pass is an answer.** If nothing clears the bar, the card says Pass and stakes $0.
+Plus a **Price check** on the Record tab: did DK's line move toward our pick by kickoff (closing
+line value)? That's the real test of whether the method works — not a lucky or unlucky weekend.
 
 - Live page: https://thunderbob34-boop.github.io/betting-cheat-sheet/ (GitHub Pages from `docs/`).
-- Four tabs: **Today** (this slot's three bets), **Weekend** (every slot Thu–Mon, results, the
+- Four tabs: **Today** (this slot's bets), **Weekend** (every slot Thu–Mon, results, the
   stop-loss meter), **Legs** (the full prop board — TDs, pass TDs, D/ST, kicker, tackles, sacks,
   receiving, receptions, rushing, rush+rec, game lines — with a Best value list and market filter), **Record** (real record from
   `bet_log.csv`, the card's own record, last weekend).
@@ -40,7 +55,8 @@ time slot** (Easy Bet, Fun Parlay, and a third bet), and places them himself in 
    away ("Why & the numbers"). The face of every card is plain English (Gus, 2026-09-26: "I don't want
    to see so many tiny numbers. Just tell me what is what and what to do where"): what to bet, what
    it pays back, chance in words, and a Good / Fair / Overpriced price label.
-6. **Each slot's card is three labeled tiers, in order:** Easy Bet (required — one straight
+6. **(Cards before 2026-09-29 — superseded by rules 13–14; kept because old cards are still
+   validated as history.) Each slot's card is three labeled tiers, in order:** Easy Bet (required — one straight
    bet, highest probability with real edge, ~60% of the slot budget), Fun Parlay (optional —
    2–3 legs, each ≥55%, the rest of the slot budget), Lottery Ticket (optional, **at most one
    per weekend**, flat $0.50, 10–20 legs, exempt from rule 4's floor, **outside** the $5
@@ -68,6 +84,20 @@ time slot** (Easy Bet, Fun Parlay, and a third bet), and places them himself in 
     more than 10 points, don't average them into an edge — it can't be the Easy Bet.
 12. **No sack legs against mobile QBs** (`config.mobile_qbs`: Jalen Hurts, Caleb Williams,
     Jayden Daniels). Sack legs carry `opp_qb`.
+13. **Sharp price or Pass** (cards dated on/after `config.sharp_rules_from`, 2026-09-29). Every
+    straight bet's `prob_sources` must be sharp books/exchanges (`config.sharp_books`: Pinnacle,
+    Circa, Novig, Kalshi, Polymarket, ProphetX, Sporttrade, BetOnline) — ESPN FPI, Dimers,
+    SportsLine and the like go in `reason` as color, never as the probability. A source with both
+    sides' prices (`odds`, `other_side_odds`) must carry the de-vigged `prob`. Still ≥2 sources
+    (rules 8 and 11). Edge = estimated_prob − implied chance of the price placed (a boost's
+    `boosted_odds` when used) must be ≥ `config.min_edge` (2%). Nothing clears it → the Value Bet
+    is `{"pass": true, "stake": 0, "plain_summary": ..., "reason": "<what came closest and by how
+    much>"}`. A Pass is never graded and never holds a slot open. An optional second straight bet
+    (`card.easy_bet_2`) follows the same rules and needs a real first one.
+14. **Mostly straight bets** (same cards). No `lottery_ticket`, no `fun_parlay_2`. One optional
+    `fun_parlay` (2–3 legs, each ≥55%, rules 4 and 10), staked at most `budget.fun` — the page
+    tells Gus what it costs on average. Straight bets share `budget.easy`; unspent money stays
+    unbet (never moved into the parlay).
 
 Rules 3 and "Lottery Ticket after tiers 1–2" are build-order discipline no file can prove; the
 rest are checked by `build.py` (RULE numbers in its error messages match this list).
@@ -110,6 +140,9 @@ rest are checked by `build.py` (RULE numbers in its error messages match this li
 python3 src/slate.py status                 # which slot, weekend net, this slot's budget, open bets
 python3 src/grade.py pending                # bets whose games are done but ungraded
 python3 src/grade.py set <wid> <slot> <tier> Won|Lost|Push|Void
+python3 src/grade.py close <wid> <slot> easy_bet|easy_bet_2 <DK closing odds>   # Price check
+python3 src/sharp.py board [--team NAME]    # Pinnacle games + props, de-vigged fair chances
+python3 src/sharp.py kalshi <EVENT_TICKER>  # Kalshi midpoints (e.g. KXNFLGAME-26OCT01CLEPIT)
 python3 src/build.py                        # validate + render docs/index.html
 python3 src/build.py --publish <wid>/<slot> # also enforce kickoff-in-future + slot budget
 python3 -m unittest discover -s src -p "test_*.py" -v
@@ -150,6 +183,9 @@ build → commit → push). The scheduled task just runs it.
 
 ## Lessons that must not be relearned
 
+- **Retail models aren't true odds** (2026-09-24 → 9/27: the card averaged ESPN FPI, Dimers and
+  Kalshi, called +2% edges on coin flips "Easy Bets", and went 1–4 on its main bets. Gus bet ~9×
+  the card's stakes and lost more than the stop-loss.) Price against the sharp market, and Pass.
 - **Single-source edges lie** (2026-nfl-wk02: Kalshi-only said +5.2%, averaged with a second
   model it was +4.2%; a week later, after lines moved, it was ~0).
 - **Lines move a lot in a week** — build each slot the morning of, not days ahead.

@@ -84,3 +84,29 @@ def format_one_in_x(p: float) -> str:
     if p >= 1:
         return "1 in 1"
     return f"~1 in {round(1 / p):,}"
+
+
+def devig_two_way(odds_a: int, odds_b: int) -> float:
+    """Fair (no-vig) probability of side A from a two-sided market's prices,
+    e.g. Pinnacle's -120 / +110. Each side's implied probability is divided
+    by their sum, which strips out the book's cut (the "multiplicative"
+    method -- the standard, simplest de-vig).
+
+    Raises ValueError if either price is 0."""
+    p_a = american_to_implied_prob(odds_a)
+    p_b = american_to_implied_prob(odds_b)
+    return p_a / (p_a + p_b)
+
+
+def expected_value(prob: float, odds: int) -> float:
+    """Expected profit per $1 staked at these American odds if the true
+    chance of winning is prob, e.g. 0.55 at +100 -> +0.10 (10 cents per $1)."""
+    return prob * american_to_decimal(odds) - 1
+
+
+def closing_line_value(taken_odds: int, closing_odds: int) -> float:
+    """How much better the price you took was than the closing price, in
+    implied-probability points: positive means the market moved toward your
+    side after you bet (you beat the close). E.g. took -110 (52.4%), closed
+    -130 (56.5%) -> +0.041."""
+    return american_to_implied_prob(closing_odds) - american_to_implied_prob(taken_odds)

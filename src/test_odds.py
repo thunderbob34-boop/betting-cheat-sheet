@@ -1,5 +1,7 @@
 import unittest
 
+import odds
+
 from odds import (
     american_to_implied_prob,
     american_to_decimal,
@@ -111,3 +113,23 @@ class TestFormatProbSigned(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSharpMath(unittest.TestCase):
+    def test_devig_symmetric_market_is_fifty_fifty(self):
+        self.assertAlmostEqual(odds.devig_two_way(-110, -110), 0.5)
+
+    def test_devig_strips_the_cut(self):
+        # -150 (60.0%) / +130 (43.5%) sum to 103.5%; fair = 60.0 / 103.5
+        self.assertAlmostEqual(odds.devig_two_way(-150, 130), 0.6 / (0.6 + 100 / 230), places=6)
+
+    def test_devig_sides_sum_to_one(self):
+        self.assertAlmostEqual(odds.devig_two_way(-200, 170) + odds.devig_two_way(170, -200), 1.0)
+
+    def test_expected_value(self):
+        self.assertAlmostEqual(odds.expected_value(0.55, 100), 0.10)
+        self.assertAlmostEqual(odds.expected_value(0.5, -110), 0.5 * (1 + 100 / 110) - 1)
+
+    def test_closing_line_value_positive_when_price_moves_your_way(self):
+        self.assertGreater(odds.closing_line_value(-110, -130), 0)
+        self.assertLess(odds.closing_line_value(-130, -110), 0)

@@ -1,18 +1,41 @@
 {
   "season_start": "2026-09-01",
-  "starting_bankroll": 50.00,
-  "weekend_loss_limit": 5.00,
+  "starting_bankroll": 50.0,
+  "weekend_loss_limit": 5.0,
   "reserve_factor_when_down": 0.75,
-  "min_stake": 0.10,
+  "min_stake": 0.1,
   "stake_step": 0.05,
-  "easy_share": 0.60,
-  "slots": ["thu", "sat", "sun", "mon"],
-  "lottery_stake": 0.50,
+  "easy_share": 0.8,
+  "slots": [
+    "thu",
+    "sat",
+    "sun",
+    "mon"
+  ],
+  "lottery_stake": 0.5,
   "nfl_week1_thursday": "2026-09-10",
   "timezone": "America/New_York",
-  "blacklist": ["MarShawn Lloyd"],
-  "mobile_qbs": ["Jalen Hurts", "Caleb Williams", "Jayden Daniels"],
+  "blacklist": [
+    "MarShawn Lloyd"
+  ],
+  "mobile_qbs": [
+    "Jalen Hurts",
+    "Caleb Williams",
+    "Jayden Daniels"
+  ],
   "record_caveats": [
-    "9/14 and 9/17 wins not logged to the bet log yet — the record above understates the true total."
-  ]
+    "9/14 and 9/17 wins not logged to the bet log yet \u2014 the record above understates the true total."
+  ],
+  "sharp_rules_from": "2026-09-29",
+  "sharp_books": [
+    "Pinnacle",
+    "Circa",
+    "Novig",
+    "Kalshi",
+    "Polymarket",
+    "ProphetX",
+    "Sporttrade",
+    "BetOnline"
+  ],
+  "min_edge": 0.02
 }

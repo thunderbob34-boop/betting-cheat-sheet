@@ -5,7 +5,8 @@ is edited by hand (screenshots -> Claude appends rows) elsewhere. This tool
 only ever writes to data/weekends/<weekend_id>/<slot>.json.
 
 Usage:
-    python3 src/grade.py set <weekend_id> <slot> <easy_bet|fun_parlay|fun_parlay_2|lottery_ticket> <Won|Lost|Push|Void>
+    python3 src/grade.py set <weekend_id> <slot> <easy_bet|easy_bet_2|fun_parlay|fun_parlay_2|lottery_ticket> <Won|Lost|Push|Void>
+    python3 src/grade.py close <weekend_id> <slot> <easy_bet|easy_bet_2> <closing DK odds, e.g. -125>
     python3 src/grade.py pending [--now ISO]
 
 Python 3 stdlib only.
@@ -23,7 +24,8 @@ import odds
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_WEEKENDS_DIR = REPO_ROOT / "data" / "weekends"
 
-VALID_TIERS = ("easy_bet", "fun_parlay", "fun_parlay_2", "lottery_ticket")
+VALID_TIERS = ("easy_bet", "easy_bet_2", "fun_parlay", "fun_parlay_2", "lottery_ticket")
+STRAIGHT_TIERS = ("easy_bet", "easy_bet_2")
 VALID_RESULTS = ("Won", "Lost", "Push", "Void")
 
 PENDING_GRACE = timedelta(hours=4)
@@ -107,6 +109,8 @@ def set_result(weekend_id, slot, tier, result, weekends_dir=None):
     bet = card.get(tier)
     if not bet:
         raise GradeError(f"{path} has no card.{tier} to grade")
+    if bet.get("pass"):
+        raise GradeError(f"{path}: card.{tier} is a Pass ($0, no bet) -- nothing to grade")
 
     if bet.get("result") is not None:
         raise GradeError(
@@ -117,7 +121,9 @@ def set_result(weekend_id, slot, tier, result, weekends_dir=None):
         )
 
     stake = float(bet.get("stake", 0.0))
-    net = compute_net(result, stake, bet.get("dk_odds"))
+    # A DraftKings boost pays at the boosted price.
+    price = bet.get("boosted_odds") if bet.get("boosted_odds") is not None else bet.get("dk_odds")
+    net = compute_net(result, stake, price)
     bet["result"] = result
     bet["net"] = net
 
@@ -125,6 +131,31 @@ def set_result(weekend_id, slot, tier, result, weekends_dir=None):
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
+    return bet
+
+
+def set_closing(weekend_id, slot, tier, closing_odds, weekends_dir=None):
+    """Record DraftKings' closing price (the line at kickoff, read from a
+    real page after the game) on a straight card bet, for the Record tab's
+    closing-line check. Refuses to overwrite one already recorded."""
+    if tier not in STRAIGHT_TIERS:
+        raise GradeError(f"closing prices are tracked for straight bets only ({STRAIGHT_TIERS}), not {tier!r}")
+    closing_odds = int(closing_odds)
+    if closing_odds == 0 or -100 < closing_odds < 100:
+        raise GradeError(f"{closing_odds} is not a valid American price")
+    path = _slot_path(weekend_id, slot, weekends_dir)
+    if not path.exists():
+        raise GradeError(f"No slot file at {path}")
+    data = _load_json_file(path)
+    bet = (data.get("card") or {}).get(tier)
+    if not bet or bet.get("pass"):
+        raise GradeError(f"{path} has no card.{tier} bet to close")
+    if bet.get("closing_odds") is not None:
+        raise GradeError(f"{path}: card.{tier} already has closing_odds {bet['closing_odds']} -- edit by hand to correct it")
+    bet["closing_odds"] = closing_odds
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
     return bet
 
 
@@ -143,7 +174,7 @@ def pending(weekends_dir=None, now=None):
             card = data.get("card") or {}
             for tier in VALID_TIERS:
                 bet = card.get(tier)
-                if not bet or bet.get("result") is not None:
+                if not bet or bet.get("pass") or bet.get("result") is not None:
                     continue
                 legs = bet.get("legs") or []
                 selection = bet.get("selection") or (
@@ -201,6 +232,18 @@ def _set_command(args):
     }, indent=2))
 
 
+def _close_command(args):
+    bet = set_closing(args.weekend_id, args.slot, args.tier, args.closing_odds)
+    print(json.dumps({
+        "weekend_id": args.weekend_id,
+        "slot": args.slot,
+        "tier": args.tier,
+        "dk_odds": bet.get("dk_odds"),
+        "closing_odds": bet["closing_odds"],
+        "clv": round(odds.closing_line_value(int(bet["dk_odds"]), bet["closing_odds"]), 4),
+    }, indent=2))
+
+
 def _pending_command(args):
     now = datetime.fromisoformat(args.now) if args.now else datetime.now(timezone.utc)
     if now.tzinfo is None:
@@ -218,6 +261,13 @@ def main(argv):
     set_p.add_argument("tier", choices=VALID_TIERS)
     set_p.add_argument("result", choices=VALID_RESULTS)
     set_p.set_defaults(func=_set_command)
+
+    close_p = sub.add_parser("close")
+    close_p.add_argument("weekend_id")
+    close_p.add_argument("slot")
+    close_p.add_argument("tier", choices=STRAIGHT_TIERS)
+    close_p.add_argument("closing_odds", type=int)
+    close_p.set_defaults(func=_close_command)
 
     pending_p = sub.add_parser("pending")
     pending_p.add_argument("--now", help="full ISO 8601 timestamp override")

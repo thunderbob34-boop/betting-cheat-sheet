@@ -64,6 +64,9 @@ _CONFIG_DEFAULTS = {
     "timezone": "America/New_York",
     "blacklist": ["MarShawn Lloyd"],
     "mobile_qbs": ["Jalen Hurts", "Caleb Williams", "Jayden Daniels"],
+    "sharp_rules_from": "2026-09-29",
+    "sharp_books": ["Pinnacle", "Circa", "Novig", "Kalshi", "Polymarket", "ProphetX", "Sporttrade", "BetOnline"],
+    "min_edge": 0.02,
 }
 
 
@@ -96,11 +99,49 @@ FUN_PARLAY_LEG_FLOOR = 0.55
 # ticket, otherwise an optional second Fun Parlay (a different mix of legs,
 # same rules, sharing the slot's fun budget) -- Gus wants three bets to
 # pick from every slot.
+# Straight bets: the Value Bet (easy_bet -- the data key predates the
+# rename) and an optional second one. Either may be a "pass" (see is_pass).
+STRAIGHT_TIERS = ("easy_bet", "easy_bet_2")
 FUN_TIERS = ("fun_parlay", "fun_parlay_2")
-STAKED_TIERS = ("easy_bet",) + FUN_TIERS  # inside the $5 stop-loss
+STAKED_TIERS = STRAIGHT_TIERS + FUN_TIERS  # inside the $5 stop-loss
 ALL_TIERS = STAKED_TIERS + ("lottery_ticket",)
 SOURCE_DISAGREEMENT_MAX_SPREAD = 0.10
 SOURCE_AVERAGE_TOLERANCE = 0.02
+DEVIG_TOLERANCE = 0.005
+
+
+def is_pass(bet):
+    """A straight tier written as {"pass": true, ...}: nothing cleared the
+    bar, so the card says "Pass" and stakes $0. Never graded, never open."""
+    return bool(bet) and bool(bet.get("pass"))
+
+
+def live_tiers(card):
+    """(tier, bet) for every tier present on the card that is a real bet --
+    passes excluded (they never get a result, so they must never hold a
+    slot "open" or count toward any record)."""
+    return [(t, card[t]) for t in ALL_TIERS if card.get(t) and not is_pass(card[t])]
+
+
+def bet_price(bet):
+    """The price the bet is actually placed at: a DraftKings boost's
+    boosted_odds when the card uses one, else dk_odds."""
+    boosted = bet.get("boosted_odds")
+    return boosted if boosted is not None else bet.get("dk_odds")
+
+
+def sharp_rules_apply(slot, config):
+    """RULES 13-14 (sharp prices, mostly straight bets) apply to every card
+    dated on/after config.sharp_rules_from (Gus approved them 2026-09-28).
+    Earlier cards were built under the old rules and stay valid as history."""
+    start = config.get("sharp_rules_from")
+    raw = slot.get("date")
+    if not start or not raw or slot.get("historical_import"):
+        return False
+    try:
+        return date.fromisoformat(raw) >= date.fromisoformat(start)
+    except ValueError:
+        return False
 
 
 def _load_json_file(path):
@@ -229,10 +270,11 @@ def _check_blacklist(slot, config, label):
     if not names:
         return
     card = slot.get("card") or {}
-    easy = card.get("easy_bet")
-    if easy:
-        _scan_blacklist(easy.get("selection"), f"[{label}] card.easy_bet.selection", names)
-        _scan_blacklist(easy.get("player"), f"[{label}] card.easy_bet.player", names)
+    for tier in STRAIGHT_TIERS:
+        straight = card.get(tier)
+        if straight:
+            _scan_blacklist(straight.get("selection"), f"[{label}] card.{tier}.selection", names)
+            _scan_blacklist(straight.get("player"), f"[{label}] card.{tier}.player", names)
     for tier in FUN_TIERS + ("lottery_ticket",):
         bet = card.get(tier)
         if not bet:
@@ -287,7 +329,7 @@ def _script_ahead_side(game, script):
     return others[0] if others else None
 
 
-def _check_game_script(easy_bet, fun_parlay, label, tier="fun_parlay"):
+def _check_game_script(easy_bet, fun_parlay, label, tier="fun_parlay", straight_tier="easy_bet"):
     """RULE 10 -- easy_bet vs each fun_parlay leg: if same game and they
     need the same side to be ahead, fail. Neutral never conflicts. Game
     equality is whitespace/case/separator/team-order tolerant (see
@@ -305,14 +347,14 @@ def _check_game_script(easy_bet, fun_parlay, label, tier="fun_parlay"):
         leg_side = _script_ahead_side(leg.get("game"), leg.get("game_script"))
         if leg_side is not None and leg_side.lower() == easy_side.lower():
             raise RuleViolation(
-                f"RULE 10 VIOLATION: [{label}] card.easy_bet and "
+                f"RULE 10 VIOLATION: [{label}] card.{straight_tier} and "
                 f"card.{tier}.legs[{i}] are both in {easy_game} and "
                 f"both need {leg_side} to be ahead -- pick a genuinely "
                 "independent leg instead"
             )
 
 
-def _check_source_agreement(easy_bet, label):
+def _check_source_agreement(easy_bet, label, tier="easy_bet"):
     """RULE 11 -- card.easy_bet needs >= 2 prob_sources with a max-min
     spread <= 10 points, AND its own headline estimated_prob (the "Est."
     figure rendered on the page, and the number Edge is computed from)
@@ -324,7 +366,7 @@ def _check_source_agreement(easy_bet, label):
     sources = easy_bet.get("prob_sources") or []
     if len(sources) < 2:
         raise RuleViolation(
-            f"RULE 11 VIOLATION: [{label}] card.easy_bet needs at least 2 "
+            f"RULE 11 VIOLATION: [{label}] card.{tier} needs at least 2 "
             "prob_sources (independent probability estimates) -- with "
             "fewer than 2, keep it off the Easy Bet slot"
         )
@@ -332,7 +374,7 @@ def _check_source_agreement(easy_bet, label):
     spread = max(probs) - min(probs)
     if spread > SOURCE_DISAGREEMENT_MAX_SPREAD + EPSILON:
         raise RuleViolation(
-            f"RULE 11 VIOLATION: [{label}] card.easy_bet prob_sources "
+            f"RULE 11 VIOLATION: [{label}] card.{tier} prob_sources "
             f"disagree by {spread:.1%} (> 10 points) -- keep it off the "
             "Easy Bet slot"
         )
@@ -340,7 +382,7 @@ def _check_source_agreement(easy_bet, label):
     estimated = float(easy_bet.get("estimated_prob", 0.0))
     if abs(estimated - avg) > SOURCE_AVERAGE_TOLERANCE + EPSILON:
         raise RuleViolation(
-            f"RULE 11 VIOLATION: [{label}] card.easy_bet estimated_prob "
+            f"RULE 11 VIOLATION: [{label}] card.{tier} estimated_prob "
             f"{estimated:.1%} does not match its own cited prob_sources "
             f"average {avg:.1%} (tolerance ±{SOURCE_AVERAGE_TOLERANCE:.0%}) "
             "-- the rendered 'Est.'/Edge must be provably derived from the "
@@ -348,13 +390,61 @@ def _check_source_agreement(easy_bet, label):
         )
 
 
+def _source_is_sharp(source, sharp_books):
+    name = (source.get("book") or source.get("name") or "").strip().lower()
+    return any(name.startswith(b.lower()) for b in sharp_books)
+
+
+def _check_sharp_edge(bet, config, label, tier):
+    """RULE 13 -- a straight bet on a card under the sharp rules must be
+    priced against the sharp market, and DraftKings' price must actually
+    beat it:
+      * every prob_source is a sharp book or exchange (config.sharp_books:
+        Pinnacle, Circa, Novig, Kalshi, Polymarket...) -- retail models like
+        ESPN FPI or Dimers mostly repeat the market back and don't count;
+      * a source that gives both sides' prices (odds + other_side_odds) has
+        its prob checked against the de-vigged fair number;
+      * edge = estimated_prob minus the implied chance of the price actually
+        placed (a boost's boosted_odds when used) must be >= config.min_edge.
+    Anything below the bar is a Pass, not a smaller bet."""
+    sharp_books = config.get("sharp_books") or []
+    for i, src in enumerate(bet.get("prob_sources") or []):
+        if not _source_is_sharp(src, sharp_books):
+            raise RuleViolation(
+                f"RULE 13 VIOLATION: [{label}] card.{tier}.prob_sources[{i}] "
+                f"({src.get('book') or src.get('name')!r}) is not a sharp book "
+                f"or exchange (config.sharp_books: {', '.join(sharp_books)}) -- "
+                "true odds must come from the sharp market"
+            )
+        a, b = src.get("odds"), src.get("other_side_odds")
+        if a is not None and b is not None:
+            fair = odds.devig_two_way(int(a), int(b))
+            if abs(float(src.get("prob", -1)) - fair) > DEVIG_TOLERANCE + EPSILON:
+                raise RuleViolation(
+                    f"RULE 13 VIOLATION: [{label}] card.{tier}.prob_sources[{i}] "
+                    f"prob {float(src.get('prob', 0)):.1%} is not the de-vigged "
+                    f"fair chance of {a}/{b} ({fair:.1%})"
+                )
+    price = bet_price(bet)
+    if price is None or bet.get("dk_odds") is None:
+        raise RuleViolation(f"RULE 13 VIOLATION: [{label}] card.{tier} has no DraftKings price")
+    edge_val = odds.edge(float(bet.get("estimated_prob", 0.0)), odds.american_to_implied_prob(int(price)))
+    min_edge = float(config.get("min_edge", 0.02))
+    if edge_val < min_edge - EPSILON:
+        raise RuleViolation(
+            f"RULE 13 VIOLATION: [{label}] card.{tier} edge vs the sharp "
+            f"price is {edge_val:+.1%}, below the {min_edge:.0%} bar -- make "
+            "it a Pass ({\"pass\": true, \"stake\": 0}) instead of a bet"
+        )
+
+
 def _iter_market_entries(slot):
     """Yield (label, entry_dict) for every bet/leg/leg_bank object that
     could carry a market field."""
     card = slot.get("card") or {}
-    easy = card.get("easy_bet")
-    if easy:
-        yield "card.easy_bet", easy
+    for tier in STRAIGHT_TIERS:
+        if card.get(tier):
+            yield f"card.{tier}", card[tier]
     for tier in FUN_TIERS + ("lottery_ticket",):
         bet = card.get(tier)
         if not bet:
@@ -402,7 +492,7 @@ def _check_historical_claim(slot, now, label):
     card = slot.get("card") or {}
     for tier_label in ALL_TIERS:
         bet = card.get(tier_label)
-        if bet is None:
+        if bet is None or is_pass(bet):
             continue
         if bet.get("result") is None:
             raise RuleViolation(
@@ -481,11 +571,36 @@ def validate_slot_rules(slot, config, now=None):
     # schema shape, not a "research quality" judgment call). ---
     if not easy_bet:
         raise RuleViolation(f"[{label}] TIER STRUCTURE VIOLATION: card.easy_bet is required")
-    if easy_bet.get("legs"):
+    easy_bet_2 = card.get("easy_bet_2")
+    for tier_label in STRAIGHT_TIERS:
+        straight = card.get(tier_label)
+        if straight and straight.get("legs"):
+            raise RuleViolation(
+                f"[{label}] TIER STRUCTURE VIOLATION: card.{tier_label} must be a "
+                "single straight selection, not multi-leg"
+            )
+    if is_pass(easy_bet) and abs(float(easy_bet.get("stake", 0.0) or 0.0)) > EPSILON:
         raise RuleViolation(
-            f"[{label}] TIER STRUCTURE VIOLATION: card.easy_bet must be a "
-            "single straight selection, not multi-leg"
+            f"[{label}] TIER STRUCTURE VIOLATION: card.easy_bet is a Pass but "
+            "has a stake -- a Pass is always $0"
         )
+    if easy_bet_2 is not None:
+        if is_pass(easy_bet_2):
+            raise RuleViolation(
+                f"[{label}] TIER STRUCTURE VIOLATION: card.easy_bet_2 can't be a "
+                "Pass -- leave it off the card instead"
+            )
+        if is_pass(easy_bet):
+            raise RuleViolation(
+                f"[{label}] TIER STRUCTURE VIOLATION: card.easy_bet_2 needs a real "
+                "card.easy_bet -- if the first straight bet is a Pass, the "
+                "second-best can't clear the bar either"
+            )
+        if (easy_bet_2.get("selection") or "").strip().lower() == (easy_bet.get("selection") or "").strip().lower():
+            raise RuleViolation(
+                f"[{label}] TIER STRUCTURE VIOLATION: card.easy_bet_2 is the same "
+                "bet as card.easy_bet"
+            )
 
     # --- stakes must never be negative (always enforced -- a negative
     # stake can offset a real one in a sum and hide it under the RULE 1
@@ -573,23 +688,40 @@ def validate_slot_rules(slot, config, now=None):
         _check_historical_claim(slot, now, label)
         return
 
-    # --- RULE 2 (structural): pre-kickoff only, every tier. ---
-    for tier_label in ALL_TIERS:
-        bet = card.get(tier_label)
-        if bet is None:
-            continue
+    sharp = sharp_rules_apply(slot, config)
+
+    # --- RULE 14: mostly straight bets (cards under the sharp rules). ---
+    if sharp:
+        for tier_label in ("fun_parlay_2", "lottery_ticket"):
+            if card.get(tier_label) is not None:
+                raise RuleViolation(
+                    f"RULE 14 VIOLATION: [{label}] card.{tier_label} is retired -- "
+                    "cards are straight bets plus at most one small Fun Parlay"
+                )
+
+    # --- RULE 2 (structural): pre-kickoff only, every real tier. ---
+    for tier_label, bet in live_tiers(card):
         _check_pre_kickoff(bet, f"[{label}] {bet.get('id') or tier_label}")
 
     # --- RULE 9: blacklist. ---
     _check_blacklist(slot, config, label)
 
-    # --- RULE 10: game script conflict (easy_bet vs each fun parlay's legs). ---
-    for tier_label in FUN_TIERS:
-        _check_game_script(easy_bet, card.get(tier_label), label, tier=tier_label)
+    # --- RULE 10: game script conflict (each straight bet vs each fun parlay's legs). ---
+    for straight_tier in STRAIGHT_TIERS:
+        straight = card.get(straight_tier)
+        if not straight or is_pass(straight):
+            continue
+        for tier_label in FUN_TIERS:
+            _check_game_script(straight, card.get(tier_label), label, tier=tier_label, straight_tier=straight_tier)
 
-    # --- RULE 11: source disagreement (easy_bet prob_sources). ---
-    if easy_bet is not None:
-        _check_source_agreement(easy_bet, label)
+    # --- RULE 11: source disagreement; RULE 13: sharp price + real edge. ---
+    for straight_tier in STRAIGHT_TIERS:
+        straight = card.get(straight_tier)
+        if not straight or is_pass(straight):
+            continue
+        _check_source_agreement(straight, label, tier=straight_tier)
+        if sharp:
+            _check_sharp_edge(straight, config, label, straight_tier)
 
     # --- RULE 12: sack vs mobile QB. ---
     _check_sack_mobile_qb(slot, config, label)
@@ -624,10 +756,7 @@ def validate_publish(slot, weekend_id, slot_name, config, now, weekends_dir):
         )
     card = slot.get("card") or {}
 
-    for tier_label in ALL_TIERS:
-        bet = card.get(tier_label)
-        if bet is None:
-            continue
+    for tier_label, bet in live_tiers(card):
         _check_kickoff_future(bet, now, f"[{label}] {tier_label}", config)
         for i, leg in enumerate(bet.get("legs") or []):
             _check_kickoff_future(leg, now, f"[{label}] {tier_label}.legs[{i}]", config)
@@ -646,6 +775,14 @@ def validate_publish(slot, weekend_id, slot_name, config, now, weekends_dir):
             f"${stake_total:.2f} exceeds this slot's budget of "
             f"${budget['total']:.2f} ({budget['why']})"
         )
+    if sharp_rules_apply(slot, config):
+        fun_total = sum(max(0.0, float(card[t].get("stake", 0.0))) for t in FUN_TIERS if card.get(t))
+        if fun_total > budget["fun"] + EPSILON:
+            raise RuleViolation(
+                f"RULE 14 VIOLATION: [{label}] Fun Parlay stake ${fun_total:.2f} "
+                f"is more than the slot's fun money (${budget['fun']:.2f}) -- "
+                "parlays stay small; the rest goes to straight bets or stays unbet"
+            )
 
 
 def _iter_weekend_files(weekends_dir, weekend_id):
@@ -874,6 +1011,46 @@ def compute_card_record(weekends_dir):
     return {"tiers12": tiers12, "net12": round(net12, 2), "lottery": lottery}
 
 
+def compute_clv(weekends_dir):
+    """The card's honesty check: for every straight card bet with a
+    recorded closing_odds (grade.py close), did DraftKings' price move
+    toward the pick by kickoff? Beating the closing line consistently is
+    the best evidence a method has real skill; failing to means it doesn't,
+    whatever the win/loss record says over a few weeks."""
+    rows = []
+    weekends_dir = Path(weekends_dir)
+    if weekends_dir.is_dir():
+        for weekend_dir in sorted(p for p in weekends_dir.iterdir() if p.is_dir()):
+            for path in sorted(weekend_dir.glob("*.json")):
+                card = _load_json_file(path).get("card") or {}
+                for tier in STRAIGHT_TIERS:
+                    bet = card.get(tier)
+                    if not bet or is_pass(bet) or bet.get("closing_odds") is None or bet.get("dk_odds") is None:
+                        continue
+                    rows.append(odds.closing_line_value(int(bet["dk_odds"]), int(bet["closing_odds"])))
+    n = len(rows)
+    return {
+        "n": n,
+        "beat": sum(1 for v in rows if v > EPSILON),
+        "avg": (sum(rows) / n) if n else 0.0,
+    }
+
+
+def _clv_html(clv):
+    if not clv["n"]:
+        body = ('<p class="card-record-note">Starting with the next card: each straight bet\'s price '
+                'is compared with where DraftKings closed at kickoff. Beating the close week after '
+                'week is the proof the picks have real value -- not a lucky Sunday.</p>')
+    else:
+        avg_cls = "positive" if clv["avg"] >= 0 else "negative"
+        body = f'''<p class="card-record-note">Did the price move our way by kickoff? Beating the closing line is the real test of skill.</p>
+  <div class="stat-grid">
+    <div class="stat"><span class="label">Beat the close</span><span class="value">{clv["beat"]} of {clv["n"]}</span></div>
+    <div class="stat"><span class="label">Avg gain</span><span class="value {avg_cls}">{escape(odds.format_prob_signed(clv["avg"]))}</span></div>
+  </div>'''
+    return f'<section class="card-record clv"><h3>Price check</h3>{body}</section>'
+
+
 def _find_most_recent_graded_slot(weekends_dir):
     """Search backwards through weekends (newest weekend_id first, newest
     date within a weekend first) for the most recent slot file with at
@@ -892,7 +1069,7 @@ def _find_most_recent_graded_slot(weekends_dir):
         slots.sort(key=lambda s: s.get("date", ""), reverse=True)
         for slot in slots:
             card = slot.get("card") or {}
-            tiers = [card.get(t) for t in ALL_TIERS if card.get(t)]
+            tiers = [b for _, b in live_tiers(card)]
             if tiers and all(t.get("result") is not None for t in tiers):
                 return slot
     return None
@@ -1078,11 +1255,30 @@ def _reason_detail_html(bet, numbers_html=""):
 
 
 _TIER_META = {
-    "easy_bet": (1, "Easy Bet", "tier-easy"),
+    "easy_bet": (1, "Value Bet", "tier-easy"),
+    "easy_bet_2": (2, "Value Bet #2", "tier-easy"),
     "fun_parlay": (2, "Fun Parlay", "tier-fun"),
     "fun_parlay_2": (3, "Fun Parlay #2", "tier-fun2"),
     "lottery_ticket": (3, "Lottery Ticket", "tier-lottery"),
 }
+
+
+def render_pass(bet):
+    """The Value Bet slot when nothing cleared the bar (RULE 13): say so
+    plainly, and show what came closest behind the tap."""
+    summary = bet.get("plain_summary") or (
+        "Nothing today beats the sharp market's price by enough to be worth it. "
+        "Skipping is the smart bet."
+    )
+    return f'''<article class="bet tier-easy pass">
+  <div class="bet-top">
+    <span class="tier-badge">1 · Pass</span>
+  </div>
+  <h3 class="bet-title">No straight bet today</h3>
+  <p class="bet-money">$0 -- keep your money</p>
+  <p class="reason-summary">{escape(summary)}</p>
+  {_reason_detail_html(bet)}
+</article>'''
 
 
 def bet_title(tier_key, bet):
@@ -1095,11 +1291,14 @@ def bet_title(tier_key, bet):
 
 
 def render_card_bet(tier_key, bet, tz, historical=False):
+    if is_pass(bet):
+        return render_pass(bet)
     num, tier_label, cls = _TIER_META[tier_key]
     legs = bet.get("legs") or []
     is_parlay = tier_key in FUN_TIERS + ("lottery_ticket",)
     title = escape(bet_title(tier_key, bet))
-    dk_odds = bet.get("dk_odds")
+    dk_odds = bet_price(bet)
+    boosted = bet.get("boosted_odds") is not None
     stake = float(bet.get("stake", 0.0))
     game = bet.get("game", "") or ""
     kickoff_disp = _format_kickoff_et(bet.get("kickoff"), tz)
@@ -1128,15 +1327,22 @@ def render_card_bet(tier_key, bet, tz, historical=False):
         implied = odds.american_to_implied_prob(dk_odds)
         edge_val = odds.edge(est_prob, implied)
         edge_cls = "positive" if edge_val >= 0 else "negative"
+        boost_span = (f'<span class="prob"><span class="k">Before boost</span> <b>{format_odds(bet["dk_odds"])}</b></span>'
+                      if boosted else "")
         numbers = f'''<div class="prob-row">
     {reconstructed_tag}
     <span class="prob"><span class="k">Odds</span> <b>{format_odds(dk_odds)}{est_tag}</b></span>
+    {boost_span}
     <span class="prob"><span class="k">Implied</span> <b>{odds.format_prob(implied)}</b></span>
     <span class="prob"><span class="k">Est.</span> <b>{odds.format_prob(est_prob)}</b></span>
     <span class="prob"><span class="k">Edge</span> <b class="edge {edge_cls}">{odds.format_prob_signed(edge_val)}</b></span>
   </div>'''
         label, vcls = value_words(edge_val)
-        value_html = f'<span class="value-tag {vcls}">{label}</span>'
+        if is_parlay and edge_val < 0.02:
+            # Parlays stack DraftKings' cut on every leg -- say what it costs.
+            ev = odds.expected_value(est_prob, int(dk_odds))
+            label, vcls = (f"Just for fun: costs ~{round(-ev * 100)}¢ per $1", "fair") if ev < 0 else ("Just for fun", "fair")
+        value_html = f'<span class="value-tag {vcls}">{escape(label)}</span>'
 
     if is_parlay:
         leg_prob_cls = "leg-prob reconstructed" if historical else "leg-prob"
@@ -1165,7 +1371,7 @@ def render_card_bet(tier_key, bet, tz, historical=False):
   <h3 class="bet-title">{title}</h3>
   <p class="bet-money">{money_line}</p>
   <p class="bet-chance">{value_html} <span>{escape(chance_words(est_prob)).capitalize()}</span></p>
-  <p class="bet-when">{when} · <span class="odds">{format_odds(dk_odds)}{est_tag}</span></p>
+  <p class="bet-when">{when} · <span class="odds">{format_odds(dk_odds)}{est_tag}</span>{" · DK boost" if boosted else ""}</p>
   <p class="reason-summary">{escape(summary)}</p>
   {_reason_detail_html(bet, numbers)}
 </article>'''
@@ -1178,6 +1384,27 @@ def render_card_section(card, tz, historical=False):
         if card.get(tier):
             parts.append(render_card_bet(tier, card[tier], tz, historical=historical))
     return "".join(parts)
+
+
+def boost_value(b):
+    """Expected profit per $1 on a DraftKings boost, from its boosted price
+    and the sharp fair chance (estimated_prob). None if either is missing."""
+    if b.get("boosted_odds") is None or b.get("estimated_prob") is None:
+        return None
+    return odds.expected_value(float(b["estimated_prob"]), int(b["boosted_odds"]))
+
+
+def boost_worth_it(b):
+    ev = boost_value(b)
+    return bool(b.get("fits_card")) if ev is None else ev > 0
+
+
+def boost_verdict(b):
+    ev = boost_value(b)
+    if ev is None:
+        return "Fits card" if b.get("fits_card") else "No fit"
+    cents = round(abs(ev) * 100)
+    return f"Worth it: +{cents}¢ per $1 expected" if ev > 0 else f"Skip: still costs ~{cents}¢ per $1"
 
 
 def render_more_collapsibles(slot):
@@ -1199,8 +1426,8 @@ def render_more_collapsibles(slot):
     boosts = slot.get("boost_check") or []
     if boosts:
         items = "".join(
-            f'<div class="boost-item {"fits" if b.get("fits_card") else "no-fit"}">'
-            f'<p class="boost-verdict">{"Fits card" if b.get("fits_card") else "No fit"}</p>'
+            f'<div class="boost-item {"fits" if boost_worth_it(b) else "no-fit"}">'
+            f'<p class="boost-verdict">{escape(boost_verdict(b))}</p>'
             f'<p class="boost-desc">{escape(b.get("boost_description", ""))}</p></div>'
             for b in boosts
         )
@@ -1316,16 +1543,24 @@ def render_slot_row(slot_name, slot_date, status, slot_data, tz):
     if slot_data:
         card = slot_data.get("card") or {}
         items = []
-        for tier, short in (("easy_bet", "Easy"), ("fun_parlay", "Fun"), ("fun_parlay_2", "Fun #2"), ("lottery_ticket", "Lottery")):
+        for tier, short in (("easy_bet", "Main"), ("easy_bet_2", "Main #2"), ("fun_parlay", "Fun"),
+                            ("fun_parlay_2", "Fun #2"), ("lottery_ticket", "Lottery")):
             bet = card.get(tier)
             if not bet:
+                continue
+            if is_pass(bet):
+                items.append('''<li class="slot-bet">
+      <span class="slot-bet-tier">Main</span>
+      <span class="slot-bet-sel">Pass: no bet cleared the bar</span>
+      <span class="slot-bet-line">$0.00</span>
+    </li>''')
                 continue
             legs = bet.get("legs") or []
             sel = f"{len(legs)}-leg parlay" if legs else bet.get("selection", "")
             # odds_estimated: the DK price was never recorded (only reconstructed
             # after the fact) — never show an estimate as if it were the real line.
             odds_est = " est." if bet.get("odds_estimated") else ""
-            line = f"${float(bet.get('stake', 0.0)):.2f} · {format_odds(bet.get('dk_odds'))}{odds_est}"
+            line = f"${float(bet.get('stake', 0.0)):.2f} · {format_odds(bet_price(bet))}{odds_est}"
             badge = _result_badge_html(bet.get("result"), bet.get("net"))
             items.append(f'''<li class="slot-bet">
       <span class="slot-bet-tier">{short}</span>
@@ -1359,11 +1594,16 @@ def _weekend_stat_grid_html(status, config):
     net_cls = "positive" if net >= 0 else "negative"
     capacity_left = config["weekend_loss_limit"] + net - status["open_stakes"]
     cap_cls = "positive" if capacity_left >= 0 else "negative"
-    lottery_label = "Used" if status["lottery_used"] else "Available"
+    if sharp_rules_apply({"date": status["weekend_id"]}, config):
+        # The Lottery Ticket is retired under RULE 14 -- don't advertise one.
+        third = f'<div class="stat"><span class="label">Weekend limit</span><span class="value">${config["weekend_loss_limit"]:.0f}</span></div>'
+    else:
+        lottery_label = "Used" if status["lottery_used"] else "Available"
+        third = f'<div class="stat"><span class="label">Long shot</span><span class="value">{lottery_label}</span></div>'
     return f'''<div class="stat-grid">
   <div class="stat"><span class="label">This weekend</span><span class="value {net_cls}">{_money_signed(net)}</span></div>
   <div class="stat"><span class="label">Left to bet</span><span class="value {cap_cls}">${capacity_left:.2f}</span></div>
-  <div class="stat"><span class="label">Long shot</span><span class="value">{lottery_label}</span></div>
+  {third}
 </div>'''
 
 
@@ -1371,8 +1611,8 @@ def _slot_row_status(data, today):
     if data is None:
         return None
     card = data.get("card") or {}
-    tiers = [card.get(t) for t in ALL_TIERS if card.get(t)]
-    if tiers and all(t.get("result") is not None for t in tiers):
+    tiers = [b for _, b in live_tiers(card)]
+    if not tiers or all(t.get("result") is not None for t in tiers):
         return "graded"
     return "published"
 
@@ -1581,8 +1821,8 @@ def _last_weekend_html(prev_weekend_id, config, weekends_dir):
         off = slate._SLOT_OFFSET.get(s, 0)
         d = thursday + timedelta(days=off)
         card = data.get("card") or {}
-        tiers = [card.get(t) for t in ALL_TIERS if card.get(t)]
-        row_status = "graded" if tiers and all(t.get("result") is not None for t in tiers) else "published"
+        tiers = [b for _, b in live_tiers(card)]
+        row_status = "graded" if all(t.get("result") is not None for t in tiers) else "published"
         rows.append(render_slot_row(s, d, row_status, data, tz))
 
     if not rows:
@@ -1613,7 +1853,7 @@ def render_record(config, csv_path, weekends_dir, window):
         note_parts.append(f'<p class="record-note">{escape(caveat)}</p>')
     note = "".join(note_parts)
 
-    card_record_html = _card_record_html(compute_card_record(weekends_dir))
+    card_record_html = _card_record_html(compute_card_record(weekends_dir)) + _clv_html(compute_clv(weekends_dir))
 
     prev_weekend_id = (date.fromisoformat(window["weekend_id"]) - timedelta(days=7)).isoformat()
     last_weekend_html = _last_weekend_html(prev_weekend_id, config, weekends_dir)
@@ -1787,13 +2027,18 @@ def render_plan(window, config, weekends_dir, now, fantasy_dir=None):
     if picked and not picked[1].get("historical_import"):
         slot = picked[1]
         card = slot.get("card") or {}
-        bets = [(k, card[k]) for k in ALL_TIERS if card.get(k) and card[k].get("result") is None]
+        bets = [(k, b) for k, b in live_tiers(card) if b.get("result") is None and float(b.get("stake", 0.0)) > 0]
         total = sum(float(b.get("stake", 0.0)) for _, b in bets)
-        if bets and total > 0:
+        if bets:
             lines = [f"${float(b.get('stake', 0.0)):.2f} on {bet_title(k, b)}" for k, b in bets]
+            if is_pass(card.get("easy_bet")):
+                lines.insert(0, "No straight bet today: nothing beats the sharp price")
             items.append((f"bets-{slot.get('date')}", "DraftKings",
                           f"Place {len(bets)} bet{'s' if len(bets) != 1 else ''}: ${total:.2f} total", "", lines))
-        elif bets:
+        elif is_pass(card.get("easy_bet")):
+            items.append((f"bets-{slot.get('date')}", "DraftKings", "Pass today: no price is good enough",
+                          "Keeping your money is the smart bet", []))
+        elif live_tiers(card):
             items.append((f"bets-{slot.get('date')}", "DraftKings", "No bets today: weekend limit reached", "Watch only", []))
     else:
         items.append(("nobets", "DraftKings", "No bets today", f"Next card: {_next_card_full(window)}, around 9 AM", []))
