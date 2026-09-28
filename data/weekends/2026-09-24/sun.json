@@ -59,7 +59,9 @@
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
         "note": "Confirm the price in the DK app — the -135 is from 9/23-9/25 and Kalshi has since drifted toward Denver. Check Nacua's inactive status ~6:50 PM ET."
       },
-      "plain_summary": "LA should edge a Denver team that's struggled on offense, and the models like the Rams a bit more than DraftKings does. If DraftKings has them worse than -150, skip it."
+      "plain_summary": "LA should edge a Denver team that's struggled on offense, and the models like the Rams a bit more than DraftKings does. If DraftKings has them worse than -150, skip it.",
+      "result": "Lost",
+      "net": -0.3
     },
     "fun_parlay": {
       "id": "sun-fun-2026-09-27",
@@ -100,7 +102,9 @@
         "fetched_at": "2026-09-26 ~17:30 ET (Saturday-evening research run)",
         "note": "Confirm both prices and the combined parlay price in the DK app. Bills WR DJ Moore and DE Ed Oliver were questionable."
       },
-      "plain_summary": "Two big home favorites — both should win. The price is fair, not a steal, so it's a small bet."
+      "plain_summary": "Two big home favorites — both should win. The price is fair, not a steal, so it's a small bet.",
+      "result": "Won",
+      "net": 0.11
     },
     "fun_parlay_2": {
       "id": "sun-fun2-2026-09-27",
@@ -153,7 +157,9 @@
         "source": "DraftKings prices via scoresandodds.com prop pages; Kalshi public API (KXNFLREC-26SEP27LVNO-NOAKAMARA41-4, KXNFLREC-26SEP27SEAWAS-SEACKUPP10-3, KXNFLTOTAL-26SEP27LARDEN); predictionmarketspicks.com/nfl/props (lv-no, sea-was); CBS/SportsLine Week 3 over/under picks",
         "fetched_at": "2026-09-26 evening ET",
         "note": "Confirm all three prices and the parlay price in the DK app. Same-game-parlay rules don't apply -- three different games."
-      }
+      },
+      "result": "Lost",
+      "net": -0.1
     }
   },
   "leg_bank": [

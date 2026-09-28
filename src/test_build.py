@@ -518,30 +518,27 @@ class TestValidateBuild(unittest.TestCase):
 class TestScoreboardRealData(unittest.TestCase):
     def test_matches_known_all_time_totals(self):
         sb = compute_scoreboard(CSV_PATH)
-        self.assertEqual(sb["wins"], 1)
+        self.assertEqual(sb["wins"], 2)
         self.assertEqual(sb["cashouts"], 1)
-        self.assertEqual(sb["losses"], 21)
+        self.assertEqual(sb["losses"], 24)
         self.assertEqual(sb["open"], 2)
         self.assertEqual(sb["no_data_rows"], 1)
-        self.assertAlmostEqual(sb["cash_pl"], -59.93, delta=0.02)
-        self.assertAlmostEqual(sb["bankroll_remaining"], -9.93, delta=0.02)
-        self.assertTrue(sb["current_streak"].startswith("L"))
-        streak_len = int(sb["current_streak"][1:])
-        self.assertGreaterEqual(streak_len, 10)
-        self.assertLessEqual(streak_len, 20)
+        self.assertAlmostEqual(sb["cash_pl"], -62.36, delta=0.02)
+        self.assertAlmostEqual(sb["bankroll_remaining"], -12.36, delta=0.02)
+        self.assertEqual(sb["current_streak"], "L2")
 
 
 class TestScoreboardSeasonScoping(unittest.TestCase):
     def test_season_since_sep_1_2026(self):
         sb = compute_scoreboard(CSV_PATH, since="2026-09-01", starting_bankroll=50.00)
-        self.assertEqual(sb["wins"], 0)
-        self.assertEqual(sb["losses"], 10)
+        self.assertEqual(sb["wins"], 1)
+        self.assertEqual(sb["losses"], 13)
         self.assertEqual(sb["cashouts"], 0)
         self.assertEqual(sb["open"], 2)
         self.assertEqual(sb["no_data_rows"], 1)
-        self.assertAlmostEqual(sb["cash_pl"], -13.00, delta=0.01)
-        self.assertAlmostEqual(sb["bankroll_remaining"], 37.00, delta=0.01)
-        self.assertEqual(sb["current_streak"], "L10")
+        self.assertAlmostEqual(sb["cash_pl"], -15.43, delta=0.01)
+        self.assertAlmostEqual(sb["bankroll_remaining"], 34.57, delta=0.01)
+        self.assertEqual(sb["current_streak"], "L2")
 
 
 class TestFindEarliestDateLabel(unittest.TestCase):
@@ -697,8 +694,9 @@ class TestRenderPage(unittest.TestCase):
 class TestCardRecord(unittest.TestCase):
     def test_tallies_across_weekends(self):
         cr = compute_card_record(SEED_WEEKENDS_DIR)
-        self.assertEqual(cr["tiers12"]["L"], 2)
-        self.assertAlmostEqual(cr["net12"], -3.50, delta=1e-9)
+        self.assertEqual(cr["tiers12"]["W"], 1)
+        self.assertEqual(cr["tiers12"]["L"], 4)
+        self.assertAlmostEqual(cr["net12"], -3.79, delta=1e-9)
         self.assertEqual(cr["lottery"]["L"], 1)
 
     def test_empty_dir(self):
