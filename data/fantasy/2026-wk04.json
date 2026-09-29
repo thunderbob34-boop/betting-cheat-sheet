@@ -1,0 +1,808 @@
+{
+  "season": 2026,
+  "week": 4,
+  "generated_at": "2026-09-29T13:15:31.182423+00:00",
+  "scoring": "Full PPR",
+  "sources": "ESPN projection (league scoring) + Rotowire full-PPR projection (via Sleeper), averaged",
+  "leagues": [
+    {
+      "league_name": "Johnson’s Friends",
+      "league_id": 8873570,
+      "team_name": "Im Sorry Smith-Jaxson",
+      "slots": [
+        "QB",
+        "RB",
+        "RB",
+        "WR",
+        "WR",
+        "TE",
+        "FLEX",
+        "K",
+        "D/ST"
+      ],
+      "starters": [
+        {
+          "slot": "QB",
+          "player": {
+            "key": "4038941",
+            "name": "Justin Herbert",
+            "pos": "QB",
+            "team": "LAC",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T20:25:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "QB",
+            "espn": 13.7,
+            "rotowire": 14.22,
+            "proj": 13.96,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "RB",
+          "player": {
+            "key": "4241416",
+            "name": "Chuba Hubbard",
+            "pos": "RB",
+            "team": "CAR",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-05T00:20:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "RB",
+            "espn": 16.48,
+            "rotowire": 16.53,
+            "proj": 16.51,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "RB",
+          "player": {
+            "key": "4430737",
+            "name": "Kyren Williams",
+            "pos": "RB",
+            "team": "LAR",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T17:00:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "RB",
+            "espn": 13.02,
+            "rotowire": 13.35,
+            "proj": 13.18,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "WR",
+          "player": {
+            "key": "4430878",
+            "name": "Jaxon Smith-Njigba",
+            "pos": "WR",
+            "team": "SEA",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T20:25:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "WR",
+            "espn": 21.09,
+            "rotowire": 22.2,
+            "proj": 21.64,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "WR",
+          "player": {
+            "key": "4595348",
+            "name": "Malik Nabers",
+            "pos": "WR",
+            "team": "NYG",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T17:00:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "WR",
+            "espn": 13.66,
+            "rotowire": 13.64,
+            "proj": 13.65,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "TE",
+          "player": {
+            "key": "4431459",
+            "name": "Tyler Warren",
+            "pos": "TE",
+            "team": "IND",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T13:30:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "TE",
+            "espn": 13.07,
+            "rotowire": 11.45,
+            "proj": 12.26,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "FLEX",
+          "player": {
+            "key": "4360761",
+            "name": "Michael Wilson",
+            "pos": "WR",
+            "team": "ARI",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T17:00:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "FLEX",
+            "espn": 13.4,
+            "rotowire": 13.83,
+            "proj": 13.62,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "K",
+          "player": {
+            "key": "3051909",
+            "name": "Daniel Carlson",
+            "pos": "K",
+            "team": "NO",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-06T00:15:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "K",
+            "espn": 9.21,
+            "rotowire": 8.35,
+            "proj": 8.78,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "D/ST",
+          "player": {
+            "key": "-16019",
+            "name": "Giants D/ST",
+            "pos": "D/ST",
+            "team": "NYG",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T17:00:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "D/ST",
+            "espn": 7.61,
+            "rotowire": 6.87,
+            "proj": 7.24,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        }
+      ],
+      "bench": [
+        {
+          "key": "4432710",
+          "name": "TreVeyon Henderson",
+          "pos": "RB",
+          "team": "NE",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 9.62,
+          "rotowire": 12.99,
+          "proj": 11.3,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4569559",
+          "name": "Devaughn Vele",
+          "pos": "WR",
+          "team": "NO",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-06T00:15:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 10.68,
+          "rotowire": 10.22,
+          "proj": 10.45,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "15818",
+          "name": "Keenan Allen",
+          "pos": "WR",
+          "team": "IND",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T13:30:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 11.3,
+          "rotowire": 8.18,
+          "proj": 9.74,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4428718",
+          "name": "Tre Tucker",
+          "pos": "WR",
+          "team": "LV",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T20:25:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 9.89,
+          "rotowire": 8.74,
+          "proj": 9.32,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4595342",
+          "name": "Oronde Gadsden",
+          "pos": "TE",
+          "team": "LAC",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T20:25:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 7.13,
+          "rotowire": 6.57,
+          "proj": 6.85,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "-16004",
+          "name": "Bengals D/ST",
+          "pos": "D/ST",
+          "team": "CIN",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 5.93,
+          "rotowire": 6.43,
+          "proj": 6.18,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4429160",
+          "name": "De'Von Achane",
+          "pos": "RB",
+          "team": "MIA",
+          "status": "INJURY_RESERVE",
+          "bye": false,
+          "kickoff": "2026-10-04T20:05:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 0.0,
+          "rotowire": null,
+          "proj": 0.0,
+          "sources": [
+            "ESPN"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4360569",
+          "name": "Jordan Mason",
+          "pos": "RB",
+          "team": "MIN",
+          "status": "INJURY_RESERVE",
+          "bye": false,
+          "kickoff": "2026-10-04T20:05:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "IR",
+          "espn": 0.0,
+          "rotowire": null,
+          "proj": 0.0,
+          "sources": [
+            "ESPN"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "3116406",
+          "name": "Tyreek Hill",
+          "pos": "WR",
+          "team": "FA",
+          "status": "OUT",
+          "bye": false,
+          "kickoff": null,
+          "locked": false,
+          "actual": null,
+          "current_slot": "IR",
+          "espn": null,
+          "rotowire": null,
+          "proj": 0.0,
+          "sources": [],
+          "disagree": false
+        }
+      ],
+      "notes": [],
+      "changes": [],
+      "matchup": {
+        "opponent": "Love Story (Jordan's Version)",
+        "opp_proj": 120.2,
+        "my_best": 120.8,
+        "my_current": 120.8,
+        "win_prob_best": 0.507,
+        "win_prob_current": 0.507,
+        "espn_my_proj": 121.3,
+        "espn_opp_proj": 120.1,
+        "espn_win_prob": 0.51
+      }
+    },
+    {
+      "league_name": "Extrordinary Charlotteans ",
+      "league_id": 250898504,
+      "team_name": "Third Down For What?!",
+      "slots": [
+        "QB",
+        "RB",
+        "RB",
+        "WR",
+        "WR",
+        "TE",
+        "FLEX",
+        "K",
+        "D/ST"
+      ],
+      "starters": [
+        {
+          "slot": "QB",
+          "player": {
+            "key": "4360689",
+            "name": "Tyler Shough",
+            "pos": "QB",
+            "team": "NO",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-06T00:15:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "QB",
+            "espn": 19.21,
+            "rotowire": 18.76,
+            "proj": 18.98,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "RB",
+          "player": {
+            "key": "4242335",
+            "name": "Jonathan Taylor",
+            "pos": "RB",
+            "team": "IND",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T13:30:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "RB",
+            "espn": 20.46,
+            "rotowire": 20.74,
+            "proj": 20.6,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "RB",
+          "player": {
+            "key": "4567048",
+            "name": "Kenneth Walker III",
+            "pos": "RB",
+            "team": "KC",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T20:25:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "RB",
+            "espn": 20.55,
+            "rotowire": 18.5,
+            "proj": 19.52,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "WR",
+          "player": {
+            "key": "4361370",
+            "name": "Chris Olave",
+            "pos": "WR",
+            "team": "NO",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-06T00:15:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "WR",
+            "espn": 18.29,
+            "rotowire": 19.0,
+            "proj": 18.64,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "WR",
+          "player": {
+            "key": "4432620",
+            "name": "Parker Washington",
+            "pos": "WR",
+            "team": "JAX",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T17:00:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "WR",
+            "espn": 15.36,
+            "rotowire": 16.42,
+            "proj": 15.89,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "TE",
+          "player": {
+            "key": "5083076",
+            "name": "Harold Fannin Jr.",
+            "pos": "TE",
+            "team": "CLE",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-02T00:15:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "TE",
+            "espn": 11.23,
+            "rotowire": 11.86,
+            "proj": 11.54,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "FLEX",
+          "player": {
+            "key": "4695883",
+            "name": "Jalen Coker",
+            "pos": "WR",
+            "team": "CAR",
+            "status": "QUESTIONABLE",
+            "bye": false,
+            "kickoff": "2026-10-05T00:20:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "BENCH",
+            "espn": 13.82,
+            "rotowire": 14.48,
+            "proj": 14.15,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "K",
+          "player": {
+            "key": "3953687",
+            "name": "Brandon Aubrey",
+            "pos": "K",
+            "team": "DAL",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T17:00:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "K",
+            "espn": 9.54,
+            "rotowire": 8.91,
+            "proj": 9.22,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        },
+        {
+          "slot": "D/ST",
+          "player": {
+            "key": "-16014",
+            "name": "Rams D/ST",
+            "pos": "D/ST",
+            "team": "LAR",
+            "status": "ACTIVE",
+            "bye": false,
+            "kickoff": "2026-10-04T17:00:00+00:00",
+            "locked": false,
+            "actual": null,
+            "current_slot": "D/ST",
+            "espn": 5.88,
+            "rotowire": 7.64,
+            "proj": 6.76,
+            "sources": [
+              "ESPN",
+              "Rotowire"
+            ],
+            "disagree": false
+          }
+        }
+      ],
+      "bench": [
+        {
+          "key": "4426354",
+          "name": "George Pickens",
+          "pos": "WR",
+          "team": "DAL",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 13.76,
+          "rotowire": 13.84,
+          "proj": 13.8,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4595348",
+          "name": "Malik Nabers",
+          "pos": "WR",
+          "team": "NYG",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 13.63,
+          "rotowire": 13.64,
+          "proj": 13.64,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "16800",
+          "name": "Davante Adams",
+          "pos": "WR",
+          "team": "LAR",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "FLEX",
+          "espn": 14.56,
+          "rotowire": 12.05,
+          "proj": 13.3,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "16737",
+          "name": "Mike Evans",
+          "pos": "WR",
+          "team": "SF",
+          "status": "QUESTIONABLE",
+          "bye": false,
+          "kickoff": "2026-10-04T20:25:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 12.43,
+          "rotowire": 13.45,
+          "proj": 12.94,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4432710",
+          "name": "TreVeyon Henderson",
+          "pos": "RB",
+          "team": "NE",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 9.59,
+          "rotowire": 12.99,
+          "proj": 11.29,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "3117256",
+          "name": "Dalton Schultz",
+          "pos": "TE",
+          "team": "HOU",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 9.05,
+          "rotowire": 10.43,
+          "proj": 9.74,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4429160",
+          "name": "De'Von Achane",
+          "pos": "RB",
+          "team": "MIA",
+          "status": "INJURY_RESERVE",
+          "bye": false,
+          "kickoff": "2026-10-04T20:05:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 0.0,
+          "rotowire": null,
+          "proj": 0.0,
+          "sources": [
+            "ESPN"
+          ],
+          "disagree": false
+        }
+      ],
+      "notes": [
+        "Close call at FLEX: Jalen Coker 14.2 vs George Pickens 13.8 -- check inactives before kickoff.",
+        "Jalen Coker is questionable -- confirm he's active ~90 min before kickoff."
+      ],
+      "changes": [
+        "Start Jalen Coker (14.2) instead of Davante Adams (13.3)"
+      ],
+      "matchup": {
+        "opponent": "Blitz and Giggles",
+        "opp_proj": 127.7,
+        "my_best": 135.3,
+        "my_current": 134.4,
+        "win_prob_best": 0.586,
+        "win_prob_current": 0.576,
+        "espn_my_proj": 135.1,
+        "espn_opp_proj": 130.4,
+        "espn_win_prob": 0.52
+      }
+    }
+  ]
+}

@@ -61,7 +61,8 @@
       },
       "plain_summary": "LA should edge a Denver team that's struggled on offense, and the models like the Rams a bit more than DraftKings does. If DraftKings has them worse than -150, skip it.",
       "result": "Lost",
-      "net": -0.3
+      "net": -0.3,
+      "closing_odds": -102
     },
     "fun_parlay": {
       "id": "sun-fun-2026-09-27",
