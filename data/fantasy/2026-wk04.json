@@ -1,7 +1,7 @@
 {
   "season": 2026,
   "week": 4,
-  "generated_at": "2026-09-29T13:15:31.182423+00:00",
+  "generated_at": "2026-09-30T14:49:43.020949+00:00",
   "scoring": "Full PPR",
   "sources": "ESPN projection (league scoring) + Rotowire full-PPR projection (via Sleeper), averaged",
   "leagues": [
@@ -34,7 +34,7 @@
             "locked": false,
             "actual": null,
             "current_slot": "QB",
-            "espn": 13.7,
+            "espn": 13.69,
             "rotowire": 14.22,
             "proj": 13.96,
             "sources": [
@@ -57,9 +57,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "RB",
-            "espn": 16.48,
-            "rotowire": 16.53,
-            "proj": 16.51,
+            "espn": 16.49,
+            "rotowire": 16.19,
+            "proj": 16.34,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -80,9 +80,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "RB",
-            "espn": 13.02,
-            "rotowire": 13.35,
-            "proj": 13.18,
+            "espn": 13.13,
+            "rotowire": 13.53,
+            "proj": 13.33,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -104,8 +104,8 @@
             "actual": null,
             "current_slot": "WR",
             "espn": 21.09,
-            "rotowire": 22.2,
-            "proj": 21.64,
+            "rotowire": 22.16,
+            "proj": 21.62,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -116,19 +116,19 @@
         {
           "slot": "WR",
           "player": {
-            "key": "4595348",
-            "name": "Malik Nabers",
+            "key": "4360761",
+            "name": "Michael Wilson",
             "pos": "WR",
-            "team": "NYG",
+            "team": "ARI",
             "status": "ACTIVE",
             "bye": false,
             "kickoff": "2026-10-04T17:00:00+00:00",
             "locked": false,
             "actual": null,
-            "current_slot": "WR",
-            "espn": 13.66,
-            "rotowire": 13.64,
-            "proj": 13.65,
+            "current_slot": "FLEX",
+            "espn": 13.4,
+            "rotowire": 14.54,
+            "proj": 13.97,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -149,9 +149,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "TE",
-            "espn": 13.07,
-            "rotowire": 11.45,
-            "proj": 12.26,
+            "espn": 13.09,
+            "rotowire": 11.93,
+            "proj": 12.51,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -162,19 +162,19 @@
         {
           "slot": "FLEX",
           "player": {
-            "key": "4360761",
-            "name": "Michael Wilson",
+            "key": "4595348",
+            "name": "Malik Nabers",
             "pos": "WR",
-            "team": "ARI",
+            "team": "NYG",
             "status": "ACTIVE",
             "bye": false,
             "kickoff": "2026-10-04T17:00:00+00:00",
             "locked": false,
             "actual": null,
-            "current_slot": "FLEX",
-            "espn": 13.4,
-            "rotowire": 13.83,
-            "proj": 13.62,
+            "current_slot": "WR",
+            "espn": 13.68,
+            "rotowire": 14.0,
+            "proj": 13.84,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -195,9 +195,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "K",
-            "espn": 9.21,
-            "rotowire": 8.35,
-            "proj": 8.78,
+            "espn": 9.22,
+            "rotowire": 8.1,
+            "proj": 8.66,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -218,9 +218,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "D/ST",
-            "espn": 7.61,
-            "rotowire": 6.87,
-            "proj": 7.24,
+            "espn": 7.52,
+            "rotowire": 6.83,
+            "proj": 7.17,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -230,26 +230,6 @@
         }
       ],
       "bench": [
-        {
-          "key": "4432710",
-          "name": "TreVeyon Henderson",
-          "pos": "RB",
-          "team": "NE",
-          "status": "ACTIVE",
-          "bye": false,
-          "kickoff": "2026-10-04T17:00:00+00:00",
-          "locked": false,
-          "actual": null,
-          "current_slot": "BENCH",
-          "espn": 9.62,
-          "rotowire": 12.99,
-          "proj": 11.3,
-          "sources": [
-            "ESPN",
-            "Rotowire"
-          ],
-          "disagree": false
-        },
         {
           "key": "4569559",
           "name": "Devaughn Vele",
@@ -261,9 +241,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 10.68,
-          "rotowire": 10.22,
-          "proj": 10.45,
+          "espn": 10.67,
+          "rotowire": 10.4,
+          "proj": 10.54,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -281,9 +261,29 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 11.3,
-          "rotowire": 8.18,
-          "proj": 9.74,
+          "espn": 11.32,
+          "rotowire": 8.58,
+          "proj": 9.95,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4432710",
+          "name": "TreVeyon Henderson",
+          "pos": "RB",
+          "team": "NE",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 9.62,
+          "rotowire": 9.51,
+          "proj": 9.56,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -301,9 +301,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 9.89,
-          "rotowire": 8.74,
-          "proj": 9.32,
+          "espn": 9.32,
+          "rotowire": 8.52,
+          "proj": 8.92,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -322,8 +322,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 7.13,
-          "rotowire": 6.57,
-          "proj": 6.85,
+          "rotowire": 6.66,
+          "proj": 6.89,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -406,18 +406,29 @@
           "disagree": false
         }
       ],
-      "notes": [],
+      "notes": [
+        "Close call at D/ST: Giants D/ST 7.2 vs Bengals D/ST 6.2 -- check inactives before kickoff."
+      ],
       "changes": [],
       "matchup": {
         "opponent": "Love Story (Jordan's Version)",
-        "opp_proj": 120.2,
-        "my_best": 120.8,
-        "my_current": 120.8,
-        "win_prob_best": 0.507,
-        "win_prob_current": 0.507,
+        "opp_proj": 119.0,
+        "my_best": 121.4,
+        "my_current": 121.4,
+        "win_prob_best": 0.527,
+        "win_prob_current": 0.527,
         "espn_my_proj": 121.3,
-        "espn_opp_proj": 120.1,
-        "espn_win_prob": 0.51
+        "espn_opp_proj": 120.6,
+        "espn_win_prob": 0.5,
+        "with_pickups": {
+          "moves": [
+            "+Marcus Mariota / -Tyreek Hill",
+            "+Packers D/ST / -Bengals D/ST",
+            "+Will Reichard / -Daniel Carlson"
+          ],
+          "my_best": 127.1,
+          "win_prob": 0.592
+        }
       }
     },
     {
@@ -450,8 +461,8 @@
             "actual": null,
             "current_slot": "QB",
             "espn": 19.21,
-            "rotowire": 18.76,
-            "proj": 18.98,
+            "rotowire": 18.86,
+            "proj": 19.04,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -472,9 +483,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "RB",
-            "espn": 20.46,
-            "rotowire": 20.74,
-            "proj": 20.6,
+            "espn": 20.45,
+            "rotowire": 21.51,
+            "proj": 20.98,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -495,9 +506,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "RB",
-            "espn": 20.55,
-            "rotowire": 18.5,
-            "proj": 19.52,
+            "espn": 20.56,
+            "rotowire": 19.84,
+            "proj": 20.2,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -519,8 +530,8 @@
             "actual": null,
             "current_slot": "WR",
             "espn": 18.29,
-            "rotowire": 19.0,
-            "proj": 18.64,
+            "rotowire": 19.28,
+            "proj": 18.79,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -542,8 +553,8 @@
             "actual": null,
             "current_slot": "WR",
             "espn": 15.36,
-            "rotowire": 16.42,
-            "proj": 15.89,
+            "rotowire": 17.04,
+            "proj": 16.2,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -565,8 +576,8 @@
             "actual": null,
             "current_slot": "TE",
             "espn": 11.23,
-            "rotowire": 11.86,
-            "proj": 11.54,
+            "rotowire": 12.17,
+            "proj": 11.7,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -577,19 +588,19 @@
         {
           "slot": "FLEX",
           "player": {
-            "key": "4695883",
-            "name": "Jalen Coker",
+            "key": "16800",
+            "name": "Davante Adams",
             "pos": "WR",
-            "team": "CAR",
-            "status": "QUESTIONABLE",
+            "team": "LAR",
+            "status": "ACTIVE",
             "bye": false,
-            "kickoff": "2026-10-05T00:20:00+00:00",
+            "kickoff": "2026-10-04T17:00:00+00:00",
             "locked": false,
             "actual": null,
-            "current_slot": "BENCH",
-            "espn": 13.82,
-            "rotowire": 14.48,
-            "proj": 14.15,
+            "current_slot": "FLEX",
+            "espn": 14.7,
+            "rotowire": 15.91,
+            "proj": 15.3,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -610,9 +621,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "K",
-            "espn": 9.54,
-            "rotowire": 8.91,
-            "proj": 9.22,
+            "espn": 9.55,
+            "rotowire": 8.83,
+            "proj": 9.19,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -633,9 +644,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "D/ST",
-            "espn": 5.88,
-            "rotowire": 7.64,
-            "proj": 6.76,
+            "espn": 6.27,
+            "rotowire": 7.56,
+            "proj": 6.91,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -645,6 +656,26 @@
         }
       ],
       "bench": [
+        {
+          "key": "4695883",
+          "name": "Jalen Coker",
+          "pos": "WR",
+          "team": "CAR",
+          "status": "QUESTIONABLE",
+          "bye": false,
+          "kickoff": "2026-10-05T00:20:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 13.82,
+          "rotowire": 14.91,
+          "proj": 14.37,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
         {
           "key": "4426354",
           "name": "George Pickens",
@@ -657,8 +688,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 13.76,
-          "rotowire": 13.84,
-          "proj": 13.8,
+          "rotowire": 14.64,
+          "proj": 14.2,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -676,29 +707,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 13.63,
-          "rotowire": 13.64,
-          "proj": 13.64,
-          "sources": [
-            "ESPN",
-            "Rotowire"
-          ],
-          "disagree": false
-        },
-        {
-          "key": "16800",
-          "name": "Davante Adams",
-          "pos": "WR",
-          "team": "LAR",
-          "status": "ACTIVE",
-          "bye": false,
-          "kickoff": "2026-10-04T17:00:00+00:00",
-          "locked": false,
-          "actual": null,
-          "current_slot": "FLEX",
-          "espn": 14.56,
-          "rotowire": 12.05,
-          "proj": 13.3,
+          "espn": 13.64,
+          "rotowire": 14.0,
+          "proj": 13.82,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -716,29 +727,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 12.43,
-          "rotowire": 13.45,
-          "proj": 12.94,
-          "sources": [
-            "ESPN",
-            "Rotowire"
-          ],
-          "disagree": false
-        },
-        {
-          "key": "4432710",
-          "name": "TreVeyon Henderson",
-          "pos": "RB",
-          "team": "NE",
-          "status": "ACTIVE",
-          "bye": false,
-          "kickoff": "2026-10-04T17:00:00+00:00",
-          "locked": false,
-          "actual": null,
-          "current_slot": "BENCH",
-          "espn": 9.59,
-          "rotowire": 12.99,
-          "proj": 11.29,
+          "espn": 12.42,
+          "rotowire": 13.91,
+          "proj": 13.16,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -757,8 +748,28 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 9.05,
-          "rotowire": 10.43,
-          "proj": 9.74,
+          "rotowire": 10.5,
+          "proj": 9.78,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4432710",
+          "name": "TreVeyon Henderson",
+          "pos": "RB",
+          "team": "NE",
+          "status": "ACTIVE",
+          "bye": false,
+          "kickoff": "2026-10-04T17:00:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 9.58,
+          "rotowire": 9.51,
+          "proj": 9.54,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -775,7 +786,7 @@
           "kickoff": "2026-10-04T20:05:00+00:00",
           "locked": false,
           "actual": null,
-          "current_slot": "BENCH",
+          "current_slot": "IR",
           "espn": 0.0,
           "rotowire": null,
           "proj": 0.0,
@@ -786,22 +797,26 @@
         }
       ],
       "notes": [
-        "Close call at FLEX: Jalen Coker 14.2 vs George Pickens 13.8 -- check inactives before kickoff.",
-        "Jalen Coker is questionable -- confirm he's active ~90 min before kickoff."
+        "Close call at FLEX: Davante Adams 15.3 vs Jalen Coker 14.4 -- check inactives before kickoff."
       ],
-      "changes": [
-        "Start Jalen Coker (14.2) instead of Davante Adams (13.3)"
-      ],
+      "changes": [],
       "matchup": {
         "opponent": "Blitz and Giggles",
-        "opp_proj": 127.7,
-        "my_best": 135.3,
-        "my_current": 134.4,
-        "win_prob_best": 0.586,
-        "win_prob_current": 0.576,
-        "espn_my_proj": 135.1,
-        "espn_opp_proj": 130.4,
-        "espn_win_prob": 0.52
+        "opp_proj": 129.0,
+        "my_best": 138.3,
+        "my_current": 138.3,
+        "win_prob_best": 0.605,
+        "win_prob_current": 0.605,
+        "espn_my_proj": 135.6,
+        "espn_opp_proj": 130.6,
+        "espn_win_prob": 0.52,
+        "with_pickups": {
+          "moves": [
+            "+Packers D/ST / -Rams D/ST"
+          ],
+          "my_best": 138.7,
+          "win_prob": 0.609
+        }
       }
     }
   ]
