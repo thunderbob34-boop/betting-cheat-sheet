@@ -1,0 +1,317 @@
+{
+ "weekend_id": "2026-10-01",
+ "slot": "thu",
+ "date": "2026-10-01",
+ "sport": "NFL",
+ "generated_at": "2026-10-01T09:30:00-04:00",
+ "is_sample": false,
+ "budget": {
+  "capacity": 5.0,
+  "settled_net": 0.0,
+  "open_stakes": 0.0,
+  "slots_remaining": 4,
+  "total": 1.25,
+  "easy": 1.0,
+  "fun": 0.25,
+  "lottery_available": true,
+  "why": "Even this weekend -> $5.00 available across 4 slots."
+ },
+ "angles": [
+  "Steelers (2-1) at Browns (2-1), 8:15 PM ET. Sharp market: Pittsburgh about 58% to win (Pinnacle 58.0%, Kalshi 57.5%), total 38.5 with the under a slight favorite.",
+  "DraftKings' prices tonight are all at or worse than the sharp fair price -- every main line and every prop we could compare at the same number. That's a Pass.",
+  "Injuries (final report): PIT -- RB Rico Dowdle and CB Joey Porter Jr. OUT, CBs Jalen Ramsey and Brandin Echols questionable. CLE -- WR Tylan Wallace, G Teven Jenkins, C Elgton Jenkins OUT (two interior linemen down).",
+  "Weather: about 70 degrees, cloudy, wind near 10 mph, small chance of rain (Covers).",
+  "No 0-2 teams in this game.",
+  "Props where DK's number differs from Pinnacle's (Rodgers 215.5 vs 214.5 pass yards, Watson 186.5 vs 185.5, Fannin 40.5 vs 38.5 receiving yards) aren't compared -- different lines aren't the same bet.",
+  "No Fun Parlay: the only DK-priced leg we read that's 55%+ is the Steelers moneyline, and it's priced worse than fair. Two legs at 55%+ weren't available, so the $0.25 stays in your pocket and rolls to Saturday-Monday."
+ ],
+ "card": {
+  "easy_bet": {
+   "pass": true,
+   "stake": 0,
+   "plain_summary": "Nothing on DraftKings tonight is priced better than the sharp books. Skip Thursday -- the money carries to the weekend.",
+   "reason": "Pass. Closest was Under 38.5 at DK -115 (53.5% implied) vs sharp fair 52.4% (Pinnacle 52.2%, Kalshi 52.5%) -- edge about -1.1%, short of the +2% bar. Steelers ML -148 vs fair 57.8% (-1.9%); Browns ML +124 vs fair 42.3% (-2.4%); Steelers -2.5 -120 vs Kalshi 52.5% (-2.0%); Watson over 28.5 pass attempts -115 vs Pinnacle 52.3% (-1.2%). Same-line props (Warren/Judkins rushing, Metcalf receiving) all -1% to -5%. Retail color (not used as probability): Covers lists the game PIT 57% / CLE 43%.",
+   "verify": {
+    "source": "DK: ESPN odds page https://www.espn.com/nfl/odds/_/gameId/401872964 ; DK Network props articles 9/30-10/1. Sharp: Pinnacle via src/sharp.py board; Kalshi KXNFLGAME/SPREAD/TOTAL-26OCT01PITCLE.",
+    "fetched_at": "2026-10-01 ~9:15-9:30 ET",
+    "note": "If DK moves to Under 38.5 at -105 or better, or Steelers ML at -130 or better, that would clear the bar -- otherwise skip."
+   }
+  }
+ },
+ "leg_bank": [
+  {
+   "selection": "Pittsburgh Steelers ML (at CLE)",
+   "market": "moneyline",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "PIT leading",
+   "dk_odds": -148,
+   "estimated_prob": 0.5775,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.58,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.575,
+     "url": "https://kalshi.com (KXNFLGAME/KXNFLSPREAD/KXNFLTOTAL-26OCT01PITCLE midpoints, fetched 2026-10-01 ~9:20 ET)"
+    }
+   ],
+   "reason": "DK -148 implies 59.7%; sharp fair 57.8%. About -1.9%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964"
+  },
+  {
+   "selection": "Cleveland Browns ML (vs PIT)",
+   "market": "moneyline",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "CLE leading",
+   "dk_odds": 124,
+   "estimated_prob": 0.4225,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.42,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.425,
+     "url": "https://kalshi.com (KXNFLGAME/KXNFLSPREAD/KXNFLTOTAL-26OCT01PITCLE midpoints, fetched 2026-10-01 ~9:20 ET)"
+    }
+   ],
+   "reason": "DK +124 implies 44.6%; sharp fair 42.3%. About -2.4%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964"
+  },
+  {
+   "selection": "Over 38.5 total points",
+   "market": "total",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -105,
+   "estimated_prob": 0.4765,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.478,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.475,
+     "url": "https://kalshi.com (KXNFLGAME/KXNFLSPREAD/KXNFLTOTAL-26OCT01PITCLE midpoints, fetched 2026-10-01 ~9:20 ET)"
+    }
+   ],
+   "reason": "DK -105 implies 51.2%; sharp fair 47.7%. About -3.5%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964"
+  },
+  {
+   "selection": "Under 38.5 total points",
+   "market": "total",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.5235,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.522,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.525,
+     "url": "https://kalshi.com (KXNFLGAME/KXNFLSPREAD/KXNFLTOTAL-26OCT01PITCLE midpoints, fetched 2026-10-01 ~9:20 ET)"
+    }
+   ],
+   "reason": "DK -115 implies 53.5%; sharp fair 52.4%. About -1.1% -- closest thing to a value bet tonight, still short.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964"
+  },
+  {
+   "selection": "Pittsburgh Steelers -2.5",
+   "market": "spread",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "PIT leading",
+   "dk_odds": -120,
+   "estimated_prob": 0.525,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.525,
+     "url": "https://kalshi.com (KXNFLGAME/KXNFLSPREAD/KXNFLTOTAL-26OCT01PITCLE midpoints, fetched 2026-10-01 ~9:20 ET)"
+    }
+   ],
+   "reason": "Kalshi 'PIT wins by over 2.5' 52.5% vs DK -120 (54.5%). About -2%. Pinnacle hangs -3, a different number, so only one source.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "single_source": true
+  },
+  {
+   "selection": "Cleveland Browns +2.5",
+   "market": "spread",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "CLE leading",
+   "dk_odds": 100,
+   "estimated_prob": 0.475,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.475,
+     "url": "https://kalshi.com (KXNFLGAME/KXNFLSPREAD/KXNFLTOTAL-26OCT01PITCLE midpoints, fetched 2026-10-01 ~9:20 ET)"
+    }
+   ],
+   "reason": "Kalshi 47.5% vs DK +100 (50%). About -2.5%. Pinnacle hangs +3 -- not comparable.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "single_source": true
+  },
+  {
+   "selection": "Jaylen Warren over 75.5 rushing yards",
+   "market": "rushing_yards",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "PIT leading",
+   "dk_odds": -110,
+   "estimated_prob": 0.5,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    }
+   ],
+   "reason": "Pinnacle 50/50 at the same 75.5; DK -110 = 52.4%. About -2.4%. Rico Dowdle is out, so Warren's workload should be steady -- the line already shows it.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "player": "Jaylen Warren",
+   "single_source": true
+  },
+  {
+   "selection": "Jaylen Warren under 75.5 rushing yards",
+   "market": "rushing_yards",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "PIT trailing",
+   "dk_odds": -114,
+   "estimated_prob": 0.5,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    }
+   ],
+   "reason": "Pinnacle 50% vs DK -114 (53.3%). About -3.3%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "player": "Jaylen Warren",
+   "single_source": true
+  },
+  {
+   "selection": "Quinshon Judkins over 55.5 rushing yards",
+   "market": "rushing_yards",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "CLE leading",
+   "dk_odds": -110,
+   "estimated_prob": 0.514,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.514,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    }
+   ],
+   "reason": "Pinnacle 51.4% vs DK -110 (52.4%). About -1%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "player": "Quinshon Judkins",
+   "single_source": true
+  },
+  {
+   "selection": "Quinshon Judkins under 55.5 rushing yards",
+   "market": "rushing_yards",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "CLE trailing",
+   "dk_odds": -114,
+   "estimated_prob": 0.486,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.486,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    }
+   ],
+   "reason": "Pinnacle 48.6% vs DK -114 (53.3%). About -4.7%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "player": "Quinshon Judkins",
+   "single_source": true
+  },
+  {
+   "selection": "DK Metcalf over 45.5 receiving yards",
+   "market": "receiving_yards",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -109,
+   "estimated_prob": 0.5,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    }
+   ],
+   "reason": "Pinnacle 50% vs DK -109 (52.2%). About -2.2%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "player": "DK Metcalf",
+   "single_source": true
+  },
+  {
+   "selection": "DK Metcalf under 45.5 receiving yards",
+   "market": "receiving_yards",
+   "game": "PIT @ CLE",
+   "kickoff": "2026-10-01T20:15:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.5,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-01 ~9:15 ET)"
+    }
+   ],
+   "reason": "Pinnacle 50% vs DK -115 (53.5%). About -3.5%.",
+   "source": "DK price from ESPN's DraftKings odds page (fetched 2026-10-01 ~9:25 ET) https://www.espn.com/nfl/odds/_/gameId/401872964",
+   "player": "DK Metcalf",
+   "single_source": true
+  }
+ ],
+ "boost_check": [
+  {
+   "boost_description": "DraftKings promotions page not read this run (not reachable without logging in, and this run never logs in). Check the Promos tab in the app; only take a boost if it's on a bet whose boosted price beats the fair chances above.",
+   "fits_card": false
+  }
+ ],
+ "avoid_list": [
+  {
+   "selection": "Over 38.5 (-105)",
+   "why_avoid": "Implies 51.2%; Pinnacle and Kalshi both have it ~47.7%. The worst-priced main line on the board."
+  },
+  {
+   "selection": "Cleveland Browns ML +124",
+   "why_avoid": "Implies 44.6% vs a 42.3% fair chance. Two Browns interior linemen are out."
+  },
+  {
+   "selection": "Deshaun Watson 2+ passing TDs (+259 to +268)",
+   "why_avoid": "Pinnacle has Watson only 64% to throw even one TD; the DK SGP articles push this leg, and there's no sharp price at 2+ to back it."
+  },
+  {
+   "selection": "DK Network's same-game parlays (+750, +3200)",
+   "why_avoid": "Built from legs DK prices at or worse than fair; stacking them compounds the house edge."
+  }
+ ]
+}

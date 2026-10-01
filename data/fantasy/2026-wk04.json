@@ -1,7 +1,7 @@
 {
   "season": 2026,
   "week": 4,
-  "generated_at": "2026-09-30T14:49:43.020949+00:00",
+  "generated_at": "2026-10-01T15:48:25.621629+00:00",
   "scoring": "Full PPR",
   "sources": "ESPN projection (league scoring) + Rotowire full-PPR projection (via Sleeper), averaged",
   "leagues": [
@@ -57,8 +57,8 @@
             "locked": false,
             "actual": null,
             "current_slot": "RB",
-            "espn": 16.49,
-            "rotowire": 16.19,
+            "espn": 16.47,
+            "rotowire": 16.2,
             "proj": 16.34,
             "sources": [
               "ESPN",
@@ -81,8 +81,8 @@
             "actual": null,
             "current_slot": "RB",
             "espn": 13.13,
-            "rotowire": 13.53,
-            "proj": 13.33,
+            "rotowire": 13.56,
+            "proj": 13.35,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -126,9 +126,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "FLEX",
-            "espn": 13.4,
-            "rotowire": 14.54,
-            "proj": 13.97,
+            "espn": 13.41,
+            "rotowire": 14.61,
+            "proj": 14.01,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -150,8 +150,8 @@
             "actual": null,
             "current_slot": "TE",
             "espn": 13.09,
-            "rotowire": 11.93,
-            "proj": 12.51,
+            "rotowire": 11.98,
+            "proj": 12.54,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -173,8 +173,8 @@
             "actual": null,
             "current_slot": "WR",
             "espn": 13.68,
-            "rotowire": 14.0,
-            "proj": 13.84,
+            "rotowire": 13.92,
+            "proj": 13.8,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -196,8 +196,8 @@
             "actual": null,
             "current_slot": "K",
             "espn": 9.22,
-            "rotowire": 8.1,
-            "proj": 8.66,
+            "rotowire": 8.03,
+            "proj": 8.62,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -218,9 +218,9 @@
             "locked": false,
             "actual": null,
             "current_slot": "D/ST",
-            "espn": 7.52,
-            "rotowire": 6.83,
-            "proj": 7.17,
+            "espn": 7.62,
+            "rotowire": 6.77,
+            "proj": 7.2,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -242,8 +242,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 10.67,
-          "rotowire": 10.4,
-          "proj": 10.54,
+          "rotowire": 10.32,
+          "proj": 10.5,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -262,8 +262,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 11.32,
-          "rotowire": 8.58,
-          "proj": 9.95,
+          "rotowire": 8.62,
+          "proj": 9.97,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -281,9 +281,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 9.62,
-          "rotowire": 9.51,
-          "proj": 9.56,
+          "espn": 9.61,
+          "rotowire": 9.5,
+          "proj": 9.55,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -302,8 +302,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 9.32,
-          "rotowire": 8.52,
-          "proj": 8.92,
+          "rotowire": 8.55,
+          "proj": 8.94,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -321,9 +321,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 7.13,
+          "espn": 7.1,
           "rotowire": 6.66,
-          "proj": 6.89,
+          "proj": 6.88,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -341,9 +341,9 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 5.93,
+          "espn": 5.91,
           "rotowire": 6.43,
-          "proj": 6.18,
+          "proj": 6.17,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -406,20 +406,18 @@
           "disagree": false
         }
       ],
-      "notes": [
-        "Close call at D/ST: Giants D/ST 7.2 vs Bengals D/ST 6.2 -- check inactives before kickoff."
-      ],
+      "notes": [],
       "changes": [],
       "matchup": {
         "opponent": "Love Story (Jordan's Version)",
-        "opp_proj": 119.0,
+        "opp_proj": 109.5,
         "my_best": 121.4,
         "my_current": 121.4,
-        "win_prob_best": 0.527,
-        "win_prob_current": 0.527,
-        "espn_my_proj": 121.3,
-        "espn_opp_proj": 120.6,
-        "espn_win_prob": 0.5,
+        "win_prob_best": 0.633,
+        "win_prob_current": 0.633,
+        "espn_my_proj": 121.4,
+        "espn_opp_proj": 108.3,
+        "espn_win_prob": 0.57,
         "with_pickups": {
           "moves": [
             "+Marcus Mariota / -Tyreek Hill",
@@ -427,7 +425,7 @@
             "+Will Reichard / -Daniel Carlson"
           ],
           "my_best": 127.1,
-          "win_prob": 0.592
+          "win_prob": 0.692
         }
       }
     },
@@ -461,8 +459,8 @@
             "actual": null,
             "current_slot": "QB",
             "espn": 19.21,
-            "rotowire": 18.86,
-            "proj": 19.04,
+            "rotowire": 18.65,
+            "proj": 18.93,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -484,8 +482,8 @@
             "actual": null,
             "current_slot": "RB",
             "espn": 20.45,
-            "rotowire": 21.51,
-            "proj": 20.98,
+            "rotowire": 21.55,
+            "proj": 21.0,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -507,8 +505,8 @@
             "actual": null,
             "current_slot": "RB",
             "espn": 20.56,
-            "rotowire": 19.84,
-            "proj": 20.2,
+            "rotowire": 19.89,
+            "proj": 20.23,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -530,8 +528,8 @@
             "actual": null,
             "current_slot": "WR",
             "espn": 18.29,
-            "rotowire": 19.28,
-            "proj": 18.79,
+            "rotowire": 19.11,
+            "proj": 18.7,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -553,8 +551,8 @@
             "actual": null,
             "current_slot": "WR",
             "espn": 15.36,
-            "rotowire": 17.04,
-            "proj": 16.2,
+            "rotowire": 17.08,
+            "proj": 16.22,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -576,8 +574,8 @@
             "actual": null,
             "current_slot": "TE",
             "espn": 11.23,
-            "rotowire": 12.17,
-            "proj": 11.7,
+            "rotowire": 12.22,
+            "proj": 11.73,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -599,8 +597,8 @@
             "actual": null,
             "current_slot": "FLEX",
             "espn": 14.7,
-            "rotowire": 15.91,
-            "proj": 15.3,
+            "rotowire": 15.96,
+            "proj": 15.33,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -622,8 +620,8 @@
             "actual": null,
             "current_slot": "K",
             "espn": 9.55,
-            "rotowire": 8.83,
-            "proj": 9.19,
+            "rotowire": 8.79,
+            "proj": 9.17,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -645,8 +643,8 @@
             "actual": null,
             "current_slot": "D/ST",
             "espn": 6.27,
-            "rotowire": 7.56,
-            "proj": 6.91,
+            "rotowire": 7.58,
+            "proj": 6.92,
             "sources": [
               "ESPN",
               "Rotowire"
@@ -656,26 +654,6 @@
         }
       ],
       "bench": [
-        {
-          "key": "4695883",
-          "name": "Jalen Coker",
-          "pos": "WR",
-          "team": "CAR",
-          "status": "QUESTIONABLE",
-          "bye": false,
-          "kickoff": "2026-10-05T00:20:00+00:00",
-          "locked": false,
-          "actual": null,
-          "current_slot": "BENCH",
-          "espn": 13.82,
-          "rotowire": 14.91,
-          "proj": 14.37,
-          "sources": [
-            "ESPN",
-            "Rotowire"
-          ],
-          "disagree": false
-        },
         {
           "key": "4426354",
           "name": "George Pickens",
@@ -688,8 +666,28 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 13.76,
-          "rotowire": 14.64,
-          "proj": 14.2,
+          "rotowire": 14.61,
+          "proj": 14.18,
+          "sources": [
+            "ESPN",
+            "Rotowire"
+          ],
+          "disagree": false
+        },
+        {
+          "key": "4695883",
+          "name": "Jalen Coker",
+          "pos": "WR",
+          "team": "CAR",
+          "status": "QUESTIONABLE",
+          "bye": false,
+          "kickoff": "2026-10-05T00:20:00+00:00",
+          "locked": false,
+          "actual": null,
+          "current_slot": "BENCH",
+          "espn": 13.09,
+          "rotowire": 14.91,
+          "proj": 14.0,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -708,8 +706,8 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 13.64,
-          "rotowire": 14.0,
-          "proj": 13.82,
+          "rotowire": 13.92,
+          "proj": 13.78,
           "sources": [
             "ESPN",
             "Rotowire"
@@ -748,7 +746,7 @@
           "actual": null,
           "current_slot": "BENCH",
           "espn": 9.05,
-          "rotowire": 10.5,
+          "rotowire": 10.51,
           "proj": 9.78,
           "sources": [
             "ESPN",
@@ -767,8 +765,8 @@
           "locked": false,
           "actual": null,
           "current_slot": "BENCH",
-          "espn": 9.58,
-          "rotowire": 9.51,
+          "espn": 9.57,
+          "rotowire": 9.5,
           "proj": 9.54,
           "sources": [
             "ESPN",
@@ -796,17 +794,15 @@
           "disagree": false
         }
       ],
-      "notes": [
-        "Close call at FLEX: Davante Adams 15.3 vs Jalen Coker 14.4 -- check inactives before kickoff."
-      ],
+      "notes": [],
       "changes": [],
       "matchup": {
         "opponent": "Blitz and Giggles",
-        "opp_proj": 129.0,
-        "my_best": 138.3,
-        "my_current": 138.3,
-        "win_prob_best": 0.605,
-        "win_prob_current": 0.605,
+        "opp_proj": 129.1,
+        "my_best": 138.2,
+        "my_current": 138.2,
+        "win_prob_best": 0.603,
+        "win_prob_current": 0.603,
         "espn_my_proj": 135.6,
         "espn_opp_proj": 130.6,
         "espn_win_prob": 0.52,
@@ -814,8 +810,8 @@
           "moves": [
             "+Packers D/ST / -Rams D/ST"
           ],
-          "my_best": 138.7,
-          "win_prob": 0.609
+          "my_best": 138.5,
+          "win_prob": 0.606
         }
       }
     }

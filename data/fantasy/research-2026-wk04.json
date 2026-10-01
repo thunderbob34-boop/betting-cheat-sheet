@@ -1,81 +1,98 @@
 {
-  "season": 2026,
-  "week": 4,
-  "researched_at": "2026-09-30 morning ET (Wednesday run)",
-  "leagues": {
-    "8873570": {
-      "verdict": "Starting lineup is right as it stands (no bench player outranks a starter). The gains are all in free agency: Marcus Mariota over Herbert at QB (if Daniels stays out), Packers D/ST over the Giants, and Will Reichard over Carlson at K. Mariota's game is in London and locks Sunday 9:30 AM ET.",
-      "players": {
-        "Justin Herbert": "QB23 by expert consensus (D- grade). Chargers are 7.5-pt underdogs at Seattle, total 43. Projects ~14. Start him only if Jayden Daniels is named Washington's starter.",
-        "Jaxon Smith-Njigba": "Consensus WR1 (range 1-2) vs LAC. Must start.",
-        "Malik Nabers": "WR19 (range 15-25) vs ARI at home, clean weather. Start.",
-        "Michael Wilson": "WR23 (range 21-27) at NYG. Start — just ahead of Vele (WR25).",
-        "Devaughn Vele": "WR25, dome game Monday night vs ATL. First WR off the bench; about even with Wilson.",
-        "Keenan Allen": "WR36. Bench.",
-        "Tre Tucker": "WR46. Bench.",
-        "Chuba Hubbard": "RB14 vs DET. 66% rain chance in Carolina — wet game suits a run-heavy plan. Start.",
-        "Kyren Williams": "RB13 at PHI (33% rain). Start.",
-        "TreVeyon Henderson": "RB25 at BUF, Patriots are 7-pt underdogs (trailing script hurts RB carries). Bench.",
-        "Tyler Warren": "TE7 at WAS (London, 46% rain). Start.",
-        "Oronde Gadsden": "TE24. Bench.",
-        "Daniel Carlson": "K16. Indoors Monday, but free agent Will Reichard (K5) projects higher.",
-        "Giants D/ST": "DST17 (D+ grade) vs ARI, Giants are 2-pt home underdogs. Free agent Packers D/ST is the better play.",
-        "Bengals D/ST": "DST23 vs JAX in a 51-point game. Bench/drop.",
-        "Tyreek Hill": "Listed with no NFL team (FA) and OUT — zero points. Safe roster spot to free up.",
-        "De'Von Achane": "On IR, 0 projected.",
-        "Jordan Mason": "On IR, 0 projected."
-      },
-      "waivers": [
-        "Add Marcus Mariota (QB, WAS), drop Tyreek Hill. Mariota is QB18 (Herbert QB23) and projects ~18 vs Herbert's ~14; he threw 3 TDs in last week's 33-31 win over Seattle. Daniels (elbow) is practicing in some form but is 'far from certain' for Sunday — check Friday's news. If Daniels is named the starter, start Herbert.",
-        "Add Packers D/ST, drop Bengals D/ST. Packers are DST5, favored by 3.5 at Tampa in a 39.5-point game (lowest total of the Sunday afternoon slate). Start them over the Giants (DST17).",
-        "Optional: add Will Reichard (K, MIN), drop Daniel Carlson. K5 vs K16, projects ~9.3 vs ~8.7; Minnesota is an 11-pt home favorite indoors."
-      ],
-      "moves": [
-        {"add": "Marcus Mariota", "drop": "Tyreek Hill", "why": "QB18 vs Herbert's QB23, ~4 more projected points (only if Daniels stays out)"},
-        {"add": "Packers D/ST", "drop": "Bengals D/ST", "why": "ranked 5th D/ST this week, favored in a low-scoring game"},
-        {"add": "Will Reichard", "drop": "Daniel Carlson", "why": "top-5 kicker for a big home favorite"}
-      ],
-      "sources": [
-        "FantasyPros Week 4 consensus rankings, ecrData (QB, PPR RB/WR/TE, DST, K; updated 9/30, 8-12 experts)",
-        "ESPN league free-agent list (kona_player_info, league scoring) + Rotowire projections via Sleeper",
-        "Pinnacle spreads/totals (src/sharp.py board, 9/30)",
-        "Rotowire: Jayden Daniels set to practice during Week 4 (9/29)",
-        "nflfantasyedge.com Week 4 weather forecasts (read 9/30)"
-      ]
+ "season": 2026,
+ "week": 4,
+ "researched_at": "2026-09-30 morning ET (Wednesday run)",
+ "leagues": {
+  "8873570": {
+   "verdict": "Starting lineup is right as it stands (no bench player outranks a starter). The gains are all in free agency: Marcus Mariota over Herbert at QB (if Daniels stays out), Packers D/ST over the Giants, and Will Reichard over Carlson at K. Mariota's game is in London and locks Sunday 9:30 AM ET. Thu 10/1 update: Daniels (elbow) was LIMITED in Wednesday's practice and Quinn says there's still a chance he plays in London -- hold off on Mariota until Washington rules Daniels out (Friday's injury report); if Daniels plays, keep Herbert.",
+   "players": {
+    "Justin Herbert": "QB23 by expert consensus (D- grade). Chargers are 7.5-pt underdogs at Seattle, total 43. Projects ~14. Start him only if Jayden Daniels is named Washington's starter.",
+    "Jaxon Smith-Njigba": "Consensus WR1 (range 1-2) vs LAC. Must start.",
+    "Malik Nabers": "WR19 (range 15-25) vs ARI at home, clean weather. Start.",
+    "Michael Wilson": "WR23 (range 21-27) at NYG. Start — just ahead of Vele (WR25).",
+    "Devaughn Vele": "WR25, dome game Monday night vs ATL. First WR off the bench; about even with Wilson.",
+    "Keenan Allen": "WR36. Bench.",
+    "Tre Tucker": "WR46. Bench.",
+    "Chuba Hubbard": "RB14 vs DET. 66% rain chance in Carolina — wet game suits a run-heavy plan. Start.",
+    "Kyren Williams": "RB13 at PHI (33% rain). Start.",
+    "TreVeyon Henderson": "RB25 at BUF, Patriots are 7-pt underdogs (trailing script hurts RB carries). Bench.",
+    "Tyler Warren": "TE7 at WAS (London, 46% rain). Start.",
+    "Oronde Gadsden": "TE24. Bench.",
+    "Daniel Carlson": "K16. Indoors Monday, but free agent Will Reichard (K5) projects higher.",
+    "Giants D/ST": "DST17 (D+ grade) vs ARI, Giants are 2-pt home underdogs. Free agent Packers D/ST is the better play.",
+    "Bengals D/ST": "DST23 vs JAX in a 51-point game. Bench/drop.",
+    "Tyreek Hill": "Listed with no NFL team (FA) and OUT — zero points. Safe roster spot to free up.",
+    "De'Von Achane": "On IR, 0 projected.",
+    "Jordan Mason": "On IR, 0 projected."
+   },
+   "waivers": [
+    "Add Marcus Mariota (QB, WAS), drop Tyreek Hill. Mariota is QB18 (Herbert QB23) and projects ~18 vs Herbert's ~14; he threw 3 TDs in last week's 33-31 win over Seattle. Daniels (elbow) is practicing in some form but is 'far from certain' for Sunday — check Friday's news. If Daniels is named the starter, start Herbert.",
+    "Add Packers D/ST, drop Bengals D/ST. Packers are DST5, favored by 3.5 at Tampa in a 39.5-point game (lowest total of the Sunday afternoon slate). Start them over the Giants (DST17).",
+    "Optional: add Will Reichard (K, MIN), drop Daniel Carlson. K5 vs K16, projects ~9.3 vs ~8.7; Minnesota is an 11-pt home favorite indoors."
+   ],
+   "moves": [
+    {
+     "add": "Marcus Mariota",
+     "drop": "Tyreek Hill",
+     "why": "QB18 vs Herbert's QB23, ~4 more projected points (only if Daniels stays out)"
     },
-    "250898504": {
-      "verdict": "Lineup is right as it stands: Adams (WR10) stays at FLEX over Pickens (WR13); Coker (quad) and Evans (ribs) are questionable and ranked WR60/WR77 — keep them benched. One optional pickup: Packers D/ST over the Rams D/ST.",
-      "players": {
-        "Tyler Shough": "QB9 vs ATL indoors Monday. Start (free agent Kyler Murray is QB13, projects a bit lower).",
-        "Jonathan Taylor": "RB6 at WAS (London, 46% rain). Start.",
-        "Kenneth Walker III": "RB3 at LV indoors; Chiefs are 4.5-pt favorites. Start.",
-        "Chris Olave": "WR4 vs ATL indoors. Start.",
-        "Parker Washington": "WR12 at CIN in the week's second-highest total (51). Start.",
-        "Davante Adams": "WR10 at PHI (33% rain, light wind). Start at FLEX.",
-        "George Pickens": "WR13 at HOU indoors — first WR off the bench, close to Adams.",
-        "Malik Nabers": "WR19. Bench this week.",
-        "Jalen Coker": "QUESTIONABLE (quad strain, left Week 3 early); WR60 with a huge expert range (27-79) and a 66% rain chance vs DET. Bench; watch Wed-Fri practice.",
-        "Mike Evans": "QUESTIONABLE — rib strain (carted off in Week 3), day-to-day; also had a hip issue. WR77, F grade. Bench.",
-        "Harold Fannin Jr.": "TE10 vs PIT — plays THURSDAY night (clean weather, 78°F). Start; set him before Thursday 8:15 PM ET.",
-        "Dalton Schultz": "TE11 vs DAL indoors, essentially even with Fannin. Fine either way; keep Fannin.",
-        "Brandon Aubrey": "K2 at HOU indoors. Start.",
-        "Rams D/ST": "DST14 at PHI (Rams favored by 3). Packers D/ST (DST5) is a small upgrade in free agency.",
-        "TreVeyon Henderson": "RB25. Bench.",
-        "De'Von Achane": "On IR, 0 projected."
-      },
-      "waivers": [
-        "Optional: add Packers D/ST, drop Rams D/ST. Packers are DST5 vs the Rams at DST14; in this league's scoring the projection gain is small (~0.4 pts), so only if the add costs nothing.",
-        "No other free agent beats a starter: Kyler Murray (QB13) is below Shough, Kenyon Sadiq (TE13) below Fannin, Tyler Loop (K3) below Aubrey."
-      ],
-      "moves": [
-        {"add": "Packers D/ST", "drop": "Rams D/ST", "why": "5th-ranked D/ST vs 14th, favored in a low-scoring game"}
-      ],
-      "sources": [
-        "FantasyPros Week 4 consensus rankings, ecrData (updated 9/30)",
-        "ESPN league free-agent list (league scoring) + Rotowire projections via Sleeper",
-        "NBC Sports player news: Coker quad questionable (9/28), Evans day-to-day rib strain (9/28)",
-        "Pinnacle spreads/totals (src/sharp.py board, 9/30); nflfantasyedge.com weather (9/30)"
-      ]
+    {
+     "add": "Packers D/ST",
+     "drop": "Bengals D/ST",
+     "why": "ranked 5th D/ST this week, favored in a low-scoring game"
+    },
+    {
+     "add": "Will Reichard",
+     "drop": "Daniel Carlson",
+     "why": "top-5 kicker for a big home favorite"
     }
+   ],
+   "sources": [
+    "FantasyPros Week 4 consensus rankings, ecrData (QB, PPR RB/WR/TE, DST, K; updated 9/30, 8-12 experts)",
+    "ESPN league free-agent list (kona_player_info, league scoring) + Rotowire projections via Sleeper",
+    "Pinnacle spreads/totals (src/sharp.py board, 9/30)",
+    "Rotowire: Jayden Daniels set to practice during Week 4 (9/29)",
+    "nflfantasyedge.com Week 4 weather forecasts (read 9/30)",
+    "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/jayden-daniels-is-one-of-10-commanders-limited-in-wednesdays-practice (fetched 2026-10-01)"
+   ]
+  },
+  "250898504": {
+   "verdict": "Lineup is right as it stands: Adams (WR10) stays at FLEX over Pickens (WR13); Coker (quad) and Evans (ribs) are questionable and ranked WR60/WR77 — keep them benched. One optional pickup: Packers D/ST over the Rams D/ST. Thu 10/1: Harold Fannin Jr. plays tonight (PIT @ CLE) and carries no injury designation on the final report -- start him.",
+   "players": {
+    "Tyler Shough": "QB9 vs ATL indoors Monday. Start (free agent Kyler Murray is QB13, projects a bit lower).",
+    "Jonathan Taylor": "RB6 at WAS (London, 46% rain). Start.",
+    "Kenneth Walker III": "RB3 at LV indoors; Chiefs are 4.5-pt favorites. Start.",
+    "Chris Olave": "WR4 vs ATL indoors. Start.",
+    "Parker Washington": "WR12 at CIN in the week's second-highest total (51). Start.",
+    "Davante Adams": "WR10 at PHI (33% rain, light wind). Start at FLEX.",
+    "George Pickens": "WR13 at HOU indoors — first WR off the bench, close to Adams.",
+    "Malik Nabers": "WR19. Bench this week.",
+    "Jalen Coker": "QUESTIONABLE (quad strain, left Week 3 early); WR60 with a huge expert range (27-79) and a 66% rain chance vs DET. Bench; watch Wed-Fri practice.",
+    "Mike Evans": "QUESTIONABLE — rib strain (carted off in Week 3), day-to-day; also had a hip issue. WR77, F grade. Bench.",
+    "Harold Fannin Jr.": "TE10 vs PIT — plays THURSDAY night (clean weather, 78°F). Start; set him before Thursday 8:15 PM ET.",
+    "Dalton Schultz": "TE11 vs DAL indoors, essentially even with Fannin. Fine either way; keep Fannin.",
+    "Brandon Aubrey": "K2 at HOU indoors. Start.",
+    "Rams D/ST": "DST14 at PHI (Rams favored by 3). Packers D/ST (DST5) is a small upgrade in free agency.",
+    "TreVeyon Henderson": "RB25. Bench.",
+    "De'Von Achane": "On IR, 0 projected."
+   },
+   "waivers": [
+    "Optional: add Packers D/ST, drop Rams D/ST. Packers are DST5 vs the Rams at DST14; in this league's scoring the projection gain is small (~0.4 pts), so only if the add costs nothing.",
+    "No other free agent beats a starter: Kyler Murray (QB13) is below Shough, Kenyon Sadiq (TE13) below Fannin, Tyler Loop (K3) below Aubrey."
+   ],
+   "moves": [
+    {
+     "add": "Packers D/ST",
+     "drop": "Rams D/ST",
+     "why": "5th-ranked D/ST vs 14th, favored in a low-scoring game"
+    }
+   ],
+   "sources": [
+    "FantasyPros Week 4 consensus rankings, ecrData (updated 9/30)",
+    "ESPN league free-agent list (league scoring) + Rotowire projections via Sleeper",
+    "NBC Sports player news: Coker quad questionable (9/28), Evans day-to-day rib strain (9/28)",
+    "Pinnacle spreads/totals (src/sharp.py board, 9/30); nflfantasyedge.com weather (9/30)"
+   ]
   }
+ }
 }
