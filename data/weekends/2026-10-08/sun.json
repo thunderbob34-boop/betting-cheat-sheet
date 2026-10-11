@@ -1,0 +1,2634 @@
+{
+ "weekend_id": "2026-10-08",
+ "slot": "sun",
+ "date": "2026-10-11",
+ "sport": "NFL",
+ "generated_at": "2026-10-11T09:45:00-04:00",
+ "is_sample": false,
+ "budget": {
+  "capacity": 5.0,
+  "settled_net": 0.0,
+  "open_stakes": 0.0,
+  "slots_remaining": 2,
+  "total": 2.5,
+  "easy": 2.0,
+  "fun": 0.5,
+  "lottery_available": true,
+  "why": "Even this weekend -> $5.00 available across 2 slots."
+ },
+ "angles": [
+  "London (PHI @ JAX, 9:30 AM ET) is left off: it kicks off less than 60 minutes after this run. A quick check before kickoff found nothing there priced better than the sharp books (Eagles ML +300 vs a fair 23.5% was closest, -1.5%).",
+  "Every DraftKings main line (moneyline, spread, total) on the 1 PM, 4 PM and Sunday-night games is at or worse than the sharp fair price. Closest: Steelers ML -148 vs fair 59.0% (-0.3%), Seahawks ML -166 vs 61.7% (-0.7%).",
+  "Props: about 800 DK player props were compared with Pinnacle at the same number, and about 590 of those with Kalshi too. One clears +2% on both: Croskey-Merritt under 13.5 carries.",
+  "Tee Higgins anytime TD (DK +130 vs Pinnacle 49%) and Rico Dowdle anytime TD (DK +215 vs Pinnacle 36%) look big on Pinnacle alone, but Kalshi has no market to confirm either. With only one source they stay off the card (rule 8).",
+  "Croskey-Merritt (groin) was limited in practice Wednesday and Thursday; RotoWire then reported him cleared to play. Austin Ekeler is back in Washington's backfield, and Hogs Haven/Yahoo note his role fading. All of that points to fewer carries, not more.",
+  "Winless teams (0-4): Titans, Texans (they play each other), Dolphins, Chargers. No 0-2 teams this week.",
+  "Fun Parlay: two volume-catch legs, both priced about fair against Pinnacle and Kalshi. It's for fun, so it gets $0.25, half the $0.50 allowed."
+ ],
+ "card": {
+  "easy_bet": {
+   "selection": "Jacory Croskey-Merritt UNDER 13.5 rushing attempts",
+   "market": "rushing_attempts",
+   "player": "Jacory Croskey-Merritt",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "WSH trailing",
+   "dk_odds": -106,
+   "estimated_prob": 0.5421,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5392,
+     "odds": -130,
+     "other_side_odds": 107,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.545,
+     "url": "https://kalshi.com/markets/kxnflrshatt (KXNFLRSHATT-26OCT11NYGWAS-WASJCROSKEYMERRITT22-14: '14+ rushing attempts' bid 45c / ask 46c -> under 13.5 = 54.5%, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "stake": 2.0,
+   "is_pre_kickoff": true,
+   "plain_summary": "Bet Croskey-Merritt to get 13 or fewer carries. DraftKings prices it close to a coin flip, but the sharp books have the under winning a bit more often. He's coming off a groin injury and Ekeler is back to share the work.",
+   "reason_summary": "Under 13.5 carries at DK -106 (51.5%) vs sharp fair 54.2% -> about +2.7%.",
+   "reason": "Pinnacle hangs the same 13.5 with the Under at -130 / Over +107, which de-vigs to 53.9% Under. Kalshi's '14+ carries' market sits at 45.5c, so the Under is 54.5%. Average 54.2%, and the two sources are 0.6 points apart. DK -106 implies 51.5%, so the edge is about +2.7%. Context: limited practice all week with a groin strain (Rotoballer, FantasySP), then cleared to play (RotoWire via STACKED). Ekeler's return threatens his share (FantasyPros/Yahoo). Risk: Washington is a 3.5-pt home favorite, and a lead means more runs late. That's why this is tagged 'WSH trailing', and the Fun Parlay stays out of this game.",
+   "verify": {
+    "source": "DK price: scoresandodds.com player prop page, DraftKings column (o13.5 -120 / u13.5 -106) https://www.scoresandodds.com/nfl/props/rush-attempts ; Sharp: Pinnacle via src/sharp.py board, Kalshi KXNFLRSHATT. News: https://www.rotoballer.com/?p=1960994 , https://www.stackedfantasy.com/nfl/news/insights/1018099",
+    "fetched_at": "2026-10-11 ~9:15-9:40 ET",
+    "note": "Confirm the price in the DK app. If it's moved worse than -109, skip it: past -109 the edge drops below 2%. If he's ruled inactive, DK voids the bet."
+   }
+  },
+  "fun_parlay": {
+   "id": "sun-fun-2026-10-11",
+   "legs": [
+    {
+     "selection": "Aaron Jones over 2.5 receptions",
+     "market": "receptions",
+     "player": "Aaron Jones",
+     "game": "MIN @ NO",
+     "kickoff": "2026-10-11T13:00:00-04:00",
+     "game_script": "neutral",
+     "dk_odds": -140,
+     "estimated_prob": 0.5893,
+     "prob_sources": [
+      {
+       "name": "Pinnacle",
+       "prob": 0.5935,
+       "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+      },
+      {
+       "name": "Kalshi",
+       "prob": 0.585,
+       "url": "https://kalshi.com (KXNFLREC-26OCT11MINNO-MINAJONES33-3 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+      }
+     ],
+     "reason": "DK -140 implies 58.3%; sharp fair 58.9% (Pinnacle 59.4%, Kalshi 58.5%) -> edge +0.6%.",
+     "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "selection": "Mike Evans over 3.5 receptions",
+     "market": "receptions",
+     "player": "Mike Evans",
+     "game": "SF @ SEA",
+     "kickoff": "2026-10-11T16:25:00-04:00",
+     "game_script": "neutral",
+     "dk_odds": -150,
+     "estimated_prob": 0.5976,
+     "prob_sources": [
+      {
+       "name": "Pinnacle",
+       "prob": 0.6002,
+       "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+      },
+      {
+       "name": "Kalshi",
+       "prob": 0.595,
+       "url": "https://kalshi.com (KXNFLREC-26OCT11SFSEA-SFMEVANS5-4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+      }
+     ],
+     "reason": "DK -150 implies 60.0%; sharp fair 59.8% (Pinnacle 60.0%, Kalshi 59.5%) -> edge -0.2%.",
+     "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "dk_odds": 186,
+   "odds_estimated": true,
+   "estimated_prob_source": "Combined sharp probability 58.9% x 59.8% = 35.2%. +186 is computed from the two DK prices (-140 = 1.714, -150 = 1.667; 1.714 x 1.667 = 2.857 decimal), not a quoted DK parlay price, so confirm it in the app. +186 implies 35.0%: about fair, no real edge.",
+   "is_pre_kickoff": true,
+   "stake": 0.25,
+   "game": "MIN @ NO + SF @ SEA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "reason_summary": "Aaron Jones 3+ catches + Mike Evans 4+ catches (~+186). About 35% to hit, priced about fair. $0.25.",
+   "reason": "Two catch-volume legs, each about 59% by both Pinnacle and Kalshi, in games away from the Value Bet (no game-script conflict). Both are priced within 1% of fair at DK, so this is fun money, not value. Sized at $0.25 of the $0.50 allowed; the other $0.25 stays unbet.",
+   "verify": {
+    "source": "DK prices: scoresandodds.com player prop pages, DraftKings column. Sharp: Pinnacle via src/sharp.py board; Kalshi KXNFLREC-26OCT11MINNO-MINAJONES33-3, KXNFLREC-26OCT11SFSEA-SFMEVANS5-4.",
+    "fetched_at": "2026-10-11 ~9:15-9:40 ET",
+    "note": "Confirm the parlay price in the DK app. If it shows less than +170, skip it."
+   }
+  }
+ },
+ "leg_bank": [
+  {
+   "selection": "Chicago Bears moneyline",
+   "market": "moneyline",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "CHI leading",
+   "dk_odds": -125,
+   "estimated_prob": 0.5266,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5282,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.525,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11CHIGB-CHI midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -125 implies 55.6%; sharp fair 52.7% -> edge -2.9%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872990"
+  },
+  {
+   "selection": "Green Bay Packers moneyline",
+   "market": "moneyline",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "GB leading",
+   "dk_odds": 105,
+   "estimated_prob": 0.4734,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4718,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.475,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11CHIGB-GB midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +105 implies 48.8%; sharp fair 47.3% -> edge -1.4%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872990"
+  },
+  {
+   "selection": "Chicago Bears -1.5",
+   "market": "spread",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "CHI leading",
+   "dk_odds": -112,
+   "estimated_prob": 0.485,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11CHIGB-CHI2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -112 implies 52.8%; sharp fair 48.5% -> edge -4.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872990",
+   "single_source": true
+  },
+  {
+   "selection": "Green Bay Packers +1.5",
+   "market": "spread",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "CHI trailing",
+   "dk_odds": -108,
+   "estimated_prob": 0.515,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.515,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11CHIGB-CHI2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -108 implies 51.9%; sharp fair 51.5% -> edge -0.4%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872990",
+   "single_source": true
+  },
+  {
+   "selection": "Over 47.5 total points",
+   "market": "total",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -102,
+   "estimated_prob": 0.465,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.465,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11CHIGB-48 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -102 implies 50.5%; sharp fair 46.5% -> edge -4.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872990",
+   "single_source": true
+  },
+  {
+   "selection": "Under 47.5 total points",
+   "market": "total",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -118,
+   "estimated_prob": 0.535,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.535,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11CHIGB-48 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -118 implies 54.1%; sharp fair 53.5% -> edge -0.6%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872990",
+   "single_source": true
+  },
+  {
+   "selection": "Houston Texans moneyline",
+   "market": "moneyline",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "HOU leading",
+   "dk_odds": -345,
+   "estimated_prob": 0.7484,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.7518,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.745,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11HOUTEN-HOU midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -345 implies 77.5%; sharp fair 74.8% -> edge -2.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872984"
+  },
+  {
+   "selection": "Tennessee Titans moneyline",
+   "market": "moneyline",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "TEN leading",
+   "dk_odds": 275,
+   "estimated_prob": 0.2466,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2482,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.245,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11HOUTEN-TEN midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +275 implies 26.7%; sharp fair 24.7% -> edge -2.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872984"
+  },
+  {
+   "selection": "Over 37.5 total points",
+   "market": "total",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.5111,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5171,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11HOUTEN-38 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -115 implies 53.5%; sharp fair 51.1% -> edge -2.4%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872984"
+  },
+  {
+   "selection": "Under 37.5 total points",
+   "market": "total",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -105,
+   "estimated_prob": 0.4889,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4829,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11HOUTEN-38 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -105 implies 51.2%; sharp fair 48.9% -> edge -2.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872984"
+  },
+  {
+   "selection": "Cincinnati Bengals moneyline",
+   "market": "moneyline",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "CIN leading",
+   "dk_odds": -345,
+   "estimated_prob": 0.754,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.763,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.745,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11CINMIA-CIN midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -345 implies 77.5%; sharp fair 75.4% -> edge -2.1%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872982"
+  },
+  {
+   "selection": "Miami Dolphins moneyline",
+   "market": "moneyline",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "MIA leading",
+   "dk_odds": 275,
+   "estimated_prob": 0.241,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.237,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.245,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11CINMIA-MIA midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +275 implies 26.7%; sharp fair 24.1% -> edge -2.6%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872982"
+  },
+  {
+   "selection": "Over 43.5 total points",
+   "market": "total",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.5233,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5216,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.525,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11CINMIA-44 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -115 implies 53.5%; sharp fair 52.3% -> edge -1.2%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872982"
+  },
+  {
+   "selection": "Under 43.5 total points",
+   "market": "total",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -105,
+   "estimated_prob": 0.4767,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4784,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.475,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11CINMIA-44 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -105 implies 51.2%; sharp fair 47.7% -> edge -3.5%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872982"
+  },
+  {
+   "selection": "Las Vegas Raiders moneyline",
+   "market": "moneyline",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "LV leading",
+   "dk_odds": 154,
+   "estimated_prob": 0.3705,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3659,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.375,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11LVNE-LV midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +154 implies 39.4%; sharp fair 37.0% -> edge -2.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872986"
+  },
+  {
+   "selection": "New England Patriots moneyline",
+   "market": "moneyline",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NE leading",
+   "dk_odds": -185,
+   "estimated_prob": 0.6296,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6341,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.625,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11LVNE-NE midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -185 implies 64.9%; sharp fair 63.0% -> edge -2.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872986"
+  },
+  {
+   "selection": "Las Vegas Raiders +3.5",
+   "market": "spread",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NE trailing",
+   "dk_odds": -112,
+   "estimated_prob": 0.5098,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5046,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.515,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11LVNE-NE4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -112 implies 52.8%; sharp fair 51.0% -> edge -1.9%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872986"
+  },
+  {
+   "selection": "New England Patriots -3.5",
+   "market": "spread",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NE leading",
+   "dk_odds": -108,
+   "estimated_prob": 0.4902,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4954,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11LVNE-NE4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -108 implies 51.9%; sharp fair 49.0% -> edge -2.9%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872986"
+  },
+  {
+   "selection": "Over 45.5 total points",
+   "market": "total",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -105,
+   "estimated_prob": 0.485,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11LVNE-46 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -105 implies 51.2%; sharp fair 48.5% -> edge -2.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872986",
+   "single_source": true
+  },
+  {
+   "selection": "Under 45.5 total points",
+   "market": "total",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.515,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.515,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11LVNE-46 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -115 implies 53.5%; sharp fair 51.5% -> edge -2.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872986",
+   "single_source": true
+  },
+  {
+   "selection": "Minnesota Vikings moneyline",
+   "market": "moneyline",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "MIN leading",
+   "dk_odds": -130,
+   "estimated_prob": 0.5537,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5525,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.555,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11MINNO-MIN midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -130 implies 56.5%; sharp fair 55.4% -> edge -1.2%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872987"
+  },
+  {
+   "selection": "New Orleans Saints moneyline",
+   "market": "moneyline",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NO leading",
+   "dk_odds": 110,
+   "estimated_prob": 0.4463,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4475,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.445,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11MINNO-NO midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +110 implies 47.6%; sharp fair 44.6% -> edge -3.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872987"
+  },
+  {
+   "selection": "Minnesota Vikings -1.5",
+   "market": "spread",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "MIN leading",
+   "dk_odds": -118,
+   "estimated_prob": 0.515,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.515,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11MINNO-MIN2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -118 implies 54.1%; sharp fair 51.5% -> edge -2.6%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872987",
+   "single_source": true
+  },
+  {
+   "selection": "New Orleans Saints +1.5",
+   "market": "spread",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "MIN trailing",
+   "dk_odds": -102,
+   "estimated_prob": 0.485,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11MINNO-MIN2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -102 implies 50.5%; sharp fair 48.5% -> edge -2.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872987",
+   "single_source": true
+  },
+  {
+   "selection": "Over 41.5 total points",
+   "market": "total",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -108,
+   "estimated_prob": 0.505,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11MINNO-42 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -108 implies 51.9%; sharp fair 50.5% -> edge -1.4%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872987",
+   "single_source": true
+  },
+  {
+   "selection": "Under 41.5 total points",
+   "market": "total",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -112,
+   "estimated_prob": 0.495,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11MINNO-42 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -112 implies 52.8%; sharp fair 49.5% -> edge -3.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872987",
+   "single_source": true
+  },
+  {
+   "selection": "Cleveland Browns moneyline",
+   "market": "moneyline",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "CLE leading",
+   "dk_odds": 114,
+   "estimated_prob": 0.4352,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4354,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.435,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11CLENYJ-CLE midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +114 implies 46.7%; sharp fair 43.5% -> edge -3.2%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872983"
+  },
+  {
+   "selection": "New York Jets moneyline",
+   "market": "moneyline",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NYJ leading",
+   "dk_odds": -135,
+   "estimated_prob": 0.5648,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5646,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.565,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11CLENYJ-NYJ midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -135 implies 57.4%; sharp fair 56.5% -> edge -1.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872983"
+  },
+  {
+   "selection": "Cleveland Browns +2.5",
+   "market": "spread",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NYJ trailing",
+   "dk_odds": -110,
+   "estimated_prob": 0.494,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.493,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11CLENYJ-NYJ3 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -110 implies 52.4%; sharp fair 49.4% -> edge -3.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872983"
+  },
+  {
+   "selection": "New York Jets -2.5",
+   "market": "spread",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NYJ leading",
+   "dk_odds": -110,
+   "estimated_prob": 0.506,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.507,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11CLENYJ-NYJ3 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -110 implies 52.4%; sharp fair 50.6% -> edge -1.8%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872983"
+  },
+  {
+   "selection": "Over 39.5 total points",
+   "market": "total",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -112,
+   "estimated_prob": 0.495,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11CLENYJ-40 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -112 implies 52.8%; sharp fair 49.5% -> edge -3.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872983",
+   "single_source": true
+  },
+  {
+   "selection": "Under 39.5 total points",
+   "market": "total",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -108,
+   "estimated_prob": 0.505,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11CLENYJ-40 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -108 implies 51.9%; sharp fair 50.5% -> edge -1.4%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872983",
+   "single_source": true
+  },
+  {
+   "selection": "Indianapolis Colts moneyline",
+   "market": "moneyline",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "IND leading",
+   "dk_odds": 124,
+   "estimated_prob": 0.4056,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4061,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.405,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11INDPIT-IND midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +124 implies 44.6%; sharp fair 40.6% -> edge -4.1%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872985"
+  },
+  {
+   "selection": "Pittsburgh Steelers moneyline",
+   "market": "moneyline",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "PIT leading",
+   "dk_odds": -148,
+   "estimated_prob": 0.5895,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5939,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.585,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11INDPIT-PIT midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -148 implies 59.7%; sharp fair 59.0% -> edge -0.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872985"
+  },
+  {
+   "selection": "Indianapolis Colts +3",
+   "market": "spread",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "PIT trailing",
+   "dk_odds": -115,
+   "estimated_prob": 0.5046,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5046,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -115 implies 53.5%; sharp fair 50.5% -> edge -3.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872985",
+   "single_source": true
+  },
+  {
+   "selection": "Pittsburgh Steelers -3",
+   "market": "spread",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "PIT leading",
+   "dk_odds": -105,
+   "estimated_prob": 0.4954,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4954,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -105 implies 51.2%; sharp fair 49.5% -> edge -1.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872985",
+   "single_source": true
+  },
+  {
+   "selection": "Over 43.5 total points",
+   "market": "total",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -108,
+   "estimated_prob": 0.4879,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4908,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11INDPIT-44 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -108 implies 51.9%; sharp fair 48.8% -> edge -3.1%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872985"
+  },
+  {
+   "selection": "Under 43.5 total points",
+   "market": "total",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -112,
+   "estimated_prob": 0.5121,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5092,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.515,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11INDPIT-44 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -112 implies 52.8%; sharp fair 51.2% -> edge -1.6%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872985"
+  },
+  {
+   "selection": "New York Giants moneyline",
+   "market": "moneyline",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "NYG leading",
+   "dk_odds": 154,
+   "estimated_prob": 0.3654,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3659,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.365,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11NYGWAS-NYG midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +154 implies 39.4%; sharp fair 36.5% -> edge -2.8%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872988"
+  },
+  {
+   "selection": "Washington Commanders moneyline",
+   "market": "moneyline",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "WSH leading",
+   "dk_odds": -185,
+   "estimated_prob": 0.6345,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6341,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.635,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11NYGWAS-WAS midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -185 implies 64.9%; sharp fair 63.4% -> edge -1.5%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872988"
+  },
+  {
+   "selection": "New York Giants +3.5",
+   "market": "spread",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "WSH trailing",
+   "dk_odds": -105,
+   "estimated_prob": 0.5121,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5093,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.515,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11NYGWAS-WAS4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -105 implies 51.2%; sharp fair 51.2% -> edge -0.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872988"
+  },
+  {
+   "selection": "Washington Commanders -3.5",
+   "market": "spread",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "WSH leading",
+   "dk_odds": -115,
+   "estimated_prob": 0.4879,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4907,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11NYGWAS-WAS4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -115 implies 53.5%; sharp fair 48.8% -> edge -4.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872988"
+  },
+  {
+   "selection": "Over 41.5 total points",
+   "market": "total",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -112,
+   "estimated_prob": 0.505,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11NYGWAS-42 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -112 implies 52.8%; sharp fair 50.5% -> edge -2.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872988",
+   "single_source": true
+  },
+  {
+   "selection": "Under 41.5 total points",
+   "market": "total",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -108,
+   "estimated_prob": 0.495,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11NYGWAS-42 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -108 implies 51.9%; sharp fair 49.5% -> edge -2.4%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872988",
+   "single_source": true
+  },
+  {
+   "selection": "Denver Broncos moneyline",
+   "market": "moneyline",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "DEN leading",
+   "dk_odds": -185,
+   "estimated_prob": 0.6317,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6284,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.635,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11DENLAC-DEN midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -185 implies 64.9%; sharp fair 63.2% -> edge -1.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872989"
+  },
+  {
+   "selection": "Los Angeles Chargers moneyline",
+   "market": "moneyline",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "LAC leading",
+   "dk_odds": 154,
+   "estimated_prob": 0.3633,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3716,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.355,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11DENLAC-LAC midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +154 implies 39.4%; sharp fair 36.3% -> edge -3.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872989"
+  },
+  {
+   "selection": "Denver Broncos -3.5",
+   "market": "spread",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "DEN leading",
+   "dk_odds": -108,
+   "estimated_prob": 0.4929,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4907,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11DENLAC-DEN4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -108 implies 51.9%; sharp fair 49.3% -> edge -2.6%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872989"
+  },
+  {
+   "selection": "Los Angeles Chargers +3.5",
+   "market": "spread",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "DEN trailing",
+   "dk_odds": -112,
+   "estimated_prob": 0.5071,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5093,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11DENLAC-DEN4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -112 implies 52.8%; sharp fair 50.7% -> edge -2.1%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872989"
+  },
+  {
+   "selection": "Over 41.5 total points",
+   "market": "total",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.5098,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5046,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.515,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11DENLAC-42 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -115 implies 53.5%; sharp fair 51.0% -> edge -2.5%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872989"
+  },
+  {
+   "selection": "Under 41.5 total points",
+   "market": "total",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -105,
+   "estimated_prob": 0.4902,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4954,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11DENLAC-42 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -105 implies 51.2%; sharp fair 49.0% -> edge -2.2%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872989"
+  },
+  {
+   "selection": "Detroit Lions moneyline",
+   "market": "moneyline",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "DET leading",
+   "dk_odds": -250,
+   "estimated_prob": 0.6894,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6838,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.695,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11DETARI-DET midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -250 implies 71.4%; sharp fair 68.9% -> edge -2.5%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872991"
+  },
+  {
+   "selection": "Arizona Cardinals moneyline",
+   "market": "moneyline",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "ARI leading",
+   "dk_odds": 205,
+   "estimated_prob": 0.3106,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3162,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.305,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11DETARI-ARI midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +205 implies 32.8%; sharp fair 31.1% -> edge -1.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872991"
+  },
+  {
+   "selection": "Detroit Lions -5.5",
+   "market": "spread",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "DET leading",
+   "dk_odds": -108,
+   "estimated_prob": 0.4917,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4884,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11DETARI-DET6 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -108 implies 51.9%; sharp fair 49.2% -> edge -2.8%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872991"
+  },
+  {
+   "selection": "Arizona Cardinals +5.5",
+   "market": "spread",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "DET trailing",
+   "dk_odds": -112,
+   "estimated_prob": 0.5083,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5116,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLSPREAD-26OCT11DETARI-DET6 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -112 implies 52.8%; sharp fair 50.8% -> edge -2.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872991"
+  },
+  {
+   "selection": "Over 54.5 total points",
+   "market": "total",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -118,
+   "estimated_prob": 0.4952,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4954,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11DETARI-55 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -118 implies 54.1%; sharp fair 49.5% -> edge -4.6%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872991"
+  },
+  {
+   "selection": "Under 54.5 total points",
+   "market": "total",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -102,
+   "estimated_prob": 0.5048,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5046,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11DETARI-55 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -102 implies 50.5%; sharp fair 50.5% -> edge -0.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872991"
+  },
+  {
+   "selection": "San Francisco 49ers moneyline",
+   "market": "moneyline",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "SF leading",
+   "dk_odds": 140,
+   "estimated_prob": 0.3841,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3831,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.385,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11SFSEA-SF midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +140 implies 41.7%; sharp fair 38.4% -> edge -3.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872992"
+  },
+  {
+   "selection": "Seattle Seahawks moneyline",
+   "market": "moneyline",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "SEA leading",
+   "dk_odds": -166,
+   "estimated_prob": 0.6159,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6169,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.615,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11SFSEA-SEA midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -166 implies 62.4%; sharp fair 61.6% -> edge -0.8%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872992"
+  },
+  {
+   "selection": "Over 46.5 total points",
+   "market": "total",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -105,
+   "estimated_prob": 0.495,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11SFSEA-47 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -105 implies 51.2%; sharp fair 49.5% -> edge -1.7%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872992",
+   "single_source": true
+  },
+  {
+   "selection": "Under 46.5 total points",
+   "market": "total",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.505,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11SFSEA-47 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -115 implies 53.5%; sharp fair 50.5% -> edge -3.0%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872992",
+   "single_source": true
+  },
+  {
+   "selection": "Baltimore Ravens moneyline",
+   "market": "moneyline",
+   "game": "BAL @ ATL",
+   "kickoff": "2026-10-11T20:20:00-04:00",
+   "game_script": "BAL leading",
+   "dk_odds": 145,
+   "estimated_prob": 0.3851,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3851,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.385,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11BALATL-BAL midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK +145 implies 40.8%; sharp fair 38.5% -> edge -2.3%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872993"
+  },
+  {
+   "selection": "Atlanta Falcons moneyline",
+   "market": "moneyline",
+   "game": "BAL @ ATL",
+   "kickoff": "2026-10-11T20:20:00-04:00",
+   "game_script": "ATL leading",
+   "dk_odds": -175,
+   "estimated_prob": 0.6149,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6149,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.615,
+     "url": "https://kalshi.com (KXNFLGAME-26OCT11BALATL-ATL midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": " DK -175 implies 63.6%; sharp fair 61.5% -> edge -2.1%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872993"
+  },
+  {
+   "selection": "Over 43.5 total points",
+   "market": "total",
+   "game": "BAL @ ATL",
+   "kickoff": "2026-10-11T20:20:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -110,
+   "estimated_prob": 0.505,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11BALATL-44 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -110 implies 52.4%; sharp fair 50.5% -> edge -1.9%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872993",
+   "single_source": true
+  },
+  {
+   "selection": "Under 43.5 total points",
+   "market": "total",
+   "game": "BAL @ ATL",
+   "kickoff": "2026-10-11T20:20:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -110,
+   "estimated_prob": 0.495,
+   "prob_sources": [
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLTOTAL-26OCT11BALATL-44 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "Only one sharp source hangs DK's exact number. DK -110 implies 52.4%; sharp fair 49.5% -> edge -2.9%.",
+   "source": "DK price from ESPN's DraftKings odds feed (fetched 2026-10-11 ~9:15-9:40 ET) https://www.espn.com/nfl/game/_/gameId/401872993",
+   "single_source": true
+  },
+  {
+   "selection": "Jacory Croskey-Merritt under 13.5 rush attempts",
+   "market": "rushing_attempts",
+   "player": "Jacory Croskey-Merritt",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -106,
+   "estimated_prob": 0.5421,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5392,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.545,
+     "url": "https://kalshi.com (KXNFLRSHATT-26OCT11NYGWAS-WASJCROSKEYMERRITT22-14 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -106 implies 51.5%; sharp fair 54.2% (Pinnacle 53.9%, Kalshi 54.5%) -> edge +2.8%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Daniel Jones under 2.5 rush attempts",
+   "market": "rushing_attempts",
+   "player": "Daniel Jones",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 128,
+   "estimated_prob": 0.4577,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4805,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.435,
+     "url": "https://kalshi.com (KXNFLRSHATT-26OCT11INDPIT-INDDJONES17-3 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +128 implies 43.9%; sharp fair 45.8% (Pinnacle 48.0%, Kalshi 43.5%) -> edge +1.9%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Rachaad White under 1.5 receptions",
+   "market": "receptions",
+   "player": "Rachaad White",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 132,
+   "estimated_prob": 0.441,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.447,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.435,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11NYGWAS-WASRWHITE1-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +132 implies 43.1%; sharp fair 44.1% (Pinnacle 44.7%, Kalshi 43.5%) -> edge +1.0%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Malik Washington under 4.5 receptions",
+   "market": "receptions",
+   "player": "Malik Washington",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 106,
+   "estimated_prob": 0.4953,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4957,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11CINMIA-MIAMWASHINGTON6-5 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +106 implies 48.5%; sharp fair 49.5% (Pinnacle 49.6%, Kalshi 49.5%) -> edge +1.0%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Tyler Huntley anytime touchdown",
+   "market": "anytime_td",
+   "player": "Tyler Huntley",
+   "game": "BAL @ ATL",
+   "kickoff": "2026-10-11T20:20:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 450,
+   "estimated_prob": 0.191,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.207,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.175,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11BALATL-BALTHUNTLEY5-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +450 implies 18.2%; sharp fair 19.1% (Pinnacle 20.7%, Kalshi 17.5%) -> edge +0.9%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Calvin Ridley under 0.5 receptions",
+   "market": "receptions",
+   "player": "Calvin Ridley",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 155,
+   "estimated_prob": 0.4006,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3962,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.405,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11HOUTEN-TENCRIDLEY0-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +155 implies 39.2%; sharp fair 40.1% (Pinnacle 39.6%, Kalshi 40.5%) -> edge +0.8%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Raheim Sanders under 1.5 receptions",
+   "market": "receptions",
+   "player": "Raheim Sanders",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 141,
+   "estimated_prob": 0.4229,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4208,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.425,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11CLENYJ-CLERSANDERS23-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +141 implies 41.5%; sharp fair 42.3% (Pinnacle 42.1%, Kalshi 42.5%) -> edge +0.8%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Cam Skattebo under 15.5 rush attempts",
+   "market": "rushing_attempts",
+   "player": "Cam Skattebo",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 102,
+   "estimated_prob": 0.5029,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5108,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLRSHATT-26OCT11NYGWAS-NYGCSKATTEBO44-16 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +102 implies 49.5%; sharp fair 50.3% (Pinnacle 51.1%, Kalshi 49.5%) -> edge +0.8%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Tyjae Spears under 1.5 receptions",
+   "market": "receptions",
+   "player": "Tyjae Spears",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 145,
+   "estimated_prob": 0.4159,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4168,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.415,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11HOUTEN-TENTSPEARS2-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +145 implies 40.8%; sharp fair 41.6% (Pinnacle 41.7%, Kalshi 41.5%) -> edge +0.8%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Dohnte Meyers anytime touchdown",
+   "market": "anytime_td",
+   "player": "Dohnte Meyers",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 320,
+   "estimated_prob": 0.2455,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2659,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.225,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11CINMIA-CINDMEYERS81-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +320 implies 23.8%; sharp fair 24.5% (Pinnacle 26.6%, Kalshi 22.5%) -> edge +0.7%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Joe Burrow over 0.5 interceptions",
+   "market": "interceptions",
+   "player": "Joe Burrow",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 144,
+   "estimated_prob": 0.4167,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4185,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.415,
+     "url": "https://kalshi.com (KXNFLPASSINT-26OCT11CINMIA-CINJBURROW9-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +144 implies 41.0%; sharp fair 41.7% (Pinnacle 41.9%, Kalshi 41.5%) -> edge +0.7%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Jahmyr Gibbs over 19.5 rush attempts",
+   "market": "rushing_attempts",
+   "player": "Jahmyr Gibbs",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -106,
+   "estimated_prob": 0.5207,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5363,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLRSHATT-26OCT11DETARI-DETJGIBBS0-20 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -106 implies 51.5%; sharp fair 52.1% (Pinnacle 53.6%, Kalshi 50.5%) -> edge +0.6%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Aaron Jones over 2.5 receptions",
+   "market": "receptions",
+   "player": "Aaron Jones",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -140,
+   "estimated_prob": 0.5893,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5935,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.585,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11MINNO-MINAJONES33-3 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -140 implies 58.3%; sharp fair 58.9% (Pinnacle 59.4%, Kalshi 58.5%) -> edge +0.6%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "DeMario Douglas anytime touchdown",
+   "market": "anytime_td",
+   "player": "DeMario Douglas",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 360,
+   "estimated_prob": 0.223,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2411,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.205,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11LVNE-NEDDOUGLAS3-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +360 implies 21.7%; sharp fair 22.3% (Pinnacle 24.1%, Kalshi 20.5%) -> edge +0.6%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Jaxon Smith-Njigba under 6.5 receptions",
+   "market": "receptions",
+   "player": "Jaxon Smith-Njigba",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 116,
+   "estimated_prob": 0.4679,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4709,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.465,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11SFSEA-SEAJSMITHNJIGBA11-7 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +116 implies 46.3%; sharp fair 46.8% (Pinnacle 47.1%, Kalshi 46.5%) -> edge +0.5%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Mark Andrews under 3.5 receptions",
+   "market": "receptions",
+   "player": "Mark Andrews",
+   "game": "BAL @ ATL",
+   "kickoff": "2026-10-11T20:20:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 124,
+   "estimated_prob": 0.4504,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4658,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.435,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11BALATL-BALMANDREWS89-4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +124 implies 44.6%; sharp fair 45.0% (Pinnacle 46.6%, Kalshi 43.5%) -> edge +0.4%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Daniel Jones over 1.5 touchdown passes",
+   "market": "pass_td",
+   "player": "Daniel Jones",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 188,
+   "estimated_prob": 0.3512,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3575,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.345,
+     "url": "https://kalshi.com (KXNFLPASSTDS-26OCT11INDPIT-INDDJONES17-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +188 implies 34.7%; sharp fair 35.1% (Pinnacle 35.8%, Kalshi 34.5%) -> edge +0.4%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Devaughn Vele anytime touchdown",
+   "market": "anytime_td",
+   "player": "Devaughn Vele",
+   "game": "MIN @ NO",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 360,
+   "estimated_prob": 0.22,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2251,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.215,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11MINNO-NODVELE14-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +360 implies 21.7%; sharp fair 22.0% (Pinnacle 22.5%, Kalshi 21.5%) -> edge +0.3%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Oronde Gadsden II anytime touchdown",
+   "market": "anytime_td",
+   "player": "Oronde Gadsden II",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 340,
+   "estimated_prob": 0.2296,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2441,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.215,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11DENLAC-LACOGADSDEN86-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +340 implies 22.7%; sharp fair 23.0% (Pinnacle 24.4%, Kalshi 21.5%) -> edge +0.2%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Ashton Jeanty under 3.5 receptions",
+   "market": "receptions",
+   "player": "Ashton Jeanty",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 107,
+   "estimated_prob": 0.4849,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4848,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.485,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11LVNE-LVAJEANTY2-4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +107 implies 48.3%; sharp fair 48.5% (Pinnacle 48.5%, Kalshi 48.5%) -> edge +0.2%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Malik Willis under 0.5 touchdown passes",
+   "market": "pass_td",
+   "player": "Malik Willis",
+   "game": "CIN @ MIA",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 156,
+   "estimated_prob": 0.3921,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3992,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.385,
+     "url": "https://kalshi.com (KXNFLPASSTDS-26OCT11CINMIA-MIAMWILLIS2-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +156 implies 39.1%; sharp fair 39.2% (Pinnacle 39.9%, Kalshi 38.5%) -> edge +0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Christian Watson under 4.5 receptions",
+   "market": "receptions",
+   "player": "Christian Watson",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -125,
+   "estimated_prob": 0.5567,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5583,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.555,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11CHIGB-GBCWATSON9-5 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -125 implies 55.6%; sharp fair 55.7% (Pinnacle 55.8%, Kalshi 55.5%) -> edge +0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Brock Purdy over 1.5 touchdown passes",
+   "market": "pass_td",
+   "player": "Brock Purdy",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 111,
+   "estimated_prob": 0.4749,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4848,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.465,
+     "url": "https://kalshi.com (KXNFLPASSTDS-26OCT11SFSEA-SFBPURDY13-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +111 implies 47.4%; sharp fair 47.5% (Pinnacle 48.5%, Kalshi 46.5%) -> edge +0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Deebo Samuel Sr. over 3.5 receptions",
+   "market": "receptions",
+   "player": "Deebo Samuel Sr.",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -115,
+   "estimated_prob": 0.5356,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5363,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.535,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11SFSEA-SFDSAMUEL19-4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -115 implies 53.5%; sharp fair 53.6% (Pinnacle 53.6%, Kalshi 53.5%) -> edge +0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Christian Watson anytime touchdown",
+   "market": "anytime_td",
+   "player": "Christian Watson",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 185,
+   "estimated_prob": 0.3517,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3484,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.355,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11CHIGB-GBCWATSON9-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +185 implies 35.1%; sharp fair 35.2% (Pinnacle 34.8%, Kalshi 35.5%) -> edge +0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "J.K. Dobbins under 13.5 rush attempts",
+   "market": "rushing_attempts",
+   "player": "J.K. Dobbins",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -106,
+   "estimated_prob": 0.5149,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5248,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLRSHATT-26OCT11DENLAC-DENJDOBBINS27-14 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -106 implies 51.5%; sharp fair 51.5% (Pinnacle 52.5%, Kalshi 50.5%) -> edge +0.0%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "AJ Barner anytime touchdown",
+   "market": "anytime_td",
+   "player": "AJ Barner",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 340,
+   "estimated_prob": 0.2273,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2397,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.215,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11SFSEA-SEAABARNER88-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +340 implies 22.7%; sharp fair 22.7% (Pinnacle 24.0%, Kalshi 21.5%) -> edge +0.0%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Justin Herbert over 1.5 touchdown passes",
+   "market": "pass_td",
+   "player": "Justin Herbert",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 183,
+   "estimated_prob": 0.3529,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.3508,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.355,
+     "url": "https://kalshi.com (KXNFLPASSTDS-26OCT11DENLAC-LACJHERBERT10-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +183 implies 35.3%; sharp fair 35.3% (Pinnacle 35.1%, Kalshi 35.5%) -> edge -0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Daniel Jones anytime touchdown",
+   "market": "anytime_td",
+   "player": "Daniel Jones",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 700,
+   "estimated_prob": 0.1245,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.1339,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.115,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11INDPIT-INDDJONES17-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +700 implies 12.5%; sharp fair 12.4% (Pinnacle 13.4%, Kalshi 11.5%) -> edge -0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Sam Darnold anytime touchdown",
+   "market": "anytime_td",
+   "player": "Sam Darnold",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 950,
+   "estimated_prob": 0.0945,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.1039,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.085,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11SFSEA-SEASDARNOLD14-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +950 implies 9.5%; sharp fair 9.4% (Pinnacle 10.4%, Kalshi 8.5%) -> edge -0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Cam Ward under 0.5 touchdown passes",
+   "market": "pass_td",
+   "player": "Cam Ward",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 140,
+   "estimated_prob": 0.4159,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4168,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.415,
+     "url": "https://kalshi.com (KXNFLPASSTDS-26OCT11HOUTEN-TENCWARD1-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +140 implies 41.7%; sharp fair 41.6% (Pinnacle 41.7%, Kalshi 41.5%) -> edge -0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Jerry Jeudy under 1.5 receptions",
+   "market": "receptions",
+   "player": "Jerry Jeudy",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -127,
+   "estimated_prob": 0.5585,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.562,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.555,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11CLENYJ-CLEJJEUDY3-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -127 implies 55.9%; sharp fair 55.9% (Pinnacle 56.2%, Kalshi 55.5%) -> edge -0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Nico Collins under 5.5 receptions",
+   "market": "receptions",
+   "player": "Nico Collins",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -109,
+   "estimated_prob": 0.5201,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5152,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.525,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11HOUTEN-HOUNCOLLINS12-6 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -109 implies 52.2%; sharp fair 52.0% (Pinnacle 51.5%, Kalshi 52.5%) -> edge -0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Harold Fannin Jr. anytime touchdown",
+   "market": "anytime_td",
+   "player": "Harold Fannin Jr.",
+   "game": "CLE @ NYJ",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 260,
+   "estimated_prob": 0.2763,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2876,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.265,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11CLENYJ-CLEHFANNIN44-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +260 implies 27.8%; sharp fair 27.6% (Pinnacle 28.8%, Kalshi 26.5%) -> edge -0.1%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Tory Horton under 1.5 receptions",
+   "market": "receptions",
+   "player": "Tory Horton",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -190,
+   "estimated_prob": 0.6533,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6516,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.655,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11SFSEA-SEATHORTON15-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -190 implies 65.5%; sharp fair 65.3% (Pinnacle 65.2%, Kalshi 65.5%) -> edge -0.2%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Tre' Harris anytime touchdown",
+   "market": "anytime_td",
+   "player": "Tre' Harris",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 295,
+   "estimated_prob": 0.2508,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.2566,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.245,
+     "url": "https://kalshi.com (KXNFLTD-26OCT11DENLAC-LACTHARRIS9-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +295 implies 25.3%; sharp fair 25.1% (Pinnacle 25.7%, Kalshi 24.5%) -> edge -0.2%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Mike Evans over 3.5 receptions",
+   "market": "receptions",
+   "player": "Mike Evans",
+   "game": "SF @ SEA",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -150,
+   "estimated_prob": 0.5976,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.6002,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.595,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11SFSEA-SFMEVANS5-4 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -150 implies 60.0%; sharp fair 59.8% (Pinnacle 60.0%, Kalshi 59.5%) -> edge -0.2%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Bo Nix under 4.5 rush attempts",
+   "market": "rushing_attempts",
+   "player": "Bo Nix",
+   "game": "DEN @ LAC",
+   "kickoff": "2026-10-11T16:05:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -138,
+   "estimated_prob": 0.5774,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5848,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.57,
+     "url": "https://kalshi.com (KXNFLRSHATT-26OCT11DENLAC-DENBNIX10-5 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -138 implies 58.0%; sharp fair 57.7% (Pinnacle 58.5%, Kalshi 57.0%) -> edge -0.2%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Aaron Rodgers under 34.5 pass attempts",
+   "market": "pass_attempts",
+   "player": "Aaron Rodgers",
+   "game": "IND @ PIT",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -101,
+   "estimated_prob": 0.4996,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5043,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLPASSATT-26OCT11INDPIT-PITARODGERS8-35 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -101 implies 50.2%; sharp fair 50.0% (Pinnacle 50.4%, Kalshi 49.5%) -> edge -0.3%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Carnell Tate under 4.5 receptions",
+   "market": "receptions",
+   "player": "Carnell Tate",
+   "game": "HOU @ TEN",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -131,
+   "estimated_prob": 0.5642,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5734,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.555,
+     "url": "https://kalshi.com (KXNFLREC-26OCT11HOUTEN-TENCTATE14-5 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -131 implies 56.7%; sharp fair 56.4% (Pinnacle 57.3%, Kalshi 55.5%) -> edge -0.3%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Jordan Love under 1.5 touchdown passes",
+   "market": "pass_td",
+   "player": "Jordan Love",
+   "game": "CHI @ GB",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -108,
+   "estimated_prob": 0.516,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.527,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.505,
+     "url": "https://kalshi.com (KXNFLPASSTDS-26OCT11CHIGB-GBJLOVE10-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -108 implies 51.9%; sharp fair 51.6% (Pinnacle 52.7%, Kalshi 50.5%) -> edge -0.3%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Drake Maye under 1.5 touchdown passes",
+   "market": "pass_td",
+   "player": "Drake Maye",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -103,
+   "estimated_prob": 0.504,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.513,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.495,
+     "url": "https://kalshi.com (KXNFLPASSTDS-26OCT11LVNE-NEDMAYE10-2 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -103 implies 50.7%; sharp fair 50.4% (Pinnacle 51.3%, Kalshi 49.5%) -> edge -0.3%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Jared Goff over 0.5 interceptions",
+   "market": "interceptions",
+   "player": "Jared Goff",
+   "game": "DET @ ARI",
+   "kickoff": "2026-10-11T16:25:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 140,
+   "estimated_prob": 0.4132,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4113,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.415,
+     "url": "https://kalshi.com (KXNFLPASSINT-26OCT11DETARI-DETJGOFF16-1 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +140 implies 41.7%; sharp fair 41.3% (Pinnacle 41.1%, Kalshi 41.5%) -> edge -0.4%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Drake Maye under 5.5 rush attempts",
+   "market": "rushing_attempts",
+   "player": "Drake Maye",
+   "game": "LV @ NE",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": 114,
+   "estimated_prob": 0.4634,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.4817,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.445,
+     "url": "https://kalshi.com (KXNFLRSHATT-26OCT11LVNE-NEDMAYE10-6 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK +114 implies 46.7%; sharp fair 46.3% (Pinnacle 48.2%, Kalshi 44.5%) -> edge -0.4%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  },
+  {
+   "selection": "Jayden Daniels under 29.5 pass attempts",
+   "market": "pass_attempts",
+   "player": "Jayden Daniels",
+   "game": "NYG @ WSH",
+   "kickoff": "2026-10-11T13:00:00-04:00",
+   "game_script": "neutral",
+   "dk_odds": -109,
+   "estimated_prob": 0.5175,
+   "prob_sources": [
+    {
+     "name": "Pinnacle",
+     "prob": 0.5,
+     "url": "https://www.pinnacle.com (guest odds feed via src/sharp.py board, de-vigged, fetched 2026-10-11 ~9:15-9:40 ET)"
+    },
+    {
+     "name": "Kalshi",
+     "prob": 0.535,
+     "url": "https://kalshi.com (KXNFLPASSATT-26OCT11NYGWAS-WASJDANIELS5-30 midpoint, fetched 2026-10-11 ~9:15-9:40 ET)"
+    }
+   ],
+   "reason": "DK -109 implies 52.2%; sharp fair 51.8% (Pinnacle 50.0%, Kalshi 53.5%) -> edge -0.4%.",
+   "source": "DK price from scoresandodds.com player prop page, DraftKings column (fetched 2026-10-11 ~9:15-9:40 ET)"
+  }
+ ],
+ "boost_check": [
+  {
+   "boost_description": "DraftKings promotions page not read this run (DK's site blocks automated reads, and this run never logs in). Check the Promos tab in the app; only take a boost if the boosted price beats the fair chances on the Legs tab.",
+   "fits_card": false
+  }
+ ],
+ "avoid_list": [
+  {
+   "selection": "Indianapolis Colts ML +124",
+   "why_avoid": "Implies 44.6%; Pinnacle and Kalshi have the Colts about 40.6%. -4% edge."
+  },
+  {
+   "selection": "Detroit Lions ML -250",
+   "why_avoid": "Implies 71.4% vs a fair chance near 68.4%. A popular favorite priced 3 points high."
+  },
+  {
+   "selection": "San Francisco 49ers ML +140",
+   "why_avoid": "Implies 41.7% vs a 38.3% fair chance (Pinnacle), even with SF 4-0."
+  },
+  {
+   "selection": "Tee Higgins anytime TD +130",
+   "why_avoid": "Pinnacle says it's good value, but no second sharp source confirms it. A single-source edge isn't a bet (lesson from week 2)."
+  },
+  {
+   "selection": "Chicago Bears ML -125",
+   "why_avoid": "Implies 55.6% vs 52.7% fair. CHI 3-1 is drawing public money."
+  }
+ ]
+}
